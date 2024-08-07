@@ -2,7 +2,7 @@ import React from 'react';
 import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
 import HomeScreen from '../screens/HomeScreen';
-import MoviesScreen from '../screens/MoviesScreen';
+import MovieScreen from '../screens/MovieScreen';
 import BooksScreen from '../screens/BooksScreen';
 import TvShowsScreen from '../screens/TvShowsScreen';
 import VideoGamesScreen from '../screens/VideoGamesScreen';
@@ -20,7 +20,7 @@ function AppNavigator() {
         />
         <Stack.Screen
           name="Movies"
-          component={MoviesScreen}
+          component={MovieScreen}
           options={{headerShown: true}}
         />
         <Stack.Screen
