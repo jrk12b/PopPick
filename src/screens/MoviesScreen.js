@@ -1,10 +1,64 @@
-import React from 'react';
-import {View, Text, StyleSheet} from 'react-native';
+import React, {useState, useEffect} from 'react';
+import {View, Text, Image, FlatList, StyleSheet} from 'react-native';
 
 function MoviesScreen() {
+  const [movies, setMovies] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
+  // Fetch movies from the API
+  useEffect(() => {
+    const fetchMovies = async () => {
+      try {
+        const response = await fetch(
+          'https://api.themoviedb.org/3/movie/popular?api_key=15979629ea6e558ef491c9b9ccee0043',
+        );
+        const data = await response.json();
+        setMovies(data.results);
+      } catch (error) {
+        setError(error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchMovies();
+  }, []);
+
+  // Render content based on state
+  if (loading) {
+    return (
+      <View style={styles.container}>
+        <Text style={styles.text}>Loading...</Text>
+      </View>
+    );
+  }
+
+  if (error) {
+    return (
+      <View style={styles.container}>
+        <Text style={styles.text}>Error: {error.message}</Text>
+      </View>
+    );
+  }
+
   return (
     <View style={styles.container}>
-      <Text>Movies Screen</Text>
+      <FlatList
+        data={movies}
+        keyExtractor={item => item.id.toString()}
+        renderItem={({item}) => (
+          <View style={styles.movieContainer}>
+            <Image
+              style={styles.poster}
+              source={{
+                uri: `https://image.tmdb.org/t/p/w500${item.poster_path}`,
+              }}
+            />
+            <Text style={styles.title}>{item.title}</Text>
+          </View>
+        )}
+      />
     </View>
   );
 }
@@ -12,8 +66,22 @@ function MoviesScreen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
+    backgroundColor: 'black',
+    padding: 10,
+  },
+  movieContainer: {
+    marginBottom: 20,
+  },
+  poster: {
+    width: 100,
+    height: 150,
+  },
+  title: {
+    color: 'white',
+    marginTop: 5,
+  },
+  text: {
+    color: 'white',
   },
 });
 
