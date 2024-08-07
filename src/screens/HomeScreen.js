@@ -6,8 +6,20 @@ function HomeScreen({navigation}) {
     <View style={styles.container}>
       <Text>Home Screen</Text>
       <Button
-        title="Go to Details"
-        onPress={() => navigation.navigate('Details')}
+        title="Go to Movies"
+        onPress={() => navigation.navigate('Movies')}
+      />
+      <Button
+        title="Go to Books"
+        onPress={() => navigation.navigate('Books')}
+      />
+      <Button
+        title="Go to Video Games"
+        onPress={() => navigation.navigate('VideoGames')}
+      />
+      <Button
+        title="Go to Tv Shows"
+        onPress={() => navigation.navigate('TvShows')}
       />
     </View>
   );
