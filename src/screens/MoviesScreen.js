@@ -1,5 +1,12 @@
 import React, {useState, useEffect} from 'react';
-import {View, Text, Image, FlatList, StyleSheet} from 'react-native';
+import {
+  View,
+  Text,
+  Image,
+  FlatList,
+  StyleSheet,
+  ScrollView,
+} from 'react-native';
 
 function MoviesScreen() {
   const [movies, setMovies] = useState([]);
@@ -43,23 +50,34 @@ function MoviesScreen() {
   }
 
   return (
-    <View style={styles.container}>
-      <FlatList
-        data={movies}
-        keyExtractor={item => item.id.toString()}
-        renderItem={({item}) => (
-          <View style={styles.movieContainer}>
-            <Image
-              style={styles.poster}
-              source={{
-                uri: `https://image.tmdb.org/t/p/w500${item.poster_path}`,
-              }}
-            />
-            <Text style={styles.title}>{item.title}</Text>
-          </View>
-        )}
-      />
-    </View>
+    <ScrollView style={styles.container}>
+      {/* Popular Recommendations Section */}
+      <View style={styles.sectionContainer}>
+        <Text style={styles.sectionTitle}>Popular Recommendations</Text>
+        <FlatList
+          data={movies}
+          keyExtractor={item => item.id.toString()}
+          renderItem={({item}) => (
+            <View style={styles.movieContainer}>
+              <Image
+                style={styles.poster}
+                source={{
+                  uri: `https://image.tmdb.org/t/p/w500${item.poster_path}`,
+                }}
+              />
+              <Text style={styles.title}>{item.title}</Text>
+            </View>
+          )}
+          horizontal
+        />
+      </View>
+
+      {/* My List Section */}
+      <View style={styles.sectionContainer}>
+        <Text style={styles.sectionTitle}>My List</Text>
+        <Text style={styles.text}>No movies added yet.</Text>
+      </View>
+    </ScrollView>
   );
 }
 
@@ -69,8 +87,18 @@ const styles = StyleSheet.create({
     backgroundColor: 'black',
     padding: 10,
   },
+  sectionContainer: {
+    marginBottom: 20,
+  },
+  sectionTitle: {
+    fontSize: 24,
+    fontWeight: 'bold',
+    color: 'white',
+    marginBottom: 10,
+  },
   movieContainer: {
     marginBottom: 20,
+    marginRight: 10,
   },
   poster: {
     width: 100,
