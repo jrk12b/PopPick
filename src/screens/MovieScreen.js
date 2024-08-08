@@ -12,8 +12,9 @@ import {
   Button,
 } from 'react-native';
 import styles from '../styles/styles';
+import PopularRecommendations from '../components/movies/PopularRecommendations';
 
-function MoviesScreen() {
+function MovieScreen() {
   const [popularMovies, setPopularMovies] = useState([]);
   const [upcomingMovies, setUpcomingMovies] = useState([]);
   const [topMovies, setTopMovies] = useState([]);
@@ -173,29 +174,10 @@ function MoviesScreen() {
 
   return (
     <ScrollView style={styles.container}>
-      {/* Popular Recommendations Section */}
-      <View style={styles.sectionContainer}>
-        <Text style={styles.sectionTitle}>Popular Recommendations</Text>
-        <FlatList
-          data={popularMovies}
-          keyExtractor={item => item.id.toString()}
-          renderItem={({item}) => (
-            <View style={styles.movieContainer}>
-              <TouchableOpacity
-                onPress={() => handleShowOptions(item, 'recommendations')}>
-                <Image
-                  style={styles.poster}
-                  source={{
-                    uri: `https://image.tmdb.org/t/p/w500${item.poster_path}`,
-                  }}
-                />
-                <Text style={styles.title}>{item.title}</Text>
-              </TouchableOpacity>
-            </View>
-          )}
-          horizontal
-        />
-      </View>
+      <PopularRecommendations
+        popularMovies={popularMovies}
+        handleShowOptions={handleShowOptions}
+      />
 
       {/* Upcoming Recommendations Section */}
       <View style={styles.sectionContainer}>
@@ -408,4 +390,4 @@ function MoviesScreen() {
   );
 }
 
-export default MoviesScreen;
+export default MovieScreen;
