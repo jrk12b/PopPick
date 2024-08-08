@@ -1,4 +1,3 @@
-// components/movies/MovieOptionsModal.js
 import React from 'react';
 import {View, Text, Modal, Button} from 'react-native';
 import styles from '../../styles/styles';
@@ -27,14 +26,17 @@ const MovieOptionsModal = ({
             <>
               <Button
                 title="Add to My List"
+                color={styles.modalButton.color}
                 onPress={() => handleOptionSelect('myList')}
               />
               <Button
                 title="Mark as Watched"
+                color={styles.modalButton.color}
                 onPress={() => handleOptionSelect('watched')}
               />
               <Button
                 title="Mark as Liked"
+                color={styles.modalButton.color}
                 onPress={() => handleOptionSelect('like')}
               />
             </>
@@ -43,14 +45,17 @@ const MovieOptionsModal = ({
             <>
               <Button
                 title="Remove from My List"
+                color={styles.modalButton.color}
                 onPress={() => handleOptionSelect('remove')}
               />
               <Button
                 title="Mark as Watched"
+                color={styles.modalButton.color}
                 onPress={() => handleOptionSelect('watched')}
               />
               <Button
                 title="Mark as Liked"
+                color={styles.modalButton.color}
                 onPress={() => handleOptionSelect('like')}
               />
             </>
@@ -59,10 +64,12 @@ const MovieOptionsModal = ({
             <>
               <Button
                 title="Remove from Liked List"
+                color={styles.modalButton.color}
                 onPress={() => handleOptionSelect('remove')}
               />
               <Button
                 title="Mark as Watched"
+                color={styles.modalButton.color}
                 onPress={() => handleOptionSelect('watched')}
               />
             </>
@@ -71,19 +78,26 @@ const MovieOptionsModal = ({
             <>
               <Button
                 title="Remove from Watched List"
+                color={styles.modalButton.color}
                 onPress={() => handleOptionSelect('remove')}
               />
               <Button
                 title="Mark as Liked"
+                color={styles.modalButton.color}
                 onPress={() => handleOptionSelect('like')}
               />
               <Button
                 title="Add to My List"
+                color={styles.modalButton.color}
                 onPress={() => handleOptionSelect('myList')}
               />
             </>
           )}
-          <Button title="Cancel" onPress={handleCloseModal} />
+          <Button
+            title="Cancel"
+            color={styles.modalButton.color}
+            onPress={handleCloseModal}
+          />
         </View>
       </View>
     </Modal>

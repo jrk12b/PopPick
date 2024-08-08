@@ -3,7 +3,7 @@ import {StyleSheet} from 'react-native';
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: 'black',
+    backgroundColor: '#595959',
     padding: 10,
   },
   sectionContainer: {
@@ -12,7 +12,7 @@ const styles = StyleSheet.create({
   sectionTitle: {
     fontSize: 24,
     fontWeight: 'bold',
-    color: 'white',
+    color: '#FBF4F4',
     marginBottom: 10,
   },
   movieContainer: {
@@ -24,12 +24,13 @@ const styles = StyleSheet.create({
     height: 150,
   },
   title: {
-    color: 'white',
+    color: '#FBF4F4',
     marginTop: 5,
   },
   text: {
-    color: 'white',
+    color: '#FBF4F4',
   },
+
   modalContainer: {
     flex: 1,
     justifyContent: 'center',
@@ -39,13 +40,24 @@ const styles = StyleSheet.create({
   modalContent: {
     width: '80%',
     padding: 20,
-    backgroundColor: 'white',
+    backgroundColor: '#454545',
     borderRadius: 10,
+    marginVertical: 5,
+    shadowColor: '#000', // iOS shadow color
+    shadowOffset: {width: 0, height: 2}, // iOS shadow offset
+    shadowOpacity: 0.3, // iOS shadow opacity
+    shadowRadius: 4, // iOS shadow radius
+    elevation: 5, // Android shadow/elevation
   },
   modalTitle: {
     fontSize: 18,
     fontWeight: 'bold',
     marginBottom: 10,
+    color: '#FBF4F4',
+    textAlign: 'center',
+  },
+  modalButton: {
+    color: '#FBF4F4',
   },
 });
 

@@ -6,17 +6,17 @@ const itemWidth = windowWidth / 3 - 20; // 3 items per row, with margin adjustme
 const fullListStyles = StyleSheet.create({
   FlatList: {
     flex: 1,
-    backgroundColor: 'black',
+    backgroundColor: '#595959',
     padding: 10,
   },
   sectionTitle: {
     fontSize: 24,
     fontWeight: 'bold',
-    color: 'white',
+    color: '#FBF4F4',
     marginBottom: 10,
   },
   text: {
-    color: 'white',
+    color: '#FBF4F4',
   },
   movieContainer: {
     width: itemWidth,
@@ -29,7 +29,7 @@ const fullListStyles = StyleSheet.create({
   },
   title: {
     fontSize: 14,
-    color: 'white',
+    color: '#FBF4F4',
     marginTop: 5,
     textAlign: 'center',
   },
