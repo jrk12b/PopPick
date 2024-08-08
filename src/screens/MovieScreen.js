@@ -16,11 +16,12 @@ import {
 function MoviesScreen() {
   const [popularMovies, setPopularMovies] = useState([]);
   const [upcomingMovies, setUpcomingMovies] = useState([]);
+  const [topMovies, setTopMovies] = useState([]);
   const [myList, setMyList] = useState([]);
   const [likedList, setLikedList] = useState([]);
   const [watchedList, setWatchedList] = useState([]);
   const [selectedMovie, setSelectedMovie] = useState(null);
-  const [listType, setListType] = useState(null); // 'recommendations', 'myList', 'likedList', 'watchedList'
+  const [listType, setListType] = useState(null);
   const [modalVisible, setModalVisible] = useState(false);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -59,6 +60,24 @@ function MoviesScreen() {
     };
 
     fetchUpcomingMovies();
+  }, []);
+
+  useEffect(() => {
+    const fetchTopMovies = async () => {
+      try {
+        const response = await fetch(
+          'https://api.themoviedb.org/3/movie/top_rated?api_key=15979629ea6e558ef491c9b9ccee0043',
+        );
+        const data = await response.json();
+        setTopMovies(data.results);
+      } catch (error) {
+        setError(error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchTopMovies();
   }, []);
 
   // Handle adding/removing movies to/from lists
@@ -202,9 +221,33 @@ function MoviesScreen() {
         />
       </View>
 
+      {/* Top Rated Recommendations Section */}
+      <View style={styles.sectionContainer}>
+        <Text style={styles.sectionTitle}>Top Rated Recommendations</Text>
+        <FlatList
+          data={topMovies}
+          keyExtractor={item => item.id.toString()}
+          renderItem={({item}) => (
+            <View style={styles.movieContainer}>
+              <TouchableOpacity
+                onPress={() => handleShowOptions(item, 'recommendations')}>
+                <Image
+                  style={styles.poster}
+                  source={{
+                    uri: `https://image.tmdb.org/t/p/w500${item.poster_path}`,
+                  }}
+                />
+                <Text style={styles.title}>{item.title}</Text>
+              </TouchableOpacity>
+            </View>
+          )}
+          horizontal
+        />
+      </View>
+
       {/* My List Section */}
       <View style={styles.sectionContainer}>
-        <Text style={styles.sectionTitle}>My List</Text>
+        <Text style={styles.sectionTitle}>My List ({myList.length})</Text>
         {myList.length === 0 ? (
           <Text style={styles.text}>No movies added yet.</Text>
         ) : (
@@ -232,7 +275,7 @@ function MoviesScreen() {
 
       {/* Watched Section */}
       <View style={styles.sectionContainer}>
-        <Text style={styles.sectionTitle}>Watched</Text>
+        <Text style={styles.sectionTitle}>Watched ({watchedList.length})</Text>
         {watchedList.length === 0 ? (
           <Text style={styles.text}>No movies added yet.</Text>
         ) : (
@@ -260,7 +303,7 @@ function MoviesScreen() {
 
       {/* Liked Section */}
       <View style={styles.sectionContainer}>
-        <Text style={styles.sectionTitle}>Liked</Text>
+        <Text style={styles.sectionTitle}>Liked ({likedList.length})</Text>
         {likedList.length === 0 ? (
           <Text style={styles.text}>No movies added yet.</Text>
         ) : (
