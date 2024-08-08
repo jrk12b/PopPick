@@ -59,6 +59,20 @@ const useMovieLists = () => {
       saveList('likedList', updatedList); // Save updated likedList to AsyncStorage
       return updatedList;
     });
+    // Automatically add movie to watchedList as well
+    setWatchedList(prevList => {
+      const updatedList = prevList.find(item => item.id === movie.id)
+        ? prevList
+        : [...prevList, movie];
+      saveList('watchedList', updatedList); // Save updated watchedList to AsyncStorage
+      return updatedList;
+    });
+    // Also remove the movie from myList if it exists
+    setMyList(prevList => {
+      const updatedList = prevList.filter(item => item.id !== movie.id);
+      saveList('myList', updatedList); // Also update myList
+      return updatedList;
+    });
   };
 
   // Handle adding/removing movies to/from watchedList
@@ -70,6 +84,7 @@ const useMovieLists = () => {
       saveList('watchedList', updatedList); // Save updated watchedList to AsyncStorage
       return updatedList;
     });
+    // Also remove the movie from myList if it exists
     setMyList(prevList => {
       const updatedList = prevList.filter(item => item.id !== movie.id);
       saveList('myList', updatedList); // Also update myList
