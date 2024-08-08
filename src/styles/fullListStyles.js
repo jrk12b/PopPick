@@ -1,4 +1,7 @@
-import {StyleSheet} from 'react-native';
+import {StyleSheet, Dimensions} from 'react-native';
+
+const windowWidth = Dimensions.get('window').width;
+const itemWidth = windowWidth / 3 - 20; // 3 items per row, with margin adjustments
 
 const fullListStyles = StyleSheet.create({
   FlatList: {
@@ -16,7 +19,7 @@ const fullListStyles = StyleSheet.create({
     color: 'white',
   },
   movieContainer: {
-    flex: 1,
+    width: itemWidth,
     margin: 5,
   },
   poster: {
@@ -26,7 +29,9 @@ const fullListStyles = StyleSheet.create({
   },
   title: {
     fontSize: 14,
+    color: 'white',
     marginTop: 5,
+    textAlign: 'center',
   },
   columnWrapper: {
     justifyContent: 'space-between',
