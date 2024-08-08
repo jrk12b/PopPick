@@ -14,7 +14,7 @@ import Loading from '../components/movies/Loading';
 import Error from '../components/movies/Error';
 import useMovieModal from '../../hooks/useMovieModal';
 
-function MovieScreen() {
+function MovieScreen({navigation}) {
   const {
     myList,
     likedList,
@@ -85,7 +85,11 @@ function MovieScreen() {
         handleShowOptions={handleShowOptions}
       />
 
-      <MyList myList={myList} handleShowOptions={handleShowOptions} />
+      <MyList
+        myList={myList}
+        handleShowOptions={handleShowOptions}
+        navigation={navigation}
+      />
 
       <WatchedList
         watchedList={watchedList}

@@ -6,6 +6,7 @@ import MovieScreen from '../screens/MovieScreen';
 import BooksScreen from '../screens/BooksScreen';
 import TvShowsScreen from '../screens/TvShowsScreen';
 import VideoGamesScreen from '../screens/VideoGamesScreen';
+import MyListScreen from '../screens/MylistScreen';
 
 const Stack = createStackNavigator();
 
@@ -23,6 +24,7 @@ function AppNavigator() {
           component={MovieScreen}
           options={{headerShown: true}}
         />
+        <Stack.Screen name="MyListScreen" component={MyListScreen} />
         <Stack.Screen
           name="Books"
           component={BooksScreen}
