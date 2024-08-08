@@ -94,6 +94,7 @@ function MovieScreen({navigation}) {
       <WatchedList
         watchedList={watchedList}
         handleShowOptions={handleShowOptions}
+        navigation={navigation}
       />
 
       <LikedList likedList={likedList} handleShowOptions={handleShowOptions} />

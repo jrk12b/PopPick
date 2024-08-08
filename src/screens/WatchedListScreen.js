@@ -1,11 +1,11 @@
 import React from 'react';
-import MyListFull from '../components/movies/lists/MyListFull';
+import WatchedListFull from '../components/movies/lists/WatchedListFull';
 import useMovieLists from '../../hooks/useMovieLists';
 import useMovieModal from '../../hooks/useMovieModal';
 import OptionsModal from '../components/movies/OptionsModal';
 
-function MyListScreen() {
-  const {myList, handleAddToMyList, handleAddToLiked, handleAddToWatched} =
+function WatchedListScreen() {
+  const {watchedList, handleAddToMyList, handleAddToLiked, handleAddToWatched} =
     useMovieLists();
 
   const {
@@ -19,7 +19,10 @@ function MyListScreen() {
 
   return (
     <>
-      <MyListFull myList={myList} handleShowOptions={handleShowOptions} />
+      <WatchedListFull
+        watchedList={watchedList}
+        handleShowOptions={handleShowOptions}
+      />
       <OptionsModal
         selectedMovie={selectedMovie}
         listType={listType}
@@ -31,4 +34,4 @@ function MyListScreen() {
   );
 }
 
-export default MyListScreen;
+export default WatchedListScreen;

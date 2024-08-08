@@ -1,6 +1,6 @@
 import {StyleSheet} from 'react-native';
 
-const myListFullStyles = StyleSheet.create({
+const fullListStyles = StyleSheet.create({
   FlatList: {
     flex: 1,
     backgroundColor: 'black',
@@ -36,4 +36,4 @@ const myListFullStyles = StyleSheet.create({
   },
 });
 
-export default myListFullStyles;
+export default fullListStyles;

@@ -2,15 +2,16 @@ import React from 'react';
 import {View, Text, Image, FlatList, TouchableOpacity} from 'react-native';
 import fullListStyles from '../../../styles/fullListStyles';
 
-function MyListFull({myList, handleShowOptions}) {
+function WatchedList({watchedList, handleShowOptions}) {
   return (
     <FlatList
       style={fullListStyles.FlatList}
-      data={myList}
+      data={watchedList}
       keyExtractor={item => item.id.toString()}
       renderItem={({item}) => (
         <View style={fullListStyles.movieContainer}>
-          <TouchableOpacity onPress={() => handleShowOptions(item, 'myList')}>
+          <TouchableOpacity
+            onPress={() => handleShowOptions(item, 'watchedList')}>
             <Image
               style={fullListStyles.poster}
               source={{
@@ -26,7 +27,7 @@ function MyListFull({myList, handleShowOptions}) {
       contentContainerStyle={fullListStyles.gridContainer}
       ListHeaderComponent={
         <Text style={fullListStyles.sectionTitle}>
-          My List ({myList.length})
+          Watched List ({watchedList.length})
         </Text>
       }
       ListEmptyComponent={
@@ -36,4 +37,4 @@ function MyListFull({myList, handleShowOptions}) {
   );
 }
 
-export default MyListFull;
+export default WatchedList;

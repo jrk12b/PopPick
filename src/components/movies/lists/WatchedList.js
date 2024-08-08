@@ -2,10 +2,13 @@ import React from 'react';
 import {View, Text, Image, FlatList, TouchableOpacity} from 'react-native';
 import styles from '../../../styles/styles';
 
-function WatchedList({watchedList, handleShowOptions}) {
+function WatchedList({watchedList, handleShowOptions, navigation}) {
   return (
     <View style={styles.sectionContainer}>
-      <Text style={styles.sectionTitle}>Watched ({watchedList.length})</Text>
+      <TouchableOpacity
+        onPress={() => navigation.navigate('WatchedListScreen')}>
+        <Text style={styles.sectionTitle}>Watched ({watchedList.length})</Text>
+      </TouchableOpacity>
       {watchedList.length === 0 ? (
         <Text style={styles.text}>No movies added yet.</Text>
       ) : (
