@@ -68,20 +68,29 @@ function MovieScreen({navigation}) {
     return <Error message={error.message} />;
   }
 
+  // Combine all movies from the lists
+  const allListMovies = [...myList, ...likedList, ...watchedList].map(
+    movie => movie.id,
+  );
+
+  // Filter out movies that are already on any list
+  const filterList = movies =>
+    movies.filter(movie => !allListMovies.includes(movie.id));
+
   return (
     <ScrollView style={styles.container}>
       <PopularRecommendations
-        popularMovies={popularMovies}
+        popularMovies={filterList(popularMovies)}
         handleShowOptions={handleShowOptions}
       />
 
       <UpcomingRecommendations
-        upcomingMovies={upcomingMovies}
+        upcomingMovies={filterList(upcomingMovies)}
         handleShowOptions={handleShowOptions}
       />
 
       <TopRecommendations
-        topMovies={topMovies}
+        topMovies={filterList(topMovies)}
         handleShowOptions={handleShowOptions}
       />
 
