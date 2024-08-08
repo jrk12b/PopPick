@@ -1,7 +1,5 @@
-/* eslint-disable no-shadow */
-/* eslint-disable no-catch-shadow */
-import React, {useState, useEffect} from 'react';
-import {View, Text, ScrollView} from 'react-native';
+import React, {useState} from 'react';
+import {ScrollView} from 'react-native';
 import styles from '../styles/styles';
 import PopularRecommendations from '../components/movies/recommendations/PopularRecommendations';
 import UpcomingRecommendations from '../components/movies/recommendations/UpcomingRecommendations';
@@ -10,163 +8,64 @@ import MyList from '../components/movies/lists/MyList';
 import WatchedList from '../components/movies/lists/WatchedList';
 import LikedList from '../components/movies/lists/LikedList';
 import OptionsModal from '../components/movies/OptionsModal';
+import useMovies from '../../hooks/useMovies';
+import useMovieLists from '../../hooks/userMovieLists';
+import Loading from '../components/movies/Loading';
+import Error from '../components/movies/Error';
+import useMovieModal from '../../hooks/useMovieModal';
 
 function MovieScreen() {
+  const {
+    myList,
+    likedList,
+    watchedList,
+    handleAddToMyList,
+    handleAddToLiked,
+    handleAddToWatched,
+  } = useMovieLists();
+
+  const {
+    selectedMovie,
+    listType,
+    modalVisible,
+    handleShowOptions,
+    handleCloseModal,
+    handleOptionSelect,
+  } = useMovieModal(handleAddToMyList, handleAddToLiked, handleAddToWatched);
+
   const [popularMovies, setPopularMovies] = useState([]);
   const [upcomingMovies, setUpcomingMovies] = useState([]);
   const [topMovies, setTopMovies] = useState([]);
-  const [myList, setMyList] = useState([]);
-  const [likedList, setLikedList] = useState([]);
-  const [watchedList, setWatchedList] = useState([]);
-  const [selectedMovie, setSelectedMovie] = useState(null);
-  const [listType, setListType] = useState(null);
-  const [modalVisible, setModalVisible] = useState(false);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  useEffect(() => {
-    const fetchPopularMovies = async () => {
-      try {
-        const response = await fetch(
-          'https://api.themoviedb.org/3/movie/popular?api_key=15979629ea6e558ef491c9b9ccee0043',
-        );
-        const data = await response.json();
-        setPopularMovies(data.results);
-      } catch (error) {
-        setError(error);
-      } finally {
-        setLoading(false);
-      }
-    };
+  useMovies(
+    'https://api.themoviedb.org/3/movie/popular?api_key=15979629ea6e558ef491c9b9ccee0043',
+    setPopularMovies,
+    setLoading,
+    setError,
+  );
 
-    fetchPopularMovies();
-  }, []);
+  useMovies(
+    'https://api.themoviedb.org/3/movie/upcoming?api_key=15979629ea6e558ef491c9b9ccee0043',
+    setUpcomingMovies,
+    setLoading,
+    setError,
+  );
 
-  useEffect(() => {
-    const fetchUpcomingMovies = async () => {
-      try {
-        const response = await fetch(
-          'https://api.themoviedb.org/3/movie/upcoming?api_key=15979629ea6e558ef491c9b9ccee0043',
-        );
-        const data = await response.json();
-        setUpcomingMovies(data.results);
-      } catch (error) {
-        setError(error);
-      } finally {
-        setLoading(false);
-      }
-    };
+  useMovies(
+    'https://api.themoviedb.org/3/movie/top_rated?api_key=15979629ea6e558ef491c9b9ccee0043',
+    setTopMovies,
+    setLoading,
+    setError,
+  );
 
-    fetchUpcomingMovies();
-  }, []);
-
-  useEffect(() => {
-    const fetchTopMovies = async () => {
-      try {
-        const response = await fetch(
-          'https://api.themoviedb.org/3/movie/top_rated?api_key=15979629ea6e558ef491c9b9ccee0043',
-        );
-        const data = await response.json();
-        setTopMovies(data.results);
-      } catch (error) {
-        setError(error);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchTopMovies();
-  }, []);
-
-  // Handle adding/removing movies to/from lists
-  const handleAddToMyList = movie => {
-    setMyList(prevList => {
-      if (prevList.find(item => item.id === movie.id)) {
-        return prevList.filter(item => item.id !== movie.id);
-      }
-      return [...prevList, movie];
-    });
-  };
-
-  const handleAddToLiked = movie => {
-    setLikedList(prevList => {
-      if (prevList.find(item => item.id === movie.id)) {
-        return prevList.filter(item => item.id !== movie.id);
-      }
-      return [...prevList, movie];
-    });
-  };
-
-  const handleAddToWatched = movie => {
-    setWatchedList(prevList => {
-      if (prevList.find(item => item.id === movie.id)) {
-        return prevList.filter(item => item.id !== movie.id);
-      }
-      return [...prevList, movie];
-    });
-    // Remove from My List if present
-    setMyList(prevList => prevList.filter(item => item.id !== movie.id));
-  };
-
-  const handleShowOptions = (movie, type) => {
-    setSelectedMovie(movie);
-    setListType(type);
-    setModalVisible(true);
-  };
-
-  const handleCloseModal = () => {
-    setModalVisible(false);
-    setSelectedMovie(null);
-    setListType(null);
-  };
-
-  // Handle modal option selection
-  const handleOptionSelect = option => {
-    if (!selectedMovie) {
-      return;
-    }
-
-    switch (option) {
-      case 'myList':
-        handleAddToMyList(selectedMovie);
-        break;
-      case 'like':
-        handleAddToLiked(selectedMovie);
-        break;
-      case 'watched':
-        handleAddToWatched(selectedMovie);
-        break;
-      case 'remove':
-        if (listType === 'myList') {
-          handleAddToMyList(selectedMovie);
-        } else if (listType === 'likedList') {
-          handleAddToLiked(selectedMovie);
-        } else if (listType === 'watchedList') {
-          handleAddToWatched(selectedMovie);
-        }
-        break;
-      default:
-        break;
-    }
-
-    handleCloseModal();
-  };
-
-  // Render content based on state
   if (loading) {
-    return (
-      <View style={styles.container}>
-        <Text style={styles.text}>Loading...</Text>
-      </View>
-    );
+    return <Loading />;
   }
 
   if (error) {
-    return (
-      <View style={styles.container}>
-        <Text style={styles.text}>Error: {error.message}</Text>
-      </View>
-    );
+    return <Error message={error.message} />;
   }
 
   return (
