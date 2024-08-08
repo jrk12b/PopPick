@@ -2,10 +2,12 @@ import React from 'react';
 import {View, Text, Image, FlatList, TouchableOpacity} from 'react-native';
 import styles from '../../../styles/styles';
 
-function LikedList({likedList, handleShowOptions}) {
+function LikedList({likedList, handleShowOptions, navigation}) {
   return (
     <View style={styles.sectionContainer}>
-      <Text style={styles.sectionTitle}>Liked ({likedList.length})</Text>
+      <TouchableOpacity onPress={() => navigation.navigate('LikedListScreen')}>
+        <Text style={styles.sectionTitle}>Liked ({likedList.length})</Text>
+      </TouchableOpacity>
       {likedList.length === 0 ? (
         <Text style={styles.text}>No movies added yet.</Text>
       ) : (
@@ -22,7 +24,6 @@ function LikedList({likedList, handleShowOptions}) {
                     uri: `https://image.tmdb.org/t/p/w500${item.poster_path}`,
                   }}
                 />
-                {/* <Text style={styles.title}>{item.title}</Text> */}
               </TouchableOpacity>
             </View>
           )}

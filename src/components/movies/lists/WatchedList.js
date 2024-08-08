@@ -25,7 +25,6 @@ function WatchedList({watchedList, handleShowOptions, navigation}) {
                     uri: `https://image.tmdb.org/t/p/w500${item.poster_path}`,
                   }}
                 />
-                {/* <Text style={styles.title}>{item.title}</Text> */}
               </TouchableOpacity>
             </View>
           )}

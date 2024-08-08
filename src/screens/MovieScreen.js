@@ -97,7 +97,11 @@ function MovieScreen({navigation}) {
         navigation={navigation}
       />
 
-      <LikedList likedList={likedList} handleShowOptions={handleShowOptions} />
+      <LikedList
+        likedList={likedList}
+        handleShowOptions={handleShowOptions}
+        navigation={navigation}
+      />
 
       <OptionsModal
         selectedMovie={selectedMovie}
