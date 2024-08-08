@@ -9,7 +9,7 @@ import WatchedList from '../components/movies/lists/WatchedList';
 import LikedList from '../components/movies/lists/LikedList';
 import OptionsModal from '../components/movies/OptionsModal';
 import useMovies from '../../hooks/useMovies';
-import useMovieLists from '../../hooks/userMovieLists';
+import useMovieLists from '../../hooks/useMovieLists';
 import Loading from '../components/movies/Loading';
 import Error from '../components/movies/Error';
 import useMovieModal from '../../hooks/useMovieModal';
