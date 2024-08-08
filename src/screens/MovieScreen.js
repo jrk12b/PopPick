@@ -13,6 +13,8 @@ import {
 } from 'react-native';
 import styles from '../styles/styles';
 import PopularRecommendations from '../components/movies/PopularRecommendations';
+import UpcomingRecommendations from '../components/movies/UpcomingRecommendations';
+import TopRecommendations from '../components/movies/TopRecommendations';
 
 function MovieScreen() {
   const [popularMovies, setPopularMovies] = useState([]);
@@ -179,53 +181,15 @@ function MovieScreen() {
         handleShowOptions={handleShowOptions}
       />
 
-      {/* Upcoming Recommendations Section */}
-      <View style={styles.sectionContainer}>
-        <Text style={styles.sectionTitle}>Upcoming Recommendations</Text>
-        <FlatList
-          data={upcomingMovies}
-          keyExtractor={item => item.id.toString()}
-          renderItem={({item}) => (
-            <View style={styles.movieContainer}>
-              <TouchableOpacity
-                onPress={() => handleShowOptions(item, 'recommendations')}>
-                <Image
-                  style={styles.poster}
-                  source={{
-                    uri: `https://image.tmdb.org/t/p/w500${item.poster_path}`,
-                  }}
-                />
-                <Text style={styles.title}>{item.title}</Text>
-              </TouchableOpacity>
-            </View>
-          )}
-          horizontal
-        />
-      </View>
+      <UpcomingRecommendations
+        upcomingMovies={upcomingMovies}
+        handleShowOptions={handleShowOptions}
+      />
 
-      {/* Top Rated Recommendations Section */}
-      <View style={styles.sectionContainer}>
-        <Text style={styles.sectionTitle}>Top Rated Recommendations</Text>
-        <FlatList
-          data={topMovies}
-          keyExtractor={item => item.id.toString()}
-          renderItem={({item}) => (
-            <View style={styles.movieContainer}>
-              <TouchableOpacity
-                onPress={() => handleShowOptions(item, 'recommendations')}>
-                <Image
-                  style={styles.poster}
-                  source={{
-                    uri: `https://image.tmdb.org/t/p/w500${item.poster_path}`,
-                  }}
-                />
-                <Text style={styles.title}>{item.title}</Text>
-              </TouchableOpacity>
-            </View>
-          )}
-          horizontal
-        />
-      </View>
+      <TopRecommendations
+        topMovies={topMovies}
+        handleShowOptions={handleShowOptions}
+      />
 
       {/* My List Section */}
       <View style={styles.sectionContainer}>
