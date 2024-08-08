@@ -1,6 +1,6 @@
 import React from 'react';
 import {View, Text, Image, FlatList, TouchableOpacity} from 'react-native';
-import styles from '../../styles/styles';
+import styles from '../../../styles/styles';
 
 function UpcomingRecommendations({upcomingMovies, handleShowOptions}) {
   return (

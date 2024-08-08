@@ -1,13 +1,13 @@
 import React from 'react';
 import {View, Text, Image, FlatList, TouchableOpacity} from 'react-native';
-import styles from '../../styles/styles';
+import styles from '../../../styles/styles';
 
-function PopularRecommendations({popularMovies, handleShowOptions}) {
+function TopRecommendations({topMovies, handleShowOptions}) {
   return (
     <View style={styles.sectionContainer}>
-      <Text style={styles.sectionTitle}>Popular Recommendations</Text>
+      <Text style={styles.sectionTitle}>Top Rated Recommendations</Text>
       <FlatList
-        data={popularMovies}
+        data={topMovies}
         keyExtractor={item => item.id.toString()}
         renderItem={({item}) => (
           <View style={styles.movieContainer}>
@@ -29,4 +29,4 @@ function PopularRecommendations({popularMovies, handleShowOptions}) {
   );
 }
 
-export default PopularRecommendations;
+export default TopRecommendations;

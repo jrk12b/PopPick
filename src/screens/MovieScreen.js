@@ -12,9 +12,12 @@ import {
   Button,
 } from 'react-native';
 import styles from '../styles/styles';
-import PopularRecommendations from '../components/movies/PopularRecommendations';
-import UpcomingRecommendations from '../components/movies/UpcomingRecommendations';
-import TopRecommendations from '../components/movies/TopRecommendations';
+import PopularRecommendations from '../components/movies/recommendations/PopularRecommendations';
+import UpcomingRecommendations from '../components/movies/recommendations/UpcomingRecommendations';
+import TopRecommendations from '../components/movies/recommendations/TopRecommendations';
+import MyList from '../components/movies/lists/MyList';
+import WatchedList from '../components/movies/lists/WatchedList';
+import LikedList from '../components/movies/lists/LikedList';
 
 function MovieScreen() {
   const [popularMovies, setPopularMovies] = useState([]);
@@ -191,89 +194,14 @@ function MovieScreen() {
         handleShowOptions={handleShowOptions}
       />
 
-      {/* My List Section */}
-      <View style={styles.sectionContainer}>
-        <Text style={styles.sectionTitle}>My List ({myList.length})</Text>
-        {myList.length === 0 ? (
-          <Text style={styles.text}>No movies added yet.</Text>
-        ) : (
-          <FlatList
-            data={myList}
-            keyExtractor={item => item.id.toString()}
-            renderItem={({item}) => (
-              <View style={styles.movieContainer}>
-                <TouchableOpacity
-                  onPress={() => handleShowOptions(item, 'myList')}>
-                  <Image
-                    style={styles.poster}
-                    source={{
-                      uri: `https://image.tmdb.org/t/p/w500${item.poster_path}`,
-                    }}
-                  />
-                  <Text style={styles.title}>{item.title}</Text>
-                </TouchableOpacity>
-              </View>
-            )}
-            horizontal
-          />
-        )}
-      </View>
+      <MyList myList={myList} handleShowOptions={handleShowOptions} />
 
-      {/* Watched Section */}
-      <View style={styles.sectionContainer}>
-        <Text style={styles.sectionTitle}>Watched ({watchedList.length})</Text>
-        {watchedList.length === 0 ? (
-          <Text style={styles.text}>No movies added yet.</Text>
-        ) : (
-          <FlatList
-            data={watchedList}
-            keyExtractor={item => item.id.toString()}
-            renderItem={({item}) => (
-              <View style={styles.movieContainer}>
-                <TouchableOpacity
-                  onPress={() => handleShowOptions(item, 'watchedList')}>
-                  <Image
-                    style={styles.poster}
-                    source={{
-                      uri: `https://image.tmdb.org/t/p/w500${item.poster_path}`,
-                    }}
-                  />
-                  <Text style={styles.title}>{item.title}</Text>
-                </TouchableOpacity>
-              </View>
-            )}
-            horizontal
-          />
-        )}
-      </View>
+      <WatchedList
+        watchedList={watchedList}
+        handleShowOptions={handleShowOptions}
+      />
 
-      {/* Liked Section */}
-      <View style={styles.sectionContainer}>
-        <Text style={styles.sectionTitle}>Liked ({likedList.length})</Text>
-        {likedList.length === 0 ? (
-          <Text style={styles.text}>No movies added yet.</Text>
-        ) : (
-          <FlatList
-            data={likedList}
-            keyExtractor={item => item.id.toString()}
-            renderItem={({item}) => (
-              <View style={styles.movieContainer}>
-                <TouchableOpacity
-                  onPress={() => handleShowOptions(item, 'likedList')}>
-                  <Image
-                    style={styles.poster}
-                    source={{
-                      uri: `https://image.tmdb.org/t/p/w500${item.poster_path}`,
-                    }}
-                  />
-                  <Text style={styles.title}>{item.title}</Text>
-                </TouchableOpacity>
-              </View>
-            )}
-            horizontal
-          />
-        )}
-      </View>
+      <LikedList likedList={likedList} handleShowOptions={handleShowOptions} />
 
       {/* Modal for movie options */}
       {selectedMovie && (
