@@ -1,9 +1,11 @@
-import React, {useState} from 'react';
+/* eslint-disable react-hooks/exhaustive-deps */
+import React, {useState, useEffect} from 'react';
 import {ScrollView} from 'react-native';
 import styles from '../styles/styles';
 import PopularRecommendations from '../components/movies/recommendations/PopularRecommendations';
 import UpcomingRecommendations from '../components/movies/recommendations/UpcomingRecommendations';
 import TopRecommendations from '../components/movies/recommendations/TopRecommendations';
+import PersonalRecommendations from '../components/movies/recommendations/PersonalRecommendations';
 import MyList from '../components/movies/lists/MyList';
 import WatchedList from '../components/movies/lists/WatchedList';
 import LikedList from '../components/movies/lists/LikedList';
@@ -13,6 +15,7 @@ import useMovieLists from '../../hooks/useMovieLists';
 import Loading from '../components/movies/Loading';
 import Error from '../components/movies/Error';
 import useMovieModal from '../../hooks/useMovieModal';
+import shuffleArray from '../../utils/shuffleArray';
 
 function MovieScreen({navigation}) {
   const {
@@ -33,11 +36,46 @@ function MovieScreen({navigation}) {
     handleOptionSelect,
   } = useMovieModal(handleAddToMyList, handleAddToLiked, handleAddToWatched);
 
+  const [personalMovies, setPersonalMovies] = useState([]);
   const [popularMovies, setPopularMovies] = useState([]);
   const [upcomingMovies, setUpcomingMovies] = useState([]);
   const [topMovies, setTopMovies] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+
+  const fetchRecommendations = async () => {
+    setLoading(true);
+    setError(null);
+
+    try {
+      const likedMovieIds = likedList.map(movie => movie.id);
+      const recommendations = await Promise.all(
+        likedMovieIds.map(id =>
+          fetch(
+            `https://api.themoviedb.org/3/movie/${id}/recommendations?api_key=15979629ea6e558ef491c9b9ccee0043`,
+          )
+            .then(response => response.json())
+            .then(data => data.results),
+        ),
+      );
+
+      const allRecommendations = recommendations.flat();
+      const uniqueRecommendations = Array.from(
+        new Set(allRecommendations.map(movie => movie.id)),
+      ).map(id => allRecommendations.find(movie => movie.id === id));
+
+      const shuffledRecommendations = shuffleArray(uniqueRecommendations);
+      setPersonalMovies(shuffledRecommendations);
+    } catch (err) {
+      setError(err);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    fetchRecommendations();
+  }, [likedList]);
 
   useMovies(
     'https://api.themoviedb.org/3/movie/popular?api_key=15979629ea6e558ef491c9b9ccee0043',
@@ -79,6 +117,11 @@ function MovieScreen({navigation}) {
 
   return (
     <ScrollView style={styles.container}>
+      <PersonalRecommendations
+        personalMovies={filterList(personalMovies)}
+        handleShowOptions={handleShowOptions}
+      />
+
       <PopularRecommendations
         popularMovies={filterList(popularMovies)}
         handleShowOptions={handleShowOptions}
