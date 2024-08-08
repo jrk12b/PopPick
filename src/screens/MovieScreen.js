@@ -1,16 +1,7 @@
 /* eslint-disable no-shadow */
 /* eslint-disable no-catch-shadow */
 import React, {useState, useEffect} from 'react';
-import {
-  View,
-  Text,
-  Image,
-  FlatList,
-  ScrollView,
-  TouchableOpacity,
-  Modal,
-  Button,
-} from 'react-native';
+import {View, Text, ScrollView} from 'react-native';
 import styles from '../styles/styles';
 import PopularRecommendations from '../components/movies/recommendations/PopularRecommendations';
 import UpcomingRecommendations from '../components/movies/recommendations/UpcomingRecommendations';
@@ -18,6 +9,7 @@ import TopRecommendations from '../components/movies/recommendations/TopRecommen
 import MyList from '../components/movies/lists/MyList';
 import WatchedList from '../components/movies/lists/WatchedList';
 import LikedList from '../components/movies/lists/LikedList';
+import OptionsModal from '../components/movies/OptionsModal';
 
 function MovieScreen() {
   const [popularMovies, setPopularMovies] = useState([]);
@@ -203,81 +195,13 @@ function MovieScreen() {
 
       <LikedList likedList={likedList} handleShowOptions={handleShowOptions} />
 
-      {/* Modal for movie options */}
-      {selectedMovie && (
-        <Modal
-          transparent={true}
-          visible={modalVisible}
-          animationType="slide"
-          onRequestClose={handleCloseModal}>
-          <View style={styles.modalContainer}>
-            <View style={styles.modalContent}>
-              <Text style={styles.modalTitle}>Choose an option</Text>
-              {listType === 'recommendations' && (
-                <>
-                  <Button
-                    title="Add to My List"
-                    onPress={() => handleOptionSelect('myList')}
-                  />
-                  <Button
-                    title="Mark as Watched"
-                    onPress={() => handleOptionSelect('watched')}
-                  />
-                  <Button
-                    title="Mark as Liked"
-                    onPress={() => handleOptionSelect('like')}
-                  />
-                </>
-              )}
-              {listType === 'myList' && (
-                <>
-                  <Button
-                    title="Remove from My List"
-                    onPress={() => handleOptionSelect('remove')}
-                  />
-                  <Button
-                    title="Mark as Watched"
-                    onPress={() => handleOptionSelect('watched')}
-                  />
-                  <Button
-                    title="Mark as Liked"
-                    onPress={() => handleOptionSelect('like')}
-                  />
-                </>
-              )}
-              {listType === 'likedList' && (
-                <>
-                  <Button
-                    title="Remove from Liked List"
-                    onPress={() => handleOptionSelect('remove')}
-                  />
-                  <Button
-                    title="Mark as Watched"
-                    onPress={() => handleOptionSelect('watched')}
-                  />
-                </>
-              )}
-              {listType === 'watchedList' && (
-                <>
-                  <Button
-                    title="Remove from Watched List"
-                    onPress={() => handleOptionSelect('remove')}
-                  />
-                  <Button
-                    title="Mark as Liked"
-                    onPress={() => handleOptionSelect('like')}
-                  />
-                  <Button
-                    title="Add to My List"
-                    onPress={() => handleOptionSelect('myList')}
-                  />
-                </>
-              )}
-              <Button title="Cancel" onPress={handleCloseModal} />
-            </View>
-          </View>
-        </Modal>
-      )}
+      <OptionsModal
+        selectedMovie={selectedMovie}
+        listType={listType}
+        modalVisible={modalVisible}
+        handleCloseModal={handleCloseModal}
+        handleOptionSelect={handleOptionSelect}
+      />
     </ScrollView>
   );
 }
