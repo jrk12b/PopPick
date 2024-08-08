@@ -21,7 +21,16 @@ const MovieOptionsModal = ({
       onRequestClose={handleCloseModal}>
       <View style={styles.modalContainer}>
         <View style={styles.modalContent}>
-          <Text style={styles.modalTitle}>Choose an option</Text>
+          <Text style={styles.movieTitle}>{selectedMovie.title}</Text>
+          <Text style={styles.movieDescription}>{selectedMovie.overview}</Text>
+          <Text style={styles.movieRelease}>
+            Release date: {selectedMovie.release_date}
+          </Text>
+          <Text style={styles.movieRating}>
+            Rating: {selectedMovie.vote_average}
+          </Text>
+
+          {/* <Text style={styles.modalTitle}>Choose an option</Text> */}
           {listType === 'recommendations' && (
             <>
               <Button

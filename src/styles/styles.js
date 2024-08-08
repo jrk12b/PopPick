@@ -54,7 +54,27 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     marginBottom: 10,
     color: '#FBF4F4',
-    textAlign: 'center',
+  },
+  movieTitle: {
+    fontSize: 20,
+    fontWeight: 'bold',
+    color: '#FBF4F4',
+    marginBottom: 5,
+  },
+  movieDescription: {
+    fontSize: 16,
+    color: '#FBF4F4',
+    marginBottom: 10,
+  },
+  movieRelease: {
+    fontSize: 16,
+    color: '#FBF4F4',
+    marginBottom: 15,
+  },
+  movieRating: {
+    fontSize: 16,
+    color: '#FBF4F4',
+    marginBottom: 15,
   },
   modalButton: {
     color: '#FBF4F4',
