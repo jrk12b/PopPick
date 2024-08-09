@@ -1,6 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, {useState, useEffect} from 'react';
-import {ScrollView} from 'react-native';
+import {ScrollView, View, TouchableOpacity} from 'react-native';
+import Icon from 'react-native-vector-icons/MaterialIcons';
 import styles from '../styles/styles';
 import PopularRecommendations from '../components/movies/recommendations/PopularRecommendations';
 import UpcomingRecommendations from '../components/movies/recommendations/UpcomingRecommendations';
@@ -16,6 +17,7 @@ import Loading from '../components/movies/Loading';
 import Error from '../components/movies/Error';
 import useMovieModal from '../../hooks/useMovieModal';
 import shuffleArray from '../../utils/shuffleArray';
+import SearchPrompt from '../components/movies/SearchPrompt'; // Import the SearchPrompt component
 
 function MovieScreen({navigation}) {
   const {
@@ -42,6 +44,7 @@ function MovieScreen({navigation}) {
   const [topMovies, setTopMovies] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [searchVisible, setSearchVisible] = useState(false);
 
   const fetchRecommendations = async () => {
     setLoading(true);
@@ -117,6 +120,12 @@ function MovieScreen({navigation}) {
 
   return (
     <ScrollView style={styles.container}>
+      <View style={styles.header}>
+        <TouchableOpacity onPress={() => setSearchVisible(true)}>
+          <Icon name="search" size={24} color="#FBF4F4" />
+        </TouchableOpacity>
+      </View>
+
       <PersonalRecommendations
         personalMovies={filterList(personalMovies)}
         handleShowOptions={handleShowOptions}
@@ -161,6 +170,15 @@ function MovieScreen({navigation}) {
         modalVisible={modalVisible}
         handleCloseModal={handleCloseModal}
         handleOptionSelect={handleOptionSelect}
+      />
+
+      <SearchPrompt
+        visible={searchVisible}
+        onClose={() => setSearchVisible(false)}
+        onSearch={query => {
+          // Handle search functionality here
+          console.log('Search query:', query);
+        }}
       />
     </ScrollView>
   );

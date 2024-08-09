@@ -55,6 +55,16 @@ const styles = StyleSheet.create({
     marginBottom: 10,
     color: '#FBF4F4',
   },
+  modalInput: {
+    width: '100%',
+    padding: 10,
+    borderWidth: 1,
+    borderColor: '#ddd',
+    color: 'white',
+    backgroundColor: 'white',
+    borderRadius: 5,
+    marginBottom: 10,
+  },
   movieTitle: {
     fontSize: 20,
     fontWeight: 'bold',
@@ -78,6 +88,11 @@ const styles = StyleSheet.create({
   },
   modalButton: {
     color: '#FBF4F4',
+  },
+  header: {
+    padding: 10,
+    flexDirection: 'row',
+    justifyContent: 'flex-end',
   },
 });
 
