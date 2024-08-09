@@ -18,7 +18,6 @@ import Error from '../components/movies/Error';
 import useMovieModal from '../../hooks/useMovieModal';
 import shuffleArray from '../../utils/shuffleArray';
 import SearchPrompt from '../components/movies/SearchPrompt';
-import SearchResults from '../components/movies/SearchResults';
 
 function MovieScreen({navigation}) {
   const {
@@ -177,13 +176,9 @@ function MovieScreen({navigation}) {
       <SearchPrompt
         visible={searchVisible}
         onClose={() => setSearchVisible(false)}
-        onSearch={query => {
-          // Handle search functionality here
-          console.log('Search query:', query);
-          setResults(query);
-        }}
+        onSearch={setResults} // Set search results here
+        searchResults={results} // Pass search results to SearchPrompt
       />
-      <SearchResults results={results} />
     </ScrollView>
   );
 }

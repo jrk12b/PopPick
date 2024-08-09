@@ -1,8 +1,9 @@
 import React, {useState} from 'react';
 import {Modal, View, TextInput, Button} from 'react-native';
 import styles from '../../styles/styles';
+import SearchResults from './SearchResults';
 
-const SearchPrompt = ({visible, onClose, onSearch}) => {
+const SearchPrompt = ({visible, onClose, onSearch, searchResults}) => {
   const [query, setQuery] = useState('');
 
   const handleSearch = async () => {
@@ -25,7 +26,6 @@ const SearchPrompt = ({visible, onClose, onSearch}) => {
       }
 
       setQuery('');
-      onClose();
     }
   };
 
@@ -54,6 +54,11 @@ const SearchPrompt = ({visible, onClose, onSearch}) => {
             color={styles.modalButton.color}
             onPress={onClose}
           />
+
+          {/* Display search results if available */}
+          {searchResults.length > 0 && (
+            <SearchResults results={searchResults} />
+          )}
         </View>
       </View>
     </Modal>
