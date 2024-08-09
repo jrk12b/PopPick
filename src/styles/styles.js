@@ -60,10 +60,10 @@ const styles = StyleSheet.create({
     padding: 10,
     borderWidth: 1,
     borderColor: '#ddd',
-    color: 'white',
     backgroundColor: 'white',
     borderRadius: 5,
     marginBottom: 10,
+    color: '#3b3b3b',
   },
   movieTitle: {
     fontSize: 20,

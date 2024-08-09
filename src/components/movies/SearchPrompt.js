@@ -5,10 +5,28 @@ import styles from '../../styles/styles';
 const SearchPrompt = ({visible, onClose, onSearch}) => {
   const [query, setQuery] = useState('');
 
-  const handleSearch = () => {
-    onSearch(query);
-    setQuery('');
-    onClose();
+  const handleSearch = async () => {
+    if (query.trim()) {
+      // Construct the API URL with the search query
+      const apiKey = '15979629ea6e558ef491c9b9ccee0043';
+      const url = `https://api.themoviedb.org/3/search/movie?api_key=${apiKey}&query=${encodeURIComponent(
+        query,
+      )}`;
+
+      try {
+        // Make the API request
+        const response = await fetch(url);
+        const data = await response.json();
+
+        // Pass the fetched data to onSearch
+        onSearch(data.results);
+      } catch (error) {
+        console.error('Error fetching data:', error);
+      }
+
+      setQuery('');
+      onClose();
+    }
   };
 
   return (
@@ -22,6 +40,7 @@ const SearchPrompt = ({visible, onClose, onSearch}) => {
           <TextInput
             style={styles.modalInput}
             placeholder="Search movies..."
+            placeholderTextColor={styles.modalInput.color}
             value={query}
             onChangeText={setQuery}
           />
@@ -40,29 +59,5 @@ const SearchPrompt = ({visible, onClose, onSearch}) => {
     </Modal>
   );
 };
-
-// const styles = StyleSheet.create({
-//   container: {
-//     flex: 1,
-//     justifyContent: 'center',
-//     alignItems: 'center',
-//     backgroundColor: 'rgba(0, 0, 0, 0.5)',
-//   },
-//   prompt: {
-//     width: '80%',
-//     padding: 20,
-//     backgroundColor: 'white',
-//     borderRadius: 10,
-//     alignItems: 'center',
-//   },
-//   input: {
-//     width: '100%',
-//     padding: 10,
-//     borderWidth: 1,
-//     borderColor: '#ddd',
-//     borderRadius: 5,
-//     marginBottom: 10,
-//   },
-// });
 
 export default SearchPrompt;

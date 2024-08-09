@@ -17,7 +17,8 @@ import Loading from '../components/movies/Loading';
 import Error from '../components/movies/Error';
 import useMovieModal from '../../hooks/useMovieModal';
 import shuffleArray from '../../utils/shuffleArray';
-import SearchPrompt from '../components/movies/SearchPrompt'; // Import the SearchPrompt component
+import SearchPrompt from '../components/movies/SearchPrompt';
+import SearchResults from '../components/movies/SearchResults';
 
 function MovieScreen({navigation}) {
   const {
@@ -45,6 +46,7 @@ function MovieScreen({navigation}) {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [searchVisible, setSearchVisible] = useState(false);
+  const [results, setResults] = useState([]);
 
   const fetchRecommendations = async () => {
     setLoading(true);
@@ -178,8 +180,10 @@ function MovieScreen({navigation}) {
         onSearch={query => {
           // Handle search functionality here
           console.log('Search query:', query);
+          setResults(query);
         }}
       />
+      <SearchResults results={results} />
     </ScrollView>
   );
 }
