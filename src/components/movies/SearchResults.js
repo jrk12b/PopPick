@@ -3,7 +3,7 @@ import {View, Text, Image, StyleSheet, FlatList} from 'react-native';
 
 const SearchResults = ({results}) => {
   // Display only the top three results
-  const topResults = results.slice(0, 3);
+  const topResults = results.slice(0, 2);
 
   return (
     <View style={styles.container}>
@@ -48,6 +48,7 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 16,
     fontWeight: 'bold',
+    color: '#FBF4F4',
   },
 });
 
