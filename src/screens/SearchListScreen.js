@@ -1,11 +1,12 @@
 import React from 'react';
-import {View, Button} from 'react-native';
+import {View} from 'react-native';
 import useMovieLists from '../../hooks/useMovieLists';
 import useMovieModal from '../../hooks/useMovieModal';
 import OptionsModal from '../components/movies/OptionsModal';
 import SearchList from '../components/movies/lists/SearchList';
+import fullListStyles from '../styles/fullListStyles';
 
-function SearchListScreen({navigation}) {
+function SearchListScreen() {
   const {searchList, handleAddToMyList, handleAddToLiked, handleAddToWatched} =
     useMovieLists();
 
@@ -23,15 +24,7 @@ function SearchListScreen({navigation}) {
   };
 
   return (
-    <View style={{flex: 1}}>
-      <Button
-        title="Go to My List"
-        onPress={() => navigation.navigate('MyListScreen')}
-      />
-      <Button
-        title="Go to Movies"
-        onPress={() => navigation.navigate('Movies')}
-      />
+    <View style={fullListStyles.sectionContainer}>
       <SearchList
         searchList={searchList}
         handleShowOptions={handleShowOptionsWrapper}

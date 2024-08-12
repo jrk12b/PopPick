@@ -39,6 +39,31 @@ const fullListStyles = StyleSheet.create({
   gridContainer: {
     paddingBottom: 20,
   },
+  sectionContainer: {
+    flex: 1,
+    backgroundColor: '#595959',
+    padding: 10,
+  },
+  buttonContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    marginBottom: 10,
+  },
+  input: {
+    height: 40,
+    borderColor: '#FBF4F4',
+    borderWidth: 1,
+    marginBottom: 10,
+    paddingHorizontal: 8,
+  },
+  item: {
+    marginBottom: 10,
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  fullScreen: {
+    backgroundColor: '#595959',
+  },
 });
 
 export default fullListStyles;

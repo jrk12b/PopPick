@@ -3,7 +3,6 @@ import {
   View,
   Text,
   TextInput,
-  Button,
   FlatList,
   StyleSheet,
   Image,
@@ -45,12 +44,13 @@ const SearchList = ({handleShowOptions}) => {
       <TextInput
         style={styles.input}
         placeholder="Search for movies..."
+        placeholderTextColor="#FBF4F4"
         value={query}
         onChangeText={setQuery}
       />
       <View style={styles.buttonContainer}>
-        <Button title="Search" onPress={searchMovies} />
-        <Button title="Clear" onPress={clearSearch} />
+        <CustomButton title="Search" onPress={searchMovies} />
+        <CustomButton title="Clear" onPress={clearSearch} />
       </View>
       {results.length > 0 ? (
         <FlatList
@@ -73,15 +73,22 @@ const SearchList = ({handleShowOptions}) => {
           )}
         />
       ) : (
-        <Text>No results found.</Text>
+        <Text style={styles.noResultsText}>No results found.</Text>
       )}
     </View>
   );
 };
 
+const CustomButton = ({title, onPress}) => (
+  <TouchableOpacity style={styles.button} onPress={onPress}>
+    <Text style={styles.buttonText}>{title}</Text>
+  </TouchableOpacity>
+);
+
 const styles = StyleSheet.create({
   container: {
     padding: 10,
+    backgroundColor: '#595959', // Ensure the background color matches your app's design
   },
   input: {
     height: 40,
@@ -89,11 +96,21 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     marginBottom: 10,
     paddingHorizontal: 8,
+    color: '#FBF4F4', // Ensure the text color in input matches your design
   },
   buttonContainer: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     marginBottom: 10,
+  },
+  button: {
+    backgroundColor: '#FBF4F4', // Set your desired background color for the button
+    padding: 10,
+    borderRadius: 5,
+  },
+  buttonText: {
+    color: '#595959', // Set the text color for the button
+    fontSize: 16,
   },
   item: {
     marginBottom: 10,
@@ -103,11 +120,17 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 16,
     fontWeight: 'bold',
+    color: '#FBF4F4', // Set the text color for the movie title
   },
   poster: {
     width: 100,
     height: 150,
     marginRight: 10,
+  },
+  noResultsText: {
+    color: '#FBF4F4', // Set the text color for "No results found."
+    fontSize: 16,
+    textAlign: 'center',
   },
 });
 
