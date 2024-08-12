@@ -1,5 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import React, {useState, useEffect} from 'react';
+import React, {useState, useCallback} from 'react';
 import {ScrollView, View, TouchableOpacity} from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import styles from '../styles/styles';
@@ -17,6 +17,7 @@ import Loading from '../components/movies/Loading';
 import Error from '../components/movies/Error';
 import useMovieModal from '../../hooks/useMovieModal';
 import shuffleArray from '../../utils/shuffleArray';
+import {useFocusEffect} from '@react-navigation/native';
 
 function MovieScreen({navigation}) {
   const {
@@ -26,6 +27,8 @@ function MovieScreen({navigation}) {
     handleAddToMyList,
     handleAddToLiked,
     handleAddToWatched,
+    fetchMyList,
+    fetchWatchedList,
   } = useMovieLists();
 
   const {
@@ -74,9 +77,13 @@ function MovieScreen({navigation}) {
     }
   };
 
-  useEffect(() => {
-    fetchRecommendations();
-  }, [likedList]);
+  useFocusEffect(
+    useCallback(() => {
+      fetchRecommendations();
+      fetchMyList();
+      fetchWatchedList();
+    }, [likedList]), // List fetchMyList as a dependency
+  );
 
   useMovies(
     'https://api.themoviedb.org/3/movie/popular?api_key=15979629ea6e558ef491c9b9ccee0043',

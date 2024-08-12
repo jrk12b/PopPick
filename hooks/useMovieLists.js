@@ -39,6 +39,16 @@ const useMovieLists = () => {
     initializeLists();
   }, []);
 
+  const fetchMyList = async () => {
+    const savedMyList = await loadList('myList');
+    setMyList(savedMyList);
+  };
+
+  const fetchWatchedList = async () => {
+    const savedWatchedList = await loadList('watchedList');
+    setWatchedList(savedWatchedList);
+  };
+
   // Handle adding/removing movies to/from myList
   const handleAddToMyList = async movie => {
     setMyList(prevList => {
@@ -99,6 +109,8 @@ const useMovieLists = () => {
     handleAddToMyList,
     handleAddToLiked,
     handleAddToWatched,
+    fetchMyList,
+    fetchWatchedList,
   };
 };
 
