@@ -9,6 +9,7 @@ import VideoGamesScreen from '../screens/VideoGamesScreen';
 import MyListScreen from '../screens/MylistScreen';
 import WatchedListScreen from '../screens/WatchedListScreen';
 import LikedListScreen from '../screens/LikedListScreen';
+import SearchListScreen from '../screens/SearchListScreen';
 
 const Stack = createStackNavigator();
 
@@ -29,6 +30,7 @@ function AppNavigator() {
         <Stack.Screen name="MyListScreen" component={MyListScreen} />
         <Stack.Screen name="WatchedListScreen" component={WatchedListScreen} />
         <Stack.Screen name="LikedListScreen" component={LikedListScreen} />
+        <Stack.Screen name="SearchListScreen" component={SearchListScreen} />
         <Stack.Screen
           name="Books"
           component={BooksScreen}

@@ -17,7 +17,6 @@ import Loading from '../components/movies/Loading';
 import Error from '../components/movies/Error';
 import useMovieModal from '../../hooks/useMovieModal';
 import shuffleArray from '../../utils/shuffleArray';
-import SearchPrompt from '../components/movies/SearchPrompt';
 
 function MovieScreen({navigation}) {
   const {
@@ -44,8 +43,6 @@ function MovieScreen({navigation}) {
   const [topMovies, setTopMovies] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const [searchVisible, setSearchVisible] = useState(false);
-  const [results, setResults] = useState([]);
 
   const fetchRecommendations = async () => {
     setLoading(true);
@@ -122,7 +119,8 @@ function MovieScreen({navigation}) {
   return (
     <ScrollView style={styles.container}>
       <View style={styles.header}>
-        <TouchableOpacity onPress={() => setSearchVisible(true)}>
+        <TouchableOpacity
+          onPress={() => navigation.navigate('SearchListScreen')}>
           <Icon name="search" size={24} color="#FBF4F4" />
         </TouchableOpacity>
       </View>
@@ -171,13 +169,6 @@ function MovieScreen({navigation}) {
         modalVisible={modalVisible}
         handleCloseModal={handleCloseModal}
         handleOptionSelect={handleOptionSelect}
-      />
-
-      <SearchPrompt
-        visible={searchVisible}
-        onClose={() => setSearchVisible(false)}
-        onSearch={setResults} // Set search results here
-        searchResults={results} // Pass search results to SearchPrompt
       />
     </ScrollView>
   );
