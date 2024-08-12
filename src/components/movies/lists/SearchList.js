@@ -7,11 +7,12 @@ import {
   FlatList,
   StyleSheet,
   Image,
+  TouchableOpacity,
 } from 'react-native';
 
 const apiKey = '15979629ea6e558ef491c9b9ccee0043';
 
-const SearchList = () => {
+const SearchList = ({handleShowOptions}) => {
   const [query, setQuery] = useState('');
   const [results, setResults] = useState([]);
 
@@ -23,7 +24,7 @@ const SearchList = () => {
         )}`,
       );
       const data = await response.json();
-      // Limit results to top 3
+      console.log(data.results); // Debugging line
       setResults(data.results.slice(0, 3));
     } catch (error) {
       console.error('Error fetching movies:', error);
@@ -33,6 +34,10 @@ const SearchList = () => {
   const clearSearch = () => {
     setQuery('');
     setResults([]);
+  };
+
+  const handlePress = movie => {
+    handleShowOptions(movie, 'recommendations');
   };
 
   return (
@@ -52,17 +57,19 @@ const SearchList = () => {
           data={results}
           keyExtractor={item => item.id.toString()}
           renderItem={({item}) => (
-            <View style={styles.item}>
-              {item.poster_path && (
-                <Image
-                  source={{
-                    uri: `https://image.tmdb.org/t/p/w500${item.poster_path}`,
-                  }}
-                  style={styles.poster}
-                />
-              )}
-              <Text style={styles.title}>{item.title}</Text>
-            </View>
+            <TouchableOpacity onPress={() => handlePress(item)}>
+              <View style={styles.item}>
+                {item.poster_path && (
+                  <Image
+                    source={{
+                      uri: `https://image.tmdb.org/t/p/w500${item.poster_path}`,
+                    }}
+                    style={styles.poster}
+                  />
+                )}
+                <Text style={styles.title}>{item.title}</Text>
+              </View>
+            </TouchableOpacity>
           )}
         />
       ) : (

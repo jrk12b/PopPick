@@ -5,7 +5,7 @@ import OptionsModal from '../components/movies/OptionsModal';
 import SearchList from '../components/movies/lists/SearchList';
 
 function SearchListScreen() {
-  const {likedList, handleAddToMyList, handleAddToLiked, handleAddToWatched} =
+  const {searchList, handleAddToMyList, handleAddToLiked, handleAddToWatched} =
     useMovieLists();
 
   const {
@@ -17,9 +17,16 @@ function SearchListScreen() {
     handleOptionSelect,
   } = useMovieModal(handleAddToMyList, handleAddToLiked, handleAddToWatched);
 
+  const handleShowOptionsWrapper = (movie, listType) => {
+    handleShowOptions(movie, listType);
+  };
+
   return (
     <>
-      <SearchList likedList={likedList} handleShowOptions={handleShowOptions} />
+      <SearchList
+        searchList={searchList}
+        handleShowOptions={handleShowOptionsWrapper} // Pass wrapped function
+      />
       <OptionsModal
         selectedMovie={selectedMovie}
         listType={listType}
