@@ -105,6 +105,8 @@ function MovieScreen({navigation}) {
 
       <MyList
         myList={myList}
+        likedList={likedList}
+        watchedList={watchedList}
         handleShowOptions={handleShowOptions}
         navigation={navigation}
       />
