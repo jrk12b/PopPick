@@ -1,3 +1,4 @@
+/* eslint-disable no-shadow */
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, {useState, useCallback} from 'react';
 import {
@@ -5,15 +6,19 @@ import {
   Text,
   TextInput,
   FlatList,
-  StyleSheet,
   Image,
   TouchableOpacity,
 } from 'react-native';
 import debounce from 'lodash.debounce';
+import searchListStyles from '../../../styles/searchListStyles';
+import Icon from 'react-native-vector-icons/MaterialIcons';
 
 const apiKey = '15979629ea6e558ef491c9b9ccee0043';
 
-const SearchList = ({handleShowOptions}) => {
+const SearchList = ({handleShowOptions, likedList, myList, watchedList}) => {
+  const isLiked = movieId => likedList.some(movie => movie.id === movieId);
+  const isSaved = movieId => myList.some(movie => movie.id === movieId);
+  const isWatched = movieId => watchedList.some(movie => movie.id === movieId);
   const [query, setQuery] = useState('');
   const [results, setResults] = useState([]);
   const [suggestions, setSuggestions] = useState([]);
@@ -36,7 +41,7 @@ const SearchList = ({handleShowOptions}) => {
         )}`,
       );
       const data = await response.json();
-      setSuggestions(data.results.slice(0, 5));
+      setSuggestions(data.results.slice(0, 10));
     } catch (error) {
       console.error('Error fetching movie suggestions:', error);
     }
@@ -60,7 +65,7 @@ const SearchList = ({handleShowOptions}) => {
         )}`,
       );
       const data = await response.json();
-      setResults(data.results.slice(0, 3));
+      setResults(data.results.slice(0, 10)); // Increase the number of results displayed
     } catch (error) {
       console.error('Error fetching movies:', error);
     }
@@ -73,9 +78,9 @@ const SearchList = ({handleShowOptions}) => {
   };
 
   return (
-    <View style={styles.container}>
+    <View style={searchListStyles.container}>
       <TextInput
-        style={styles.input}
+        style={searchListStyles.input}
         placeholder="Search for movies..."
         placeholderTextColor="#FBF4F4"
         value={query}
@@ -85,117 +90,83 @@ const SearchList = ({handleShowOptions}) => {
       />
       {isFocused && suggestions.length > 0 && (
         <FlatList
-          style={styles.suggestionsList}
+          style={searchListStyles.suggestionsList}
           data={suggestions}
           keyExtractor={item => item.id.toString()}
           renderItem={({item}) => (
             <TouchableOpacity
-              style={styles.suggestionItem}
+              style={searchListStyles.suggestionItem}
               onPress={() => handleSuggestionPress(item)}>
-              <Text style={styles.suggestionText}>{item.title}</Text>
+              <Text style={searchListStyles.suggestionText}>{item.title}</Text>
             </TouchableOpacity>
           )}
         />
       )}
-      <View style={styles.buttonContainer}>
-        <TouchableOpacity style={styles.button} onPress={searchMovies}>
-          <Text style={styles.buttonText}>Search</Text>
+      <View style={searchListStyles.buttonContainer}>
+        <TouchableOpacity
+          style={searchListStyles.button}
+          onPress={searchMovies}>
+          <Text style={searchListStyles.buttonText}>Search</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.button} onPress={clearSearch}>
-          <Text style={styles.buttonText}>Clear</Text>
+        <TouchableOpacity style={searchListStyles.button} onPress={clearSearch}>
+          <Text style={searchListStyles.buttonText}>Clear</Text>
         </TouchableOpacity>
       </View>
       {results.length > 0 ? (
         <FlatList
+          key={results.length}
           data={results}
           keyExtractor={item => item.id.toString()}
           renderItem={({item}) => (
-            <TouchableOpacity
-              onPress={() => handleShowOptions(item, 'recommendations')}>
-              <View style={styles.item}>
-                {item.poster_path && (
-                  <Image
-                    source={{
-                      uri: `https://image.tmdb.org/t/p/w500${item.poster_path}`,
-                    }}
-                    style={styles.poster}
-                  />
-                )}
-                <Text style={styles.title}>{item.title}</Text>
-              </View>
-            </TouchableOpacity>
+            <View style={searchListStyles.movieContainer}>
+              <TouchableOpacity
+                onPress={() => handleShowOptions(item, 'recommendations')}>
+                <View style={searchListStyles.posterContainer}>
+                  {item.poster_path && (
+                    <Image
+                      source={{
+                        uri: `https://image.tmdb.org/t/p/w500${item.poster_path}`,
+                      }}
+                      style={searchListStyles.poster}
+                    />
+                  )}
+                  {isLiked(item.id) && (
+                    <Icon
+                      name="favorite"
+                      size={18}
+                      color="white"
+                      style={searchListStyles.favoriteIcon}
+                    />
+                  )}
+                  {isSaved(item.id) && (
+                    <Icon
+                      name="bookmark"
+                      size={18}
+                      color="white"
+                      style={searchListStyles.savedIcon}
+                    />
+                  )}
+                  {isWatched(item.id) && (
+                    <Icon
+                      name="remove-red-eye"
+                      size={18}
+                      color="white"
+                      style={searchListStyles.watchedIcon}
+                    />
+                  )}
+                </View>
+                <Text style={searchListStyles.title}>{item.title}</Text>
+              </TouchableOpacity>
+            </View>
           )}
+          numColumns={3} // Number of columns for the grid
+          contentContainerStyle={searchListStyles.resultsContainer}
         />
       ) : (
-        <Text style={styles.noResultsText}>No results found.</Text>
+        <Text style={searchListStyles.noResultsText}>No results found.</Text>
       )}
     </View>
   );
 };
-
-const styles = StyleSheet.create({
-  container: {
-    padding: 10,
-    backgroundColor: '#595959', // Ensure the background color matches your app's design
-  },
-  input: {
-    height: 40,
-    borderColor: 'gray',
-    borderWidth: 1,
-    marginBottom: 10,
-    paddingHorizontal: 8,
-    color: '#FBF4F4', // Ensure the text color in input matches your design
-  },
-  buttonContainer: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    marginBottom: 10,
-  },
-  button: {
-    backgroundColor: '#FBF4F4', // Set your desired background color for the button
-    padding: 10,
-    borderRadius: 5,
-  },
-  buttonText: {
-    color: '#595959', // Set the text color for the button
-    fontSize: 16,
-    fontWeight: 'bold',
-  },
-  item: {
-    marginBottom: 10,
-    flexDirection: 'row',
-    alignItems: 'center',
-  },
-  title: {
-    fontSize: 16,
-    fontWeight: 'bold',
-    color: '#FBF4F4', // Set the text color for the movie title
-  },
-  poster: {
-    width: 100,
-    height: 150,
-    marginRight: 10,
-  },
-  noResultsText: {
-    color: '#FBF4F4', // Set the text color for "No results found."
-    fontSize: 16,
-    textAlign: 'center',
-  },
-  suggestionsList: {
-    position: 'absolute',
-    top: 50, // Adjust according to the position of your TextInput
-    left: 10,
-    right: 10,
-    backgroundColor: '#595959',
-    maxHeight: 200, // Set a max height for the suggestions list
-    zIndex: 1,
-  },
-  suggestionItem: {
-    padding: 10,
-  },
-  suggestionText: {
-    color: '#FBF4F4',
-  },
-});
 
 export default SearchList;

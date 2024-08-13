@@ -1,8 +1,18 @@
 import React from 'react';
 import {View, Text, Image, FlatList, TouchableOpacity} from 'react-native';
 import styles from '../../../styles/styles';
+import Icon from 'react-native-vector-icons/MaterialIcons';
 
-function WatchedList({watchedList, handleShowOptions, navigation}) {
+function WatchedList({
+  myList,
+  likedList,
+  watchedList,
+  handleShowOptions,
+  navigation,
+}) {
+  const isLiked = movieId => likedList.some(movie => movie.id === movieId);
+  const isSaved = movieId => myList.some(movie => movie.id === movieId);
+  const isWatched = movieId => watchedList.some(movie => movie.id === movieId);
   return (
     <View style={styles.sectionContainer}>
       <TouchableOpacity
@@ -25,6 +35,30 @@ function WatchedList({watchedList, handleShowOptions, navigation}) {
                     uri: `https://image.tmdb.org/t/p/w500${item.poster_path}`,
                   }}
                 />
+                {isLiked(item.id) && (
+                  <Icon
+                    name="favorite"
+                    size={18}
+                    color="white"
+                    style={styles.favoriteIcon}
+                  />
+                )}
+                {isSaved(item.id) && (
+                  <Icon
+                    name="bookmark"
+                    size={18}
+                    color="white"
+                    style={styles.savedIcon}
+                  />
+                )}
+                {isWatched(item.id) && (
+                  <Icon
+                    name="remove-red-eye"
+                    size={18}
+                    color="white"
+                    style={styles.watchedIcon}
+                  />
+                )}
               </TouchableOpacity>
             </View>
           )}

@@ -27,6 +27,8 @@ function LikedListScreen() {
     <>
       <LikedListFull
         likedList={likedList}
+        myList={myList}
+        watchedList={watchedList}
         handleShowOptions={handleShowOptions}
       />
       <OptionsModal

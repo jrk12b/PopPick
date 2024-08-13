@@ -10,7 +10,6 @@ function MyList({
   handleShowOptions,
   navigation,
 }) {
-  // Helper function to check if a movie is in the likedList
   const isLiked = movieId => likedList.some(movie => movie.id === movieId);
   const isSaved = movieId => myList.some(movie => movie.id === movieId);
   const isWatched = movieId => watchedList.some(movie => movie.id === movieId);

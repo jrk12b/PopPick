@@ -34,6 +34,9 @@ function SearchListScreen() {
     <View style={fullListStyles.sectionContainer}>
       <SearchList
         searchList={searchList}
+        myList={myList}
+        likedList={likedList}
+        watchedList={watchedList}
         handleShowOptions={handleShowOptionsWrapper}
       />
       <OptionsModal

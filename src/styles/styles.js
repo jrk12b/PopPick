@@ -6,23 +6,12 @@ const styles = StyleSheet.create({
     backgroundColor: '#595959',
     padding: 10,
   },
-  // sectionContainer: {
-  //   marginBottom: 20,
-  // },
   sectionTitle: {
     fontSize: 24,
     fontWeight: 'bold',
     color: '#FBF4F4',
     marginBottom: 10,
   },
-  // movieContainer: {
-  //   marginBottom: 20,
-  //   marginRight: 10,
-  // },
-  // poster: {
-  //   width: 100,
-  //   height: 150,
-  // },
   title: {
     color: '#FBF4F4',
     marginTop: 5,
@@ -106,7 +95,7 @@ const styles = StyleSheet.create({
     position: 'relative',
   },
   poster: {
-    width: 100, // Adjust size as needed
+    width: 100,
     height: 150,
     borderRadius: 10,
   },
@@ -114,7 +103,7 @@ const styles = StyleSheet.create({
     position: 'absolute',
     top: 5,
     left: '50%',
-    transform: [{translateX: -9}], // Center the icon horizontally
+    transform: [{translateX: -9}],
   },
   savedIcon: {
     position: 'absolute',

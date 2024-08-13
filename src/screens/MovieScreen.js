@@ -79,6 +79,30 @@ function MovieScreen({navigation}) {
         </TouchableOpacity>
       </View>
 
+      <MyList
+        myList={myList}
+        likedList={likedList}
+        watchedList={watchedList}
+        handleShowOptions={handleShowOptions}
+        navigation={navigation}
+      />
+
+      <WatchedList
+        myList={myList}
+        likedList={likedList}
+        watchedList={watchedList}
+        handleShowOptions={handleShowOptions}
+        navigation={navigation}
+      />
+
+      <LikedList
+        myList={myList}
+        likedList={likedList}
+        watchedList={watchedList}
+        handleShowOptions={handleShowOptions}
+        navigation={navigation}
+      />
+
       <PersonalRec
         personalMovies={filterList(personalMovies)}
         handleShowOptions={handleShowOptions}
@@ -99,26 +123,6 @@ function MovieScreen({navigation}) {
 
       <TopRec
         topMovies={filterList(topMovies)}
-        handleShowOptions={handleShowOptions}
-        navigation={navigation}
-      />
-
-      <MyList
-        myList={myList}
-        likedList={likedList}
-        watchedList={watchedList}
-        handleShowOptions={handleShowOptions}
-        navigation={navigation}
-      />
-
-      <WatchedList
-        watchedList={watchedList}
-        handleShowOptions={handleShowOptions}
-        navigation={navigation}
-      />
-
-      <LikedList
-        likedList={likedList}
         handleShowOptions={handleShowOptions}
         navigation={navigation}
       />

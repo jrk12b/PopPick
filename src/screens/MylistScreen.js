@@ -25,7 +25,12 @@ function MyListScreen() {
 
   return (
     <>
-      <MyListFull myList={myList} handleShowOptions={handleShowOptions} />
+      <MyListFull
+        myList={myList}
+        likedList={likedList}
+        watchedList={watchedList}
+        handleShowOptions={handleShowOptions}
+      />
       <OptionsModal
         selectedMovie={selectedMovie}
         listType={listType}

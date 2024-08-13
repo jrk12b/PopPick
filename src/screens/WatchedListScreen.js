@@ -26,6 +26,8 @@ function WatchedListScreen() {
   return (
     <>
       <WatchedListFull
+        myList={myList}
+        likedList={likedList}
         watchedList={watchedList}
         handleShowOptions={handleShowOptions}
       />
