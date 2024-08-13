@@ -1,10 +1,14 @@
-import {useState, useEffect} from 'react';
+import {useState, useEffect, useCallback} from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import shuffleArray from '../utils/shuffleArray';
 
 const useMovieLists = () => {
   const [myList, setMyList] = useState([]);
   const [likedList, setLikedList] = useState([]);
   const [watchedList, setWatchedList] = useState([]);
+  const [personalMovies, setPersonalMovies] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
   // Function to load a list from AsyncStorage
   const loadList = async key => {
@@ -32,13 +36,48 @@ const useMovieLists = () => {
       const savedMyList = await loadList('myList');
       const savedLikedList = await loadList('likedList');
       const savedWatchedList = await loadList('watchedList');
+      const savedPersonalMovies = await loadList('personalMovies');
       setMyList(savedMyList);
       setLikedList(savedLikedList);
       setWatchedList(savedWatchedList);
+      setPersonalMovies(savedPersonalMovies);
+      setLoading(false);
     };
     initializeLists();
   }, []);
 
+  // Fetch and set the recommendations based on liked movies
+  const fetchRecommendations = useCallback(async () => {
+    setLoading(true);
+    setError(null);
+
+    try {
+      const likedMovieIds = likedList.map(movie => movie.id);
+      const recommendations = await Promise.all(
+        likedMovieIds.map(id =>
+          fetch(
+            `https://api.themoviedb.org/3/movie/${id}/recommendations?api_key=15979629ea6e558ef491c9b9ccee0043`,
+          )
+            .then(response => response.json())
+            .then(data => data.results),
+        ),
+      );
+
+      const allRecommendations = recommendations.flat();
+      const uniqueRecommendations = Array.from(
+        new Set(allRecommendations.map(movie => movie.id)),
+      ).map(id => allRecommendations.find(movie => movie.id === id));
+
+      const shuffledRecommendations = shuffleArray(uniqueRecommendations);
+      setPersonalMovies(shuffledRecommendations);
+    } catch (err) {
+      setError(err);
+    } finally {
+      setLoading(false);
+    }
+  }, [likedList]);
+
+  // Fetch movie lists
   const fetchMyList = async () => {
     const savedMyList = await loadList('myList');
     setMyList(savedMyList);
@@ -106,11 +145,15 @@ const useMovieLists = () => {
     myList,
     likedList,
     watchedList,
+    personalMovies,
+    loading,
+    error,
     handleAddToMyList,
     handleAddToLiked,
     handleAddToWatched,
     fetchMyList,
     fetchWatchedList,
+    fetchRecommendations,
   };
 };
 

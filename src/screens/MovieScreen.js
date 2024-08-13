@@ -3,20 +3,19 @@ import React, {useState, useCallback} from 'react';
 import {ScrollView, View, TouchableOpacity} from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import styles from '../styles/styles';
-import PopularRecommendations from '../components/movies/recommendations/PopularRecommendations';
-import UpcomingRecommendations from '../components/movies/recommendations/UpcomingRecommendations';
-import TopRecommendations from '../components/movies/recommendations/TopRecommendations';
-import PersonalRecommendations from '../components/movies/recommendations/PersonalRecommendations';
+import PopularRec from '../components/movies/recommendations/PopularRec';
+import UpcomingRec from '../components/movies/recommendations/UpcomingRec';
+import TopRec from '../components/movies/recommendations/TopRec';
+import PersonalRec from '../components/movies/recommendations/PersonalRec';
 import MyList from '../components/movies/lists/MyList';
 import WatchedList from '../components/movies/lists/WatchedList';
 import LikedList from '../components/movies/lists/LikedList';
 import OptionsModal from '../components/movies/OptionsModal';
 import useMovies from '../../hooks/useMovies';
 import useMovieLists from '../../hooks/useMovieLists';
+import useMovieModal from '../../hooks/useMovieModal';
 import Loading from '../components/movies/Loading';
 import Error from '../components/movies/Error';
-import useMovieModal from '../../hooks/useMovieModal';
-import shuffleArray from '../../utils/shuffleArray';
 import {useFocusEffect} from '@react-navigation/native';
 
 function MovieScreen({navigation}) {
@@ -24,11 +23,13 @@ function MovieScreen({navigation}) {
     myList,
     likedList,
     watchedList,
+    personalMovies,
     handleAddToMyList,
     handleAddToLiked,
     handleAddToWatched,
     fetchMyList,
     fetchWatchedList,
+    fetchRecommendations,
   } = useMovieLists();
 
   const {
@@ -40,49 +41,19 @@ function MovieScreen({navigation}) {
     handleOptionSelect,
   } = useMovieModal(handleAddToMyList, handleAddToLiked, handleAddToWatched);
 
-  const [personalMovies, setPersonalMovies] = useState([]);
+  // const [personalMovies, setPersonalMovies] = useState([]);
   const [popularMovies, setPopularMovies] = useState([]);
   const [upcomingMovies, setUpcomingMovies] = useState([]);
   const [topMovies, setTopMovies] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  const fetchRecommendations = async () => {
-    setLoading(true);
-    setError(null);
-
-    try {
-      const likedMovieIds = likedList.map(movie => movie.id);
-      const recommendations = await Promise.all(
-        likedMovieIds.map(id =>
-          fetch(
-            `https://api.themoviedb.org/3/movie/${id}/recommendations?api_key=15979629ea6e558ef491c9b9ccee0043`,
-          )
-            .then(response => response.json())
-            .then(data => data.results),
-        ),
-      );
-
-      const allRecommendations = recommendations.flat();
-      const uniqueRecommendations = Array.from(
-        new Set(allRecommendations.map(movie => movie.id)),
-      ).map(id => allRecommendations.find(movie => movie.id === id));
-
-      const shuffledRecommendations = shuffleArray(uniqueRecommendations);
-      setPersonalMovies(shuffledRecommendations);
-    } catch (err) {
-      setError(err);
-    } finally {
-      setLoading(false);
-    }
-  };
-
   useFocusEffect(
     useCallback(() => {
       fetchRecommendations();
       fetchMyList();
       fetchWatchedList();
-    }, [likedList]), // List fetchMyList as a dependency
+    }, [likedList]),
   );
 
   useMovies(
@@ -132,22 +103,23 @@ function MovieScreen({navigation}) {
         </TouchableOpacity>
       </View>
 
-      <PersonalRecommendations
+      <PersonalRec
         personalMovies={filterList(personalMovies)}
         handleShowOptions={handleShowOptions}
+        navigation={navigation}
       />
 
-      <PopularRecommendations
+      <PopularRec
         popularMovies={filterList(popularMovies)}
         handleShowOptions={handleShowOptions}
       />
 
-      <UpcomingRecommendations
+      <UpcomingRec
         upcomingMovies={filterList(upcomingMovies)}
         handleShowOptions={handleShowOptions}
       />
 
-      <TopRecommendations
+      <TopRec
         topMovies={filterList(topMovies)}
         handleShowOptions={handleShowOptions}
       />
