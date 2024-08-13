@@ -34,7 +34,7 @@ const fullListStyles = StyleSheet.create({
     textAlign: 'center',
   },
   columnWrapper: {
-    justifyContent: 'space-between',
+    justifyContent: 'flex-start',
   },
   gridContainer: {
     paddingBottom: 20,
