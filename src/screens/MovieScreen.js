@@ -127,6 +127,9 @@ function MovieScreen({navigation}) {
         modalVisible={modalVisible}
         handleCloseModal={handleCloseModal}
         handleOptionSelect={handleOptionSelect}
+        myList={myList}
+        likedList={likedList}
+        watchedList={watchedList}
       />
     </ScrollView>
   );

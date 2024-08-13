@@ -1,3 +1,5 @@
+/* eslint-disable no-catch-shadow */
+/* eslint-disable no-shadow */
 import {useState, useEffect, useCallback} from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import shuffleArray from '../utils/shuffleArray';

@@ -27,25 +27,23 @@ const useMovieModal = (
     }
 
     switch (option) {
-      case 'myList':
+      case 'addToMyList':
         handleAddToMyList(selectedMovie);
         break;
-      case 'like':
+      case 'addtoLiked':
         handleAddToLiked(selectedMovie);
         break;
-      case 'watched':
+      case 'addToWatched':
         handleAddToWatched(selectedMovie);
         break;
-      case 'remove':
-        if (listType === 'myList') {
-          handleAddToMyList(selectedMovie);
-        } else if (listType === 'likedList') {
-          handleAddToLiked(selectedMovie);
-        } else if (listType === 'watchedList') {
-          handleAddToWatched(selectedMovie);
-        }
+      case 'removeFromMyList':
+        handleAddToMyList(selectedMovie);
         break;
-      default:
+      case 'removeFromLikedList':
+        handleAddToLiked(selectedMovie);
+        break;
+      case 'removeFromWatchedList':
+        handleAddToWatched(selectedMovie);
         break;
     }
 

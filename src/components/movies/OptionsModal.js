@@ -4,14 +4,23 @@ import styles from '../../styles/styles';
 
 const MovieOptionsModal = ({
   selectedMovie,
-  listType,
   modalVisible,
   handleCloseModal,
   handleOptionSelect,
+  myList,
+  likedList,
+  watchedList,
 }) => {
   if (!selectedMovie) {
     return null;
   }
+
+  // Function to check if the movie is in a list
+  const isInList = list => list.some(movie => movie.id === selectedMovie.id);
+
+  const inMyList = isInList(myList);
+  const inLikedList = isInList(likedList);
+  const inWatchedList = isInList(watchedList);
 
   return (
     <Modal
@@ -30,100 +39,91 @@ const MovieOptionsModal = ({
             Rating: {selectedMovie.vote_average}
           </Text>
 
-          {/* <Text style={styles.modalTitle}>Choose an option</Text> */}
-          {listType === 'recommendations' && (
+          {!inMyList && !inLikedList && !inWatchedList && (
             <>
               <Button
                 title="Add to My List"
                 color={styles.modalButton.color}
-                onPress={() => handleOptionSelect('myList')}
+                onPress={() => handleOptionSelect('addToMyList')}
               />
               <Button
                 title="Mark as Watched"
                 color={styles.modalButton.color}
-                onPress={() => handleOptionSelect('watched')}
+                onPress={() => handleOptionSelect('addToWatched')}
               />
               <Button
                 title="Mark as Liked"
                 color={styles.modalButton.color}
-                onPress={() => handleOptionSelect('like')}
+                onPress={() => handleOptionSelect('addtoLiked')}
               />
             </>
           )}
-          {listType === 'myList' && (
+
+          {inMyList && (
             <>
               <Button
                 title="Remove from My List"
                 color={styles.modalButton.color}
-                onPress={() => handleOptionSelect('remove')}
+                onPress={() => handleOptionSelect('removeFromMyList')}
               />
-              <Button
-                title="Mark as Watched"
-                color={styles.modalButton.color}
-                onPress={() => handleOptionSelect('watched')}
-              />
-              <Button
-                title="Mark as Liked"
-                color={styles.modalButton.color}
-                onPress={() => handleOptionSelect('like')}
-              />
+              {!inWatchedList && (
+                <Button
+                  title="Mark as Watched"
+                  color={styles.modalButton.color}
+                  onPress={() => handleOptionSelect('addToWatched')}
+                />
+              )}
+              {!inLikedList && (
+                <Button
+                  title="Mark as Liked"
+                  color={styles.modalButton.color}
+                  onPress={() => handleOptionSelect('addtoLiked')}
+                />
+              )}
             </>
           )}
-          {listType === 'likedList' && (
+
+          {inLikedList && (
             <>
               <Button
                 title="Remove from Liked List"
                 color={styles.modalButton.color}
-                onPress={() => handleOptionSelect('remove')}
+                onPress={() => handleOptionSelect('removeFromLikedList')}
               />
-              <Button
-                title="Mark as Watched"
-                color={styles.modalButton.color}
-                onPress={() => handleOptionSelect('watched')}
-              />
+              {!inWatchedList && (
+                <Button
+                  title="Mark as Watched"
+                  color={styles.modalButton.color}
+                  onPress={() => handleOptionSelect('addToWatched')}
+                />
+              )}
             </>
           )}
-          {listType === 'watchedList' && (
+
+          {inWatchedList && (
             <>
               <Button
                 title="Remove from Watched List"
                 color={styles.modalButton.color}
-                onPress={() => handleOptionSelect('remove')}
+                onPress={() => handleOptionSelect('removeFromWatchedList')}
               />
-              <Button
-                title="Mark as Liked"
-                color={styles.modalButton.color}
-                onPress={() => handleOptionSelect('like')}
-              />
-              <Button
-                title="Add to My List"
-                color={styles.modalButton.color}
-                onPress={() => handleOptionSelect('myList')}
-              />
+              {!inLikedList && (
+                <Button
+                  title="Mark as Liked"
+                  color={styles.modalButton.color}
+                  onPress={() => handleOptionSelect('addtoLiked')}
+                />
+              )}
+              {!inMyList && (
+                <Button
+                  title="Add to My List"
+                  color={styles.modalButton.color}
+                  onPress={() => handleOptionSelect('addToMyList')}
+                />
+              )}
             </>
           )}
-          {listType === 'personalMovies' ||
-          listType === 'popularMovies' ||
-          listType === 'upcomingMovies' ||
-          listType === 'topMovies' ? (
-            <>
-              <Button
-                title="Add to My List"
-                color={styles.modalButton.color}
-                onPress={() => handleOptionSelect('myList')}
-              />
-              <Button
-                title="Mark as Watched"
-                color={styles.modalButton.color}
-                onPress={() => handleOptionSelect('watched')}
-              />
-              <Button
-                title="Mark as Liked"
-                color={styles.modalButton.color}
-                onPress={() => handleOptionSelect('like')}
-              />
-            </>
-          ) : null}
+
           <Button
             title="Cancel"
             color={styles.modalButton.color}
