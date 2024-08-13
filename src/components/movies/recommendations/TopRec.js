@@ -2,10 +2,12 @@ import React from 'react';
 import {View, Text, Image, FlatList, TouchableOpacity} from 'react-native';
 import styles from '../../../styles/styles';
 
-function TopRecommendations({topMovies, handleShowOptions}) {
+function TopRecommendations({topMovies, handleShowOptions, navigation}) {
   return (
     <View style={styles.sectionContainer}>
-      <Text style={styles.sectionTitle}>Top Rated Recommendations</Text>
+      <TouchableOpacity onPress={() => navigation.navigate('TopRecScreen')}>
+        <Text style={styles.sectionTitle}>Top Rated Recommendations</Text>
+      </TouchableOpacity>
       <FlatList
         data={topMovies}
         keyExtractor={item => item.id.toString()}

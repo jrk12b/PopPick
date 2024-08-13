@@ -1,14 +1,39 @@
 import {useState, useEffect, useCallback} from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import shuffleArray from '../utils/shuffleArray';
+import useMovies from '../hooks/useMovies';
 
 const useMovieLists = () => {
   const [myList, setMyList] = useState([]);
   const [likedList, setLikedList] = useState([]);
   const [watchedList, setWatchedList] = useState([]);
   const [personalMovies, setPersonalMovies] = useState([]);
+  const [popularMovies, setPopularMovies] = useState([]);
+  const [upcomingMovies, setUpcomingMovies] = useState([]);
+  const [topMovies, setTopMovies] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+
+  useMovies(
+    'https://api.themoviedb.org/3/movie/popular?api_key=15979629ea6e558ef491c9b9ccee0043',
+    setPopularMovies,
+    setLoading,
+    setError,
+  );
+
+  useMovies(
+    'https://api.themoviedb.org/3/movie/upcoming?api_key=15979629ea6e558ef491c9b9ccee0043',
+    setUpcomingMovies,
+    setLoading,
+    setError,
+  );
+
+  useMovies(
+    'https://api.themoviedb.org/3/movie/top_rated?api_key=15979629ea6e558ef491c9b9ccee0043',
+    setTopMovies,
+    setLoading,
+    setError,
+  );
 
   // Function to load a list from AsyncStorage
   const loadList = async key => {
@@ -146,6 +171,9 @@ const useMovieLists = () => {
     likedList,
     watchedList,
     personalMovies,
+    popularMovies,
+    upcomingMovies,
+    topMovies,
     loading,
     error,
     handleAddToMyList,

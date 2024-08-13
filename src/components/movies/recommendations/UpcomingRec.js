@@ -2,10 +2,17 @@ import React from 'react';
 import {View, Text, Image, FlatList, TouchableOpacity} from 'react-native';
 import styles from '../../../styles/styles';
 
-function UpcomingRecommendations({upcomingMovies, handleShowOptions}) {
+function UpcomingRecommendations({
+  upcomingMovies,
+  handleShowOptions,
+  navigation,
+}) {
   return (
     <View style={styles.sectionContainer}>
-      <Text style={styles.sectionTitle}>Upcoming Recommendations</Text>
+      <TouchableOpacity
+        onPress={() => navigation.navigate('UpcomingRecScreen')}>
+        <Text style={styles.sectionTitle}>Upcoming Recommendations</Text>
+      </TouchableOpacity>
       <FlatList
         data={upcomingMovies}
         keyExtractor={item => item.id.toString()}

@@ -11,7 +11,6 @@ import MyList from '../components/movies/lists/MyList';
 import WatchedList from '../components/movies/lists/WatchedList';
 import LikedList from '../components/movies/lists/LikedList';
 import OptionsModal from '../components/movies/OptionsModal';
-import useMovies from '../../hooks/useMovies';
 import useMovieLists from '../../hooks/useMovieLists';
 import useMovieModal from '../../hooks/useMovieModal';
 import Loading from '../components/movies/Loading';
@@ -24,6 +23,11 @@ function MovieScreen({navigation}) {
     likedList,
     watchedList,
     personalMovies,
+    popularMovies,
+    upcomingMovies,
+    topMovies,
+    error,
+    loading,
     handleAddToMyList,
     handleAddToLiked,
     handleAddToWatched,
@@ -41,40 +45,12 @@ function MovieScreen({navigation}) {
     handleOptionSelect,
   } = useMovieModal(handleAddToMyList, handleAddToLiked, handleAddToWatched);
 
-  // const [personalMovies, setPersonalMovies] = useState([]);
-  const [popularMovies, setPopularMovies] = useState([]);
-  const [upcomingMovies, setUpcomingMovies] = useState([]);
-  const [topMovies, setTopMovies] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
-
   useFocusEffect(
     useCallback(() => {
       fetchRecommendations();
       fetchMyList();
       fetchWatchedList();
     }, [likedList]),
-  );
-
-  useMovies(
-    'https://api.themoviedb.org/3/movie/popular?api_key=15979629ea6e558ef491c9b9ccee0043',
-    setPopularMovies,
-    setLoading,
-    setError,
-  );
-
-  useMovies(
-    'https://api.themoviedb.org/3/movie/upcoming?api_key=15979629ea6e558ef491c9b9ccee0043',
-    setUpcomingMovies,
-    setLoading,
-    setError,
-  );
-
-  useMovies(
-    'https://api.themoviedb.org/3/movie/top_rated?api_key=15979629ea6e558ef491c9b9ccee0043',
-    setTopMovies,
-    setLoading,
-    setError,
   );
 
   if (loading) {
@@ -112,16 +88,19 @@ function MovieScreen({navigation}) {
       <PopularRec
         popularMovies={filterList(popularMovies)}
         handleShowOptions={handleShowOptions}
+        navigation={navigation}
       />
 
       <UpcomingRec
         upcomingMovies={filterList(upcomingMovies)}
         handleShowOptions={handleShowOptions}
+        navigation={navigation}
       />
 
       <TopRec
         topMovies={filterList(topMovies)}
         handleShowOptions={handleShowOptions}
+        navigation={navigation}
       />
 
       <MyList

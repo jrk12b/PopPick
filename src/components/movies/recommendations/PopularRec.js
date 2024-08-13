@@ -2,10 +2,16 @@ import React from 'react';
 import {View, Text, Image, FlatList, TouchableOpacity} from 'react-native';
 import styles from '../../../styles/styles';
 
-function PopularRecommendations({popularMovies, handleShowOptions}) {
+function PopularRecommendations({
+  popularMovies,
+  handleShowOptions,
+  navigation,
+}) {
   return (
     <View style={styles.sectionContainer}>
-      <Text style={styles.sectionTitle}>Popular Recommendations</Text>
+      <TouchableOpacity onPress={() => navigation.navigate('PopularRecScreen')}>
+        <Text style={styles.sectionTitle}>Popular Recommendations</Text>
+      </TouchableOpacity>
       <FlatList
         data={popularMovies}
         keyExtractor={item => item.id.toString()}

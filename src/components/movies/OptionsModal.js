@@ -102,6 +102,28 @@ const MovieOptionsModal = ({
               />
             </>
           )}
+          {listType === 'personalMovies' ||
+          listType === 'popularMovies' ||
+          listType === 'upcomingMovies' ||
+          listType === 'topMovies' ? (
+            <>
+              <Button
+                title="Add to My List"
+                color={styles.modalButton.color}
+                onPress={() => handleOptionSelect('myList')}
+              />
+              <Button
+                title="Mark as Watched"
+                color={styles.modalButton.color}
+                onPress={() => handleOptionSelect('watched')}
+              />
+              <Button
+                title="Mark as Liked"
+                color={styles.modalButton.color}
+                onPress={() => handleOptionSelect('like')}
+              />
+            </>
+          ) : null}
           <Button
             title="Cancel"
             color={styles.modalButton.color}
