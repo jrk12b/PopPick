@@ -6,6 +6,9 @@ import OptionsModal from '../components/movies/OptionsModal';
 
 function PersonalRecScreen() {
   const {
+    myList,
+    likedList,
+    watchedList,
     personalMovies,
     handleAddToMyList,
     handleAddToLiked,
@@ -38,6 +41,9 @@ function PersonalRecScreen() {
         modalVisible={modalVisible}
         handleCloseModal={handleCloseModal}
         handleOptionSelect={handleOptionSelect}
+        myList={myList}
+        likedList={likedList}
+        watchedList={watchedList}
       />
     </>
   );

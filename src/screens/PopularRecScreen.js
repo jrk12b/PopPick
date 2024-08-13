@@ -7,6 +7,9 @@ import OptionsModal from '../components/movies/OptionsModal';
 function PopularRecScreen() {
   const {
     popularMovies,
+    likedList,
+    watchedList,
+    myList,
     handleAddToMyList,
     handleAddToLiked,
     handleAddToWatched,
@@ -38,6 +41,9 @@ function PopularRecScreen() {
         modalVisible={modalVisible}
         handleCloseModal={handleCloseModal}
         handleOptionSelect={handleOptionSelect}
+        myList={myList}
+        likedList={likedList}
+        watchedList={watchedList}
       />
     </>
   );

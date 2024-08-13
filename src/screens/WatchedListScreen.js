@@ -5,8 +5,14 @@ import useMovieModal from '../../hooks/useMovieModal';
 import OptionsModal from '../components/movies/OptionsModal';
 
 function WatchedListScreen() {
-  const {watchedList, handleAddToMyList, handleAddToLiked, handleAddToWatched} =
-    useMovieLists();
+  const {
+    watchedList,
+    myList,
+    likedList,
+    handleAddToMyList,
+    handleAddToLiked,
+    handleAddToWatched,
+  } = useMovieLists();
 
   const {
     selectedMovie,
@@ -29,6 +35,9 @@ function WatchedListScreen() {
         modalVisible={modalVisible}
         handleCloseModal={handleCloseModal}
         handleOptionSelect={handleOptionSelect}
+        myList={myList}
+        likedList={likedList}
+        watchedList={watchedList}
       />
     </>
   );

@@ -7,8 +7,15 @@ import SearchList from '../components/movies/lists/SearchList';
 import fullListStyles from '../styles/fullListStyles';
 
 function SearchListScreen() {
-  const {searchList, handleAddToMyList, handleAddToLiked, handleAddToWatched} =
-    useMovieLists();
+  const {
+    myList,
+    likedList,
+    watchedList,
+    searchList,
+    handleAddToMyList,
+    handleAddToLiked,
+    handleAddToWatched,
+  } = useMovieLists();
 
   const {
     selectedMovie,
@@ -35,6 +42,9 @@ function SearchListScreen() {
         modalVisible={modalVisible}
         handleCloseModal={handleCloseModal}
         handleOptionSelect={handleOptionSelect}
+        myList={myList}
+        likedList={likedList}
+        watchedList={watchedList}
       />
     </View>
   );
