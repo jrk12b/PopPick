@@ -1,14 +1,17 @@
 import React from 'react';
-import MyListFull from '../components/movies/lists/MyListFull';
+import {View} from 'react-native';
 import useMovieLists from '../../hooks/useMovieLists';
 import useMovieModal from '../../hooks/useMovieModal';
-import OptionsModal from '../components/movies/OptionsModal';
+import OptionsModal from '../../components/movies/OptionsModal';
+import SearchList from '../../components/movies/lists/SearchList';
+import fullListStyles from '../../styles/fullListStyles';
 
-function MyListScreen() {
+function SearchListScreen() {
   const {
     myList,
     likedList,
     watchedList,
+    searchList,
     handleAddToMyList,
     handleAddToLiked,
     handleAddToWatched,
@@ -23,13 +26,18 @@ function MyListScreen() {
     handleOptionSelect,
   } = useMovieModal(handleAddToMyList, handleAddToLiked, handleAddToWatched);
 
+  const handleShowOptionsWrapper = (movie, listType) => {
+    handleShowOptions(movie, listType);
+  };
+
   return (
-    <>
-      <MyListFull
+    <View style={fullListStyles.sectionContainer}>
+      <SearchList
+        searchList={searchList}
         myList={myList}
         likedList={likedList}
         watchedList={watchedList}
-        handleShowOptions={handleShowOptions}
+        handleShowOptions={handleShowOptionsWrapper}
       />
       <OptionsModal
         selectedMovie={selectedMovie}
@@ -41,8 +49,8 @@ function MyListScreen() {
         likedList={likedList}
         watchedList={watchedList}
       />
-    </>
+    </View>
   );
 }
 
-export default MyListScreen;
+export default SearchListScreen;

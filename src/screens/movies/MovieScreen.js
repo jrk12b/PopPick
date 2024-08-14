@@ -2,19 +2,19 @@
 import React, {useCallback} from 'react';
 import {ScrollView, View, TouchableOpacity} from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
-import styles from '../styles/styles';
-import PopularRec from '../components/movies/recommendations/PopularRec';
-import UpcomingRec from '../components/movies/recommendations/UpcomingRec';
-import TopRec from '../components/movies/recommendations/TopRec';
-import PersonalRec from '../components/movies/recommendations/PersonalRec';
-import MyList from '../components/movies/lists/MyList';
-import WatchedList from '../components/movies/lists/WatchedList';
-import LikedList from '../components/movies/lists/LikedList';
-import OptionsModal from '../components/movies/OptionsModal';
+import styles from '../../styles/styles';
+import PopularRec from '../../components/movies/recommendations/PopularRec';
+import UpcomingRec from '../../components/movies/recommendations/UpcomingRec';
+import TopRec from '../../components/movies/recommendations/TopRec';
+import PersonalRec from '../../components/movies/recommendations/PersonalRec';
+import MyList from '../../components/movies/lists/MyList';
+import WatchedList from '../../components/movies/lists/WatchedList';
+import LikedList from '../../components/movies/lists/LikedList';
+import OptionsModal from '../../components/movies/OptionsModal';
 import useMovieLists from '../../hooks/useMovieLists';
 import useMovieModal from '../../hooks/useMovieModal';
-import Loading from '../components/movies/Loading';
-import Error from '../components/movies/Error';
+import Loading from '../../components/movies/Loading';
+import Error from '../../components/movies/Error';
 import {useFocusEffect} from '@react-navigation/native';
 
 function MovieScreen({navigation}) {

@@ -1,7 +1,7 @@
 import React from 'react';
 import {View, Text, Image, FlatList, TouchableOpacity} from 'react-native';
-import fullListStyles from '../../../styles/fullListStyles';
-import styles from '../../../styles/styles';
+import fullListStyles from '../../../../styles/fullListStyles';
+import styles from '../../../../styles/styles';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 
 function LikedListFull({likedList, myList, watchedList, handleShowOptions}) {

@@ -1,20 +1,20 @@
 import React from 'react';
 import {View, Text, Image, FlatList, TouchableOpacity} from 'react-native';
-import fullListStyles from '../../../styles/fullListStyles';
+import fullListStyles from '../../../../styles/fullListStyles';
 
-function UpcomingRecFull({upcomingMovies, handleShowOptions}) {
-  if (!upcomingMovies) {
+function PopularRecFull({popularMovies, handleShowOptions}) {
+  if (!popularMovies) {
     return <Text>Loading...</Text>;
   }
   return (
     <FlatList
       style={fullListStyles.FlatList}
-      data={upcomingMovies}
+      data={popularMovies}
       keyExtractor={item => item.id.toString()}
       renderItem={({item}) => (
         <View style={fullListStyles.movieContainer}>
           <TouchableOpacity
-            onPress={() => handleShowOptions(item, 'upcomingMovies')}>
+            onPress={() => handleShowOptions(item, 'popularMovies')}>
             <Image
               style={fullListStyles.poster}
               source={{
@@ -30,7 +30,7 @@ function UpcomingRecFull({upcomingMovies, handleShowOptions}) {
       contentContainerStyle={fullListStyles.gridContainer}
       ListHeaderComponent={
         <Text style={fullListStyles.sectionTitle}>
-          Upcoming Recommendations ({upcomingMovies.length})
+          Popular Recommendations ({popularMovies.length})
         </Text>
       }
       ListEmptyComponent={
@@ -40,4 +40,4 @@ function UpcomingRecFull({upcomingMovies, handleShowOptions}) {
   );
 }
 
-export default UpcomingRecFull;
+export default PopularRecFull;

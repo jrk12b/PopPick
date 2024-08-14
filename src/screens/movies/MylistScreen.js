@@ -1,24 +1,18 @@
-import React, {useEffect} from 'react';
-import UpcomingRecFull from '../components/movies/recommendations/UpcomingRecFull';
+import React from 'react';
+import MyListFull from '../../components/movies/lists/fullLists/MyListFull';
 import useMovieLists from '../../hooks/useMovieLists';
 import useMovieModal from '../../hooks/useMovieModal';
-import OptionsModal from '../components/movies/OptionsModal';
+import OptionsModal from '../../components/movies/OptionsModal';
 
-function UpcomingRecScreen() {
+function MyListScreen() {
   const {
-    upcomingMovies,
     myList,
     likedList,
     watchedList,
     handleAddToMyList,
     handleAddToLiked,
     handleAddToWatched,
-    fetchRecommendations,
   } = useMovieLists();
-
-  useEffect(() => {
-    fetchRecommendations();
-  }, [fetchRecommendations]);
 
   const {
     selectedMovie,
@@ -31,8 +25,10 @@ function UpcomingRecScreen() {
 
   return (
     <>
-      <UpcomingRecFull
-        upcomingMovies={upcomingMovies}
+      <MyListFull
+        myList={myList}
+        likedList={likedList}
+        watchedList={watchedList}
         handleShowOptions={handleShowOptions}
       />
       <OptionsModal
@@ -49,4 +45,4 @@ function UpcomingRecScreen() {
   );
 }
 
-export default UpcomingRecScreen;
+export default MyListScreen;

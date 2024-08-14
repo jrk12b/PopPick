@@ -1,24 +1,18 @@
-import React, {useEffect} from 'react';
-import PersonalRecFull from '../components/movies/recommendations/PersonalRecFull';
+import React from 'react';
+import WatchedListFull from '../../components/movies/lists/fullLists/WatchedListFull';
 import useMovieLists from '../../hooks/useMovieLists';
 import useMovieModal from '../../hooks/useMovieModal';
-import OptionsModal from '../components/movies/OptionsModal';
+import OptionsModal from '../../components/movies/OptionsModal';
 
-function PersonalRecScreen() {
+function WatchedListScreen() {
   const {
+    watchedList,
     myList,
     likedList,
-    watchedList,
-    personalMovies,
     handleAddToMyList,
     handleAddToLiked,
     handleAddToWatched,
-    fetchRecommendations,
   } = useMovieLists();
-
-  useEffect(() => {
-    fetchRecommendations();
-  }, [fetchRecommendations]);
 
   const {
     selectedMovie,
@@ -31,8 +25,10 @@ function PersonalRecScreen() {
 
   return (
     <>
-      <PersonalRecFull
-        personalMovies={personalMovies}
+      <WatchedListFull
+        myList={myList}
+        likedList={likedList}
+        watchedList={watchedList}
         handleShowOptions={handleShowOptions}
       />
       <OptionsModal
@@ -49,4 +45,4 @@ function PersonalRecScreen() {
   );
 }
 
-export default PersonalRecScreen;
+export default WatchedListScreen;

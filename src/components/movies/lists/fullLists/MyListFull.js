@@ -1,22 +1,21 @@
 import React from 'react';
 import {View, Text, Image, FlatList, TouchableOpacity} from 'react-native';
-import fullListStyles from '../../../styles/fullListStyles';
-import styles from '../../../styles/styles';
+import fullListStyles from '../../../../styles/fullListStyles';
+import styles from '../../../../styles/styles';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 
-function WatchedListFull({watchedList, likedList, myList, handleShowOptions}) {
+function MyListFull({myList, likedList, watchedList, handleShowOptions}) {
   const isLiked = movieId => likedList.some(movie => movie.id === movieId);
   const isSaved = movieId => myList.some(movie => movie.id === movieId);
   const isWatched = movieId => watchedList.some(movie => movie.id === movieId);
   return (
     <FlatList
       style={fullListStyles.FlatList}
-      data={watchedList}
+      data={myList}
       keyExtractor={item => item.id.toString()}
       renderItem={({item}) => (
         <View style={fullListStyles.movieContainer}>
-          <TouchableOpacity
-            onPress={() => handleShowOptions(item, 'watchedList')}>
+          <TouchableOpacity onPress={() => handleShowOptions(item, 'myList')}>
             <Image
               style={fullListStyles.poster}
               source={{
@@ -56,7 +55,7 @@ function WatchedListFull({watchedList, likedList, myList, handleShowOptions}) {
       contentContainerStyle={fullListStyles.gridContainer}
       ListHeaderComponent={
         <Text style={fullListStyles.sectionTitle}>
-          Watched List ({watchedList.length})
+          My List ({myList.length})
         </Text>
       }
       ListEmptyComponent={
@@ -66,4 +65,4 @@ function WatchedListFull({watchedList, likedList, myList, handleShowOptions}) {
   );
 }
 
-export default WatchedListFull;
+export default MyListFull;

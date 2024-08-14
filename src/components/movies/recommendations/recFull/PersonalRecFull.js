@@ -1,20 +1,20 @@
 import React from 'react';
 import {View, Text, Image, FlatList, TouchableOpacity} from 'react-native';
-import fullListStyles from '../../../styles/fullListStyles';
+import fullListStyles from '../../../../styles/fullListStyles';
 
-function PopularRecFull({popularMovies, handleShowOptions}) {
-  if (!popularMovies) {
+function PersonalRecFull({personalMovies, handleShowOptions}) {
+  if (!personalMovies) {
     return <Text>Loading...</Text>;
   }
   return (
     <FlatList
       style={fullListStyles.FlatList}
-      data={popularMovies}
+      data={personalMovies}
       keyExtractor={item => item.id.toString()}
       renderItem={({item}) => (
         <View style={fullListStyles.movieContainer}>
           <TouchableOpacity
-            onPress={() => handleShowOptions(item, 'popularMovies')}>
+            onPress={() => handleShowOptions(item, 'personalMovies')}>
             <Image
               style={fullListStyles.poster}
               source={{
@@ -30,7 +30,7 @@ function PopularRecFull({popularMovies, handleShowOptions}) {
       contentContainerStyle={fullListStyles.gridContainer}
       ListHeaderComponent={
         <Text style={fullListStyles.sectionTitle}>
-          Popular Recommendations ({popularMovies.length})
+          Personal Recommendations ({personalMovies.length})
         </Text>
       }
       ListEmptyComponent={
@@ -40,4 +40,4 @@ function PopularRecFull({popularMovies, handleShowOptions}) {
   );
 }
 
-export default PopularRecFull;
+export default PersonalRecFull;

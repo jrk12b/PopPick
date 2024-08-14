@@ -1,18 +1,24 @@
-import React from 'react';
-import LikedListFull from '../components/movies/lists/LikedListFull';
+import React, {useEffect} from 'react';
+import TopRecFull from '../../components/movies/recommendations/recFull/TopRecFull';
 import useMovieLists from '../../hooks/useMovieLists';
 import useMovieModal from '../../hooks/useMovieModal';
-import OptionsModal from '../components/movies/OptionsModal';
+import OptionsModal from '../../components/movies/OptionsModal';
 
-function LikedListScreen() {
+function TopRecScreen() {
   const {
-    likedList,
+    topMovies,
     myList,
+    likedList,
     watchedList,
     handleAddToMyList,
     handleAddToLiked,
     handleAddToWatched,
+    fetchRecommendations,
   } = useMovieLists();
+
+  useEffect(() => {
+    fetchRecommendations();
+  }, [fetchRecommendations]);
 
   const {
     selectedMovie,
@@ -25,12 +31,7 @@ function LikedListScreen() {
 
   return (
     <>
-      <LikedListFull
-        likedList={likedList}
-        myList={myList}
-        watchedList={watchedList}
-        handleShowOptions={handleShowOptions}
-      />
+      <TopRecFull topMovies={topMovies} handleShowOptions={handleShowOptions} />
       <OptionsModal
         selectedMovie={selectedMovie}
         listType={listType}
@@ -45,4 +46,4 @@ function LikedListScreen() {
   );
 }
 
-export default LikedListScreen;
+export default TopRecScreen;

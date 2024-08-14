@@ -1,21 +1,24 @@
-import React from 'react';
-import {View} from 'react-native';
+import React, {useEffect} from 'react';
+import PersonalRecFull from '../../components/movies/recommendations/recFull/PersonalRecFull';
 import useMovieLists from '../../hooks/useMovieLists';
 import useMovieModal from '../../hooks/useMovieModal';
-import OptionsModal from '../components/movies/OptionsModal';
-import SearchList from '../components/movies/lists/SearchList';
-import fullListStyles from '../styles/fullListStyles';
+import OptionsModal from '../../components/movies/OptionsModal';
 
-function SearchListScreen() {
+function PersonalRecScreen() {
   const {
     myList,
     likedList,
     watchedList,
-    searchList,
+    personalMovies,
     handleAddToMyList,
     handleAddToLiked,
     handleAddToWatched,
+    fetchRecommendations,
   } = useMovieLists();
+
+  useEffect(() => {
+    fetchRecommendations();
+  }, [fetchRecommendations]);
 
   const {
     selectedMovie,
@@ -26,18 +29,11 @@ function SearchListScreen() {
     handleOptionSelect,
   } = useMovieModal(handleAddToMyList, handleAddToLiked, handleAddToWatched);
 
-  const handleShowOptionsWrapper = (movie, listType) => {
-    handleShowOptions(movie, listType);
-  };
-
   return (
-    <View style={fullListStyles.sectionContainer}>
-      <SearchList
-        searchList={searchList}
-        myList={myList}
-        likedList={likedList}
-        watchedList={watchedList}
-        handleShowOptions={handleShowOptionsWrapper}
+    <>
+      <PersonalRecFull
+        personalMovies={personalMovies}
+        handleShowOptions={handleShowOptions}
       />
       <OptionsModal
         selectedMovie={selectedMovie}
@@ -49,8 +45,8 @@ function SearchListScreen() {
         likedList={likedList}
         watchedList={watchedList}
       />
-    </View>
+    </>
   );
 }
 
-export default SearchListScreen;
+export default PersonalRecScreen;
