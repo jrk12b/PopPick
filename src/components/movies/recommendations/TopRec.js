@@ -6,7 +6,7 @@ import MoviePoster from '../MoviePoster';
 function TopRecommendations({topMovies, handleShowOptions, navigation}) {
   return (
     <View style={styles.sectionContainer}>
-      <TouchableOpacity onPress={() => navigation.navigate('TopRecScreen')}>
+      <TouchableOpacity onPress={() => navigation.navigate('Top Recs')}>
         <Text style={styles.sectionTitle}>Top Rated Recommendations</Text>
       </TouchableOpacity>
       <FlatList

@@ -12,7 +12,7 @@ function MyList({
 }) {
   return (
     <View style={styles.sectionContainer}>
-      <TouchableOpacity onPress={() => navigation.navigate('MyListScreen')}>
+      <TouchableOpacity onPress={() => navigation.navigate('My List')}>
         <Text style={styles.sectionTitle}>My List ({myList.length})</Text>
       </TouchableOpacity>
 

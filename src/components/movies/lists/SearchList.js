@@ -8,8 +8,6 @@ import MoviePoster from '../MoviePoster';
 import {API_KEY} from '../../../config';
 import CustomButton from '../../CustomButton';
 
-// refactor
-
 const SearchList = ({handleShowOptions, likedList, myList, watchedList}) => {
   const [query, setQuery] = useState('');
   const [results, setResults] = useState([]);

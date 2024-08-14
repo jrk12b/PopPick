@@ -10,8 +10,7 @@ function UpcomingRecommendations({
 }) {
   return (
     <View style={styles.sectionContainer}>
-      <TouchableOpacity
-        onPress={() => navigation.navigate('UpcomingRecScreen')}>
+      <TouchableOpacity onPress={() => navigation.navigate('Upcoming Recs')}>
         <Text style={styles.sectionTitle}>Upcoming Recommendations</Text>
       </TouchableOpacity>
       <FlatList

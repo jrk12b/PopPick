@@ -31,14 +31,14 @@ function AppNavigator() {
           component={MovieScreen}
           options={{headerShown: true}}
         />
-        <Stack.Screen name="MyListScreen" component={MyListScreen} />
-        <Stack.Screen name="WatchedListScreen" component={WatchedListScreen} />
-        <Stack.Screen name="LikedListScreen" component={LikedListScreen} />
-        <Stack.Screen name="SearchListScreen" component={SearchListScreen} />
-        <Stack.Screen name="PersonalRecScreen" component={PersonalRecScreen} />
-        <Stack.Screen name="PopularRecScreen" component={PopularRecScreen} />
-        <Stack.Screen name="UpcomingRecScreen" component={UpcomingRecScreen} />
-        <Stack.Screen name="TopRecScreen" component={TopRecScreen} />
+        <Stack.Screen name="My List" component={MyListScreen} />
+        <Stack.Screen name="Watched List" component={WatchedListScreen} />
+        <Stack.Screen name="Liked List" component={LikedListScreen} />
+        <Stack.Screen name="Search Movies" component={SearchListScreen} />
+        <Stack.Screen name="Personal Recs" component={PersonalRecScreen} />
+        <Stack.Screen name="Popular Recs" component={PopularRecScreen} />
+        <Stack.Screen name="Upcoming Recs" component={UpcomingRecScreen} />
+        <Stack.Screen name="Top Recs" component={TopRecScreen} />
         <Stack.Screen
           name="Books"
           component={BooksScreen}

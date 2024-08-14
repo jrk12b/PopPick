@@ -73,8 +73,7 @@ function MovieScreen({navigation}) {
   return (
     <ScrollView style={styles.container}>
       <View style={styles.header}>
-        <TouchableOpacity
-          onPress={() => navigation.navigate('SearchListScreen')}>
+        <TouchableOpacity onPress={() => navigation.navigate('Search Movies')}>
           <Icon name="search" size={24} color="#FBF4F4" />
         </TouchableOpacity>
       </View>

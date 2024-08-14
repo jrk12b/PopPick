@@ -12,7 +12,7 @@ function LikedList({
 }) {
   return (
     <View style={styles.sectionContainer}>
-      <TouchableOpacity onPress={() => navigation.navigate('LikedListScreen')}>
+      <TouchableOpacity onPress={() => navigation.navigate('Liked List')}>
         <Text style={styles.sectionTitle}>Liked ({likedList.length})</Text>
       </TouchableOpacity>
       {likedList.length === 0 ? (

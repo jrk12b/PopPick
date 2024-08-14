@@ -10,8 +10,7 @@ function PersonalRecommendations({
 }) {
   return (
     <View style={styles.sectionContainer}>
-      <TouchableOpacity
-        onPress={() => navigation.navigate('PersonalRecScreen')}>
+      <TouchableOpacity onPress={() => navigation.navigate('Personal Recs')}>
         <Text style={styles.sectionTitle}>Personal Recommendations</Text>
       </TouchableOpacity>
       <FlatList

@@ -12,8 +12,7 @@ function WatchedList({
 }) {
   return (
     <View style={styles.sectionContainer}>
-      <TouchableOpacity
-        onPress={() => navigation.navigate('WatchedListScreen')}>
+      <TouchableOpacity onPress={() => navigation.navigate('Watched List')}>
         <Text style={styles.sectionTitle}>Watched ({watchedList.length})</Text>
       </TouchableOpacity>
       {watchedList.length === 0 ? (

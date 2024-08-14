@@ -10,7 +10,7 @@ function PopularRecommendations({
 }) {
   return (
     <View style={styles.sectionContainer}>
-      <TouchableOpacity onPress={() => navigation.navigate('PopularRecScreen')}>
+      <TouchableOpacity onPress={() => navigation.navigate('Popular Recs')}>
         <Text style={styles.sectionTitle}>Popular Recommendations</Text>
       </TouchableOpacity>
       <FlatList
