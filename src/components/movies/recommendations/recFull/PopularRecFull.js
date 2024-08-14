@@ -1,6 +1,7 @@
 import React from 'react';
-import {View, Text, Image, FlatList, TouchableOpacity} from 'react-native';
+import {Text, FlatList} from 'react-native';
 import styles from '../../../../styles/styles';
+import MoviePoster from '../../MoviePoster';
 
 function PopularRecFull({popularMovies, handleShowOptions}) {
   if (!popularMovies) {
@@ -12,18 +13,11 @@ function PopularRecFull({popularMovies, handleShowOptions}) {
       data={popularMovies}
       keyExtractor={item => item.id.toString()}
       renderItem={({item}) => (
-        <View style={styles.movieContainerFull}>
-          <TouchableOpacity
-            onPress={() => handleShowOptions(item, 'popularMovies')}>
-            <Image
-              style={styles.poster}
-              source={{
-                uri: `https://image.tmdb.org/t/p/w500${item.poster_path}`,
-              }}
-            />
-            <Text style={styles.title}>{item.title}</Text>
-          </TouchableOpacity>
-        </View>
+        <MoviePoster
+          item={item}
+          handleShowOptions={handleShowOptions}
+          listType="popularMovies"
+        />
       )}
       numColumns={3}
       columnWrapperStyle={styles.columnWrapper}

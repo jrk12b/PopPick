@@ -5,15 +5,17 @@ import styles from '../../styles/styles';
 
 const MovieItem = ({
   item,
-  likedList,
-  myList,
-  watchedList,
+  likedList = [],
+  myList = [],
+  watchedList = [],
   handleShowOptions,
   listType,
 }) => {
-  const isLiked = likedList.some(movie => movie.id === item.id);
-  const isSaved = myList.some(movie => movie.id === item.id);
-  const isWatched = watchedList.some(movie => movie.id === item.id);
+  // Check if lists are defined and not empty
+  const isLiked = likedList && likedList.some(movie => movie.id === item.id);
+  const isSaved = myList && myList.some(movie => movie.id === item.id);
+  const isWatched =
+    watchedList && watchedList.some(movie => movie.id === item.id);
 
   return (
     <View style={styles.movieContainer}>

@@ -1,7 +1,4 @@
-import {StyleSheet, Dimensions} from 'react-native';
-
-const windowWidth = Dimensions.get('window').width;
-const itemWidth = windowWidth / 3 - 20;
+import {StyleSheet} from 'react-native';
 
 const styles = StyleSheet.create({
   FlatList: {
@@ -78,11 +75,11 @@ const styles = StyleSheet.create({
     backgroundColor: '#454545',
     borderRadius: 10,
     marginVertical: 5,
-    shadowColor: '#000', // iOS shadow color
-    shadowOffset: {width: 0, height: 2}, // iOS shadow offset
-    shadowOpacity: 0.3, // iOS shadow opacity
-    shadowRadius: 4, // iOS shadow radius
-    elevation: 5, // Android shadow/elevation
+    shadowColor: '#000',
+    shadowOffset: {width: 0, height: 2},
+    shadowOpacity: 0.3,
+    shadowRadius: 4,
+    elevation: 5,
   },
   input: {
     height: 40,
@@ -129,13 +126,11 @@ const styles = StyleSheet.create({
   sectionContainer: {
     flex: 1,
     backgroundColor: '#595959',
-    padding: 10,
+    paddingLeft: 10,
+    paddingRight: 10,
+    paddingTop: 10,
   },
   movieContainer: {
-    margin: 5,
-  },
-  movieContainerFull: {
-    width: itemWidth,
     margin: 5,
   },
   poster: {
