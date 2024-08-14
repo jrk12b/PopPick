@@ -31,7 +31,7 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     alignItems: 'center',
     marginVertical: 5,
-    width: '70%',
+    width: '80%',
     alignSelf: 'center',
   },
   buttonText: {
@@ -110,14 +110,6 @@ const styles = StyleSheet.create({
     color: '#FBF4F4',
     marginBottom: 15,
   },
-  modalButton: {
-    color: '#FBF4F4',
-  },
-  buttonContainer: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    marginBottom: 10,
-  },
   header: {
     padding: 10,
     flexDirection: 'row',
@@ -158,6 +150,7 @@ const styles = StyleSheet.create({
     color: '#FBF4F4',
     fontSize: 16,
     textAlign: 'center',
+    padding: 10,
   },
   suggestionsList: {
     position: 'absolute',

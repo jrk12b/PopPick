@@ -6,6 +6,7 @@ import debounce from 'lodash.debounce';
 import styles from '../../../styles/styles';
 import MoviePoster from '../MoviePoster';
 import {API_KEY} from '../../../config';
+import CustomButton from '../../CustomButton';
 
 // refactor
 
@@ -93,14 +94,18 @@ const SearchList = ({handleShowOptions, likedList, myList, watchedList}) => {
           )}
         />
       )}
-      <View style={styles.buttonContainer}>
-        <TouchableOpacity style={styles.buttonSearch} onPress={searchMovies}>
-          <Text style={styles.buttonTextSearch}>Search</Text>
-        </TouchableOpacity>
-        <TouchableOpacity style={styles.buttonSearch} onPress={clearSearch}>
-          <Text style={styles.buttonTextSearch}>Clear</Text>
-        </TouchableOpacity>
-      </View>
+      <CustomButton
+        title="Search"
+        onPress={searchMovies}
+        style={styles.button}
+        textStyle={styles.buttonText}
+      />
+      <CustomButton
+        title="Clear"
+        onPress={clearSearch}
+        style={styles.button}
+        textStyle={styles.buttonText}
+      />
       {results.length > 0 ? (
         <FlatList
           key={results.length}

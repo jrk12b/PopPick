@@ -1,6 +1,7 @@
 import React from 'react';
 import {View, Text, Modal, Button} from 'react-native';
 import styles from '../../styles/styles';
+import CustomButton from '../CustomButton';
 
 const MovieOptionsModal = ({
   selectedMovie,
@@ -40,43 +41,49 @@ const MovieOptionsModal = ({
 
           {!inMyList && !inLikedList && !inWatchedList && (
             <>
-              <Button
+              <CustomButton
                 title="Add to My List"
-                color={styles.modalButton.color}
                 onPress={() => handleOptionSelect('addToMyList')}
+                style={styles.button}
+                textStyle={styles.buttonText}
               />
-              <Button
+              <CustomButton
                 title="Mark as Watched"
-                color={styles.modalButton.color}
                 onPress={() => handleOptionSelect('addToWatched')}
+                style={styles.button}
+                textStyle={styles.buttonText}
               />
-              <Button
+              <CustomButton
                 title="Mark as Liked"
-                color={styles.modalButton.color}
                 onPress={() => handleOptionSelect('addtoLiked')}
+                style={styles.button}
+                textStyle={styles.buttonText}
               />
             </>
           )}
 
           {inMyList && (
             <>
-              <Button
+              <CustomButton
                 title="Remove from My List"
-                color={styles.modalButton.color}
                 onPress={() => handleOptionSelect('removeFromMyList')}
+                style={styles.button}
+                textStyle={styles.buttonText}
               />
               {!inWatchedList && (
-                <Button
+                <CustomButton
                   title="Mark as Watched"
-                  color={styles.modalButton.color}
                   onPress={() => handleOptionSelect('addToWatched')}
+                  style={styles.button}
+                  textStyle={styles.buttonText}
                 />
               )}
               {!inLikedList && (
-                <Button
+                <CustomButton
                   title="Mark as Liked"
-                  color={styles.modalButton.color}
                   onPress={() => handleOptionSelect('addtoLiked')}
+                  style={styles.button}
+                  textStyle={styles.buttonText}
                 />
               )}
             </>
@@ -84,16 +91,18 @@ const MovieOptionsModal = ({
 
           {inLikedList && (
             <>
-              <Button
+              <CustomButton
                 title="Remove from Liked List"
-                color={styles.modalButton.color}
                 onPress={() => handleOptionSelect('removeFromLikedList')}
+                style={styles.button}
+                textStyle={styles.buttonText}
               />
               {!inWatchedList && (
-                <Button
+                <CustomButton
                   title="Mark as Watched"
-                  color={styles.modalButton.color}
                   onPress={() => handleOptionSelect('addToWatched')}
+                  style={styles.button}
+                  textStyle={styles.buttonText}
                 />
               )}
             </>
@@ -101,23 +110,26 @@ const MovieOptionsModal = ({
 
           {inWatchedList && (
             <>
-              <Button
+              <CustomButton
                 title="Remove from Watched List"
-                color={styles.modalButton.color}
                 onPress={() => handleOptionSelect('removeFromWatchedList')}
+                style={styles.button}
+                textStyle={styles.buttonText}
               />
               {!inLikedList && (
-                <Button
+                <CustomButton
                   title="Mark as Liked"
-                  color={styles.modalButton.color}
                   onPress={() => handleOptionSelect('addtoLiked')}
+                  style={styles.button}
+                  textStyle={styles.buttonText}
                 />
               )}
               {!inMyList && (
-                <Button
+                <CustomButton
                   title="Add to My List"
-                  color={styles.modalButton.color}
                   onPress={() => handleOptionSelect('addToMyList')}
+                  style={styles.button}
+                  textStyle={styles.buttonText}
                 />
               )}
             </>
@@ -125,7 +137,7 @@ const MovieOptionsModal = ({
 
           <Button
             title="Cancel"
-            color={styles.modalButton.color}
+            color={styles.text.color}
             onPress={handleCloseModal}
           />
         </View>
