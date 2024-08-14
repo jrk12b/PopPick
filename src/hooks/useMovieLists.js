@@ -4,6 +4,7 @@ import {useState, useEffect, useCallback} from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import shuffleArray from '../utils/shuffleArray';
 import useMovies from '../hooks/useMovies';
+import {API_KEY} from '../config';
 
 const useMovieLists = () => {
   const [myList, setMyList] = useState([]);
@@ -17,21 +18,21 @@ const useMovieLists = () => {
   const [error, setError] = useState(null);
 
   useMovies(
-    'https://api.themoviedb.org/3/movie/popular?api_key=15979629ea6e558ef491c9b9ccee0043',
+    `https://api.themoviedb.org/3/movie/popular?api_key=${API_KEY}`,
     setPopularMovies,
     setLoading,
     setError,
   );
 
   useMovies(
-    'https://api.themoviedb.org/3/movie/upcoming?api_key=15979629ea6e558ef491c9b9ccee0043',
+    `https://api.themoviedb.org/3/movie/upcoming?api_key=${API_KEY}`,
     setUpcomingMovies,
     setLoading,
     setError,
   );
 
   useMovies(
-    'https://api.themoviedb.org/3/movie/top_rated?api_key=15979629ea6e558ef491c9b9ccee0043',
+    `https://api.themoviedb.org/3/movie/top_rated?api_key=${API_KEY}`,
     setTopMovies,
     setLoading,
     setError,
@@ -83,7 +84,7 @@ const useMovieLists = () => {
       const recommendations = await Promise.all(
         likedMovieIds.map(id =>
           fetch(
-            `https://api.themoviedb.org/3/movie/${id}/recommendations?api_key=15979629ea6e558ef491c9b9ccee0043`,
+            `https://api.themoviedb.org/3/movie/${id}/recommendations?api_key=${API_KEY}`,
           )
             .then(response => response.json())
             .then(data => data.results),

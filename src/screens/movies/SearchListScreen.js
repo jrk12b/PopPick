@@ -4,7 +4,7 @@ import useMovieLists from '../../hooks/useMovieLists';
 import useMovieModal from '../../hooks/useMovieModal';
 import OptionsModal from '../../components/movies/OptionsModal';
 import SearchList from '../../components/movies/lists/SearchList';
-import fullListStyles from '../../styles/fullListStyles';
+import styles from '../../styles/styles';
 
 function SearchListScreen() {
   const {
@@ -31,7 +31,7 @@ function SearchListScreen() {
   };
 
   return (
-    <View style={fullListStyles.sectionContainer}>
+    <View style={styles.sectionContainer}>
       <SearchList
         searchList={searchList}
         myList={myList}

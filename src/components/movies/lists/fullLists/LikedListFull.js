@@ -1,67 +1,31 @@
 import React from 'react';
-import {View, Text, Image, FlatList, TouchableOpacity} from 'react-native';
-import fullListStyles from '../../../../styles/fullListStyles';
+import {FlatList, Text} from 'react-native';
 import styles from '../../../../styles/styles';
-import Icon from 'react-native-vector-icons/MaterialIcons';
+import MoviePoster from '../../MoviePoster';
 
 function LikedListFull({likedList, myList, watchedList, handleShowOptions}) {
-  const isLiked = movieId => likedList.some(movie => movie.id === movieId);
-  const isSaved = movieId => myList.some(movie => movie.id === movieId);
-  const isWatched = movieId => watchedList.some(movie => movie.id === movieId);
   return (
     <FlatList
-      style={fullListStyles.FlatList}
+      style={styles.FlatList}
       data={likedList}
       keyExtractor={item => item.id.toString()}
       renderItem={({item}) => (
-        <View style={fullListStyles.movieContainer}>
-          <TouchableOpacity
-            onPress={() => handleShowOptions(item, 'likedList')}>
-            <Image
-              style={fullListStyles.poster}
-              source={{
-                uri: `https://image.tmdb.org/t/p/w500${item.poster_path}`,
-              }}
-            />
-            {isLiked(item.id) && (
-              <Icon
-                name="favorite"
-                size={18}
-                color="white"
-                style={styles.favoriteIcon}
-              />
-            )}
-            {isSaved(item.id) && (
-              <Icon
-                name="bookmark"
-                size={18}
-                color="white"
-                style={styles.savedIcon}
-              />
-            )}
-            {isWatched(item.id) && (
-              <Icon
-                name="remove-red-eye"
-                size={18}
-                color="white"
-                style={styles.watchedIcon}
-              />
-            )}
-            <Text style={fullListStyles.title}>{item.title}</Text>
-          </TouchableOpacity>
-        </View>
+        <MoviePoster
+          item={item}
+          likedList={likedList}
+          myList={myList}
+          watchedList={watchedList}
+          handleShowOptions={handleShowOptions}
+          listType="likedList"
+        />
       )}
       numColumns={3}
-      columnWrapperStyle={fullListStyles.columnWrapper}
-      contentContainerStyle={fullListStyles.gridContainer}
+      columnWrapperStyle={styles.columnWrapper}
+      contentContainerStyle={styles.gridContainer}
       ListHeaderComponent={
-        <Text style={fullListStyles.sectionTitle}>
-          Liked ({likedList.length})
-        </Text>
+        <Text style={styles.sectionTitle}>Liked ({likedList.length})</Text>
       }
-      ListEmptyComponent={
-        <Text style={fullListStyles.text}>No movies added yet.</Text>
-      }
+      ListEmptyComponent={<Text style={styles.text}>No movies added yet.</Text>}
     />
   );
 }

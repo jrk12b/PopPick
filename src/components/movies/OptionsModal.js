@@ -15,7 +15,6 @@ const MovieOptionsModal = ({
     return null;
   }
 
-  // Function to check if the movie is in a list
   const isInList = list => list.some(movie => movie.id === selectedMovie.id);
 
   const inMyList = isInList(myList);

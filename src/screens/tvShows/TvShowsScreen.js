@@ -1,20 +1,15 @@
 import React from 'react';
-import {View, Text, StyleSheet} from 'react-native';
+import {View, Text, ScrollView} from 'react-native';
+import styles from '../../styles/styles';
 
 function TvShowsScreen() {
   return (
-    <View style={styles.container}>
-      <Text>Tv Shows Screen</Text>
-    </View>
+    <ScrollView style={styles.container}>
+      <View>
+        <Text style={styles.text}>TV Show Screen</Text>
+      </View>
+    </ScrollView>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-});
 
 export default TvShowsScreen;

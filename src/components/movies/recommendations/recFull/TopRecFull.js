@@ -1,6 +1,6 @@
 import React from 'react';
 import {View, Text, Image, FlatList, TouchableOpacity} from 'react-native';
-import fullListStyles from '../../../../styles/fullListStyles';
+import styles from '../../../../styles/styles';
 
 function TopRecFull({topMovies, handleShowOptions}) {
   if (!topMovies) {
@@ -8,34 +8,32 @@ function TopRecFull({topMovies, handleShowOptions}) {
   }
   return (
     <FlatList
-      style={fullListStyles.FlatList}
+      style={styles.FlatList}
       data={topMovies}
       keyExtractor={item => item.id.toString()}
       renderItem={({item}) => (
-        <View style={fullListStyles.movieContainer}>
+        <View style={styles.movieContainerFull}>
           <TouchableOpacity
             onPress={() => handleShowOptions(item, 'topMovies')}>
             <Image
-              style={fullListStyles.poster}
+              style={styles.poster}
               source={{
                 uri: `https://image.tmdb.org/t/p/w500${item.poster_path}`,
               }}
             />
-            <Text style={fullListStyles.title}>{item.title}</Text>
+            <Text style={styles.title}>{item.title}</Text>
           </TouchableOpacity>
         </View>
       )}
       numColumns={3}
-      columnWrapperStyle={fullListStyles.columnWrapper}
-      contentContainerStyle={fullListStyles.gridContainer}
+      columnWrapperStyle={styles.columnWrapper}
+      contentContainerStyle={styles.gridContainer}
       ListHeaderComponent={
-        <Text style={fullListStyles.sectionTitle}>
+        <Text style={styles.sectionTitle}>
           Top Recommendations ({topMovies.length})
         </Text>
       }
-      ListEmptyComponent={
-        <Text style={fullListStyles.text}>No movies added yet.</Text>
-      }
+      ListEmptyComponent={<Text style={styles.text}>No movies added yet.</Text>}
     />
   );
 }
