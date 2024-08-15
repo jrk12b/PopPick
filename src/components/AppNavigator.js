@@ -14,6 +14,7 @@ import PersonalRecScreen from '../screens/movies/PersonalRecScreen';
 import PopularRecScreen from '../screens/movies/PopularRecScreen';
 import UpcomingRecScreen from '../screens/movies/UpcomingRecScreen';
 import TopRecScreen from '../screens/movies/TopRecScreen';
+import CustomRecScreen from '../screens/movies/CustomRecScreen';
 
 const Stack = createStackNavigator();
 
@@ -75,6 +76,7 @@ function AppNavigator() {
         <Stack.Screen name="Popular Recs" component={PopularRecScreen} />
         <Stack.Screen name="Upcoming Recs" component={UpcomingRecScreen} />
         <Stack.Screen name="Top Recs" component={TopRecScreen} />
+        <Stack.Screen name="Custom Recs" component={CustomRecScreen} />
         <Stack.Screen
           name="Books"
           component={BooksScreen}

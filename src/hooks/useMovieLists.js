@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable no-catch-shadow */
 /* eslint-disable no-shadow */
 
@@ -38,6 +39,7 @@ const useMovieLists = () => {
   const [watchedList, setWatchedList] = useState([]);
   const [personalMovies, setPersonalMovies] = useState([]);
   const [popularMovies, setPopularMovies] = useState([]);
+  const [customMovies, setCustomMovies] = useState([]);
   const [upcomingMovies, setUpcomingMovies] = useState([]);
   const [topMovies, setTopMovies] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -136,6 +138,43 @@ const useMovieLists = () => {
     }
   }, [likedList]);
 
+  const fetchCustomRecs = useCallback(async () => {
+    setLoading(true);
+    setError(null);
+    // derp
+
+    try {
+      // Combine all movies from the lists for filtering
+      const allListMovies = [
+        ...popularMovies,
+        ...upcomingMovies,
+        ...topMovies,
+      ].map(movie => movie);
+      console.log('All Movies: ' + allListMovies);
+      // get rating of my first liked movie
+      const firstMovieRating = likedList[0].vote_average;
+      console.log('first rating: ' + firstMovieRating);
+
+      // find movies in allListMovies with similar ratings
+      // Define a tolerance for what you consider "similar" ratings
+      const ratingTolerance = 0.5;
+
+      // Find movies in allListMovies with a similar vote_average
+      const similarMovies = allListMovies.filter(
+        movie =>
+          Math.abs(movie.vote_average - firstMovieRating) <= ratingTolerance,
+      );
+
+      // Log the similar movies
+      console.log('Similar Ratings: ' + JSON.stringify(similarMovies));
+      setCustomMovies(similarMovies);
+    } catch (err) {
+      setError(err);
+    } finally {
+      setLoading(false);
+    }
+  }, [likedList]);
+
   // Fetch and set the personal list from AsyncStorage
   const fetchMyList = async () => {
     const savedMyList = await loadList('myList');
@@ -211,6 +250,7 @@ const useMovieLists = () => {
     personalMovies,
     popularMovies,
     upcomingMovies,
+    customMovies,
     topMovies,
     loading,
     error,
@@ -220,6 +260,7 @@ const useMovieLists = () => {
     fetchMyList,
     fetchWatchedList,
     fetchRecommendations,
+    fetchCustomRecs,
   };
 };
 

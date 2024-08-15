@@ -8,6 +8,7 @@ import UpcomingRec from '../../components/movies/recommendations/UpcomingRec';
 import TopRec from '../../components/movies/recommendations/TopRec';
 import PersonalRec from '../../components/movies/recommendations/PersonalRec';
 import MyList from '../../components/movies/lists/MyList';
+import CustomRec from '../../components/movies/recommendations/CustomRec';
 import WatchedList from '../../components/movies/lists/WatchedList';
 import LikedList from '../../components/movies/lists/LikedList';
 import OptionsModal from '../../components/movies/OptionsModal';
@@ -33,6 +34,7 @@ function MovieScreen({navigation}) {
     popularMovies,
     upcomingMovies,
     topMovies,
+    customMovies,
     error,
     loading,
     handleAddToMyList,
@@ -141,6 +143,12 @@ function MovieScreen({navigation}) {
       {/* Display top-rated movie recommendations */}
       <TopRec
         topMovies={filterList(topMovies)}
+        handleShowOptions={handleShowOptions}
+        navigation={navigation}
+      />
+
+      <CustomRec
+        customMovies={customMovies}
         handleShowOptions={handleShowOptions}
         navigation={navigation}
       />
