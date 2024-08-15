@@ -8,17 +8,45 @@ import MoviePoster from '../MoviePoster';
 import {API_KEY} from '../../../config';
 import CustomButton from '../../CustomButton';
 
+/**
+ * SearchList Component
+ *
+ * This component provides a search interface for movies, allowing users to enter a query,
+ * see suggestions, and view search results. It integrates with an external movie database API.
+ *
+ * Props:
+ * - myList: Array - A list of movies in the user's personal list.
+ * - likedList: Array - A list of movies that the user has liked.
+ * - watchedList: Array - A list of movies that the user has already watched.
+ * - handleShowOptions: Function - A callback function triggered when a movie is selected,
+ *   which shows additional options for the selected movie.
+ *
+ * Behavior:
+ * - Allows users to search for movies by entering a query.
+ * - Fetches and displays movie suggestions as the user types.
+ * - Displays a list of search results based on the user's query.
+ * - Allows users to clear the search input and results.
+ * - Handles the selection of suggestions and shows additional options for each movie.
+ */
 const SearchList = ({handleShowOptions, likedList, myList, watchedList}) => {
+  // State variables for managing the search query, search results, suggestions, and input focus state.
   const [query, setQuery] = useState('');
   const [results, setResults] = useState([]);
   const [suggestions, setSuggestions] = useState([]);
   const [isFocused, setIsFocused] = useState(false);
 
+  // Debounces the fetchSuggestions function to limit how frequently it's called.
+  // This helps reduce the number of API calls made when the user is typing.
   const debouncedFetchSuggestions = useCallback(
     debounce(query => fetchSuggestions(query), 300),
     [],
   );
 
+  /**
+   * Fetches movie suggestions based on the current query.
+   * If the query length is less than 3 characters, no suggestions are fetched.
+   * The function sets the suggestions state with the first 10 results.
+   */
   const fetchSuggestions = async query => {
     if (query.length < 3) {
       return;
@@ -37,16 +65,29 @@ const SearchList = ({handleShowOptions, likedList, myList, watchedList}) => {
     }
   };
 
+  /**
+   * Handles text input changes by updating the query state and fetching suggestions.
+   * The debouncedFetchSuggestions function is used to avoid making excessive API calls.
+   */
   const handleChangeText = text => {
     setQuery(text);
     debouncedFetchSuggestions(text);
   };
 
+  /**
+   * Handles the selection of a movie suggestion.
+   * Updates the query state with the selected movie's title and clears the suggestions.
+   */
   const handleSuggestionPress = movie => {
     setQuery(movie.title);
     setSuggestions([]);
   };
 
+  /**
+   * Searches for movies based on the current query.
+   * Fetches the top 10 search results and updates the results state.
+   * This function is similar to fetchSuggestions but is triggered explicitly by the user.
+   */
   const searchMovies = async () => {
     try {
       const response = await fetch(
@@ -61,6 +102,10 @@ const SearchList = ({handleShowOptions, likedList, myList, watchedList}) => {
     }
   };
 
+  /**
+   * Clears the search input, results, and suggestions.
+   * Resets the query, results, and suggestions state variables.
+   */
   const clearSearch = () => {
     setQuery('');
     setResults([]);

@@ -17,7 +17,14 @@ import Loading from '../../components/movies/Loading';
 import Error from '../../components/movies/Error';
 import {useFocusEffect} from '@react-navigation/native';
 
+/**
+ * MovieScreen Component
+ *
+ * This screen displays various movie lists and recommendations, allowing users
+ * to view and interact with their movie collections and recommendations.
+ */
 function MovieScreen({navigation}) {
+  // Custom hook to manage movie lists and fetch movie data
   const {
     myList,
     likedList,
@@ -36,6 +43,7 @@ function MovieScreen({navigation}) {
     fetchRecommendations,
   } = useMovieLists();
 
+  // Custom hook to manage the state and actions for the movie options modal
   const {
     selectedMovie,
     listType,
@@ -45,23 +53,26 @@ function MovieScreen({navigation}) {
     handleOptionSelect,
   } = useMovieModal(handleAddToMyList, handleAddToLiked, handleAddToWatched);
 
+  // Fetch movie data and user lists when the screen is focused
   useFocusEffect(
     useCallback(() => {
       fetchRecommendations();
       fetchMyList();
       fetchWatchedList();
-    }, [likedList]),
+    }, [likedList]), // Dependency on likedList to refetch when it changes
   );
 
+  // Show loading spinner while data is being fetched
   if (loading) {
     return <Loading />;
   }
 
+  // Show error message if there was an issue fetching data
   if (error) {
     return <Error message={error.message} />;
   }
 
-  // Combine all movies from the lists
+  // Combine all movies from the lists for filtering
   const allListMovies = [...myList, ...likedList, ...watchedList].map(
     movie => movie.id,
   );
@@ -73,11 +84,13 @@ function MovieScreen({navigation}) {
   return (
     <ScrollView style={styles.container}>
       <View style={styles.header}>
+        {/* Search button to navigate to the search screen */}
         <TouchableOpacity onPress={() => navigation.navigate('Search Movies')}>
           <Icon name="search" size={24} color="#FBF4F4" />
         </TouchableOpacity>
       </View>
 
+      {/* Display user’s personal movie list */}
       <MyList
         myList={myList}
         likedList={likedList}
@@ -86,6 +99,7 @@ function MovieScreen({navigation}) {
         navigation={navigation}
       />
 
+      {/* Display list of watched movies */}
       <WatchedList
         myList={myList}
         likedList={likedList}
@@ -94,6 +108,7 @@ function MovieScreen({navigation}) {
         navigation={navigation}
       />
 
+      {/* Display list of liked movies */}
       <LikedList
         myList={myList}
         likedList={likedList}
@@ -102,30 +117,35 @@ function MovieScreen({navigation}) {
         navigation={navigation}
       />
 
+      {/* Display personal movie recommendations */}
       <PersonalRec
         personalMovies={filterList(personalMovies)}
         handleShowOptions={handleShowOptions}
         navigation={navigation}
       />
 
+      {/* Display popular movie recommendations */}
       <PopularRec
         popularMovies={filterList(popularMovies)}
         handleShowOptions={handleShowOptions}
         navigation={navigation}
       />
 
+      {/* Display upcoming movie recommendations */}
       <UpcomingRec
         upcomingMovies={filterList(upcomingMovies)}
         handleShowOptions={handleShowOptions}
         navigation={navigation}
       />
 
+      {/* Display top-rated movie recommendations */}
       <TopRec
         topMovies={filterList(topMovies)}
         handleShowOptions={handleShowOptions}
         navigation={navigation}
       />
 
+      {/* Modal for displaying options related to the selected movie */}
       <OptionsModal
         selectedMovie={selectedMovie}
         listType={listType}

@@ -3,6 +3,21 @@ import {Text, FlatList} from 'react-native';
 import styles from '../../../../styles/styles';
 import MoviePoster from '../../MoviePoster';
 
+/**
+ * UpcomingRecFull Component
+ *
+ * This component renders a FlatList displaying a grid of movies from the upcomingMovies data.
+ * Each movie is displayed as a MoviePoster component.
+ *
+ * Props:
+ * - upcomingMovies: Array - A list of upcoming movies that has been recommended to the user.
+ * - handleShowOptions: Function - A callback function to handle actions when a movie is selected.
+ *
+ * Behavior:
+ * - If upcomingMovies is empty, the component displays a message "No movies added yet."
+ * - Movies are displayed in a grid with 3 columns, with each movie showing the poster image
+ * - If a specific movie is clicked, handleShowOptions are displayed.
+ */
 function UpcomingRecFull({upcomingMovies, handleShowOptions}) {
   if (!upcomingMovies) {
     return <Text>Loading...</Text>;

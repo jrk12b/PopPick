@@ -4,6 +4,14 @@ import useMovieLists from '../../hooks/useMovieLists';
 import useMovieModal from '../../hooks/useMovieModal';
 import OptionsModal from '../../components/movies/OptionsModal';
 
+/**
+ * LikedListScreen Component
+ *
+ * This screen displays the user's list of liked movies and provides functionality
+ * for managing the list and viewing movie options. It uses custom hooks to manage
+ * movie lists and modal state, and renders the liked movies list and a modal for
+ * additional options.
+ */
 function LikedListScreen() {
   const {
     likedList,

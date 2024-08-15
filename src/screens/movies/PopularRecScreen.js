@@ -4,6 +4,13 @@ import useMovieLists from '../../hooks/useMovieLists';
 import useMovieModal from '../../hooks/useMovieModal';
 import OptionsModal from '../../components/movies/OptionsModal';
 
+/**
+ * PopularRecScreen Component
+ *
+ * This screen displays popular movie recommendations. It fetches popular
+ * movies when the component mounts and manages user interactions with movie
+ * options through a modal.
+ */
 function PopularRecScreen() {
   const {
     popularMovies,

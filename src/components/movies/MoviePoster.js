@@ -3,7 +3,33 @@ import {View, Text, Image, TouchableOpacity} from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import styles from '../../styles/styles';
 
-const MovieItem = ({
+/**
+ * MoviePoster Component
+ *
+ * This functional component renders a movie item within a list, displaying its poster,
+ * title, and relevant icons based on whether the movie is liked, saved, or watched.
+ *
+ * Props:
+ * - item: Object - The movie data to be displayed, including its id, title, and poster path.
+ * - likedList: Array (optional) - A list of movies that have been liked by the user.
+ * - myList: Array (optional) - A list of movies that have been saved by the user.
+ * - watchedList: Array (optional) - A list of movies that have been watched by the user.
+ * - handleShowOptions: Function - A callback function triggered when the movie item is pressed.
+ * - listType: String - A string indicating the type of list the movie belongs to (e.g., "likedList").
+ *
+ * Behavior:
+ * - The component checks if the movie is liked, saved, or watched by comparing the movie's ID
+ *   with the IDs in the provided lists.
+ * - If the movie is liked, saved, or watched, the corresponding icon is displayed over the poster.
+ * - When the movie item is pressed, the handleShowOptions function is invoked with the movie item
+ *   and the listType as arguments.
+ *
+ * Rendering:
+ * - The movie's poster is displayed using the provided URI.
+ * - Icons are conditionally rendered based on the movie's status (liked, saved, or watched).
+ * - The movie's title is displayed beneath the poster.
+ */
+const MoviePoster = ({
   item,
   likedList = [],
   myList = [],
@@ -54,4 +80,4 @@ const MovieItem = ({
   );
 };
 
-export default MovieItem;
+export default MoviePoster;

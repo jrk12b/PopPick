@@ -17,6 +17,42 @@ import TopRecScreen from '../screens/movies/TopRecScreen';
 
 const Stack = createStackNavigator();
 
+/**
+ * AppNavigator Component
+ *
+ * This component sets up the main navigation structure of the app using React Navigation.
+ * It defines a stack navigator that allows users to navigate between different screens
+ * representing various sections of the app, such as Movies, Books, TV Shows, Video Games,
+ * and personalized recommendations.
+ *
+ * The stack navigator is configured to include multiple screens, each corresponding to a different
+ * section or feature of the app. These screens are associated with their respective components
+ * and can be navigated to by their names.
+ *
+ * Screens:
+ * - Home: Displays the home screen of the app.
+ * - Movies: Displays the main movie screen.
+ * - My List: Shows the user's personal list of saved movies.
+ * - Watched List: Displays the list of movies the user has marked as watched.
+ * - Liked List: Shows the list of movies the user has liked.
+ * - Search Movies: Provides a search functionality for finding movies.
+ * - Personal Recs: Displays personalized movie recommendations.
+ * - Popular Recs: Shows popular movie recommendations.
+ * - Upcoming Recs: Displays upcoming movie recommendations.
+ * - Top Recs: Shows top-rated movie recommendations.
+ * - Books: Displays the books section of the app.
+ * - TvShows: Displays the TV shows section of the app.
+ * - VideoGames: Displays the video games section of the app.
+ *
+ * Navigation:
+ * - The navigation container wraps the stack navigator, ensuring the entire app is navigable.
+ * - Each screen can be navigated to by using its name in the `Stack.Screen` component.
+ * - Some screens have their headers shown (`headerShown: true`), while others use default options.
+ *
+ * Usage:
+ * - The `AppNavigator` component should be used as the main navigation setup in the root of the app.
+ * - This allows users to seamlessly transition between different sections and features within the app.
+ */
 function AppNavigator() {
   return (
     <NavigationContainer>

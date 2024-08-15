@@ -4,6 +4,13 @@ import useMovieLists from '../../hooks/useMovieLists';
 import useMovieModal from '../../hooks/useMovieModal';
 import OptionsModal from '../../components/movies/OptionsModal';
 
+/**
+ * PersonalRecScreen Component
+ *
+ * This screen displays personalized movie recommendations based on the user's
+ * liked movies. It fetches recommendations when the component mounts and
+ * provides functionality for managing movie lists and viewing movie options.
+ */
 function PersonalRecScreen() {
   const {
     myList,
