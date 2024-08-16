@@ -152,8 +152,8 @@ const useMovieLists = () => {
       ].map(movie => movie);
       console.log('All Movies: ' + allListMovies);
       // get rating of my first liked movie
-      const firstMovieRating = likedList[0].vote_average;
-      console.log('first rating: ' + firstMovieRating);
+      const firstMovieGenre = likedList[0].vote_average;
+      console.log('first genre: ' + firstMovieGenre);
 
       // find movies in allListMovies with similar ratings
       // Define a tolerance for what you consider "similar" ratings
@@ -162,7 +162,7 @@ const useMovieLists = () => {
       // Find movies in allListMovies with a similar vote_average
       const similarMovies = allListMovies.filter(
         movie =>
-          Math.abs(movie.vote_average - firstMovieRating) <= ratingTolerance,
+          Math.abs(movie.vote_average - firstMovieGenre) <= ratingTolerance,
       );
 
       // Log the similar movies

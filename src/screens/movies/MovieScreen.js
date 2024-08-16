@@ -43,6 +43,7 @@ function MovieScreen({navigation}) {
     fetchMyList,
     fetchWatchedList,
     fetchRecommendations,
+    fetchCustomRecs,
   } = useMovieLists();
 
   // Custom hook to manage the state and actions for the movie options modal
@@ -61,6 +62,7 @@ function MovieScreen({navigation}) {
       fetchRecommendations();
       fetchMyList();
       fetchWatchedList();
+      fetchCustomRecs();
     }, [likedList]), // Dependency on likedList to refetch when it changes
   );
 

@@ -31,7 +31,7 @@ function CustomRec({customMovies, handleShowOptions, navigation}) {
       </TouchableOpacity>
       <FlatList
         data={customMovies}
-        keyExtractor={item => item.id.toString()}
+        keyExtractor={(item, index) => `${item.id}-${index}`}
         renderItem={({item}) => (
           <MoviePoster
             item={item}
