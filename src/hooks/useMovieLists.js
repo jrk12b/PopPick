@@ -1,3 +1,4 @@
+/* eslint-disable radix */
 /* eslint-disable no-catch-shadow */
 /* eslint-disable no-shadow */
 
@@ -6,6 +7,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import shuffleArray from '../utils/shuffleArray';
 import useMovies from '../hooks/useMovies';
 import {API_KEY} from '../config';
+import _ from 'lodash';
 
 /**
  * Custom hook for managing movie lists and fetching data from the API.
@@ -138,29 +140,43 @@ const useMovieLists = () => {
   }, [likedList]);
 
   const fetchCustomRecs = useCallback(async () => {
+    // Set loading state to true and reset any previous errors
     setLoading(true);
     setError(null);
 
     try {
-      // Combine all movies from the lists for filtering
+      // Combine all movies from popular, upcoming, and top lists into a single array
       const allListMovies = [...popularMovies, ...upcomingMovies, ...topMovies];
 
-      // Get the genre_ids of the first liked movie
-      const firstMovieGenres = likedList[0]?.genre_ids || [];
-      console.log('first genres: ' + firstMovieGenres);
-
-      // Find movies in allListMovies that share any genre_ids with the first liked movie
-      const similarMovies = allListMovies.filter(movie =>
-        movie.genre_ids.some(genre => firstMovieGenres.includes(genre)),
+      // Filter out movies with a vote_average (rating) below 7.0
+      const filteredMovies = allListMovies.filter(
+        movie => movie.vote_average >= 7.0,
       );
 
-      // Log the similar movies
-      console.log('Similar Movies by Genre: ' + JSON.stringify(similarMovies));
+      // Extract all genre_ids from the movies in the likedList and flatten them into a single array
+      const allGenres = likedList.flatMap(movie => movie.genre_ids);
 
+      // Count the occurrences of each genre_id
+      const genreCount = _.countBy(allGenres);
+
+      // Sort the genres by frequency in descending order and select the top 3
+      const topGenres = Object.entries(genreCount)
+        .sort(([, countA], [, countB]) => countB - countA) // Sort by count descending
+        .slice(0, 3) // Take the top 3 most frequent genres
+        .map(([genre]) => parseInt(genre)); // Extract the genre_id and convert to an integer
+
+      // Filter movies that have any of the top 3 genres
+      const similarMovies = filteredMovies.filter(movie =>
+        movie.genre_ids.some(genre => topGenres.includes(genre)),
+      );
+
+      // Set the filtered list of similar movies to the customMovies state
       setCustomMovies(similarMovies);
     } catch (err) {
+      // If an error occurs, set the error state
       setError(err);
     } finally {
+      // Set loading state to false after the operation is complete
       setLoading(false);
     }
   }, [likedList, popularMovies, upcomingMovies, topMovies]);
