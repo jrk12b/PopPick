@@ -6,6 +6,8 @@ import useVideoGameLists from '../../hooks/videoGames/useVideoGameLists';
 import PersonalRec from '../../components/videoGames/recommendations/PersonalRec';
 import Loading from '../../components/movies/Loading';
 import Error from '../../components/movies/Error';
+import OptionsModal from '../../components/movies/OptionsModal';
+import useMovieModal from '../../hooks/useMovieModal';
 
 /**
  * MovieScreen Component
@@ -15,7 +17,26 @@ import Error from '../../components/movies/Error';
  */
 function VideoGameScreen({navigation}) {
   // Custom hook to manage movie lists and fetch movie data
-  const {personalVideoGames, error, loading} = useVideoGameLists();
+  const {
+    myList,
+    likedList,
+    watchedList,
+    personalVideoGames,
+    error,
+    loading,
+    handleAddToMyList,
+    handleAddToLiked,
+    handleAddToWatched,
+  } = useVideoGameLists();
+
+  const {
+    selectedMovie,
+    listType,
+    modalVisible,
+    handleShowOptions,
+    handleCloseModal,
+    handleOptionSelect,
+  } = useMovieModal(handleAddToMyList, handleAddToLiked, handleAddToWatched);
 
   // Show loading spinner while data is being fetched
   if (loading) {
@@ -39,7 +60,20 @@ function VideoGameScreen({navigation}) {
       {/* Display personal movie recommendations */}
       <PersonalRec
         personalVideoGames={personalVideoGames}
+        handleShowOptions={handleShowOptions}
         navigation={navigation}
+      />
+
+      {/* Modal for displaying options related to the selected movie */}
+      <OptionsModal
+        selectedMovie={selectedMovie}
+        listType={listType}
+        modalVisible={modalVisible}
+        handleCloseModal={handleCloseModal}
+        handleOptionSelect={handleOptionSelect}
+        myList={myList}
+        likedList={likedList}
+        watchedList={watchedList}
       />
     </ScrollView>
   );
