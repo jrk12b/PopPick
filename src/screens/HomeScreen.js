@@ -23,20 +23,20 @@ function HomeScreen({navigation}) {
         textStyle={styles.buttonText}
       />
       <CustomButton
+        title="Go to Video Games"
+        onPress={() => navigation.navigate('Video Games')}
+        style={styles.button}
+        textStyle={styles.buttonText}
+      />
+      <CustomButton
         title="Go to Books"
         onPress={() => navigation.navigate('Books')}
         style={styles.button}
         textStyle={styles.buttonText}
       />
       <CustomButton
-        title="Go to Video Games"
-        onPress={() => navigation.navigate('VideoGames')}
-        style={styles.button}
-        textStyle={styles.buttonText}
-      />
-      <CustomButton
         title="Go to Tv Shows"
-        onPress={() => navigation.navigate('TvShows')}
+        onPress={() => navigation.navigate('TV Shows')}
         style={styles.button}
         textStyle={styles.buttonText}
       />

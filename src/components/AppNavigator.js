@@ -5,7 +5,7 @@ import HomeScreen from '../screens/HomeScreen';
 import MovieScreen from '../screens/movies/MovieScreen';
 import BooksScreen from '../screens/books/BooksScreen';
 import TvShowsScreen from '../screens/tvShows/TvShowsScreen';
-import VideoGamesScreen from '../screens/videoGames/VideoGamesScreen';
+import VideoGamesScreen from '../screens/videoGames/VideoGameScreen';
 import MyListScreen from '../screens/movies/MylistScreen';
 import WatchedListScreen from '../screens/movies/WatchedListScreen';
 import LikedListScreen from '../screens/movies/LikedListScreen';
@@ -83,12 +83,12 @@ function AppNavigator() {
           options={{headerShown: true}}
         />
         <Stack.Screen
-          name="TvShows"
+          name="TV Shows"
           component={TvShowsScreen}
           options={{headerShown: true}}
         />
         <Stack.Screen
-          name="VideoGames"
+          name="Video Games"
           component={VideoGamesScreen}
           options={{headerShown: true}}
         />
