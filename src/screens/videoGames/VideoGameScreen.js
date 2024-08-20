@@ -97,7 +97,7 @@ function VideoGameScreen({navigation}) {
 
       {/* Modal for displaying options related to the selected movie */}
       <VideoGameOptionsModal
-        selectedMovie={selectedVideoGame}
+        selectedVideoGame={selectedVideoGame}
         listType={listType}
         modalVisible={modalVisible}
         handleCloseModal={handleCloseModal}

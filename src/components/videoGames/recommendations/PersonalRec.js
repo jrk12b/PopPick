@@ -4,6 +4,7 @@ import styles from '../../../styles/styles';
 import VideoGamePoster from '../VideoGamePoster';
 
 function PersonalRec({personalVideoGames, handleShowOptions, navigation}) {
+  console.log('from personal rec: ' + handleShowOptions);
   return (
     <View style={styles.sectionContainer}>
       <TouchableOpacity onPress={() => navigation.navigate('Personal Recs')}>

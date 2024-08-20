@@ -31,9 +31,11 @@ const useVideoGameModal = (
    * @param {string} type - The type of list the movie pertains to.
    */
   const handleShowOptions = (videoGame, type) => {
+    console.log('Game selected:', videoGame);
     setSelectedVideoGame(videoGame);
     setListType(type);
     setModalVisible(true);
+    console.log('visible?: ' + modalVisible);
   };
 
   /**
@@ -54,6 +56,8 @@ const useVideoGameModal = (
    */
   const handleOptionSelect = option => {
     if (!selectedVideoGame) {
+      console.log('derp' + option);
+      console.log('derp2' + selectedVideoGame);
       return; // Exit if no movie is selected
     }
 

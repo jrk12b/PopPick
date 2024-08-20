@@ -32,7 +32,7 @@ import CustomButton from '../CustomButton';
  * - When an option is selected, the handleOptionSelect function is invoked with the respective action.
  */
 const VideoGameOptionsModal = ({
-  selectedVideoGames,
+  selectedVideoGame,
   modalVisible,
   handleCloseModal,
   handleOptionSelect,
@@ -40,12 +40,12 @@ const VideoGameOptionsModal = ({
   likedListVideoGames,
   watchedListVideoGames,
 }) => {
-  if (!selectedVideoGames) {
+  if (!selectedVideoGame) {
     return null;
   }
 
   const isInList = list =>
-    list.some(videoGame => videoGame.id === selectedVideoGames.id);
+    list.some(videoGame => videoGame.id === selectedVideoGame.id);
 
   const inMyList = isInList(myListVideoGames);
   const inLikedList = isInList(likedListVideoGames);
@@ -59,16 +59,7 @@ const VideoGameOptionsModal = ({
       onRequestClose={handleCloseModal}>
       <View style={styles.modalContainer}>
         <View style={styles.modalContent}>
-          <Text style={styles.movieTitle}>{selectedVideoGames.title}</Text>
-          <Text style={styles.movieDescription}>
-            {selectedVideoGames.overview}
-          </Text>
-          <Text style={styles.movieRelease}>
-            Release date: {selectedVideoGames.release_date}
-          </Text>
-          <Text style={styles.movieRating}>
-            Rating: {selectedVideoGames.vote_average}
-          </Text>
+          <Text style={styles.movieTitle}>{selectedVideoGame.name}</Text>
 
           {!inMyList && !inLikedList && !inWatchedList && (
             <>

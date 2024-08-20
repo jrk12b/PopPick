@@ -5,6 +5,8 @@ import {getAccessToken} from '../../hooks/videoGames/auth';
 import {VIDEO_GAME_CLIENT_ID} from '../../config';
 
 const VideoGamePoster = ({item, handleShowOptions, listType}) => {
+  console.log('from video game poster: ' + handleShowOptions);
+  console.log('item from poster: ' + JSON.stringify(item));
   const [coverImage, setCoverImage] = useState(null);
   const coverId = item.cover; // Get the cover ID from the item
 
