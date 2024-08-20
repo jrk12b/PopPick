@@ -1,5 +1,6 @@
 import {useEffect} from 'react';
-import {getAccessToken} from './auth.js'; // Import the function to get access token
+import {getAccessToken} from './auth.js';
+import {VIDEO_GAME_CLIENT_ID} from '../../config';
 
 const useVideoGames = (url, setPersonalVideoGames, setLoading, setError) => {
   useEffect(() => {
@@ -11,10 +12,10 @@ const useVideoGames = (url, setPersonalVideoGames, setLoading, setError) => {
           method: 'POST',
           headers: {
             Accept: 'application/json',
-            'Client-ID': 'wc9b1y8gfoqi232h1fsi5bonzxbnwx',
+            'Client-ID': VIDEO_GAME_CLIENT_ID,
             Authorization: `Bearer ${accessToken}`,
           },
-          body: 'fields *;',
+          body: 'search "Halo"; fields *;',
         });
         const data = await response.json();
 

@@ -2,6 +2,7 @@ import React, {useEffect, useState} from 'react';
 import {View, Text, Image, TouchableOpacity} from 'react-native';
 import styles from '../../styles/styles';
 import {getAccessToken} from '../../hooks/videoGames/auth';
+import {VIDEO_GAME_CLIENT_ID} from '../../config';
 
 const VideoGamePoster = ({item, handleShowOptions, listType}) => {
   const [coverImage, setCoverImage] = useState(null);
@@ -15,18 +16,16 @@ const VideoGamePoster = ({item, handleShowOptions, listType}) => {
           method: 'POST',
           headers: {
             Accept: 'application/json',
-            'Client-ID': 'wc9b1y8gfoqi232h1fsi5bonzxbnwx',
+            'Client-ID': VIDEO_GAME_CLIENT_ID,
             Authorization: `Bearer ${accessToken}`,
           },
           body: `fields *; where id = ${coverId};`,
         });
         const data = await response.json();
-        console.log('cover response: ' + JSON.stringify(data));
         if (data.length > 0) {
           // Ensure the URL has the proper scheme
           const imageUrl = data[0].url.replace(/^\/\//, ''); // Remove leading slashes
           const fullImageUrl = `https:${imageUrl}`; // Add the https:// prefix
-          console.log('fullImageUrl: ' + fullImageUrl);
           setCoverImage(fullImageUrl);
         }
       } catch (error) {
@@ -43,12 +42,9 @@ const VideoGamePoster = ({item, handleShowOptions, listType}) => {
     <View style={styles.movieContainer}>
       <TouchableOpacity onPress={() => handleShowOptions(item, listType)}>
         {coverImage ? (
-          <Image
-            style={styles.poster}
-            source={{uri: coverImage}} // Use the fetched cover image
-          />
+          <Image style={styles.poster} source={{uri: coverImage}} />
         ) : (
-          <Text>Loading...</Text> // Optional: Show loading state
+          <Text>Loading...</Text>
         )}
         <Text style={styles.title}>{item.name}</Text>
       </TouchableOpacity>

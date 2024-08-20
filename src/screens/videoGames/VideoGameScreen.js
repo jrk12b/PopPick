@@ -6,11 +6,14 @@ import useVideoGameLists from '../../hooks/videoGames/useVideoGameLists';
 import PersonalRec from '../../components/videoGames/recommendations/PersonalRec';
 import Loading from '../../components/movies/Loading';
 import Error from '../../components/movies/Error';
-import OptionsModal from '../../components/movies/OptionsModal';
-import useMovieModal from '../../hooks/useMovieModal';
+import VideoGameOptionsModal from '../../components/videoGames/VideoGameOptionsModal';
+import useVideoGameModal from '../../hooks/videoGames/useVideoGameModal';
+import MyListVideoGames from '../../components/videoGames/lists/MyListVideoGames';
+import WatchedListVideoGames from '../../components/videoGames/lists/WatchedListVideoGames';
+import LikedListVideoGames from '../../components/videoGames/lists/LikedListVideoGames';
 
 /**
- * MovieScreen Component
+ * VideoGameScreen Component
  *
  * This screen displays various movie lists and recommendations, allowing users
  * to view and interact with their movie collections and recommendations.
@@ -18,9 +21,9 @@ import useMovieModal from '../../hooks/useMovieModal';
 function VideoGameScreen({navigation}) {
   // Custom hook to manage movie lists and fetch movie data
   const {
-    myList,
-    likedList,
-    watchedList,
+    myListVideoGames,
+    likedListVideoGames,
+    watchedListVideoGames,
     personalVideoGames,
     error,
     loading,
@@ -30,13 +33,17 @@ function VideoGameScreen({navigation}) {
   } = useVideoGameLists();
 
   const {
-    selectedMovie,
+    selectedVideoGame,
     listType,
     modalVisible,
     handleShowOptions,
     handleCloseModal,
     handleOptionSelect,
-  } = useMovieModal(handleAddToMyList, handleAddToLiked, handleAddToWatched);
+  } = useVideoGameModal(
+    handleAddToMyList,
+    handleAddToLiked,
+    handleAddToWatched,
+  );
 
   // Show loading spinner while data is being fetched
   if (loading) {
@@ -57,6 +64,30 @@ function VideoGameScreen({navigation}) {
         </TouchableOpacity>
       </View>
 
+      <MyListVideoGames
+        myListVideoGames={myListVideoGames}
+        handleShowOptions={handleShowOptions}
+        navigation={navigation}
+      />
+
+      {/* Display list of watched movies */}
+      <WatchedListVideoGames
+        myListVideoGames={myListVideoGames}
+        likedListVideoGames={likedListVideoGames}
+        watchedListVideoGames={watchedListVideoGames}
+        handleShowOptions={handleShowOptions}
+        navigation={navigation}
+      />
+
+      {/* Display list of liked movies */}
+      <LikedListVideoGames
+        myListVideoGames={myListVideoGames}
+        likedListVideoGames={likedListVideoGames}
+        watchedListVideoGames={watchedListVideoGames}
+        handleShowOptions={handleShowOptions}
+        navigation={navigation}
+      />
+
       {/* Display personal movie recommendations */}
       <PersonalRec
         personalVideoGames={personalVideoGames}
@@ -65,15 +96,15 @@ function VideoGameScreen({navigation}) {
       />
 
       {/* Modal for displaying options related to the selected movie */}
-      <OptionsModal
-        selectedMovie={selectedMovie}
+      <VideoGameOptionsModal
+        selectedMovie={selectedVideoGame}
         listType={listType}
         modalVisible={modalVisible}
         handleCloseModal={handleCloseModal}
         handleOptionSelect={handleOptionSelect}
-        myList={myList}
-        likedList={likedList}
-        watchedList={watchedList}
+        myListVideoGames={myListVideoGames}
+        likedListVideoGames={likedListVideoGames}
+        watchedListVideoGames={watchedListVideoGames}
       />
     </ScrollView>
   );

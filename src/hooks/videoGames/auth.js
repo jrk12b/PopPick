@@ -30,7 +30,6 @@ export async function getAccessToken() {
 async function saveAccessToken(token) {
   try {
     await AsyncStorage.setItem('accessToken', token);
-    console.log('Access token saved to AsyncStorage.');
   } catch (error) {
     console.error('Failed to save access token:', error);
   }
