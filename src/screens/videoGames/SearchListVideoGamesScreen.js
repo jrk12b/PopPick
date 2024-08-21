@@ -27,7 +27,7 @@ function SearchListVideoGamesScreen() {
 
   // Custom hook to manage the state and actions for the movie options modal
   const {
-    selectedMovie,
+    selectedVideoGame,
     listType,
     modalVisible,
     handleShowOptions,
@@ -39,11 +39,6 @@ function SearchListVideoGamesScreen() {
     handleAddToWatched,
   );
 
-  // Wrapper function to pass movie and list type to the handleShowOptions function
-  const handleShowOptionsWrapper = (movie, listType) => {
-    handleShowOptions(movie, listType);
-  };
-
   return (
     <View style={styles.sectionContainer}>
       {/* Component to display the search results */}
@@ -52,11 +47,11 @@ function SearchListVideoGamesScreen() {
         myListVideoGames={myListVideoGames}
         likedListVideoGames={likedListVideoGames}
         playedListVideoGames={playedListVideoGames}
-        handleShowOptions={handleShowOptionsWrapper}
+        handleShowOptions={handleShowOptions}
       />
       {/* Modal for displaying options related to the selected movie */}
       <VideoGameOptionsModal
-        selectedMovie={selectedMovie}
+        selectedVideoGame={selectedVideoGame}
         listType={listType}
         modalVisible={modalVisible}
         handleCloseModal={handleCloseModal}

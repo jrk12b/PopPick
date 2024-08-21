@@ -26,11 +26,12 @@ import {VIDEO_GAME_CLIENT_ID} from '../../../config';
  * - Allows users to clear the search input and results.
  * - Handles the selection of suggestions and shows additional options for each movie.
  */
-const SearchList = ({
-  handleShowOptions,
-  likedListVideoGames,
+const SearchListVideoGames = ({
+  searchList,
   myListVideoGames,
+  likedListVideoGames,
   playedListVideoGames,
+  handleShowOptions,
 }) => {
   // State variables for managing the search query, search results, suggestions, and input focus state.
   const [query, setQuery] = useState('');
@@ -115,4 +116,4 @@ const SearchList = ({
   );
 };
 
-export default SearchList;
+export default SearchListVideoGames;
