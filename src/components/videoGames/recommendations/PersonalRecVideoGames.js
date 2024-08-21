@@ -10,7 +10,8 @@ function PersonalRecVideoGames({
 }) {
   return (
     <View style={styles.sectionContainer}>
-      <TouchableOpacity onPress={() => navigation.navigate('Personal Recs')}>
+      <TouchableOpacity
+        onPress={() => navigation.navigate('Personal Rec Video Games')}>
         <Text style={styles.sectionTitle}>Personal Video Games</Text>
       </TouchableOpacity>
 
