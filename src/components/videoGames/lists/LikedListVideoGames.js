@@ -32,7 +32,8 @@ function LikedListVideoGames({
 }) {
   return (
     <View style={styles.sectionContainer}>
-      <TouchableOpacity onPress={() => navigation.navigate('Liked List')}>
+      <TouchableOpacity
+        onPress={() => navigation.navigate('Liked List Video Games')}>
         <Text style={styles.sectionTitle}>
           Liked ({likedListVideoGames.length})
         </Text>

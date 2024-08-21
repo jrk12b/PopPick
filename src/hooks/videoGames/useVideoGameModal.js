@@ -31,11 +31,9 @@ const useVideoGameModal = (
    * @param {string} type - The type of list the movie pertains to.
    */
   const handleShowOptions = (videoGame, type) => {
-    console.log('Game selected:', videoGame);
     setSelectedVideoGame(videoGame);
     setListType(type);
     setModalVisible(true);
-    console.log('visible?: ' + modalVisible);
   };
 
   /**
