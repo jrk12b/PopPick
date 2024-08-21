@@ -55,7 +55,8 @@ function VideoGameScreen({navigation}) {
     <ScrollView style={styles.container}>
       <View style={styles.header}>
         {/* Search button to navigate to the search screen */}
-        <TouchableOpacity onPress={() => navigation.navigate('Search Movies')}>
+        <TouchableOpacity
+          onPress={() => navigation.navigate('Search Video Games')}>
           <Icon name="search" size={24} color="#FBF4F4" />
         </TouchableOpacity>
       </View>
