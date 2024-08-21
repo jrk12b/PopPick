@@ -8,14 +8,14 @@ import {useState} from 'react';
  *
  * @param {Function} handleAddToMyList - Function to handle adding/removing movies to/from the personal list.
  * @param {Function} handleAddToLiked - Function to handle adding/removing movies to/from the liked list.
- * @param {Function} handleAddToWatched - Function to handle adding/removing movies to/from the watched list.
+ * @param {Function} handleAddToPlayed - Function to handle adding/removing movies to/from the watched list.
  *
  * @returns {Object} - Contains the state and handler functions for the modal.
  */
 const useVideoGameModal = (
   handleAddToMyList,
   handleAddToLiked,
-  handleAddToWatched,
+  handleAddToPlayed,
 ) => {
   // State to manage the currently selected movie
   const [selectedVideoGame, setSelectedVideoGame] = useState(null);
@@ -56,8 +56,6 @@ const useVideoGameModal = (
    */
   const handleOptionSelect = option => {
     if (!selectedVideoGame) {
-      console.log('derp' + option);
-      console.log('derp2' + selectedVideoGame);
       return; // Exit if no movie is selected
     }
 
@@ -70,9 +68,9 @@ const useVideoGameModal = (
       case 'removeFromLikedList':
         handleAddToLiked(selectedVideoGame);
         break;
-      case 'addToWatched':
-      case 'removeFromWatchedList':
-        handleAddToWatched(selectedVideoGame);
+      case 'addToPlayed':
+      case 'removeFromPlayedList':
+        handleAddToPlayed(selectedVideoGame);
         break;
       default:
         // Handle unknown options if needed

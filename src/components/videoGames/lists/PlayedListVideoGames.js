@@ -24,34 +24,34 @@ import VideoGamePoster from '../VideoGamePoster';
  * - If a specific movie is clicked, handleShowOptions are displayed.
  * - navigation: navigation for the entire app
  */
-function WatchedListVideoGames({
+function PlayedListVideoGames({
   myListVideoGames,
   likedListVideoGames,
-  watchedListVideoGames,
+  playedListVideoGames,
   handleShowOptions,
   navigation,
 }) {
   return (
     <View style={styles.sectionContainer}>
-      <TouchableOpacity onPress={() => navigation.navigate('Watched List')}>
+      <TouchableOpacity onPress={() => navigation.navigate('Played List')}>
         <Text style={styles.sectionTitle}>
-          Watched ({watchedListVideoGames.length})
+          Played ({playedListVideoGames.length})
         </Text>
       </TouchableOpacity>
-      {watchedListVideoGames.length === 0 ? (
-        <Text style={styles.text}>No movies added yet.</Text>
+      {playedListVideoGames.length === 0 ? (
+        <Text style={styles.text}>No video games added yet.</Text>
       ) : (
         <FlatList
-          data={watchedListVideoGames}
+          data={playedListVideoGames}
           keyExtractor={item => item.id.toString()}
           renderItem={({item}) => (
             <VideoGamePoster
               item={item}
               likedListVideoGames={likedListVideoGames}
               myListVideoGames={myListVideoGames}
-              watchedListVideoGames={watchedListVideoGames}
+              playedListVideoGames={playedListVideoGames}
               handleShowOptions={handleShowOptions}
-              listType="watchedList"
+              listType="playedList"
             />
           )}
           horizontal
@@ -61,4 +61,4 @@ function WatchedListVideoGames({
   );
 }
 
-export default WatchedListVideoGames;
+export default PlayedListVideoGames;

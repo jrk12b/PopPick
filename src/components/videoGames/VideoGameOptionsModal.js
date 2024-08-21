@@ -38,7 +38,7 @@ const VideoGameOptionsModal = ({
   handleOptionSelect,
   myListVideoGames,
   likedListVideoGames,
-  watchedListVideoGames,
+  playedListVideoGames,
 }) => {
   if (!selectedVideoGame) {
     return null;
@@ -49,7 +49,7 @@ const VideoGameOptionsModal = ({
 
   const inMyList = isInList(myListVideoGames);
   const inLikedList = isInList(likedListVideoGames);
-  const inWatchedList = isInList(watchedListVideoGames);
+  const inPlayedList = isInList(playedListVideoGames);
 
   return (
     <Modal
@@ -61,7 +61,7 @@ const VideoGameOptionsModal = ({
         <View style={styles.modalContent}>
           <Text style={styles.movieTitle}>{selectedVideoGame.name}</Text>
 
-          {!inMyList && !inLikedList && !inWatchedList && (
+          {!inMyList && !inLikedList && !inPlayedList && (
             <>
               <CustomButton
                 title="Add to My List"
@@ -70,8 +70,8 @@ const VideoGameOptionsModal = ({
                 textStyle={styles.buttonText}
               />
               <CustomButton
-                title="Mark as Watched"
-                onPress={() => handleOptionSelect('addToWatched')}
+                title="Mark as Played"
+                onPress={() => handleOptionSelect('addToPlayed')}
                 style={styles.button}
                 textStyle={styles.buttonText}
               />
@@ -92,10 +92,10 @@ const VideoGameOptionsModal = ({
                 style={styles.button}
                 textStyle={styles.buttonText}
               />
-              {!inWatchedList && (
+              {!inPlayedList && (
                 <CustomButton
-                  title="Mark as Watched"
-                  onPress={() => handleOptionSelect('addToWatched')}
+                  title="Mark as Played"
+                  onPress={() => handleOptionSelect('addToPlayed')}
                   style={styles.button}
                   textStyle={styles.buttonText}
                 />
@@ -119,10 +119,10 @@ const VideoGameOptionsModal = ({
                 style={styles.button}
                 textStyle={styles.buttonText}
               />
-              {!inWatchedList && (
+              {!inPlayedList && (
                 <CustomButton
-                  title="Mark as Watched"
-                  onPress={() => handleOptionSelect('addToWatched')}
+                  title="Mark as Played"
+                  onPress={() => handleOptionSelect('addToPlayed')}
                   style={styles.button}
                   textStyle={styles.buttonText}
                 />
@@ -130,11 +130,11 @@ const VideoGameOptionsModal = ({
             </>
           )}
 
-          {inWatchedList && (
+          {inPlayedList && (
             <>
               <CustomButton
-                title="Remove from Watched List"
-                onPress={() => handleOptionSelect('removeFromWatchedList')}
+                title="Remove from Played List"
+                onPress={() => handleOptionSelect('removeFromPlayedList')}
                 style={styles.button}
                 textStyle={styles.buttonText}
               />

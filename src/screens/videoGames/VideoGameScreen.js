@@ -9,7 +9,7 @@ import Error from '../../components/movies/Error';
 import VideoGameOptionsModal from '../../components/videoGames/VideoGameOptionsModal';
 import useVideoGameModal from '../../hooks/videoGames/useVideoGameModal';
 import MyListVideoGames from '../../components/videoGames/lists/MyListVideoGames';
-import WatchedListVideoGames from '../../components/videoGames/lists/WatchedListVideoGames';
+import PlayedListVideoGames from '../../components/videoGames/lists/PlayedListVideoGames';
 import LikedListVideoGames from '../../components/videoGames/lists/LikedListVideoGames';
 
 /**
@@ -23,13 +23,15 @@ function VideoGameScreen({navigation}) {
   const {
     myListVideoGames,
     likedListVideoGames,
-    watchedListVideoGames,
+    playedListVideoGames,
     personalVideoGames,
     error,
     loading,
     handleAddToMyList,
     handleAddToLiked,
-    handleAddToWatched,
+    handleAddToPlayed,
+    fetchMyList,
+    fetchPlayedList,
   } = useVideoGameLists();
 
   const {
@@ -39,11 +41,7 @@ function VideoGameScreen({navigation}) {
     handleShowOptions,
     handleCloseModal,
     handleOptionSelect,
-  } = useVideoGameModal(
-    handleAddToMyList,
-    handleAddToLiked,
-    handleAddToWatched,
-  );
+  } = useVideoGameModal(handleAddToMyList, handleAddToLiked, handleAddToPlayed);
 
   // Show loading spinner while data is being fetched
   if (loading) {
@@ -70,11 +68,11 @@ function VideoGameScreen({navigation}) {
         navigation={navigation}
       />
 
-      {/* Display list of watched movies */}
-      <WatchedListVideoGames
+      {/* Display list of played games */}
+      <PlayedListVideoGames
         myListVideoGames={myListVideoGames}
         likedListVideoGames={likedListVideoGames}
-        watchedListVideoGames={watchedListVideoGames}
+        playedListVideoGames={playedListVideoGames}
         handleShowOptions={handleShowOptions}
         navigation={navigation}
       />
@@ -83,7 +81,7 @@ function VideoGameScreen({navigation}) {
       <LikedListVideoGames
         myListVideoGames={myListVideoGames}
         likedListVideoGames={likedListVideoGames}
-        watchedListVideoGames={watchedListVideoGames}
+        playedListVideoGames={playedListVideoGames}
         handleShowOptions={handleShowOptions}
         navigation={navigation}
       />
@@ -104,7 +102,7 @@ function VideoGameScreen({navigation}) {
         handleOptionSelect={handleOptionSelect}
         myListVideoGames={myListVideoGames}
         likedListVideoGames={likedListVideoGames}
-        watchedListVideoGames={watchedListVideoGames}
+        playedListVideoGames={playedListVideoGames}
       />
     </ScrollView>
   );
