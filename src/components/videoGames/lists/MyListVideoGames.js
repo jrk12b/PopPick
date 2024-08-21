@@ -26,7 +26,8 @@ import styles from '../../../styles/styles';
 function MyListVideoGames({myListVideoGames, handleShowOptions, navigation}) {
   return (
     <View style={styles.sectionContainer}>
-      <TouchableOpacity onPress={() => navigation.navigate('My List')}>
+      <TouchableOpacity
+        onPress={() => navigation.navigate('My List Video Games')}>
         <Text style={styles.sectionTitle}>
           My List ({myListVideoGames.length})
         </Text>

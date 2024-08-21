@@ -3,7 +3,7 @@ import {ScrollView, View, TouchableOpacity} from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import styles from '../../styles/styles';
 import useVideoGameLists from '../../hooks/videoGames/useVideoGameLists';
-import PersonalRec from '../../components/videoGames/recommendations/PersonalRec';
+import PersonalRecVideoGames from '../../components/videoGames/recommendations/PersonalRecVideoGames';
 import Loading from '../../components/movies/Loading';
 import Error from '../../components/movies/Error';
 import VideoGameOptionsModal from '../../components/videoGames/VideoGameOptionsModal';
@@ -30,8 +30,6 @@ function VideoGameScreen({navigation}) {
     handleAddToMyList,
     handleAddToLiked,
     handleAddToPlayed,
-    fetchMyList,
-    fetchPlayedList,
   } = useVideoGameLists();
 
   const {
@@ -87,7 +85,7 @@ function VideoGameScreen({navigation}) {
       />
 
       {/* Display personal movie recommendations */}
-      <PersonalRec
+      <PersonalRecVideoGames
         personalVideoGames={personalVideoGames}
         handleShowOptions={handleShowOptions}
         navigation={navigation}

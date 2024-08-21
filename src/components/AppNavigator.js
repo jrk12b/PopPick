@@ -15,6 +15,7 @@ import PopularRecScreen from '../screens/movies/PopularRecScreen';
 import UpcomingRecScreen from '../screens/movies/UpcomingRecScreen';
 import TopRecScreen from '../screens/movies/TopRecScreen';
 import CustomRecScreen from '../screens/movies/CustomRecScreen';
+import MyListVideoGamesScreen from '../screens/videoGames/MylistVideoGamesScreen';
 
 const Stack = createStackNavigator();
 
@@ -91,6 +92,10 @@ function AppNavigator() {
           name="Video Games"
           component={VideoGamesScreen}
           options={{headerShown: true}}
+        />
+        <Stack.Screen
+          name="My List Video Games"
+          component={MyListVideoGamesScreen}
         />
       </Stack.Navigator>
     </NavigationContainer>
