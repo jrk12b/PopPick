@@ -4,16 +4,16 @@ import styles from '../../../../styles/styles';
 import VideoGamePoster from '../../VideoGamePoster';
 
 /**
- * MyListFull Component
+ * WatchedListFull Component
  *
- * This component renders a FlatList displaying a grid of movies from the my list data.
+ * This component renders a FlatList displaying a grid of movies from the watched list data.
  * Each movie is displayed as a MoviePoster component. The component also handles optional
  * rendering of icons for movies in the liked, my list, or watched list.
  *
  * Props:
- * - myList: Array - A list of movies in the user's personal list to display.
- * - likedList: Array - (Optional) A list of liked movies.
- * - watchedList: Array - (Optional) A list of movies the user has already watched.
+ * - watchedList: Array - A list of movies the user has already watched.
+ * - myList: Array - (Optional) A list of movies in the user's personal list.
+ * - likedList: Array - (Optional) A list of liked movies to display.
  * - handleShowOptions: Function - A callback function to handle actions when a movie is selected.
  *
  * Behavior:
@@ -21,17 +21,17 @@ import VideoGamePoster from '../../VideoGamePoster';
  * - Movies are displayed in a grid with 3 columns, with each movie showing the poster image and icons based on its presence in the liked, my list, or watched list.
  * - If a specific movie is clicked, handleShowOptions are displayed.
  */
-function MyListVideoGamesFull({myListVideoGames, handleShowOptions}) {
+function PlayedListFull({playedListVideoGames, handleShowOptions}) {
   return (
     <FlatList
       style={styles.FlatList}
-      data={myListVideoGames}
+      data={playedListVideoGames}
       keyExtractor={item => item.id.toString()}
       renderItem={({item}) => (
         <VideoGamePoster
           item={item}
           handleShowOptions={handleShowOptions}
-          listType="MyListVideoGames"
+          listType="playedListVideoGames"
         />
       )}
       numColumns={3}
@@ -39,14 +39,12 @@ function MyListVideoGamesFull({myListVideoGames, handleShowOptions}) {
       contentContainerStyle={styles.gridContainer}
       ListHeaderComponent={
         <Text style={styles.sectionTitle}>
-          My List ({myListVideoGames.length})
+          Played List ({playedListVideoGames.length})
         </Text>
       }
-      ListEmptyComponent={
-        <Text style={styles.text}>No video Games added yet.</Text>
-      }
+      ListEmptyComponent={<Text style={styles.text}>No movies added yet.</Text>}
     />
   );
 }
 
-export default MyListVideoGamesFull;
+export default PlayedListFull;
