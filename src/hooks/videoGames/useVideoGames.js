@@ -36,7 +36,7 @@ const useVideoGamesSimilar = (
               'Client-ID': VIDEO_GAME_CLIENT_ID,
               Authorization: `Bearer ${accessToken}`,
             },
-            body: `fields *; where id = ${gameId};`,
+            body: `fields name, rating, similar_games, first_release_date, cover; where id = ${gameId};`,
           });
           const data = await response.json();
           fetchedGamesData.push(data[0]); // Assuming the API returns an array with one game object
@@ -67,7 +67,7 @@ const useVideoGames = (url, setPersonalVideoGames, setLoading, setError) => {
             'Client-ID': VIDEO_GAME_CLIENT_ID,
             Authorization: `Bearer ${accessToken}`,
           },
-          body: 'search "Halo"; fields *;',
+          body: 'search "Halo"; fields name, rating, similar_games, first_release_date;',
         });
         const data = await response.json();
 

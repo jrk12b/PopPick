@@ -26,7 +26,7 @@ const Poster = ({
               'Client-ID': VIDEO_GAME_CLIENT_ID,
               Authorization: `Bearer ${accessToken}`,
             },
-            body: `fields *; where id = ${item.cover};`,
+            body: `fields url; where id = ${item.cover};`,
           });
           const data = await response.json();
           if (data.length > 0) {

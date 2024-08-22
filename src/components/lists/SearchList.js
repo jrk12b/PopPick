@@ -39,7 +39,7 @@ const SearchList = ({
             'Client-ID': VIDEO_GAME_CLIENT_ID,
             Authorization: `Bearer ${accessToken}`,
           },
-          body: `search "${query}"; fields *;`,
+          body: `search "${query}"; fields name, rating, similar_games, first_release_date, cover;`,
         });
         const data = await response.json();
         setResults(data.slice(0, 10));

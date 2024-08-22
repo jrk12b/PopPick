@@ -1,7 +1,7 @@
 import React from 'react';
 import {View, Text, FlatList, TouchableOpacity} from 'react-native';
 import styles from '../../styles/styles';
-import MoviePoster from '../general/Poster';
+import Poster from '../general/Poster';
 
 /**
  * PersonalRec Component
@@ -36,7 +36,7 @@ function PersonalRec({
         data={personalMovies}
         keyExtractor={item => item.id.toString()}
         renderItem={({item}) => (
-          <MoviePoster
+          <Poster
             item={item}
             handleShowOptions={handleShowOptions}
             mediaType={mediaType}
