@@ -1,52 +1,47 @@
 import React from 'react';
 import {View, Text, FlatList, TouchableOpacity} from 'react-native';
-import styles from '../../../styles/styles';
-import MoviePoster from '../MoviePoster';
+import styles from '../../styles/styles';
+import MoviePoster from '../general/Poster';
 
 /**
- * WatchedList Component
+ * LikedList Component
  *
- * This component renders a FlatList displaying a row of movies from the watched list data.
+ * This component renders a FlatList displaying a row of movies from the liked list data.
  * Each movie is displayed as a MoviePoster component. The component also handles optional
  * rendering of icons for movies in the liked, my list, or watched list.
  *
  * Props:
- * - watchedList: Array - A list of movies the user has already watched to display.
- * - myList: Array - (Optional) A list of movies in the user's personal list..
- * - likedList: Array - (Optional) A list of liked movies.
+ * - likedList: Array - A list of liked movies to display.
  * - watchedList: Array - (Optional) A list of movies the user has already watched.
+ * - myList: Array - (Optional) A list of movies in the user's personal list.
  * - handleShowOptions: Function - A callback function to handle actions when a movie is selected.
+ * - navigation: navigation for the entire app
  *
  * Behavior:
- * - If wacthedList is empty, the component displays a message "No movies added yet."
+ * - If likedList is empty, the component displays a message "No movies added yet."
  * - Movies are displayed in a single row allowing for scrolling, with each movie showing the poster image and icons based on its presence in the liked, my list, or watched list.
- * - If the Watched List header text is clicked, the user is navigate to the Liked List screen (WatchedListFull)
+ * - If the Liked List header text is clicked, the user is navigate to the Liked List screen (LikedListFull)
  * - If a specific movie is clicked, handleShowOptions are displayed.
- * - navigation: navigation for the entire app
  */
-function WatchedList({
-  myList,
+function LikedList({
   likedList,
+  myList,
   watchedList,
   handleShowOptions,
   navigation,
   mediaType,
 }) {
-  const title = mediaType === 'movies' ? 'Watched' : 'Played';
+  const page = mediaType === 'movies' ? 'Liked List' : 'Liked List Video Games';
   return (
     <View style={styles.sectionContainer}>
-      <TouchableOpacity onPress={() => navigation.navigate(`${title} List`)}>
-        <Text style={styles.sectionTitle}>
-          {title} ({watchedList.length})
-        </Text>
+      <TouchableOpacity onPress={() => navigation.navigate(page)}>
+        <Text style={styles.sectionTitle}>Liked ({likedList.length})</Text>
       </TouchableOpacity>
-      {watchedList.length === 0 ? (
-        <Text style={styles.text}>
-          No {mediaType === 'movies' ? 'movies' : 'games'} added yet.
-        </Text>
+      {likedList.length === 0 ? (
+        <Text style={styles.text}>No movies added yet.</Text>
       ) : (
         <FlatList
-          data={watchedList}
+          data={likedList}
           keyExtractor={item => item.id.toString()}
           renderItem={({item}) => (
             <MoviePoster
@@ -55,7 +50,7 @@ function WatchedList({
               myList={myList}
               watchedList={watchedList}
               handleShowOptions={handleShowOptions}
-              listType="watchedList"
+              listType="likedList"
               mediaType={mediaType}
             />
           )}
@@ -66,4 +61,4 @@ function WatchedList({
   );
 }
 
-export default WatchedList;
+export default LikedList;

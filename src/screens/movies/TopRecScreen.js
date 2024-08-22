@@ -1,8 +1,8 @@
 import React, {useEffect} from 'react';
-import TopRecFull from '../../components/movies/recommendations/recFull/TopRecFull';
-import useMovieLists from '../../hooks/useMovieLists';
-import useMovieModal from '../../hooks/useMovieModal';
-import OptionsModal from '../../components/movies/OptionsModal';
+import TopRecFull from '../../components/recommendationsFull/TopRecFull';
+import useMovieLists from '../../hooks/movies/useMovieLists';
+import useMovieModal from '../../hooks/movies/useMovieModal';
+import OptionsModal from '../../components/general/OptionsModal';
 
 /**
  * TopRecScreen Component

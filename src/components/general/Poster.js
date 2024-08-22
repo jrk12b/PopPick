@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {View, Text, Image, TouchableOpacity, StyleSheet} from 'react-native';
+import {View, Text, Image, TouchableOpacity} from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import styles from '../../styles/styles';
 import {getAccessToken} from '../../hooks/videoGames/auth';

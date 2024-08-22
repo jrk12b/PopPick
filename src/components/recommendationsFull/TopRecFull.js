@@ -1,37 +1,37 @@
 import React from 'react';
 import {Text, FlatList} from 'react-native';
-import styles from '../../../../styles/styles';
-import MoviePoster from '../../MoviePoster';
+import styles from '../../styles/styles';
+import Poster from '../general/Poster';
 
 /**
- * PersonalRecFull Component
+ * TopRecFull Component
  *
- * This component renders a FlatList displaying a grid of movies from the personalMovies data.
+ * This component renders a FlatList displaying a grid of movies from the topMovies data.
  * Each movie is displayed as a MoviePoster component.
  *
  * Props:
- * - personalMovies: Array - A list of movies that has been recommended to the user.
+ * - topMovies: Array - A list of top movies that has been recommended to the user.
  * - handleShowOptions: Function - A callback function to handle actions when a movie is selected.
  *
  * Behavior:
- * - If personalMovies is empty, the component displays a message "No movies added yet."
+ * - If topMovies is empty, the component displays a message "No movies added yet."
  * - Movies are displayed in a grid with 3 columns, with each movie showing the poster image
  * - If a specific movie is clicked, handleShowOptions are displayed.
  */
-function PersonalRecFull({customMovies, handleShowOptions, mediaType}) {
-  if (!customMovies) {
+function TopRecFull({topMovies, handleShowOptions, mediaType}) {
+  if (!topMovies) {
     return <Text>Loading...</Text>;
   }
   return (
     <FlatList
       style={styles.FlatList}
-      data={customMovies}
+      data={topMovies}
       keyExtractor={item => item.id.toString()}
       renderItem={({item}) => (
-        <MoviePoster
+        <Poster
           item={item}
           handleShowOptions={handleShowOptions}
-          listType="personalMovies"
+          listType="topMovies"
           mediaType={mediaType}
         />
       )}
@@ -40,7 +40,7 @@ function PersonalRecFull({customMovies, handleShowOptions, mediaType}) {
       contentContainerStyle={styles.gridContainer}
       ListHeaderComponent={
         <Text style={styles.sectionTitle}>
-          Custom Recommendations ({customMovies.length})
+          Top Recommendations ({topMovies.length})
         </Text>
       }
       ListEmptyComponent={<Text style={styles.text}>No movies added yet.</Text>}
@@ -48,4 +48,4 @@ function PersonalRecFull({customMovies, handleShowOptions, mediaType}) {
   );
 }
 
-export default PersonalRecFull;
+export default TopRecFull;

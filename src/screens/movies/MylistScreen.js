@@ -1,8 +1,8 @@
 import React from 'react';
-import MyListFull from '../../components/movies/lists/fullLists/MyListFull';
-import useMovieLists from '../../hooks/useMovieLists';
-import useMovieModal from '../../hooks/useMovieModal';
-import OptionsModal from '../../components/movies/OptionsModal';
+import MyListFull from '../../components/listsFull/MyListFull';
+import useMovieLists from '../../hooks/movies/useMovieLists';
+import useMovieModal from '../../hooks/movies/useMovieModal';
+import OptionsModal from '../../components/general/OptionsModal';
 
 /**
  * MyListScreen Component

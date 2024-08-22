@@ -1,8 +1,8 @@
 import React from 'react';
-import PersonalRecFull from '../../components/movies/recommendations/recFull/PersonalRecFull';
+import PersonalRecFull from '../../components/recommendationsFull/PersonalRecFull';
 import useVideoGameLists from '../../hooks/videoGames/useVideoGameLists';
 import useVideoGameModal from '../../hooks/videoGames/useVideoGameModal';
-import OptionsModal from '../../components/movies/OptionsModal';
+import OptionsModal from '../../components/general/OptionsModal';
 
 /**
  * MyListScreen Component

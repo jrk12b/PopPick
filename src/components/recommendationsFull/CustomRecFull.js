@@ -1,7 +1,7 @@
 import React from 'react';
 import {Text, FlatList} from 'react-native';
-import styles from '../../../../styles/styles';
-import MoviePoster from '../../MoviePoster';
+import styles from '../../styles/styles';
+import Poster from '../general/Poster';
 
 /**
  * PersonalRecFull Component
@@ -18,17 +18,17 @@ import MoviePoster from '../../MoviePoster';
  * - Movies are displayed in a grid with 3 columns, with each movie showing the poster image
  * - If a specific movie is clicked, handleShowOptions are displayed.
  */
-function PersonalRecFull({personalMovies, handleShowOptions, mediaType}) {
-  if (!personalMovies) {
+function PersonalRecFull({customMovies, handleShowOptions, mediaType}) {
+  if (!customMovies) {
     return <Text>Loading...</Text>;
   }
   return (
     <FlatList
       style={styles.FlatList}
-      data={personalMovies}
+      data={customMovies}
       keyExtractor={item => item.id.toString()}
       renderItem={({item}) => (
-        <MoviePoster
+        <Poster
           item={item}
           handleShowOptions={handleShowOptions}
           listType="personalMovies"
@@ -40,7 +40,7 @@ function PersonalRecFull({personalMovies, handleShowOptions, mediaType}) {
       contentContainerStyle={styles.gridContainer}
       ListHeaderComponent={
         <Text style={styles.sectionTitle}>
-          Personal Recommendations ({personalMovies.length})
+          Custom Recommendations ({customMovies.length})
         </Text>
       }
       ListEmptyComponent={<Text style={styles.text}>No movies added yet.</Text>}

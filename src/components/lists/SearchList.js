@@ -1,10 +1,10 @@
 import React, {useState} from 'react';
 import {View, Text, TextInput, FlatList} from 'react-native';
-import styles from '../../../styles/styles';
-import MoviePoster from '../MoviePoster';
-import CustomButton from '../../CustomButton';
-import {API_KEY, VIDEO_GAME_CLIENT_ID} from '../../../config';
-import {getAccessToken} from '../../../hooks/videoGames/auth';
+import styles from '../../styles/styles';
+import MoviePoster from '../general/Poster';
+import CustomButton from '../general/CustomButton';
+import {API_KEY, VIDEO_GAME_CLIENT_ID} from '../../config';
+import {getAccessToken} from '../../hooks/videoGames/auth';
 
 const SearchList = ({
   mediaType,

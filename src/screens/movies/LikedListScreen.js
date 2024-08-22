@@ -1,8 +1,8 @@
 import React from 'react';
-import LikedListFull from '../../components/movies/lists/fullLists/LikedListFull';
-import useMovieLists from '../../hooks/useMovieLists';
-import useMovieModal from '../../hooks/useMovieModal';
-import OptionsModal from '../../components/movies/OptionsModal';
+import LikedListFull from '../../components/listsFull/LikedListFull';
+import useMovieLists from '../../hooks/movies/useMovieLists';
+import useMovieModal from '../../hooks/movies/useMovieModal';
+import OptionsModal from '../../components/general/OptionsModal';
 
 /**
  * LikedListScreen Component

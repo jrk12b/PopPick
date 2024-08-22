@@ -1,8 +1,8 @@
 import React, {useEffect} from 'react';
-import PersonalRecFull from '../../components/movies/recommendations/recFull/PersonalRecFull';
-import useMovieLists from '../../hooks/useMovieLists';
-import useMovieModal from '../../hooks/useMovieModal';
-import OptionsModal from '../../components/movies/OptionsModal';
+import PersonalRecFull from '../../components/recommendationsFull/PersonalRecFull';
+import useMovieLists from '../../hooks/movies/useMovieLists';
+import useMovieModal from '../../hooks/movies/useMovieModal';
+import OptionsModal from '../../components/general/OptionsModal';
 
 /**
  * PersonalRecScreen Component

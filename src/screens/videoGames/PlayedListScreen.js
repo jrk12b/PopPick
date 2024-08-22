@@ -1,8 +1,8 @@
 import React from 'react';
-import WatchedListFull from '../../components/movies/lists/fullLists/WatchedListFull';
+import WatchedListFull from '../../components/listsFull/WatchedListFull';
 import useVideoGameLists from '../../hooks/videoGames/useVideoGameLists';
 import useVideoGameModal from '../../hooks/videoGames/useVideoGameModal';
-import OptionsModal from '../../components/movies/OptionsModal';
+import OptionsModal from '../../components/general/OptionsModal';
 
 /**
  * WatchedListScreen Component

@@ -1,46 +1,47 @@
 import React from 'react';
-import {FlatList, Text} from 'react-native';
-import styles from '../../../../styles/styles';
-import MoviePoster from '../../MoviePoster';
+import {Text, FlatList} from 'react-native';
+import styles from '../../styles/styles';
+import Poster from '../general/Poster';
 
 /**
- * LikedListFull Component
+ * WatchedListFull Component
  *
- * This component renders a FlatList displaying a grid of movies from the liked list data.
+ * This component renders a FlatList displaying a grid of movies from the watched list data.
  * Each movie is displayed as a MoviePoster component. The component also handles optional
  * rendering of icons for movies in the liked, my list, or watched list.
  *
  * Props:
- * - likedList: Array - A list of liked movies to display.
+ * - watchedList: Array - A list of movies the user has already watched.
  * - myList: Array - (Optional) A list of movies in the user's personal list.
- * - watchedList: Array - (Optional) A list of movies the user has already watched.
+ * - likedList: Array - (Optional) A list of liked movies to display.
  * - handleShowOptions: Function - A callback function to handle actions when a movie is selected.
  *
  * Behavior:
- * - If likedList is empty, the component displays a message "No movies added yet."
+ * - If myList is empty, the component displays a message "No movies added yet."
  * - Movies are displayed in a grid with 3 columns, with each movie showing the poster image and icons based on its presence in the liked, my list, or watched list.
  * - If a specific movie is clicked, handleShowOptions are displayed.
  */
-function LikedListFull({
+function WatchedListFull({
+  watchedList,
   likedList,
   myList,
-  watchedList,
   handleShowOptions,
   mediaType,
 }) {
+  const title = mediaType === 'movies' ? 'Watched' : 'Played';
   return (
     <FlatList
       style={styles.FlatList}
-      data={likedList}
+      data={watchedList}
       keyExtractor={item => item.id.toString()}
       renderItem={({item}) => (
-        <MoviePoster
+        <Poster
           item={item}
           likedList={likedList}
           myList={myList}
           watchedList={watchedList}
           handleShowOptions={handleShowOptions}
-          listType="likedList"
+          listType="watchedList"
           mediaType={mediaType}
         />
       )}
@@ -48,11 +49,13 @@ function LikedListFull({
       columnWrapperStyle={styles.columnWrapper}
       contentContainerStyle={styles.gridContainer}
       ListHeaderComponent={
-        <Text style={styles.sectionTitle}>Liked ({likedList.length})</Text>
+        <Text style={styles.sectionTitle}>
+          {title} List ({watchedList.length})
+        </Text>
       }
       ListEmptyComponent={<Text style={styles.text}>No movies added yet.</Text>}
     />
   );
 }
 
-export default LikedListFull;
+export default WatchedListFull;

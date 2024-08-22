@@ -1,6 +1,6 @@
 import React from 'react';
 import {ScrollView, Text} from 'react-native';
-import CustomButton from '../components/CustomButton';
+import CustomButton from '../components/general/CustomButton';
 import styles from '../styles/styles';
 
 /**

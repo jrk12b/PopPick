@@ -1,7 +1,7 @@
 import React from 'react';
 import {View, Text, Modal, Button} from 'react-native';
 import styles from '../../styles/styles';
-import CustomButton from '../CustomButton';
+import CustomButton from './CustomButton';
 
 const OptionsModal = ({
   selectedItem,

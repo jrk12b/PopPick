@@ -1,8 +1,8 @@
 import React from 'react';
-import WatchedListFull from '../../components/movies/lists/fullLists/WatchedListFull';
-import useMovieLists from '../../hooks/useMovieLists';
-import useMovieModal from '../../hooks/useMovieModal';
-import OptionsModal from '../../components/movies/OptionsModal';
+import WatchedListFull from '../../components/listsFull/WatchedListFull';
+import useMovieLists from '../../hooks/movies/useMovieLists';
+import useMovieModal from '../../hooks/movies/useMovieModal';
+import OptionsModal from '../../components/general/OptionsModal';
 
 /**
  * WatchedListScreen Component

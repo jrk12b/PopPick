@@ -1,7 +1,7 @@
 import React from 'react';
 import {Text, FlatList} from 'react-native';
-import styles from '../../../../styles/styles';
-import MoviePoster from '../../MoviePoster';
+import styles from '../../styles/styles';
+import Poster from '../general/Poster';
 
 /**
  * PopularRecFull Component
@@ -28,7 +28,7 @@ function PopularRecFull({popularMovies, handleShowOptions, mediaType}) {
       data={popularMovies}
       keyExtractor={item => item.id.toString()}
       renderItem={({item}) => (
-        <MoviePoster
+        <Poster
           item={item}
           handleShowOptions={handleShowOptions}
           listType="popularMovies"

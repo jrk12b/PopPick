@@ -1,8 +1,8 @@
 import React from 'react';
-import LikedListFull from '../../components/movies/lists/fullLists/LikedListFull';
+import LikedListFull from '../../components/listsFull/LikedListFull';
 import useVideoGameLists from '../../hooks/videoGames/useVideoGameLists';
 import useVideoGameModal from '../../hooks/videoGames/useVideoGameModal';
-import OptionsModal from '../../components/movies/OptionsModal';
+import OptionsModal from '../../components/general/OptionsModal';
 /**
  * MyListScreen Component
  *

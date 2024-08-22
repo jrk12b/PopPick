@@ -3,14 +3,14 @@ import {ScrollView, View, TouchableOpacity} from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import styles from '../../styles/styles';
 import useVideoGameLists from '../../hooks/videoGames/useVideoGameLists';
-import PersonalRec from '../../components/movies/recommendations/PersonalRec';
-import Loading from '../../components/movies/Loading';
-import Error from '../../components/movies/Error';
-import OptionsModal from '../../components/movies/OptionsModal';
+import PersonalRec from '../../components/recommendations/PersonalRec';
+import Loading from '../../components/general/Loading';
+import Error from '../../components/general/Error';
+import OptionsModal from '../../components/general/OptionsModal';
 import useVideoGameModal from '../../hooks/videoGames/useVideoGameModal';
-import MyList from '../../components/movies/lists/MyList';
-import WatchedList from '../../components/movies/lists/WatchedList';
-import LikedList from '../../components/movies/lists/LikedList';
+import MyList from '../../components/lists/MyList';
+import WatchedList from '../../components/lists/WatchedList';
+import LikedList from '../../components/lists/LikedList';
 
 /**
  * VideoGameScreen Component

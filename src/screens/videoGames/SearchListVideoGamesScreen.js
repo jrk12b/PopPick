@@ -2,8 +2,8 @@ import React from 'react';
 import {View} from 'react-native';
 import useVideoGameLists from '../../hooks/videoGames/useVideoGameLists';
 import useVideoGameModal from '../../hooks/videoGames/useVideoGameModal';
-import OptionsModal from '../../components/movies/OptionsModal';
-import SearchList from '../../components/movies/lists/SearchList';
+import OptionsModal from '../../components/general/OptionsModal';
+import SearchList from '../../components/lists/SearchList';
 import styles from '../../styles/styles';
 
 /**

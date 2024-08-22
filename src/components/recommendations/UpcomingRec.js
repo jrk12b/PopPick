@@ -1,7 +1,7 @@
 import React from 'react';
 import {View, Text, FlatList, TouchableOpacity} from 'react-native';
-import styles from '../../../styles/styles';
-import MoviePoster from '../MoviePoster';
+import styles from '../../styles/styles';
+import MoviePoster from '../general/Poster';
 
 /**
  * UpcomingRec Component

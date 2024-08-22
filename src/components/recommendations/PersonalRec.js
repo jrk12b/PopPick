@@ -1,32 +1,39 @@
 import React from 'react';
 import {View, Text, FlatList, TouchableOpacity} from 'react-native';
-import styles from '../../../styles/styles';
-import MoviePoster from '../MoviePoster';
+import styles from '../../styles/styles';
+import MoviePoster from '../general/Poster';
 
 /**
- * TopRec Component
+ * PersonalRec Component
  *
- * This component renders a FlatList displaying a row of movies from the topMovies data.
+ * This component renders a FlatList displaying a row of movies from the personalMovies data.
  * Each movie is displayed as a MoviePoster component.
  *
  * Props:
- * - topMovies: Array - A list of recommended movies to display.
+ * - personalMovies: Array - A list of recommended movies to display.
  * - handleShowOptions: Function - A callback function to handle actions when a movie is selected.
  * - navigation: navigation for the entire app
  *
  * Behavior:
  * - Movies are displayed in a single row allowing for scrolling, with each movie showing the poster image
- * - If the Top Recommendations header text is clicked, the user is navigate to the Top Recs screen (TopRecFull)
+ * - If the Personal Recommendations header text is clicked, the user is navigate to the Personal Recs screen (PersonalRecFull)
  * - If a specific movie is clicked, handleShowOptions are displayed.
  */
-function TopRec({topMovies, handleShowOptions, navigation, mediaType}) {
+function PersonalRec({
+  personalMovies,
+  handleShowOptions,
+  navigation,
+  mediaType,
+}) {
+  const page =
+    mediaType === 'movies' ? 'Personal Recs' : 'Personal Rec Video Games';
   return (
     <View style={styles.sectionContainer}>
-      <TouchableOpacity onPress={() => navigation.navigate('Top Recs')}>
-        <Text style={styles.sectionTitle}>Top Rated Recommendations</Text>
+      <TouchableOpacity onPress={() => navigation.navigate(page)}>
+        <Text style={styles.sectionTitle}>Personal Recommendations</Text>
       </TouchableOpacity>
       <FlatList
-        data={topMovies}
+        data={personalMovies}
         keyExtractor={item => item.id.toString()}
         renderItem={({item}) => (
           <MoviePoster
@@ -42,4 +49,4 @@ function TopRec({topMovies, handleShowOptions, navigation, mediaType}) {
   );
 }
 
-export default TopRec;
+export default PersonalRec;

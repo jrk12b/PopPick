@@ -1,8 +1,8 @@
 import React, {useEffect} from 'react';
-import PopularRecFull from '../../components/movies/recommendations/recFull/PopularRecFull';
-import useMovieLists from '../../hooks/useMovieLists';
-import useMovieModal from '../../hooks/useMovieModal';
-import OptionsModal from '../../components/movies/OptionsModal';
+import PopularRecFull from '../../components/recommendationsFull/PopularRecFull';
+import useMovieLists from '../../hooks/movies/useMovieLists';
+import useMovieModal from '../../hooks/movies/useMovieModal';
+import OptionsModal from '../../components/general/OptionsModal';
 
 /**
  * PopularRecScreen Component

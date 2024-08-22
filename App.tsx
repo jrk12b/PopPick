@@ -1,7 +1,7 @@
 import React from 'react';
 import 'react-native-gesture-handler';
 import {View, StatusBar} from 'react-native';
-import AppNavigator from './src/components/AppNavigator';
+import AppNavigator from './src/components/general/AppNavigator';
 
 function App(): React.JSX.Element {
   // Static background color set to black

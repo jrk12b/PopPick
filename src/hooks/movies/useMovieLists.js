@@ -4,9 +4,9 @@
 
 import {useState, useEffect, useCallback} from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import shuffleArray from '../utils/shuffleArray';
-import useMovies from '../hooks/useMovies';
-import {API_KEY} from '../config';
+import shuffleArray from '../../utils/shuffleArray';
+import useMovies from './useMovies';
+import {API_KEY} from '../../config';
 import _ from 'lodash';
 
 /**
