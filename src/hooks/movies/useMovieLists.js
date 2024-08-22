@@ -147,6 +147,9 @@ const useMovieLists = () => {
     try {
       // Combine all movies from popular, upcoming, and top lists into a single array
       const allListMovies = [...popularMovies, ...upcomingMovies, ...topMovies];
+      const allMyLists = [...myList, ...likedList, ...watchedList].map(
+        movie => movie.id,
+      );
 
       // Filter out movies with a vote_average (rating) below 7.0
       const filteredMovies = allListMovies.filter(
@@ -170,8 +173,24 @@ const useMovieLists = () => {
         movie.genre_ids.some(genre => topGenres.includes(genre)),
       );
 
+      // Create a Set to track unique movie IDs
+      const uniqueMovieIds = new Set();
+
+      // Filter out duplicates by checking if the ID already exists in the Set
+      const filteredSimilarMovies = similarMovies.filter(movie => {
+        if (uniqueMovieIds.has(movie.id)) {
+          return false; // Skip this movie if it's a duplicate
+        }
+        uniqueMovieIds.add(movie.id); // Add the movie ID to the Set
+        return true; // Keep this movie
+      });
+
       // Set the filtered list of similar movies to the customMovies state
-      setCustomMovies(similarMovies);
+      // Filter out movies that are already on any list
+      const filterList = movies =>
+        movies.filter(movie => !allMyLists.includes(movie.id));
+
+      setCustomMovies(filterList(filteredSimilarMovies));
     } catch (err) {
       // If an error occurs, set the error state
       setError(err);
@@ -179,8 +198,14 @@ const useMovieLists = () => {
       // Set loading state to false after the operation is complete
       setLoading(false);
     }
-  }, [likedList, popularMovies, upcomingMovies, topMovies]);
-
+  }, [
+    popularMovies,
+    upcomingMovies,
+    topMovies,
+    myList,
+    likedList,
+    watchedList,
+  ]);
   // Fetch and set the personal list from AsyncStorage
   const fetchMyList = async () => {
     const savedMyList = await loadList('myList');
