@@ -1,17 +1,17 @@
 import React, {useState} from 'react';
 import {View, Text, TextInput, FlatList} from 'react-native';
 import styles from '../../styles/styles';
-import MoviePoster from '../general/Poster';
+import Poster from '../general/Poster';
 import CustomButton from '../general/CustomButton';
 import {API_KEY, VIDEO_GAME_CLIENT_ID} from '../../config';
 import {getAccessToken} from '../../hooks/videoGames/auth';
 
 const SearchList = ({
-  mediaType,
+  myList,
+  likedList,
+  watchedList,
   handleShowOptions,
-  likedListVideoGames,
-  myListVideoGames,
-  playedListVideoGames,
+  mediaType,
 }) => {
   const [query, setQuery] = useState('');
   const [results, setResults] = useState([]);
@@ -84,11 +84,11 @@ const SearchList = ({
           data={results}
           keyExtractor={item => item.id.toString()}
           renderItem={({item}) => (
-            <MoviePoster
+            <Poster
               item={item}
-              likedListVideoGames={likedListVideoGames}
-              myListVideoGames={myListVideoGames}
-              playedListVideoGames={playedListVideoGames}
+              likedList={likedList}
+              myList={myList}
+              watchedList={watchedList}
               handleShowOptions={handleShowOptions}
               listType="likedList"
               mediaType={mediaType}

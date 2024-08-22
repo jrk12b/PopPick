@@ -19,7 +19,6 @@ function SearchListScreen() {
     myList,
     likedList,
     watchedList,
-    searchList,
     handleAddToMyList,
     handleAddToLiked,
     handleAddToWatched,
@@ -44,7 +43,6 @@ function SearchListScreen() {
     <View style={styles.sectionContainer}>
       {/* Component to display the search results */}
       <SearchList
-        searchList={searchList}
         myList={myList}
         likedList={likedList}
         watchedList={watchedList}
