@@ -49,6 +49,7 @@ function SearchListScreen() {
         likedList={likedList}
         watchedList={watchedList}
         handleShowOptions={handleShowOptionsWrapper}
+        mediaType="movies"
       />
       {/* Modal for displaying options related to the selected movie */}
       <OptionsModal

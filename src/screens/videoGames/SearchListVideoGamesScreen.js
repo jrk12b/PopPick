@@ -3,7 +3,7 @@ import {View} from 'react-native';
 import useVideoGameLists from '../../hooks/videoGames/useVideoGameLists';
 import useVideoGameModal from '../../hooks/videoGames/useVideoGameModal';
 import VideoGameOptionsModal from '../../components/videoGames/VideoGameOptionsModal';
-import SearchListVideoGames from '../../components/videoGames/lists/SearchListVideoGames';
+import SearchList from '../../components/movies/lists/SearchList';
 import styles from '../../styles/styles';
 
 /**
@@ -42,12 +42,13 @@ function SearchListVideoGamesScreen() {
   return (
     <View style={styles.sectionContainer}>
       {/* Component to display the search results */}
-      <SearchListVideoGames
+      <SearchList
         searchList={searchList}
-        myListVideoGames={myListVideoGames}
-        likedListVideoGames={likedListVideoGames}
-        playedListVideoGames={playedListVideoGames}
+        myList={myListVideoGames}
+        likedList={likedListVideoGames}
+        watchedList={playedListVideoGames}
         handleShowOptions={handleShowOptions}
+        mediaType="videoGames"
       />
       {/* Modal for displaying options related to the selected movie */}
       <VideoGameOptionsModal

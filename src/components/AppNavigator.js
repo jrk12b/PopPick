@@ -76,7 +76,7 @@ function AppNavigator() {
         <Stack.Screen name="My List" component={MyListScreen} />
         <Stack.Screen name="Watched List" component={WatchedListScreen} />
         <Stack.Screen name="Liked List" component={LikedListScreen} />
-        <Stack.Screen name="Search Movies" component={SearchListScreen} />
+        <Stack.Screen name="Search" component={SearchListScreen} />
         <Stack.Screen name="Personal Recs" component={PersonalRecScreen} />
         <Stack.Screen name="Popular Recs" component={PopularRecScreen} />
         <Stack.Screen name="Upcoming Recs" component={UpcomingRecScreen} />

@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {View, Text, Image, TouchableOpacity} from 'react-native';
+import {View, Text, Image, TouchableOpacity, StyleSheet} from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import styles from '../../styles/styles';
 import {getAccessToken} from '../../hooks/videoGames/auth';
@@ -32,7 +32,7 @@ const Poster = ({
           const data = await response.json();
           if (data.length > 0) {
             const imageUrl = data[0].url.replace(/^\/\//, ''); // Remove leading slashes
-            const fullImageUrl = `https:${imageUrl}`; // Add the https:// prefix
+            const fullImageUrl = `https:${imageUrl}`;
             setCoverImage(fullImageUrl);
           }
         } catch (error) {
