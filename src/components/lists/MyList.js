@@ -1,6 +1,6 @@
 import React from 'react';
 import {View, Text, FlatList, TouchableOpacity} from 'react-native';
-import MoviePoster from '../general/Poster';
+import Poster from '../general/Poster';
 import styles from '../../styles/styles';
 
 function MyList({
@@ -25,7 +25,7 @@ function MyList({
           data={myList}
           keyExtractor={item => item.id.toString()}
           renderItem={({item}) => (
-            <MoviePoster
+            <Poster
               item={item}
               likedList={likedList}
               myList={myList}

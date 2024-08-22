@@ -13,7 +13,6 @@ const useVideoGamesSimilar = (
       setLoading(true);
       try {
         const accessToken = await getAccessToken();
-        const fetchedGamesData = [];
 
         // Use a Set to gather unique similar game IDs
         const similarGamesSet = new Set();
@@ -27,22 +26,27 @@ const useVideoGamesSimilar = (
         // Convert the Set back to an array
         const uniqueSimilarGames = Array.from(similarGamesSet);
 
-        // Fetch data for each unique similar game ID
-        for (const gameId of uniqueSimilarGames) {
-          const response = await fetch('https://api.igdb.com/v4/games', {
-            method: 'POST',
-            headers: {
-              Accept: 'application/json',
-              'Client-ID': VIDEO_GAME_CLIENT_ID,
-              Authorization: `Bearer ${accessToken}`,
-            },
-            body: `fields name, rating, similar_games, first_release_date, cover; where id = ${gameId};`,
-          });
-          const data = await response.json();
-          fetchedGamesData.push(data[0]); // Assuming the API returns an array with one game object
-        }
+        // Create an array of fetch promises
+        const fetchPromises = uniqueSimilarGames.map(
+          gameId =>
+            fetch('https://api.igdb.com/v4/games', {
+              method: 'POST',
+              headers: {
+                Accept: 'application/json',
+                'Client-ID': VIDEO_GAME_CLIENT_ID,
+                Authorization: `Bearer ${accessToken}`,
+              },
+              body: `fields name, rating, similar_games, first_release_date, cover; where id = ${gameId};`,
+            }).then(response => response.json().then(data => data[0])), // Process the response
+        );
 
-        setPersonalVideoGames(fetchedGamesData);
+        // Wait for all fetch promises to resolve
+        const results = await Promise.all(fetchPromises);
+
+        // Filter out any undefined results in case of errors
+        const validResults = results.filter(game => game !== undefined);
+
+        setPersonalVideoGames(validResults);
       } catch (error) {
         setError(error);
       } finally {
@@ -54,35 +58,4 @@ const useVideoGamesSimilar = (
   }, [likedListVideoGames, setLoading, setError, setPersonalVideoGames]);
 };
 
-const useVideoGames = (url, setPersonalVideoGames, setLoading, setError) => {
-  useEffect(() => {
-    const fetchVideoGames = async () => {
-      setLoading(true);
-      try {
-        const accessToken = await getAccessToken();
-        const response = await fetch(url, {
-          method: 'POST',
-          headers: {
-            Accept: 'application/json',
-            'Client-ID': VIDEO_GAME_CLIENT_ID,
-            Authorization: `Bearer ${accessToken}`,
-          },
-          body: 'search "Halo"; fields name, rating, similar_games, first_release_date;',
-        });
-        const data = await response.json();
-
-        setPersonalVideoGames(data); // Updated to log data directly
-
-        // Ensure the state is set before logging
-      } catch (error) {
-        setError(error);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchVideoGames();
-  }, [url, setPersonalVideoGames, setLoading, setError]);
-};
-
-export {useVideoGames, useVideoGamesSimilar};
+export {useVideoGamesSimilar};

@@ -1,13 +1,13 @@
 import React from 'react';
 import {View, Text, FlatList, TouchableOpacity} from 'react-native';
 import styles from '../../styles/styles';
-import MoviePoster from '../general/Poster';
+import Poster from '../general/Poster';
 
 /**
  * UpcomingRec Component
  *
  * This component renders a FlatList displaying a row of movies from the upcomingMovies data.
- * Each movie is displayed as a MoviePoster component.
+ * Each movie is displayed as a Poster component.
  *
  * Props:
  * - upcomingMovies: Array - A list of recommended movies to display.
@@ -34,7 +34,7 @@ function UpcomingRec({
         data={upcomingMovies}
         keyExtractor={item => item.id.toString()}
         renderItem={({item}) => (
-          <MoviePoster
+          <Poster
             item={item}
             handleShowOptions={handleShowOptions}
             mediaType={mediaType}

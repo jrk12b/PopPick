@@ -1,13 +1,13 @@
 import React from 'react';
 import {View, Text, FlatList, TouchableOpacity} from 'react-native';
-import MoviePoster from '../general/Poster';
+import Poster from '../general/Poster';
 import styles from '../../styles/styles';
 
 /**
  * MyList Component
  *
  * This component renders a FlatList displaying a row of movies from the my list data.
- * Each movie is displayed as a MoviePoster component. The component also handles optional
+ * Each movie is displayed as a Poster component. The component also handles optional
  * rendering of icons for movies in the liked, my list, or watched list.
  *
  * Props:
@@ -33,7 +33,7 @@ function CustomRec({customMovies, handleShowOptions, navigation, mediaType}) {
         data={customMovies}
         keyExtractor={(item, index) => `${item.id}-${index}`}
         renderItem={({item}) => (
-          <MoviePoster
+          <Poster
             item={item}
             handleShowOptions={handleShowOptions}
             mediaType={mediaType}

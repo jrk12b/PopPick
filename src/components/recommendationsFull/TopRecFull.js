@@ -7,7 +7,7 @@ import Poster from '../general/Poster';
  * TopRecFull Component
  *
  * This component renders a FlatList displaying a grid of movies from the topMovies data.
- * Each movie is displayed as a MoviePoster component.
+ * Each movie is displayed as a Poster component.
  *
  * Props:
  * - topMovies: Array - A list of top movies that has been recommended to the user.

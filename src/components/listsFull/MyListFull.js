@@ -7,7 +7,7 @@ import Poster from '../general/Poster';
  * MyListFull Component
  *
  * This component renders a FlatList displaying a grid of movies from the my list data.
- * Each movie is displayed as a MoviePoster component. The component also handles optional
+ * Each movie is displayed as a Poster component. The component also handles optional
  * rendering of icons for movies in the liked, my list, or watched list.
  *
  * Props:

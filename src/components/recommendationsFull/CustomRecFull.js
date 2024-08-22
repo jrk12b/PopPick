@@ -7,7 +7,7 @@ import Poster from '../general/Poster';
  * PersonalRecFull Component
  *
  * This component renders a FlatList displaying a grid of movies from the personalMovies data.
- * Each movie is displayed as a MoviePoster component.
+ * Each movie is displayed as a Poster component.
  *
  * Props:
  * - personalMovies: Array - A list of movies that has been recommended to the user.

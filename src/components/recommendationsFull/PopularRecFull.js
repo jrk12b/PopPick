@@ -7,7 +7,7 @@ import Poster from '../general/Poster';
  * PopularRecFull Component
  *
  * This component renders a FlatList displaying a grid of movies from the popularMovies data.
- * Each movie is displayed as a MoviePoster component.
+ * Each movie is displayed as a Poster component.
  *
  * Props:
  * - popularMovies: Array - A list of popular movies that has been recommended to the user.

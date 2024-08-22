@@ -7,7 +7,7 @@ import Poster from '../general/Poster';
  * PersonalRec Component
  *
  * This component renders a FlatList displaying a row of movies from the personalMovies data.
- * Each movie is displayed as a MoviePoster component.
+ * Each movie is displayed as a Poster component.
  *
  * Props:
  * - personalMovies: Array - A list of recommended movies to display.

@@ -7,7 +7,7 @@ import Poster from '../general/Poster';
  * UpcomingRecFull Component
  *
  * This component renders a FlatList displaying a grid of movies from the upcomingMovies data.
- * Each movie is displayed as a MoviePoster component.
+ * Each movie is displayed as a Poster component.
  *
  * Props:
  * - upcomingMovies: Array - A list of upcoming movies that has been recommended to the user.

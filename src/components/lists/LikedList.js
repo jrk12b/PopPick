@@ -1,13 +1,13 @@
 import React from 'react';
 import {View, Text, FlatList, TouchableOpacity} from 'react-native';
 import styles from '../../styles/styles';
-import MoviePoster from '../general/Poster';
+import Poster from '../general/Poster';
 
 /**
  * LikedList Component
  *
  * This component renders a FlatList displaying a row of movies from the liked list data.
- * Each movie is displayed as a MoviePoster component. The component also handles optional
+ * Each movie is displayed as a Poster component. The component also handles optional
  * rendering of icons for movies in the liked, my list, or watched list.
  *
  * Props:
@@ -31,6 +31,7 @@ function LikedList({
   navigation,
   mediaType,
 }) {
+  console.log('liked here: ' + likedList);
   const page = mediaType === 'movies' ? 'Liked List' : 'Liked List Video Games';
   return (
     <View style={styles.sectionContainer}>
@@ -44,7 +45,7 @@ function LikedList({
           data={likedList}
           keyExtractor={item => item.id.toString()}
           renderItem={({item}) => (
-            <MoviePoster
+            <Poster
               item={item}
               likedList={likedList}
               myList={myList}
