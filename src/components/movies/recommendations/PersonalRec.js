@@ -19,7 +19,12 @@ import MoviePoster from '../MoviePoster';
  * - If the Personal Recommendations header text is clicked, the user is navigate to the Personal Recs screen (PersonalRecFull)
  * - If a specific movie is clicked, handleShowOptions are displayed.
  */
-function PersonalRec({personalMovies, handleShowOptions, navigation}) {
+function PersonalRec({
+  personalMovies,
+  handleShowOptions,
+  navigation,
+  mediaType,
+}) {
   return (
     <View style={styles.sectionContainer}>
       <TouchableOpacity onPress={() => navigation.navigate('Personal Recs')}>
@@ -33,6 +38,7 @@ function PersonalRec({personalMovies, handleShowOptions, navigation}) {
             item={item}
             handleShowOptions={handleShowOptions}
             listType="recommendations"
+            mediaType={mediaType}
           />
         )}
         horizontal

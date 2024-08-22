@@ -101,6 +101,7 @@ function MovieScreen({navigation}) {
         watchedList={watchedList}
         handleShowOptions={handleShowOptions}
         navigation={navigation}
+        mediaType="movies"
       />
 
       {/* Display list of watched movies */}
@@ -110,6 +111,7 @@ function MovieScreen({navigation}) {
         watchedList={watchedList}
         handleShowOptions={handleShowOptions}
         navigation={navigation}
+        mediaType="movies"
       />
 
       {/* Display list of liked movies */}
@@ -119,6 +121,7 @@ function MovieScreen({navigation}) {
         watchedList={watchedList}
         handleShowOptions={handleShowOptions}
         navigation={navigation}
+        mediaType="movies"
       />
 
       {/* Display personal movie recommendations */}
@@ -126,6 +129,7 @@ function MovieScreen({navigation}) {
         personalMovies={filterList(personalMovies)}
         handleShowOptions={handleShowOptions}
         navigation={navigation}
+        mediaType="movies"
       />
 
       {/* Display popular movie recommendations */}
@@ -133,6 +137,7 @@ function MovieScreen({navigation}) {
         popularMovies={filterList(popularMovies)}
         handleShowOptions={handleShowOptions}
         navigation={navigation}
+        mediaType="movies"
       />
 
       {/* Display upcoming movie recommendations */}
@@ -140,6 +145,7 @@ function MovieScreen({navigation}) {
         upcomingMovies={filterList(upcomingMovies)}
         handleShowOptions={handleShowOptions}
         navigation={navigation}
+        mediaType="movies"
       />
 
       {/* Display top-rated movie recommendations */}
@@ -147,12 +153,14 @@ function MovieScreen({navigation}) {
         topMovies={filterList(topMovies)}
         handleShowOptions={handleShowOptions}
         navigation={navigation}
+        mediaType="movies"
       />
 
       <CustomRec
         customMovies={customMovies}
         handleShowOptions={handleShowOptions}
         navigation={navigation}
+        mediaType="movies"
       />
 
       {/* Modal for displaying options related to the selected movie */}

@@ -30,6 +30,7 @@ function WatchedList({
   watchedList,
   handleShowOptions,
   navigation,
+  mediaType,
 }) {
   return (
     <View style={styles.sectionContainer}>
@@ -50,6 +51,7 @@ function WatchedList({
               watchedList={watchedList}
               handleShowOptions={handleShowOptions}
               listType="watchedList"
+              mediaType={mediaType}
             />
           )}
           horizontal

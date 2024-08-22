@@ -19,7 +19,12 @@ import MoviePoster from '../MoviePoster';
  * - If the Upcoming Recommendations header text is clicked, the user is navigate to the Upcoming Recs screen (UpcomingRecFull)
  * - If a specific movie is clicked, handleShowOptions are displayed.
  */
-function UpcomingRec({upcomingMovies, handleShowOptions, navigation}) {
+function UpcomingRec({
+  upcomingMovies,
+  handleShowOptions,
+  navigation,
+  mediaType,
+}) {
   return (
     <View style={styles.sectionContainer}>
       <TouchableOpacity onPress={() => navigation.navigate('Upcoming Recs')}>
@@ -33,6 +38,7 @@ function UpcomingRec({upcomingMovies, handleShowOptions, navigation}) {
             item={item}
             handleShowOptions={handleShowOptions}
             listType="recommendations"
+            mediaType={mediaType}
           />
         )}
         horizontal

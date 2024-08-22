@@ -19,7 +19,7 @@ import MoviePoster from '../MoviePoster';
  * - If the Top Recommendations header text is clicked, the user is navigate to the Top Recs screen (TopRecFull)
  * - If a specific movie is clicked, handleShowOptions are displayed.
  */
-function TopRec({topMovies, handleShowOptions, navigation}) {
+function TopRec({topMovies, handleShowOptions, navigation, mediaType}) {
   return (
     <View style={styles.sectionContainer}>
       <TouchableOpacity onPress={() => navigation.navigate('Top Recs')}>
@@ -33,6 +33,7 @@ function TopRec({topMovies, handleShowOptions, navigation}) {
             item={item}
             handleShowOptions={handleShowOptions}
             listType="recommendations"
+            mediaType={mediaType}
           />
         )}
         horizontal

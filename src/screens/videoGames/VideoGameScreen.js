@@ -8,7 +8,7 @@ import Loading from '../../components/movies/Loading';
 import Error from '../../components/movies/Error';
 import VideoGameOptionsModal from '../../components/videoGames/VideoGameOptionsModal';
 import useVideoGameModal from '../../hooks/videoGames/useVideoGameModal';
-import MyListVideoGames from '../../components/videoGames/lists/MyListVideoGames';
+import MyList from '../../components/movies/lists/MyList';
 import PlayedListVideoGames from '../../components/videoGames/lists/PlayedListVideoGames';
 import LikedListVideoGames from '../../components/videoGames/lists/LikedListVideoGames';
 
@@ -72,10 +72,13 @@ function VideoGameScreen({navigation}) {
         </TouchableOpacity>
       </View>
 
-      <MyListVideoGames
-        myListVideoGames={myListVideoGames}
+      <MyList
+        myList={myListVideoGames}
+        likedList={likedListVideoGames}
+        watchedList={playedListVideoGames}
         handleShowOptions={handleShowOptions}
         navigation={navigation}
+        mediaType="videoGames"
       />
 
       {/* Display list of played games */}

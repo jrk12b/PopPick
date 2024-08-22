@@ -1,55 +1,70 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import {View, Text, Image, TouchableOpacity} from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import styles from '../../styles/styles';
+import {getAccessToken} from '../../hooks/videoGames/auth';
+import {VIDEO_GAME_CLIENT_ID} from '../../config';
 
-/**
- * MoviePoster Component
- *
- * This functional component renders a movie item within a list, displaying its poster,
- * title, and relevant icons based on whether the movie is liked, saved, or watched.
- *
- * Props:
- * - item: Object - The movie data to be displayed, including its id, title, and poster path.
- * - likedList: Array (optional) - A list of movies that have been liked by the user.
- * - myList: Array (optional) - A list of movies that have been saved by the user.
- * - watchedList: Array (optional) - A list of movies that have been watched by the user.
- * - handleShowOptions: Function - A callback function triggered when the movie item is pressed.
- * - listType: String - A string indicating the type of list the movie belongs to (e.g., "likedList").
- *
- * Behavior:
- * - The component checks if the movie is liked, saved, or watched by comparing the movie's ID
- *   with the IDs in the provided lists.
- * - If the movie is liked, saved, or watched, the corresponding icon is displayed over the poster.
- * - When the movie item is pressed, the handleShowOptions function is invoked with the movie item
- *   and the listType as arguments.
- *
- * Rendering:
- * - The movie's poster is displayed using the provided URI.
- * - Icons are conditionally rendered based on the movie's status (liked, saved, or watched).
- * - The movie's title is displayed beneath the poster.
- */
-const MoviePoster = ({
+const Poster = ({
   item,
+  mediaType,
   likedList = [],
   myList = [],
   watchedList = [],
   handleShowOptions,
   listType,
 }) => {
-  // Check if lists are defined and not empty
-  const isLiked = likedList && likedList.some(movie => movie.id === item.id);
-  const isSaved = myList && myList.some(movie => movie.id === item.id);
-  const isWatched =
-    watchedList && watchedList.some(movie => movie.id === item.id);
+  const [coverImage, setCoverImage] = useState(null);
+  useEffect(() => {
+    if (mediaType === 'videoGames') {
+      const fetchCoverImage = async () => {
+        try {
+          const accessToken = await getAccessToken();
+          const response = await fetch('https://api.igdb.com/v4/covers', {
+            method: 'POST',
+            headers: {
+              Accept: 'application/json',
+              'Client-ID': VIDEO_GAME_CLIENT_ID,
+              Authorization: `Bearer ${accessToken}`,
+            },
+            body: `fields *; where id = ${item.cover};`,
+          });
+          const data = await response.json();
+          if (data.length > 0) {
+            const imageUrl = data[0].url.replace(/^\/\//, ''); // Remove leading slashes
+            const fullImageUrl = `https:${imageUrl}`; // Add the https:// prefix
+            setCoverImage(fullImageUrl);
+          }
+        } catch (error) {
+          console.error('Error fetching cover image:', error);
+        }
+      };
+
+      if (item.cover) {
+        fetchCoverImage();
+      }
+    }
+  }, [item.cover, mediaType]);
+
+  // Determine if the item is liked, saved, or watched
+  const isLiked = likedList.some(media => media.id === item.id);
+  const isSaved = myList.some(media => media.id === item.id);
+  const isWatched = watchedList.some(media => media.id === item.id);
+
+  // Get the appropriate image URI based on mediaType
+  const imageUri =
+    mediaType === 'movies'
+      ? `https://image.tmdb.org/t/p/w500${item.poster_path}`
+      : coverImage;
 
   return (
     <View style={styles.movieContainer}>
       <TouchableOpacity onPress={() => handleShowOptions(item, listType)}>
-        <Image
-          style={styles.poster}
-          source={{uri: `https://image.tmdb.org/t/p/w500${item.poster_path}`}}
-        />
+        {imageUri ? (
+          <Image style={styles.poster} source={{uri: imageUri}} />
+        ) : (
+          <Text>Loading...</Text>
+        )}
         {isLiked && (
           <Icon
             name="favorite"
@@ -74,10 +89,12 @@ const MoviePoster = ({
             style={styles.watchedIcon}
           />
         )}
-        <Text style={styles.title}>{item.title}</Text>
+        <Text style={styles.title}>
+          {mediaType === 'movies' ? item.title : item.name}
+        </Text>
       </TouchableOpacity>
     </View>
   );
 };
 
-export default MoviePoster;
+export default Poster;

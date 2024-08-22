@@ -19,7 +19,7 @@ import MoviePoster from '../MoviePoster';
  * - If the Popular Recommendations header text is clicked, the user is navigate to the Popular Recs screen (PopularRecFull)
  * - If a specific movie is clicked, handleShowOptions are displayed.
  */
-function PopularRec({popularMovies, handleShowOptions, navigation}) {
+function PopularRec({popularMovies, handleShowOptions, navigation, mediaType}) {
   return (
     <View style={styles.sectionContainer}>
       <TouchableOpacity onPress={() => navigation.navigate('Popular Recs')}>
@@ -33,6 +33,7 @@ function PopularRec({popularMovies, handleShowOptions, navigation}) {
             item={item}
             handleShowOptions={handleShowOptions}
             listType="recommendations"
+            mediaType={mediaType}
           />
         )}
         horizontal

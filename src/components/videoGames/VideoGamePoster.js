@@ -11,7 +11,7 @@ const VideoGamePoster = ({item, handleShowOptions, listType}) => {
   useEffect(() => {
     const fetchCoverImage = async () => {
       try {
-        const accessToken = await getAccessToken(); // Ensure you have this function to get your access token
+        const accessToken = await getAccessToken();
         const response = await fetch('https://api.igdb.com/v4/covers', {
           method: 'POST',
           headers: {

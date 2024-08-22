@@ -23,7 +23,7 @@ import styles from '../../../styles/styles';
  * - If the My List header text is clicked, the user is navigate to the Liked List screen (MyListFull)
  * - If a specific movie is clicked, handleShowOptions are displayed.
  */
-function CustomRec({customMovies, handleShowOptions, navigation}) {
+function CustomRec({customMovies, handleShowOptions, navigation, mediaType}) {
   return (
     <View style={styles.sectionContainer}>
       <TouchableOpacity onPress={() => navigation.navigate('Custom Recs')}>
@@ -37,6 +37,7 @@ function CustomRec({customMovies, handleShowOptions, navigation}) {
             item={item}
             handleShowOptions={handleShowOptions}
             listType="recommendations"
+            mediaType={mediaType}
           />
         )}
         horizontal

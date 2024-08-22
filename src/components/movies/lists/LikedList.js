@@ -29,6 +29,7 @@ function LikedList({
   watchedList,
   handleShowOptions,
   navigation,
+  mediaType,
 }) {
   return (
     <View style={styles.sectionContainer}>
@@ -49,6 +50,7 @@ function LikedList({
               watchedList={watchedList}
               handleShowOptions={handleShowOptions}
               listType="likedList"
+              mediaType={mediaType}
             />
           )}
           horizontal
