@@ -3,14 +3,14 @@ import {ScrollView, View, TouchableOpacity} from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import styles from '../../styles/styles';
 import useVideoGameLists from '../../hooks/videoGames/useVideoGameLists';
-import PersonalRecVideoGames from '../../components/videoGames/recommendations/PersonalRecVideoGames';
+// import PersonalRecVideoGames from '../../components/videoGames/recommendations/PersonalRecVideoGames';
 import Loading from '../../components/movies/Loading';
 import Error from '../../components/movies/Error';
 import VideoGameOptionsModal from '../../components/videoGames/VideoGameOptionsModal';
 import useVideoGameModal from '../../hooks/videoGames/useVideoGameModal';
 import MyList from '../../components/movies/lists/MyList';
-import PlayedListVideoGames from '../../components/videoGames/lists/PlayedListVideoGames';
-import LikedListVideoGames from '../../components/videoGames/lists/LikedListVideoGames';
+import WatchedList from '../../components/movies/lists/WatchedList';
+import LikedList from '../../components/movies/lists/LikedList';
 
 /**
  * VideoGameScreen Component
@@ -82,29 +82,31 @@ function VideoGameScreen({navigation}) {
       />
 
       {/* Display list of played games */}
-      <PlayedListVideoGames
-        myListVideoGames={myListVideoGames}
-        likedListVideoGames={likedListVideoGames}
-        playedListVideoGames={playedListVideoGames}
+      <WatchedList
+        myList={myListVideoGames}
+        likedList={likedListVideoGames}
+        watchedList={playedListVideoGames}
         handleShowOptions={handleShowOptions}
         navigation={navigation}
+        mediaType="videoGames"
       />
 
       {/* Display list of liked movies */}
-      <LikedListVideoGames
-        myListVideoGames={myListVideoGames}
-        likedListVideoGames={likedListVideoGames}
-        playedListVideoGames={playedListVideoGames}
+      <LikedList
+        myList={myListVideoGames}
+        likedList={likedListVideoGames}
+        watchedList={playedListVideoGames}
         handleShowOptions={handleShowOptions}
         navigation={navigation}
+        mediaType="videoGames"
       />
 
-      {/* Display personal movie recommendations */}
+      {/* Display personal movie recommendations
       <PersonalRecVideoGames
         personalVideoGames={filterList(personalVideoGames)}
         handleShowOptions={handleShowOptions}
         navigation={navigation}
-      />
+      /> */}
 
       {/* Modal for displaying options related to the selected movie */}
       <VideoGameOptionsModal

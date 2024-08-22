@@ -32,13 +32,18 @@ function WatchedList({
   navigation,
   mediaType,
 }) {
+  const title = mediaType === 'movies' ? 'Watched' : 'Played';
   return (
     <View style={styles.sectionContainer}>
       <TouchableOpacity onPress={() => navigation.navigate('Watched List')}>
-        <Text style={styles.sectionTitle}>Watched ({watchedList.length})</Text>
+        <Text style={styles.sectionTitle}>
+          {title} ({watchedList.length})
+        </Text>
       </TouchableOpacity>
       {watchedList.length === 0 ? (
-        <Text style={styles.text}>No movies added yet.</Text>
+        <Text style={styles.text}>
+          No {mediaType === 'movies' ? 'movies' : 'games'} added yet.
+        </Text>
       ) : (
         <FlatList
           data={watchedList}
