@@ -2,7 +2,7 @@ import React from 'react';
 import MyListFull from '../../components/movies/lists/fullLists/MyListFull';
 import useVideoGameLists from '../../hooks/videoGames/useVideoGameLists';
 import useVideoGameModal from '../../hooks/videoGames/useVideoGameModal';
-import VideoGameOptionsModal from '../../components/videoGames/VideoGameOptionsModal';
+import OptionsModal from '../../components/movies/OptionsModal';
 
 /**
  * MyListScreen Component
@@ -40,15 +40,16 @@ function MyListVideoGamesScreen() {
         handleShowOptions={handleShowOptions}
         mediaType="videoGames"
       />
-      <VideoGameOptionsModal
-        selectedVideoGame={selectedVideoGame}
+      <OptionsModal
+        selectedItem={selectedVideoGame}
         listType={listType}
         modalVisible={modalVisible}
         handleCloseModal={handleCloseModal}
         handleOptionSelect={handleOptionSelect}
-        myListVideoGames={myListVideoGames}
-        likedListVideoGames={likedListVideoGames}
-        playedListVideoGames={playedListVideoGames}
+        myList={myListVideoGames}
+        likedList={likedListVideoGames}
+        watchedList={playedListVideoGames}
+        mediaType="videoGames"
       />
     </>
   );

@@ -44,7 +44,7 @@ function UpcomingRecScreen() {
         mediaType="movies"
       />
       <OptionsModal
-        selectedMovie={selectedMovie}
+        selectedItem={selectedMovie}
         listType={listType}
         modalVisible={modalVisible}
         handleCloseModal={handleCloseModal}
@@ -52,6 +52,7 @@ function UpcomingRecScreen() {
         myList={myList}
         likedList={likedList}
         watchedList={watchedList}
+        mediaType="movies"
       />
     </>
   );

@@ -6,7 +6,7 @@ import useVideoGameLists from '../../hooks/videoGames/useVideoGameLists';
 import PersonalRec from '../../components/movies/recommendations/PersonalRec';
 import Loading from '../../components/movies/Loading';
 import Error from '../../components/movies/Error';
-import VideoGameOptionsModal from '../../components/videoGames/VideoGameOptionsModal';
+import OptionsModal from '../../components/movies/OptionsModal';
 import useVideoGameModal from '../../hooks/videoGames/useVideoGameModal';
 import MyList from '../../components/movies/lists/MyList';
 import WatchedList from '../../components/movies/lists/WatchedList';
@@ -109,15 +109,16 @@ function VideoGameScreen({navigation}) {
       />
 
       {/* Modal for displaying options related to the selected movie */}
-      <VideoGameOptionsModal
-        selectedVideoGame={selectedVideoGame}
+      <OptionsModal
+        selectedItem={selectedVideoGame}
         listType={listType}
         modalVisible={modalVisible}
         handleCloseModal={handleCloseModal}
         handleOptionSelect={handleOptionSelect}
-        myListVideoGames={myListVideoGames}
-        likedListVideoGames={likedListVideoGames}
-        playedListVideoGames={playedListVideoGames}
+        myList={myListVideoGames}
+        likedList={likedListVideoGames}
+        watchedList={playedListVideoGames}
+        mediaType="videoGames"
       />
     </ScrollView>
   );

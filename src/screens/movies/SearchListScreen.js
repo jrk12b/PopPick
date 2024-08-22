@@ -53,7 +53,7 @@ function SearchListScreen() {
       />
       {/* Modal for displaying options related to the selected movie */}
       <OptionsModal
-        selectedMovie={selectedMovie}
+        selectedItem={selectedMovie}
         listType={listType}
         modalVisible={modalVisible}
         handleCloseModal={handleCloseModal}
@@ -61,6 +61,7 @@ function SearchListScreen() {
         myList={myList}
         likedList={likedList}
         watchedList={watchedList}
+        mediaType="movies"
       />
     </View>
   );

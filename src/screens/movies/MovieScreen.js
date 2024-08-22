@@ -165,7 +165,7 @@ function MovieScreen({navigation}) {
 
       {/* Modal for displaying options related to the selected movie */}
       <OptionsModal
-        selectedMovie={selectedMovie}
+        selectedItem={selectedMovie}
         listType={listType}
         modalVisible={modalVisible}
         handleCloseModal={handleCloseModal}
@@ -173,6 +173,7 @@ function MovieScreen({navigation}) {
         myList={myList}
         likedList={likedList}
         watchedList={watchedList}
+        mediaType="movies"
       />
     </ScrollView>
   );

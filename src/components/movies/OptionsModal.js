@@ -3,48 +3,21 @@ import {View, Text, Modal, Button} from 'react-native';
 import styles from '../../styles/styles';
 import CustomButton from '../CustomButton';
 
-/**
- * MovieOptionsModal Component
- *
- * This component displays a modal with options related to a selected movie. It allows the user
- * to add or remove the movie from their personal lists (e.g., My List, Liked List, Watched List).
- *
- * Props:
- * - selectedMovie: Object - The movie that the options pertain to. Contains details like title, overview, etc.
- * - modalVisible: Boolean - Controls the visibility of the modal.
- * - handleCloseModal: Function - A callback function to close the modal.
- * - handleOptionSelect: Function - A callback function to handle the selection of an option.
- * - myList: Array - A list of movies in the user's personal list.
- * - likedList: Array - A list of movies that the user has liked.
- * - watchedList: Array - A list of movies that the user has watched.
- *
- * Behavior:
- * - The modal checks if the selected movie is in any of the user's lists (My List, Liked List, Watched List).
- * - Depending on which lists the movie is in, the appropriate options are displayed:
- *   - Add to My List, Mark as Watched, Mark as Liked (if the movie is in none of the lists)
- *   - Remove from My List, Remove from Liked List, Remove from Watched List (if the movie is in the respective list)
- *   - Additional options to add the movie to other lists it isn't already in.
- * - The modal is displayed with a sliding animation and can be closed via a Cancel button.
- *
- * Rendering:
- * - The modal shows the movie's title, description, release date, and rating.
- * - Depending on the movie's status in the user's lists, different buttons are rendered for the user to interact with.
- * - When an option is selected, the handleOptionSelect function is invoked with the respective action.
- */
-const MovieOptionsModal = ({
-  selectedMovie,
+const OptionsModal = ({
+  selectedItem,
   modalVisible,
   handleCloseModal,
   handleOptionSelect,
   myList,
   likedList,
   watchedList,
+  mediaType,
 }) => {
-  if (!selectedMovie) {
+  if (!selectedItem) {
     return null;
   }
 
-  const isInList = list => list.some(movie => movie.id === selectedMovie.id);
+  const isInList = list => list.some(item => item.id === selectedItem.id);
 
   const inMyList = isInList(myList);
   const inLikedList = isInList(likedList);
@@ -58,14 +31,22 @@ const MovieOptionsModal = ({
       onRequestClose={handleCloseModal}>
       <View style={styles.modalContainer}>
         <View style={styles.modalContent}>
-          <Text style={styles.movieTitle}>{selectedMovie.title}</Text>
-          <Text style={styles.movieDescription}>{selectedMovie.overview}</Text>
-          <Text style={styles.movieRelease}>
-            Release date: {selectedMovie.release_date}
+          <Text style={styles.movieTitle}>
+            {mediaType === 'movies' ? selectedItem.title : selectedItem.name}
           </Text>
-          <Text style={styles.movieRating}>
-            Rating: {selectedMovie.vote_average}
-          </Text>
+          {mediaType === 'movies' && (
+            <>
+              <Text style={styles.movieDescription}>
+                {selectedItem.overview}
+              </Text>
+              <Text style={styles.movieRelease}>
+                Release date: {selectedItem.release_date}
+              </Text>
+              <Text style={styles.movieRating}>
+                Rating: {selectedItem.vote_average}
+              </Text>
+            </>
+          )}
 
           {!inMyList && !inLikedList && !inWatchedList && (
             <>
@@ -76,14 +57,16 @@ const MovieOptionsModal = ({
                 textStyle={styles.buttonText}
               />
               <CustomButton
-                title="Mark as Watched"
+                title={
+                  mediaType === 'movies' ? 'Mark as Watched' : 'Mark as Played'
+                }
                 onPress={() => handleOptionSelect('addToWatched')}
                 style={styles.button}
                 textStyle={styles.buttonText}
               />
               <CustomButton
                 title="Mark as Liked"
-                onPress={() => handleOptionSelect('addtoLiked')}
+                onPress={() => handleOptionSelect('addToLiked')}
                 style={styles.button}
                 textStyle={styles.buttonText}
               />
@@ -100,7 +83,11 @@ const MovieOptionsModal = ({
               />
               {!inWatchedList && (
                 <CustomButton
-                  title="Mark as Watched"
+                  title={
+                    mediaType === 'movies'
+                      ? 'Mark as Watched'
+                      : 'Mark as Played'
+                  }
                   onPress={() => handleOptionSelect('addToWatched')}
                   style={styles.button}
                   textStyle={styles.buttonText}
@@ -109,7 +96,7 @@ const MovieOptionsModal = ({
               {!inLikedList && (
                 <CustomButton
                   title="Mark as Liked"
-                  onPress={() => handleOptionSelect('addtoLiked')}
+                  onPress={() => handleOptionSelect('addToLiked')}
                   style={styles.button}
                   textStyle={styles.buttonText}
                 />
@@ -127,7 +114,11 @@ const MovieOptionsModal = ({
               />
               {!inWatchedList && (
                 <CustomButton
-                  title="Mark as Watched"
+                  title={
+                    mediaType === 'movies'
+                      ? 'Mark as Watched'
+                      : 'Mark as Played'
+                  }
                   onPress={() => handleOptionSelect('addToWatched')}
                   style={styles.button}
                   textStyle={styles.buttonText}
@@ -139,7 +130,11 @@ const MovieOptionsModal = ({
           {inWatchedList && (
             <>
               <CustomButton
-                title="Remove from Watched List"
+                title={
+                  mediaType === 'movies'
+                    ? 'Remove from Watched List'
+                    : 'Remove from Played List'
+                }
                 onPress={() => handleOptionSelect('removeFromWatchedList')}
                 style={styles.button}
                 textStyle={styles.buttonText}
@@ -147,7 +142,7 @@ const MovieOptionsModal = ({
               {!inLikedList && (
                 <CustomButton
                   title="Mark as Liked"
-                  onPress={() => handleOptionSelect('addtoLiked')}
+                  onPress={() => handleOptionSelect('addToLiked')}
                   style={styles.button}
                   textStyle={styles.buttonText}
                 />
@@ -174,4 +169,4 @@ const MovieOptionsModal = ({
   );
 };
 
-export default MovieOptionsModal;
+export default OptionsModal;
