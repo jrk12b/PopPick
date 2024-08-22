@@ -39,7 +39,6 @@ function PersonalRec({
           <MoviePoster
             item={item}
             handleShowOptions={handleShowOptions}
-            listType="recommendations"
             mediaType={mediaType}
           />
         )}

@@ -29,7 +29,6 @@ function CustomRecScreen() {
 
   const {
     selectedMovie,
-    listType,
     modalVisible,
     handleShowOptions,
     handleCloseModal,
@@ -45,7 +44,6 @@ function CustomRecScreen() {
       />
       <OptionsModal
         selectedItem={selectedMovie}
-        listType={listType}
         modalVisible={modalVisible}
         handleCloseModal={handleCloseModal}
         handleOptionSelect={handleOptionSelect}

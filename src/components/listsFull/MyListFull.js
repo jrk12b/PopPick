@@ -40,7 +40,6 @@ function MyListFull({
           myList={myList}
           watchedList={watchedList}
           handleShowOptions={handleShowOptions}
-          listType="myList"
           mediaType={mediaType}
         />
       )}

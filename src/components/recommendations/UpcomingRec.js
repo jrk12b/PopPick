@@ -37,7 +37,6 @@ function UpcomingRec({
           <MoviePoster
             item={item}
             handleShowOptions={handleShowOptions}
-            listType="recommendations"
             mediaType={mediaType}
           />
         )}

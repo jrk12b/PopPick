@@ -31,7 +31,6 @@ function PopularRecFull({popularMovies, handleShowOptions, mediaType}) {
         <Poster
           item={item}
           handleShowOptions={handleShowOptions}
-          listType="popularMovies"
           mediaType={mediaType}
         />
       )}

@@ -24,7 +24,6 @@ function MyListVideoGamesScreen() {
 
   const {
     selectedVideoGame,
-    listType,
     modalVisible,
     handleShowOptions,
     handleCloseModal,
@@ -42,7 +41,6 @@ function MyListVideoGamesScreen() {
       />
       <OptionsModal
         selectedItem={selectedVideoGame}
-        listType={listType}
         modalVisible={modalVisible}
         handleCloseModal={handleCloseModal}
         handleOptionSelect={handleOptionSelect}

@@ -22,7 +22,6 @@ function WatchedListScreen() {
 
   const {
     selectedMovie,
-    listType,
     modalVisible,
     handleShowOptions,
     handleCloseModal,
@@ -40,7 +39,6 @@ function WatchedListScreen() {
       />
       <OptionsModal
         selectedItem={selectedMovie}
-        listType={listType}
         modalVisible={modalVisible}
         handleCloseModal={handleCloseModal}
         handleOptionSelect={handleOptionSelect}

@@ -31,7 +31,6 @@ function TopRecFull({topMovies, handleShowOptions, mediaType}) {
         <Poster
           item={item}
           handleShowOptions={handleShowOptions}
-          listType="topMovies"
           mediaType={mediaType}
         />
       )}

@@ -31,7 +31,6 @@ function UpcomingRecFull({upcomingMovies, handleShowOptions, mediaType}) {
         <Poster
           item={item}
           handleShowOptions={handleShowOptions}
-          listType="upcomingMovies"
           mediaType={mediaType}
         />
       )}

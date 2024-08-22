@@ -34,7 +34,6 @@ function VideoGameScreen({navigation}) {
 
   const {
     selectedVideoGame,
-    listType,
     modalVisible,
     handleShowOptions,
     handleCloseModal,
@@ -111,7 +110,6 @@ function VideoGameScreen({navigation}) {
       {/* Modal for displaying options related to the selected movie */}
       <OptionsModal
         selectedItem={selectedVideoGame}
-        listType={listType}
         modalVisible={modalVisible}
         handleCloseModal={handleCloseModal}
         handleOptionSelect={handleOptionSelect}

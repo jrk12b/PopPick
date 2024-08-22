@@ -19,8 +19,6 @@ const useVideoGameModal = (
 ) => {
   // State to manage the currently selected movie
   const [selectedVideoGame, setSelectedVideoGame] = useState(null);
-  // State to determine the type of list related to the selected movie (e.g., 'myList', 'liked', 'watched')
-  const [listType, setListType] = useState(null);
   // State to control the visibility of the modal
   const [modalVisible, setModalVisible] = useState(false);
 
@@ -30,9 +28,8 @@ const useVideoGameModal = (
    * @param {Object} videoGame - The movie to be displayed in the modal.
    * @param {string} type - The type of list the movie pertains to.
    */
-  const handleShowOptions = (videoGame, type) => {
+  const handleShowOptions = videoGame => {
     setSelectedVideoGame(videoGame);
-    setListType(type);
     setModalVisible(true);
   };
 
@@ -42,7 +39,6 @@ const useVideoGameModal = (
   const handleCloseModal = () => {
     setModalVisible(false);
     setSelectedVideoGame(null);
-    setListType(null);
   };
 
   /**
@@ -81,7 +77,6 @@ const useVideoGameModal = (
   // Return the current state and handler functions
   return {
     selectedVideoGame,
-    listType,
     modalVisible,
     handleShowOptions,
     handleCloseModal,

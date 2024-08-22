@@ -31,7 +31,6 @@ function PersonalRecFull({customMovies, handleShowOptions, mediaType}) {
         <Poster
           item={item}
           handleShowOptions={handleShowOptions}
-          listType="personalMovies"
           mediaType={mediaType}
         />
       )}

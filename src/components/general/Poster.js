@@ -12,7 +12,6 @@ const Poster = ({
   myList = [],
   watchedList = [],
   handleShowOptions,
-  listType,
 }) => {
   const [coverImage, setCoverImage] = useState(null);
   useEffect(() => {
@@ -31,7 +30,7 @@ const Poster = ({
           });
           const data = await response.json();
           if (data.length > 0) {
-            const imageUrl = data[0].url.replace(/^\/\//, ''); // Remove leading slashes
+            const imageUrl = data[0].url.replace(/^\/\//, '');
             const fullImageUrl = `https:${imageUrl}`;
             setCoverImage(fullImageUrl);
           }
@@ -59,7 +58,7 @@ const Poster = ({
 
   return (
     <View style={styles.movieContainer}>
-      <TouchableOpacity onPress={() => handleShowOptions(item, listType)}>
+      <TouchableOpacity onPress={() => handleShowOptions(item)}>
         {imageUri ? (
           <Image style={styles.poster} source={{uri: imageUri}} />
         ) : (

@@ -49,7 +49,6 @@ function MovieScreen({navigation}) {
   // Custom hook to manage the state and actions for the movie options modal
   const {
     selectedMovie,
-    listType,
     modalVisible,
     handleShowOptions,
     handleCloseModal,
@@ -166,7 +165,6 @@ function MovieScreen({navigation}) {
       {/* Modal for displaying options related to the selected movie */}
       <OptionsModal
         selectedItem={selectedMovie}
-        listType={listType}
         modalVisible={modalVisible}
         handleCloseModal={handleCloseModal}
         handleOptionSelect={handleOptionSelect}

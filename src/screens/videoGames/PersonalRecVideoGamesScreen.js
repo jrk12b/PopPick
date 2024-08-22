@@ -25,7 +25,6 @@ function PersonalRecVideoGamesScreen() {
 
   const {
     selectedVideoGame,
-    listType,
     modalVisible,
     handleShowOptions,
     handleCloseModal,
@@ -41,7 +40,6 @@ function PersonalRecVideoGamesScreen() {
       />
       <OptionsModal
         selectedItem={selectedVideoGame}
-        listType={listType}
         modalVisible={modalVisible}
         handleCloseModal={handleCloseModal}
         handleOptionSelect={handleOptionSelect}

@@ -36,7 +36,6 @@ function CustomRec({customMovies, handleShowOptions, navigation, mediaType}) {
           <MoviePoster
             item={item}
             handleShowOptions={handleShowOptions}
-            listType="recommendations"
             mediaType={mediaType}
           />
         )}

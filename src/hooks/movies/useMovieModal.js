@@ -19,8 +19,6 @@ const useMovieModal = (
 ) => {
   // State to manage the currently selected movie
   const [selectedMovie, setSelectedMovie] = useState(null);
-  // State to determine the type of list related to the selected movie (e.g., 'myList', 'liked', 'watched')
-  const [listType, setListType] = useState(null);
   // State to control the visibility of the modal
   const [modalVisible, setModalVisible] = useState(false);
 
@@ -32,7 +30,6 @@ const useMovieModal = (
    */
   const handleShowOptions = (movie, type) => {
     setSelectedMovie(movie);
-    setListType(type);
     setModalVisible(true);
   };
 
@@ -42,7 +39,6 @@ const useMovieModal = (
   const handleCloseModal = () => {
     setModalVisible(false);
     setSelectedMovie(null);
-    setListType(null);
   };
 
   /**
@@ -81,7 +77,6 @@ const useMovieModal = (
   // Return the current state and handler functions
   return {
     selectedMovie,
-    listType,
     modalVisible,
     handleShowOptions,
     handleCloseModal,

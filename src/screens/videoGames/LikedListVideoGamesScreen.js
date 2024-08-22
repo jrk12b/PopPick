@@ -23,7 +23,6 @@ function LikedListVideoGamesScreen() {
 
   const {
     selectedVideoGame,
-    listType,
     modalVisible,
     handleShowOptions,
     handleCloseModal,
@@ -41,7 +40,6 @@ function LikedListVideoGamesScreen() {
       />
       <OptionsModal
         selectedItem={selectedVideoGame}
-        listType={listType}
         modalVisible={modalVisible}
         handleCloseModal={handleCloseModal}
         handleOptionSelect={handleOptionSelect}

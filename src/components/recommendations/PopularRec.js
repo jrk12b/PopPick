@@ -32,7 +32,6 @@ function PopularRec({popularMovies, handleShowOptions, navigation, mediaType}) {
           <MoviePoster
             item={item}
             handleShowOptions={handleShowOptions}
-            listType="recommendations"
             mediaType={mediaType}
           />
         )}

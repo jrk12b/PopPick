@@ -40,7 +40,6 @@ function LikedListFull({
           myList={myList}
           watchedList={watchedList}
           handleShowOptions={handleShowOptions}
-          listType="likedList"
           mediaType={mediaType}
         />
       )}

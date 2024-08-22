@@ -28,7 +28,6 @@ function SearchListVideoGamesScreen() {
   // Custom hook to manage the state and actions for the movie options modal
   const {
     selectedVideoGame,
-    listType,
     modalVisible,
     handleShowOptions,
     handleCloseModal,
@@ -53,7 +52,6 @@ function SearchListVideoGamesScreen() {
       {/* Modal for displaying options related to the selected movie */}
       <OptionsModal
         selectedItem={selectedVideoGame}
-        listType={listType}
         modalVisible={modalVisible}
         handleCloseModal={handleCloseModal}
         handleOptionSelect={handleOptionSelect}

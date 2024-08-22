@@ -50,7 +50,6 @@ function LikedList({
               myList={myList}
               watchedList={watchedList}
               handleShowOptions={handleShowOptions}
-              listType="likedList"
               mediaType={mediaType}
             />
           )}

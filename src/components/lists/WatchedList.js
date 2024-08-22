@@ -55,7 +55,6 @@ function WatchedList({
               myList={myList}
               watchedList={watchedList}
               handleShowOptions={handleShowOptions}
-              listType="watchedList"
               mediaType={mediaType}
             />
           )}

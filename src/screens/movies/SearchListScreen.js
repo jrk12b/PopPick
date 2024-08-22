@@ -27,7 +27,6 @@ function SearchListScreen() {
   // Custom hook to manage the state and actions for the movie options modal
   const {
     selectedMovie,
-    listType,
     modalVisible,
     handleShowOptions,
     handleCloseModal,
@@ -35,8 +34,8 @@ function SearchListScreen() {
   } = useMovieModal(handleAddToMyList, handleAddToLiked, handleAddToWatched);
 
   // Wrapper function to pass movie and list type to the handleShowOptions function
-  const handleShowOptionsWrapper = (movie, listType) => {
-    handleShowOptions(movie, listType);
+  const handleShowOptionsWrapper = movie => {
+    handleShowOptions(movie);
   };
 
   return (
@@ -52,7 +51,6 @@ function SearchListScreen() {
       {/* Modal for displaying options related to the selected movie */}
       <OptionsModal
         selectedItem={selectedMovie}
-        listType={listType}
         modalVisible={modalVisible}
         handleCloseModal={handleCloseModal}
         handleOptionSelect={handleOptionSelect}

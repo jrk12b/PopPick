@@ -90,7 +90,6 @@ const SearchList = ({
               myList={myList}
               watchedList={watchedList}
               handleShowOptions={handleShowOptions}
-              listType="likedList"
               mediaType={mediaType}
             />
           )}
