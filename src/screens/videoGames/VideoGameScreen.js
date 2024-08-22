@@ -51,6 +51,17 @@ function VideoGameScreen({navigation}) {
     return <Error message={error.message} />;
   }
 
+  // Combine all movies from the lists for filtering
+  const allListVideoGames = [
+    ...myListVideoGames,
+    ...likedListVideoGames,
+    ...playedListVideoGames,
+  ].map(game => game.id);
+
+  // Filter out movies that are already on any list
+  const filterList = games =>
+    games.filter(game => !allListVideoGames.includes(game.id));
+
   return (
     <ScrollView style={styles.container}>
       <View style={styles.header}>
@@ -87,7 +98,7 @@ function VideoGameScreen({navigation}) {
 
       {/* Display personal movie recommendations */}
       <PersonalRecVideoGames
-        personalVideoGames={personalVideoGames}
+        personalVideoGames={filterList(personalVideoGames)}
         handleShowOptions={handleShowOptions}
         navigation={navigation}
       />

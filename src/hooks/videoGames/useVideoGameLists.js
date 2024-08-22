@@ -2,7 +2,7 @@
 /* eslint-disable no-shadow */
 import {useState, useEffect} from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import {useVideoGames, useVideoGamesSimilar} from './useVideoGames';
+import {useVideoGamesSimilar} from './useVideoGames';
 
 const useVideoGameLists = () => {
   const [personalVideoGames, setPersonalVideoGames] = useState([]);
@@ -11,13 +11,6 @@ const useVideoGameLists = () => {
   const [playedListVideoGames, setPlayedListVideoGames] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-
-  // useVideoGames(
-  //   'https://api.igdb.com/v4/games',
-  //   setPersonalVideoGames,
-  //   setLoading,
-  //   setError,
-  // );
 
   useVideoGamesSimilar(
     setPersonalVideoGames,
