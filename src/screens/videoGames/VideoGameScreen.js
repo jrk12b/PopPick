@@ -3,7 +3,7 @@ import {ScrollView, View, TouchableOpacity} from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import styles from '../../styles/styles';
 import useVideoGameLists from '../../hooks/videoGames/useVideoGameLists';
-// import PersonalRecVideoGames from '../../components/videoGames/recommendations/PersonalRecVideoGames';
+import PersonalRec from '../../components/movies/recommendations/PersonalRec';
 import Loading from '../../components/movies/Loading';
 import Error from '../../components/movies/Error';
 import VideoGameOptionsModal from '../../components/videoGames/VideoGameOptionsModal';
@@ -51,16 +51,16 @@ function VideoGameScreen({navigation}) {
     return <Error message={error.message} />;
   }
 
-  // Combine all movies from the lists for filtering
   const allListVideoGames = [
     ...myListVideoGames,
     ...likedListVideoGames,
     ...playedListVideoGames,
-  ].map(game => game.id);
+  ]
+    .filter(game => game)
+    .map(game => game.id);
 
-  // Filter out movies that are already on any list
   const filterList = games =>
-    games.filter(game => !allListVideoGames.includes(game.id));
+    games.filter(game => game && !allListVideoGames.includes(game.id));
 
   return (
     <ScrollView style={styles.container}>
@@ -101,12 +101,12 @@ function VideoGameScreen({navigation}) {
         mediaType="videoGames"
       />
 
-      {/* Display personal movie recommendations
-      <PersonalRecVideoGames
-        personalVideoGames={filterList(personalVideoGames)}
+      <PersonalRec
+        personalMovies={filterList(personalVideoGames)}
         handleShowOptions={handleShowOptions}
         navigation={navigation}
-      /> */}
+        mediaType="videoGames"
+      />
 
       {/* Modal for displaying options related to the selected movie */}
       <VideoGameOptionsModal

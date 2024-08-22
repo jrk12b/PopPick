@@ -41,6 +41,7 @@ function PersonalRecScreen() {
       <PersonalRecFull
         personalMovies={personalMovies}
         handleShowOptions={handleShowOptions}
+        mediaType="movies"
       />
       <OptionsModal
         selectedMovie={selectedMovie}

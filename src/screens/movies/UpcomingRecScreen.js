@@ -41,6 +41,7 @@ function UpcomingRecScreen() {
       <UpcomingRecFull
         upcomingMovies={upcomingMovies}
         handleShowOptions={handleShowOptions}
+        mediaType="movies"
       />
       <OptionsModal
         selectedMovie={selectedMovie}

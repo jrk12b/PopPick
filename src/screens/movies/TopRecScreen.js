@@ -38,7 +38,11 @@ function TopRecScreen() {
 
   return (
     <>
-      <TopRecFull topMovies={topMovies} handleShowOptions={handleShowOptions} />
+      <TopRecFull
+        topMovies={topMovies}
+        handleShowOptions={handleShowOptions}
+        mediaType="movies"
+      />
       <OptionsModal
         selectedMovie={selectedMovie}
         listType={listType}

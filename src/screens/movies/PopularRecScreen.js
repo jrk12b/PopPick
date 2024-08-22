@@ -41,6 +41,7 @@ function PopularRecScreen() {
       <PopularRecFull
         popularMovies={popularMovies}
         handleShowOptions={handleShowOptions}
+        mediaType="movies"
       />
       <OptionsModal
         selectedMovie={selectedMovie}

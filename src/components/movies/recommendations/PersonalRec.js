@@ -25,9 +25,11 @@ function PersonalRec({
   navigation,
   mediaType,
 }) {
+  const page =
+    mediaType === 'movies' ? 'Personal Recs' : 'Personal Rec Video Games';
   return (
     <View style={styles.sectionContainer}>
-      <TouchableOpacity onPress={() => navigation.navigate('Personal Recs')}>
+      <TouchableOpacity onPress={() => navigation.navigate(page)}>
         <Text style={styles.sectionTitle}>Personal Recommendations</Text>
       </TouchableOpacity>
       <FlatList

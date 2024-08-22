@@ -41,6 +41,7 @@ function CustomRecScreen() {
       <CustomRecFull
         customMovies={customMovies}
         handleShowOptions={handleShowOptions}
+        mediaType="movies"
       />
       <OptionsModal
         selectedMovie={selectedMovie}

@@ -18,7 +18,7 @@ import MoviePoster from '../../MoviePoster';
  * - Movies are displayed in a grid with 3 columns, with each movie showing the poster image
  * - If a specific movie is clicked, handleShowOptions are displayed.
  */
-function PersonalRecFull({personalMovies, handleShowOptions}) {
+function PersonalRecFull({personalMovies, handleShowOptions, mediaType}) {
   if (!personalMovies) {
     return <Text>Loading...</Text>;
   }
@@ -32,6 +32,7 @@ function PersonalRecFull({personalMovies, handleShowOptions}) {
           item={item}
           handleShowOptions={handleShowOptions}
           listType="personalMovies"
+          mediaType={mediaType}
         />
       )}
       numColumns={3}

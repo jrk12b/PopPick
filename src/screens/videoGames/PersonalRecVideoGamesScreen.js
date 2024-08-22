@@ -1,5 +1,5 @@
 import React from 'react';
-import PersonalRecVideoGamesFull from '../../components/videoGames/lists/fullLists/PersonalRecVideoGamesFull';
+import PersonalRecFull from '../../components/movies/recommendations/recFull/PersonalRecFull';
 import useVideoGameLists from '../../hooks/videoGames/useVideoGameLists';
 import useVideoGameModal from '../../hooks/videoGames/useVideoGameModal';
 import VideoGameOptionsModal from '../../components/videoGames/VideoGameOptionsModal';
@@ -34,9 +34,10 @@ function PersonalRecVideoGamesScreen() {
 
   return (
     <>
-      <PersonalRecVideoGamesFull
-        personalVideoGames={personalVideoGames}
+      <PersonalRecFull
+        personalMovies={personalVideoGames}
         handleShowOptions={handleShowOptions}
+        mediaType="videoGames"
       />
       <VideoGameOptionsModal
         selectedVideoGame={selectedVideoGame}
