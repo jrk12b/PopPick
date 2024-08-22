@@ -17,7 +17,7 @@ function PersonalRecVideoGames({
 
       <FlatList
         data={personalVideoGames}
-        keyExtractor={item => item.id.toString()}
+        keyExtractor={item => `${item.id}_${item.cover}`}
         renderItem={({item}) => (
           <VideoGamePoster
             item={item}
