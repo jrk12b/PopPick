@@ -23,6 +23,8 @@ const OptionsModal = ({
   const inLikedList = isInList(likedList);
   const inWatchedList = isInList(watchedList);
 
+  const date = new Date(selectedItem.first_release_date * 1000); // Multiply by 1000 to convert from seconds to milliseconds
+  const readableDate = date.toLocaleDateString();
   return (
     <Modal
       transparent={true}
@@ -44,6 +46,19 @@ const OptionsModal = ({
               </Text>
               <Text style={styles.movieRating}>
                 Rating: {selectedItem.vote_average}
+              </Text>
+            </>
+          )}
+          {mediaType === 'videoGames' && (
+            <>
+              <Text style={styles.movieRelease}>
+                Release date: {readableDate}
+              </Text>
+              <Text style={styles.movieRating}>
+                Rating:{' '}
+                {selectedItem.rating
+                  ? selectedItem.rating.toFixed(1)
+                  : 'Not Available'}
               </Text>
             </>
           )}
