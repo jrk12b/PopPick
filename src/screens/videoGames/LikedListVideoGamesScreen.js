@@ -1,5 +1,5 @@
 import React from 'react';
-import LikedListVideoGamesFull from '../../components/videoGames/lists/fullLists/LikedListVideoGamesFull';
+import LikedListFull from '../../components/movies/lists/fullLists/LikedListFull';
 import useVideoGameLists from '../../hooks/videoGames/useVideoGameLists';
 import useVideoGameModal from '../../hooks/videoGames/useVideoGameModal';
 import VideoGameOptionsModal from '../../components/videoGames/VideoGameOptionsModal';
@@ -33,9 +33,12 @@ function LikedListVideoGamesScreen() {
 
   return (
     <>
-      <LikedListVideoGamesFull
-        likedListVideoGames={likedListVideoGames}
+      <LikedListFull
+        likedList={likedListVideoGames}
+        myList={myListVideoGames}
+        watchedList={playedListVideoGames}
         handleShowOptions={handleShowOptions}
+        mediaType="videoGames"
       />
       <VideoGameOptionsModal
         selectedVideoGame={selectedVideoGame}

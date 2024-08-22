@@ -35,7 +35,7 @@ function WatchedList({
   const title = mediaType === 'movies' ? 'Watched' : 'Played';
   return (
     <View style={styles.sectionContainer}>
-      <TouchableOpacity onPress={() => navigation.navigate('Watched List')}>
+      <TouchableOpacity onPress={() => navigation.navigate(`${title} List`)}>
         <Text style={styles.sectionTitle}>
           {title} ({watchedList.length})
         </Text>

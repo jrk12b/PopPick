@@ -21,11 +21,18 @@ import MoviePoster from '../../MoviePoster';
  * - Movies are displayed in a grid with 3 columns, with each movie showing the poster image and icons based on its presence in the liked, my list, or watched list.
  * - If a specific movie is clicked, handleShowOptions are displayed.
  */
-function WatchedListFull({watchedList, likedList, myList, handleShowOptions}) {
+function WatchedListFull({
+  watchedList,
+  likedList,
+  myList,
+  handleShowOptions,
+  mediaType,
+}) {
+  const title = mediaType === 'movies' ? 'Watched' : 'Played';
   return (
     <FlatList
       style={styles.FlatList}
-      data={likedList}
+      data={watchedList}
       keyExtractor={item => item.id.toString()}
       renderItem={({item}) => (
         <MoviePoster
@@ -35,6 +42,7 @@ function WatchedListFull({watchedList, likedList, myList, handleShowOptions}) {
           watchedList={watchedList}
           handleShowOptions={handleShowOptions}
           listType="watchedList"
+          mediaType={mediaType}
         />
       )}
       numColumns={3}
@@ -42,7 +50,7 @@ function WatchedListFull({watchedList, likedList, myList, handleShowOptions}) {
       contentContainerStyle={styles.gridContainer}
       ListHeaderComponent={
         <Text style={styles.sectionTitle}>
-          Watched List ({watchedList.length})
+          {title} List ({watchedList.length})
         </Text>
       }
       ListEmptyComponent={<Text style={styles.text}>No movies added yet.</Text>}

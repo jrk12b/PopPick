@@ -31,9 +31,10 @@ function LikedList({
   navigation,
   mediaType,
 }) {
+  const page = mediaType === 'movies' ? 'Liked List' : 'Liked List Video Games';
   return (
     <View style={styles.sectionContainer}>
-      <TouchableOpacity onPress={() => navigation.navigate('Liked List')}>
+      <TouchableOpacity onPress={() => navigation.navigate(page)}>
         <Text style={styles.sectionTitle}>Liked ({likedList.length})</Text>
       </TouchableOpacity>
       {likedList.length === 0 ? (

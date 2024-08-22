@@ -21,11 +21,17 @@ import MoviePoster from '../../MoviePoster';
  * - Movies are displayed in a grid with 3 columns, with each movie showing the poster image and icons based on its presence in the liked, my list, or watched list.
  * - If a specific movie is clicked, handleShowOptions are displayed.
  */
-function MyListFull({myList, likedList, watchedList, handleShowOptions}) {
+function MyListFull({
+  myList,
+  likedList,
+  watchedList,
+  handleShowOptions,
+  mediaType,
+}) {
   return (
     <FlatList
       style={styles.FlatList}
-      data={likedList}
+      data={myList}
       keyExtractor={item => item.id.toString()}
       renderItem={({item}) => (
         <MoviePoster
@@ -35,6 +41,7 @@ function MyListFull({myList, likedList, watchedList, handleShowOptions}) {
           watchedList={watchedList}
           handleShowOptions={handleShowOptions}
           listType="myList"
+          mediaType={mediaType}
         />
       )}
       numColumns={3}

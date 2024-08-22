@@ -11,9 +11,10 @@ function MyList({
   navigation,
   mediaType,
 }) {
+  const page = mediaType === 'movies' ? 'My List' : 'My List Video Games';
   return (
     <View style={styles.sectionContainer}>
-      <TouchableOpacity onPress={() => navigation.navigate('My List')}>
+      <TouchableOpacity onPress={() => navigation.navigate(page)}>
         <Text style={styles.sectionTitle}>My List ({myList.length})</Text>
       </TouchableOpacity>
 

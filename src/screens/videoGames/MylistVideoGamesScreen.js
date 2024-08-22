@@ -1,5 +1,5 @@
 import React from 'react';
-import MyListVideoGamesFull from '../../components/videoGames/lists/fullLists/MyListVideoGamesFull';
+import MyListFull from '../../components/movies/lists/fullLists/MyListFull';
 import useVideoGameLists from '../../hooks/videoGames/useVideoGameLists';
 import useVideoGameModal from '../../hooks/videoGames/useVideoGameModal';
 import VideoGameOptionsModal from '../../components/videoGames/VideoGameOptionsModal';
@@ -33,11 +33,12 @@ function MyListVideoGamesScreen() {
 
   return (
     <>
-      <MyListVideoGamesFull
-        myListVideoGames={myListVideoGames}
-        likedListVideoGames={likedListVideoGames}
-        playedListVideoGames={playedListVideoGames}
+      <MyListFull
+        myList={myListVideoGames}
+        likedList={likedListVideoGames}
+        watchedList={playedListVideoGames}
         handleShowOptions={handleShowOptions}
+        mediaType="videoGames"
       />
       <VideoGameOptionsModal
         selectedVideoGame={selectedVideoGame}
