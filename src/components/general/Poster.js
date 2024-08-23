@@ -5,6 +5,44 @@ import styles from '../../styles/styles';
 import {getAccessToken} from '../../hooks/videoGames/auth';
 import {VIDEO_GAME_CLIENT_ID} from '../../config';
 
+const delay = ms => new Promise(resolve => setTimeout(resolve, ms));
+
+const fetchCoverImageWithRetry = async (
+  item,
+  setCoverImage,
+  retryCount = 3,
+) => {
+  try {
+    const accessToken = await getAccessToken();
+    await delay(500); // Adding delay between requests
+    const response = await fetch('https://api.igdb.com/v4/covers', {
+      method: 'POST',
+      headers: {
+        Accept: 'application/json',
+        'Client-ID': VIDEO_GAME_CLIENT_ID,
+        Authorization: `Bearer ${accessToken}`,
+      },
+      body: `fields url; where id = ${item.cover};`,
+    });
+
+    if (response.status === 429 && retryCount > 0) {
+      const retryAfter =
+        parseInt(response.headers.get('Retry-After'), 10) * 1000 || 1000;
+      await delay(retryAfter);
+      return fetchCoverImageWithRetry(item, setCoverImage, retryCount - 1);
+    }
+
+    const data = await response.json();
+    if (data.length > 0) {
+      const imageUrl = data[0].url.replace(/^\/\//, '');
+      const fullImageUrl = `https:${imageUrl}`;
+      setCoverImage(fullImageUrl);
+    }
+  } catch (error) {
+    console.error('Error fetching cover image:', error);
+  }
+};
+
 const Poster = ({
   item,
   mediaType,
@@ -14,43 +52,17 @@ const Poster = ({
   handleShowOptions,
 }) => {
   const [coverImage, setCoverImage] = useState(null);
+
   useEffect(() => {
-    if (mediaType === 'videoGames') {
-      const fetchCoverImage = async () => {
-        try {
-          const accessToken = await getAccessToken();
-          const response = await fetch('https://api.igdb.com/v4/covers', {
-            method: 'POST',
-            headers: {
-              Accept: 'application/json',
-              'Client-ID': VIDEO_GAME_CLIENT_ID,
-              Authorization: `Bearer ${accessToken}`,
-            },
-            body: `fields url; where id = ${item.cover};`,
-          });
-          const data = await response.json();
-          if (data.length > 0) {
-            const imageUrl = data[0].url.replace(/^\/\//, '');
-            const fullImageUrl = `https:${imageUrl}`;
-            setCoverImage(fullImageUrl);
-          }
-        } catch (error) {
-          console.error('Error fetching cover image:', error);
-        }
-      };
-
-      if (item.cover) {
-        fetchCoverImage();
-      }
+    if (mediaType === 'videoGames' && item.cover) {
+      fetchCoverImageWithRetry(item, setCoverImage);
     }
-  }, [item.cover, mediaType]);
+  }, [item, item.cover, mediaType]);
 
-  // Determine if the item is liked, saved, or watched
   const isLiked = likedList.some(media => media.id === item.id);
   const isSaved = myList.some(media => media.id === item.id);
   const isWatched = watchedList.some(media => media.id === item.id);
 
-  // Get the appropriate image URI based on mediaType
   const imageUri =
     mediaType === 'movies'
       ? `https://image.tmdb.org/t/p/w500${item.poster_path}`

@@ -31,7 +31,6 @@ function LikedList({
   navigation,
   mediaType,
 }) {
-  console.log('liked here: ' + likedList);
   const page = mediaType === 'movies' ? 'Liked List' : 'Liked List Video Games';
   return (
     <View style={styles.sectionContainer}>
