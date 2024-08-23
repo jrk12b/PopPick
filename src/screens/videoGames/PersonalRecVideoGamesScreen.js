@@ -5,12 +5,11 @@ import useVideoGameModal from '../../hooks/videoGames/useVideoGameModal';
 import OptionsModal from '../../components/general/OptionsModal';
 
 /**
- * MyListScreen Component
+ * PersonalRecVideoGamesScreen Component
  *
- * This screen displays the user's list of movies that they have added to their
- * personal list and provides functionality for managing the list and viewing
- * movie options. It uses custom hooks to manage movie lists and modal state,
- * and renders the personal movie list and a modal for additional options.
+ * Displays personalized video game recommendations and allows
+ * management of lists through a modal. Utilizes custom hooks for
+ * state management and rendering.
  */
 function PersonalRecVideoGamesScreen() {
   const {

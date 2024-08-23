@@ -4,12 +4,12 @@ import useVideoGameLists from '../../hooks/videoGames/useVideoGameLists';
 import useVideoGameModal from '../../hooks/videoGames/useVideoGameModal';
 import OptionsModal from '../../components/general/OptionsModal';
 /**
- * MyListScreen Component
+ * LikedListVideoGamesScreen Component
  *
- * This screen displays the user's list of movies that they have added to their
- * personal list and provides functionality for managing the list and viewing
- * movie options. It uses custom hooks to manage movie lists and modal state,
- * and renders the personal movie list and a modal for additional options.
+ * This screen displays the user's list of liked video games and provides functionality
+ * for managing the list and viewing options for each game. It utilizes custom hooks
+ * to handle video game lists and modal state, and renders a list of liked video games
+ * along with a modal for additional actions.
  */
 function LikedListVideoGamesScreen() {
   const {

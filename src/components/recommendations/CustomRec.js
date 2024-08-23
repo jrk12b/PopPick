@@ -4,24 +4,23 @@ import Poster from '../general/Poster';
 import styles from '../../styles/styles';
 
 /**
- * MyList Component
+ * CustomRec Component
  *
- * This component renders a FlatList displaying a row of movies from the my list data.
- * Each movie is displayed as a Poster component. The component also handles optional
- * rendering of icons for movies in the liked, my list, or watched list.
+ * This component renders a FlatList displaying a row of custom movie recommendations.
+ * Each recommendation is displayed as a Poster component. The component allows users
+ * to navigate to a detailed screen of custom recommendations.
  *
  * Props:
- * - myList: Array - A list of movies in the user's personal list to display.
- * - likedList: Array - (Optional) A list of liked movies.
- * - watchedList: Array - (Optional) A list of movies the user has already watched.
+ * - customMovies: Array - A list of custom movie recommendations to display.
  * - handleShowOptions: Function - A callback function to handle actions when a movie is selected.
- * - navigation: navigation for the entire app
+ * - navigation: Object - Navigation object for the app, used to navigate between screens.
+ * - mediaType: String - The type of media being displayed (e.g., 'movies').
  *
  * Behavior:
- * - If myList is empty, the component displays a message "No movies added yet."
- * - Movies are displayed in a single row allowing for scrolling, with each movie showing the poster image and icons based on its presence in the liked, my list, or watched list.
- * - If the My List header text is clicked, the user is navigate to the Liked List screen (MyListFull)
- * - If a specific movie is clicked, handleShowOptions are displayed.
+ * - If customMovies is empty, the component does not display any items (no empty state message).
+ * - Movies are displayed in a single horizontal row, allowing for scrolling, with each movie showing the poster image.
+ * - If the "Custom Recommendations" header text is clicked, the user is navigated to the "Custom Recs" screen.
+ * - If a specific movie recommendation is clicked, handleShowOptions is invoked to display options for that movie.
  */
 function CustomRec({customMovies, handleShowOptions, navigation, mediaType}) {
   return (

@@ -6,20 +6,21 @@ import Poster from '../general/Poster';
 /**
  * LikedListFull Component
  *
- * This component renders a FlatList displaying a grid of movies from the liked list data.
- * Each movie is displayed as a Poster component. The component also handles optional
- * rendering of icons for movies in the liked, my list, or watched list.
+ * This component renders a FlatList displaying a grid of media items (movies or video games) from the liked list.
+ * Each item is displayed as a Poster component. The component also handles optional
+ * rendering of icons for items in the liked, my list, or watched list.
  *
  * Props:
- * - likedList: Array - A list of liked movies to display.
- * - myList: Array - (Optional) A list of movies in the user's personal list.
- * - watchedList: Array - (Optional) A list of movies the user has already watched.
- * - handleShowOptions: Function - A callback function to handle actions when a movie is selected.
+ * - likedList: Array - A list of liked media items to display.
+ * - myList: Array - (Optional) A list of media items in the user's personal list.
+ * - watchedList: Array - (Optional) A list of media items the user has already watched or played.
+ * - handleShowOptions: Function - A callback function to handle actions when a media item is selected.
+ * - mediaType: String - The type of media being displayed (either 'movies' or 'videoGames').
  *
  * Behavior:
- * - If likedList is empty, the component displays a message "No movies added yet."
- * - Movies are displayed in a grid with 3 columns, with each movie showing the poster image and icons based on its presence in the liked, my list, or watched list.
- * - If a specific movie is clicked, handleShowOptions are displayed.
+ * - If likedList is empty, the component displays a message "No movies/games added yet."
+ * - Media items are displayed in a grid with 3 columns, with each item showing the poster image and icons based on its presence in the liked, my list, or watched list.
+ * - If a specific media item is clicked, handleShowOptions is called to display options.
  */
 function LikedListFull({
   likedList,
@@ -49,7 +50,11 @@ function LikedListFull({
       ListHeaderComponent={
         <Text style={styles.sectionTitle}>Liked ({likedList.length})</Text>
       }
-      ListEmptyComponent={<Text style={styles.text}>No movies added yet.</Text>}
+      ListEmptyComponent={
+        <Text style={styles.text}>
+          No {mediaType === 'movies' ? 'movies' : 'games'} added yet.
+        </Text>
+      }
     />
   );
 }

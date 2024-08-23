@@ -5,10 +5,11 @@ import useVideoGameModal from '../../hooks/videoGames/useVideoGameModal';
 import OptionsModal from '../../components/general/OptionsModal';
 
 /**
- * WatchedListScreen Component
+ * PlayedListScreen Component
  *
- * This screen displays the list of movies that the user has watched. It also
- * provides functionality for interacting with individual movies via a modal.
+ * Displays the list of video games that the user has played
+ * and provides functionality for interacting with individual games
+ * through a modal.
  */
 function PlayedListScreen() {
   const {

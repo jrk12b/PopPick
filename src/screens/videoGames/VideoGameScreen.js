@@ -15,11 +15,10 @@ import LikedList from '../../components/lists/LikedList';
 /**
  * VideoGameScreen Component
  *
- * This screen displays various movie lists and recommendations, allowing users
- * to view and interact with their movie collections and recommendations.
+ * Displays various video game lists and recommendations, allowing users
+ * to interact with their collections and view personalized recommendations.
  */
 function VideoGameScreen({navigation}) {
-  // Custom hook to manage movie lists and fetch movie data
   const {
     myListVideoGames,
     likedListVideoGames,
@@ -58,6 +57,7 @@ function VideoGameScreen({navigation}) {
     .filter(game => game)
     .map(game => game.id);
 
+  // Filter out games already in the user's lists
   const filterList = games =>
     games.filter(game => game && !allListVideoGames.includes(game.id));
 
@@ -90,7 +90,7 @@ function VideoGameScreen({navigation}) {
         mediaType="videoGames"
       />
 
-      {/* Display list of liked movies */}
+      {/* Display list of liked games */}
       <LikedList
         myList={myListVideoGames}
         likedList={likedListVideoGames}
@@ -100,6 +100,7 @@ function VideoGameScreen({navigation}) {
         mediaType="videoGames"
       />
 
+      {/* Display personal recommendations excluding already listed games */}
       <PersonalRec
         personalMovies={filterList(personalVideoGames)}
         handleShowOptions={handleShowOptions}
@@ -107,7 +108,7 @@ function VideoGameScreen({navigation}) {
         mediaType="videoGames"
       />
 
-      {/* Modal for displaying options related to the selected movie */}
+      {/* Modal for managing options related to the selected game */}
       <OptionsModal
         selectedItem={selectedVideoGame}
         modalVisible={modalVisible}

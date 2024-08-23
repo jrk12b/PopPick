@@ -6,22 +6,25 @@ import Poster from '../general/Poster';
 /**
  * LikedList Component
  *
- * This component renders a FlatList displaying a row of movies from the liked list data.
- * Each movie is displayed as a Poster component. The component also handles optional
- * rendering of icons for movies in the liked, my list, or watched list.
+ * This component renders a FlatList displaying a row of liked media items, which could be
+ * video games, movies, books, or TV shows. Each item is displayed as a Poster component.
+ * The component also handles optional rendering of icons indicating whether an item is in
+ * the liked list, personal list, or watched list.
  *
  * Props:
- * - likedList: Array - A list of liked movies to display.
- * - watchedList: Array - (Optional) A list of movies the user has already watched.
- * - myList: Array - (Optional) A list of movies in the user's personal list.
- * - handleShowOptions: Function - A callback function to handle actions when a movie is selected.
- * - navigation: navigation for the entire app
+ * - likedList: Array - A list of liked media items to display.
+ * - myList: Array - (Optional) A list of media items in the user's personal list.
+ * - watchedList: Array - (Optional) A list of media items the user has already watched or played.
+ * - handleShowOptions: Function - A callback function to handle actions when a media item is selected.
+ * - navigation: Object - Navigation object for handling screen transitions.
+ * - mediaType: String - The type of media being displayed (e.g., 'movies', 'videoGames', 'books', 'tvShows').
  *
  * Behavior:
- * - If likedList is empty, the component displays a message "No movies added yet."
- * - Movies are displayed in a single row allowing for scrolling, with each movie showing the poster image and icons based on its presence in the liked, my list, or watched list.
- * - If the Liked List header text is clicked, the user is navigate to the Liked List screen (LikedListFull)
- * - If a specific movie is clicked, handleShowOptions are displayed.
+ * - If likedList is empty, the component displays a message indicating that no items have been added yet.
+ * - Media items are displayed in a single horizontal row allowing for scrolling, with each item showing
+ *   the poster image and relevant icons based on its presence in the liked, personal, or watched/played list.
+ * - Clicking the "Liked" header navigates the user to the full Liked List screen specific to the media type.
+ * - Clicking on a specific media item triggers the handleShowOptions function to display available options.
  */
 function LikedList({
   likedList,
@@ -31,15 +34,22 @@ function LikedList({
   navigation,
   mediaType,
 }) {
-  const page = mediaType === 'movies' ? 'Liked List' : 'Liked List Video Games';
+  // Determine the appropriate page title based on the media type
+  const page =
+    mediaType === 'movies' ? 'Liked List' : `Liked List ${mediaType}`;
+
   return (
     <View style={styles.sectionContainer}>
+      {/* Navigate to the full Liked List screen when the header is clicked */}
       <TouchableOpacity onPress={() => navigation.navigate(page)}>
         <Text style={styles.sectionTitle}>Liked ({likedList.length})</Text>
       </TouchableOpacity>
+
+      {/* Display a message if the liked list is empty */}
       {likedList.length === 0 ? (
-        <Text style={styles.text}>No movies added yet.</Text>
+        <Text style={styles.text}>No items added yet.</Text>
       ) : (
+        // Render the liked media items as a horizontal scrolling list
         <FlatList
           data={likedList}
           keyExtractor={item => item.id.toString()}

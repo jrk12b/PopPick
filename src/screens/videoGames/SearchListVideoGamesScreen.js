@@ -7,11 +7,11 @@ import SearchList from '../../components/lists/SearchList';
 import styles from '../../styles/styles';
 
 /**
- * SearchListScreen Component
+ * SearchListVideoGamesScreen Component
  *
- * This screen displays a list of search results for movies. Users can interact
- * with each movie item through a modal that provides options for adding or
- * removing movies from different lists.
+ * Displays a list of search results for video games.
+ * Users can interact with each game item through a modal
+ * that provides options for managing their lists.
  */
 function SearchListVideoGamesScreen() {
   // Custom hook to manage movie lists and their state

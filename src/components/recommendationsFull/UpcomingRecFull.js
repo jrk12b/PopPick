@@ -6,17 +6,19 @@ import Poster from '../general/Poster';
 /**
  * UpcomingRecFull Component
  *
- * This component renders a FlatList displaying a grid of movies from the upcomingMovies data.
- * Each movie is displayed as a Poster component.
+ * This component renders a FlatList displaying a grid of upcoming movies recommended to the user.
+ * Each movie is represented as a Poster component, providing a visual representation of the movie.
  *
  * Props:
- * - upcomingMovies: Array - A list of upcoming movies that has been recommended to the user.
- * - handleShowOptions: Function - A callback function to handle actions when a movie is selected.
+ * - upcomingMovies: Array - A list of upcoming movies that have been recommended to the user.
+ * - handleShowOptions: Function - A callback function invoked when a movie is selected to display options.
+ * - mediaType: String - The type of media being displayed (e.g., 'movies' or 'video games').
  *
  * Behavior:
  * - If upcomingMovies is empty, the component displays a message "No movies added yet."
- * - Movies are displayed in a grid with 3 columns, with each movie showing the poster image
- * - If a specific movie is clicked, handleShowOptions are displayed.
+ * - Movies are displayed in a grid layout with 3 columns, showcasing each movie's poster image.
+ * - If a specific movie is clicked, handleShowOptions is called to provide options for that movie.
+ * - If upcomingMovies is not yet loaded, a loading message "Loading..." is displayed.
  */
 function UpcomingRecFull({upcomingMovies, handleShowOptions, mediaType}) {
   if (!upcomingMovies) {
