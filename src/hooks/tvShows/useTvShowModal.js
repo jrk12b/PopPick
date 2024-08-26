@@ -58,7 +58,7 @@ const useTvShowModal = (
       case 'removeFromMyList':
         handleAddToMyList(selectedTvShow);
         break;
-      case 'addtoLiked':
+      case 'addToLiked':
       case 'removeFromLikedList':
         handleAddToLiked(selectedTvShow);
         break;

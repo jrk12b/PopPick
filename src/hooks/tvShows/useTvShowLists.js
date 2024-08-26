@@ -216,7 +216,7 @@ const useTvShowLists = () => {
       const updatedList = prevList.find(item => item.id === tvShow.id)
         ? prevList.filter(item => item.id !== tvShow.id)
         : [...prevList, tvShow];
-      saveList('myListTvShow', updatedList); // Save updated myList to AsyncStorage
+      saveList('myListTvShows', updatedList); // Save updated myList to AsyncStorage
       return updatedList;
     });
   };
