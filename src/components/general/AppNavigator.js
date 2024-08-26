@@ -27,6 +27,7 @@ import PersonalRecTvShowsScreen from '../../screens/tvShows/PersonalRecTvShowsSc
 import PopularRecTvShowsScreen from '../../screens/tvShows/PopularRecTvShowsScreen';
 import TopRecTvShowsScreen from '../../screens/tvShows/TopRecTvShowsScreen';
 import CustomRecTvShowsScreen from '../../screens/tvShows/CustomRecTvShowsScreen';
+import SearchListTvShowsScreen from '../../screens/tvShows/SearchListTvShowsScreen';
 
 const Stack = createStackNavigator();
 
@@ -145,6 +146,10 @@ function AppNavigator() {
         <Stack.Screen
           name="Custom Recs TV Shows"
           component={CustomRecTvShowsScreen}
+        />
+        <Stack.Screen
+          name="Search TV Shows"
+          component={SearchListTvShowsScreen}
         />
       </Stack.Navigator>
     </NavigationContainer>

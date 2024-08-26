@@ -88,7 +88,8 @@ function TvShowsScreen({navigation}) {
     <ScrollView style={styles.container}>
       <View style={styles.header}>
         {/* Search button to navigate to the search screen */}
-        <TouchableOpacity onPress={() => navigation.navigate('Search')}>
+        <TouchableOpacity
+          onPress={() => navigation.navigate('Search TV Shows')}>
           <Icon name="search" size={24} color="#FBF4F4" />
         </TouchableOpacity>
       </View>

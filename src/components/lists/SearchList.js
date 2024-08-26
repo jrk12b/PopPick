@@ -84,6 +84,20 @@ const SearchList = ({
       } catch (error) {
         console.error('Error fetching video games:', error);
       }
+    } else if (mediaType === 'TV Shows') {
+      try {
+        // Fetching movie data from The Movie Database (TMDb) API
+        const response = await fetch(
+          `https://api.themoviedb.org/3/search/tv?api_key=${API_KEY}&query=${encodeURIComponent(
+            query,
+          )}`,
+        );
+        const data = await response.json();
+        // Limiting the results to the top 10
+        setResults(data.results.slice(0, 10));
+      } catch (error) {
+        console.error('Error fetching tv shows:', error);
+      }
     }
   };
 
@@ -103,7 +117,11 @@ const SearchList = ({
       <TextInput
         style={styles.input}
         placeholder={`Search for ${
-          mediaType === 'movies' ? 'movies' : 'video games'
+          mediaType === 'movies'
+            ? 'movies'
+            : mediaType === 'TV Shows'
+            ? 'TV Shows'
+            : 'video games'
         }...`}
         placeholderTextColor="#FBF4F4"
         value={query}
