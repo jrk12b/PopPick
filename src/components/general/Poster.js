@@ -71,7 +71,7 @@ const Poster = ({
 
   // Determine the image URI based on the media type
   const imageUri =
-    mediaType === 'movies'
+    mediaType === 'movies' || mediaType === 'TV Shows'
       ? `https://image.tmdb.org/t/p/w500${item.poster_path}` // Movie poster URL
       : coverImage; // Video game cover image URL
 

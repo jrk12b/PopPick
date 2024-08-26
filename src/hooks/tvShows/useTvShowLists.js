@@ -107,7 +107,7 @@ const useTvShowLists = () => {
       const recommendations = await Promise.all(
         likedMovieIds.map(id =>
           fetch(
-            `https://api.themoviedb.org/3/movie/${id}/recommendations?api_key=${API_KEY}`,
+            `https://api.themoviedb.org/3/tv/${id}/recommendations?api_key=${API_KEY}`,
           )
             .then(response => response.json())
             .then(data => data.results),

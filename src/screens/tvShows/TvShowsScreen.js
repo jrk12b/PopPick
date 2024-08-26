@@ -100,7 +100,7 @@ function TvShowsScreen({navigation}) {
         watchedList={watchedListTvShows}
         handleShowOptions={handleShowOptions}
         navigation={navigation}
-        mediaType="movies"
+        mediaType="TV Shows"
       />
 
       {/* Display list of watched movies */}
@@ -163,7 +163,7 @@ function TvShowsScreen({navigation}) {
         myList={myListTvShows}
         likedList={likedListTvShows}
         watchedList={watchedListTvShows}
-        mediaType="movies"
+        mediaType="TV Shows"
       />
     </ScrollView>
   );
