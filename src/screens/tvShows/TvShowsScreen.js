@@ -110,7 +110,7 @@ function TvShowsScreen({navigation}) {
         watchedList={watchedListTvShows}
         handleShowOptions={handleShowOptions}
         navigation={navigation}
-        mediaType="movies"
+        mediaType="TV Shows"
       />
 
       {/* Display list of liked movies */}
@@ -120,7 +120,7 @@ function TvShowsScreen({navigation}) {
         watchedList={watchedListTvShows}
         handleShowOptions={handleShowOptions}
         navigation={navigation}
-        mediaType="movies"
+        mediaType="TV Shows"
       />
 
       {/* Display personal movie recommendations */}

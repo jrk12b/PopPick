@@ -21,6 +21,8 @@ import LikedListVideoGamesScreen from '../../screens/videoGames/LikedListVideoGa
 import PersonalRecVideoGamesScreen from '../../screens/videoGames/PersonalRecVideoGamesScreen';
 import SearchListVideoGamesScreen from '../../screens/videoGames/SearchListVideoGamesScreen';
 import MyListTvShowsScreen from '../../screens/tvShows/MylistTvShowsScreen';
+import WatchedListTvShowsScreen from '../../screens/tvShows/WatchedListTvShowsScreen';
+import LikedListTvShowsScreen from '../../screens/tvShows/LikedListTvShowsScreen';
 
 const Stack = createStackNavigator();
 
@@ -116,6 +118,14 @@ function AppNavigator() {
           component={SearchListVideoGamesScreen}
         />
         <Stack.Screen name="My List TV Shows" component={MyListTvShowsScreen} />
+        <Stack.Screen
+          name="Watched List TV Shows"
+          component={WatchedListTvShowsScreen}
+        />
+        <Stack.Screen
+          name="Liked List TV Shows"
+          component={LikedListTvShowsScreen}
+        />
       </Stack.Navigator>
     </NavigationContainer>
   );

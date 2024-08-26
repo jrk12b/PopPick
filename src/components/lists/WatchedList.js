@@ -33,12 +33,14 @@ function WatchedList({
   mediaType,
 }) {
   // Determine the title based on the media type (Watched for movies, Played for video games)
-  const title = mediaType === 'movies' ? 'Watched' : 'Played';
+  const title =
+    mediaType === 'movies' || mediaType === 'TV Shows' ? 'Watched' : 'Played';
 
   return (
     <View style={styles.sectionContainer}>
       {/* Navigates to the full Watched/Played List screen when the title is pressed */}
-      <TouchableOpacity onPress={() => navigation.navigate(`${title} List`)}>
+      <TouchableOpacity
+        onPress={() => navigation.navigate(`${title} List ${mediaType}`)}>
         <Text style={styles.sectionTitle}>
           {title} ({watchedList.length})
         </Text>

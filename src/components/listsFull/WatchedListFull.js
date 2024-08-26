@@ -29,7 +29,8 @@ function WatchedListFull({
   handleShowOptions,
   mediaType,
 }) {
-  const title = mediaType === 'movies' ? 'Watched' : 'Played';
+  const title =
+    mediaType === 'movies' || mediaType === 'TV Shows' ? 'Watched' : 'Played';
   return (
     <FlatList
       style={styles.FlatList}

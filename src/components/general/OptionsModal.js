@@ -55,11 +55,26 @@ const OptionsModal = ({
       <View style={styles.modalContainer}>
         <View style={styles.modalContent}>
           <Text style={styles.movieTitle}>
-            {mediaType === 'movies' ? selectedItem.title : selectedItem.name}
+            {mediaType === 'movies' || mediaType === 'TV Shows'
+              ? selectedItem.title
+              : selectedItem.name}
           </Text>
 
           {/* Display specific information based on the media type */}
           {mediaType === 'movies' && (
+            <>
+              <Text style={styles.movieDescription}>
+                {selectedItem.overview}
+              </Text>
+              <Text style={styles.movieRelease}>
+                Release date: {selectedItem.release_date}
+              </Text>
+              <Text style={styles.movieRating}>
+                Rating: {selectedItem.vote_average}
+              </Text>
+            </>
+          )}
+          {mediaType === 'TV SHows' && (
             <>
               <Text style={styles.movieDescription}>
                 {selectedItem.overview}
