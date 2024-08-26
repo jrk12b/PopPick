@@ -21,9 +21,15 @@ import Poster from '../general/Poster';
  * - If a specific movie is clicked, handleShowOptions is invoked to display options for that movie.
  */
 function TopRec({topMovies, handleShowOptions, navigation, mediaType}) {
+  const page =
+    mediaType === 'movies'
+      ? 'Top Recs'
+      : mediaType === 'TV Shows'
+      ? 'Top Recs TV Shows'
+      : 'Top Rec Video Games';
   return (
     <View style={styles.sectionContainer}>
-      <TouchableOpacity onPress={() => navigation.navigate('Top Recs')}>
+      <TouchableOpacity onPress={() => navigation.navigate(page)}>
         <Text style={styles.sectionTitle}>Top Rated Recommendations</Text>
       </TouchableOpacity>
       <FlatList

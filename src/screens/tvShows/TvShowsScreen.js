@@ -144,7 +144,7 @@ function TvShowsScreen({navigation}) {
         topMovies={filterList(topTvShows)}
         handleShowOptions={handleShowOptions}
         navigation={navigation}
-        mediaType="movies"
+        mediaType="TV Shows"
       />
 
       <CustomRec
