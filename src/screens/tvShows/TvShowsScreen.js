@@ -128,7 +128,7 @@ function TvShowsScreen({navigation}) {
         personalMovies={filterList(personalTvShows)}
         handleShowOptions={handleShowOptions}
         navigation={navigation}
-        mediaType="movies"
+        mediaType="TV Shows"
       />
 
       {/* Display popular movie recommendations */}
@@ -136,7 +136,7 @@ function TvShowsScreen({navigation}) {
         popularMovies={filterList(popularTvShows)}
         handleShowOptions={handleShowOptions}
         navigation={navigation}
-        mediaType="movies"
+        mediaType="TV Shows"
       />
 
       {/* Display top-rated movie recommendations */}

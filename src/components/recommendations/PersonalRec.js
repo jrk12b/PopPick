@@ -27,7 +27,11 @@ function PersonalRec({
   mediaType,
 }) {
   const page =
-    mediaType === 'movies' ? 'Personal Recs' : 'Personal Rec Video Games';
+    mediaType === 'movies'
+      ? 'Personal Recs'
+      : mediaType === 'TV Shows'
+      ? 'Personal Recs TV Shows'
+      : 'Personal Recs Video Games';
   return (
     <View style={styles.sectionContainer}>
       <TouchableOpacity onPress={() => navigation.navigate(page)}>

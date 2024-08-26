@@ -21,9 +21,15 @@ import Poster from '../general/Poster';
  * - If a specific movie is clicked, handleShowOptions is invoked to display options for that movie.
  */
 function PopularRec({popularMovies, handleShowOptions, navigation, mediaType}) {
+  const page =
+    mediaType === 'movies'
+      ? 'Popular Recs'
+      : mediaType === 'TV Shows'
+      ? 'Popular Recs TV Shows'
+      : 'Popular Rec Video Games';
   return (
     <View style={styles.sectionContainer}>
-      <TouchableOpacity onPress={() => navigation.navigate('Popular Recs')}>
+      <TouchableOpacity onPress={() => navigation.navigate(page)}>
         <Text style={styles.sectionTitle}>Popular Recommendations</Text>
       </TouchableOpacity>
       <FlatList
