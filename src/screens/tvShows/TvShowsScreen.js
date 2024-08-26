@@ -151,7 +151,7 @@ function TvShowsScreen({navigation}) {
         customMovies={customTvShows}
         handleShowOptions={handleShowOptions}
         navigation={navigation}
-        mediaType="movies"
+        mediaType="TV Shows"
       />
 
       {/* Modal for displaying options related to the selected movie */}

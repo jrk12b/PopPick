@@ -23,9 +23,15 @@ import styles from '../../styles/styles';
  * - If a specific movie recommendation is clicked, handleShowOptions is invoked to display options for that movie.
  */
 function CustomRec({customMovies, handleShowOptions, navigation, mediaType}) {
+  const page =
+    mediaType === 'movies'
+      ? 'Custom Recs'
+      : mediaType === 'TV Shows'
+      ? 'Custom Recs TV Shows'
+      : 'Custom Rec Video Games';
   return (
     <View style={styles.sectionContainer}>
-      <TouchableOpacity onPress={() => navigation.navigate('Custom Recs')}>
+      <TouchableOpacity onPress={() => navigation.navigate(page)}>
         <Text style={styles.sectionTitle}>Custom Recommendations</Text>
       </TouchableOpacity>
       <FlatList
