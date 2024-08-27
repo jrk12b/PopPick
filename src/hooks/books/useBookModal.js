@@ -18,7 +18,7 @@ const useMovieModal = (
   handleAddToWatched,
 ) => {
   // State to manage the currently selected movie
-  const [selectedMovie, setSelectedMovie] = useState(null);
+  const [selectedBook, setselectedBook] = useState(null);
   // State to control the visibility of the modal
   const [modalVisible, setModalVisible] = useState(false);
 
@@ -26,10 +26,9 @@ const useMovieModal = (
    * Opens the modal with options for the selected movie.
    *
    * @param {Object} movie - The movie to be displayed in the modal.
-   * @param {string} type - The type of list the movie pertains to.
    */
-  const handleShowOptions = (movie, type) => {
-    setSelectedMovie(movie);
+  const handleShowOptions = book => {
+    setselectedBook(book);
     setModalVisible(true);
   };
 
@@ -38,7 +37,7 @@ const useMovieModal = (
    */
   const handleCloseModal = () => {
     setModalVisible(false);
-    setSelectedMovie(null);
+    setselectedBook(null);
   };
 
   /**
@@ -49,22 +48,22 @@ const useMovieModal = (
    * @param {string} option - The option selected (e.g., 'addToMyList', 'addToLiked', 'addToWatched', etc.).
    */
   const handleOptionSelect = option => {
-    if (!selectedMovie) {
+    if (!selectedBook) {
       return; // Exit if no movie is selected
     }
 
     switch (option) {
       case 'addToMyList':
       case 'removeFromMyList':
-        handleAddToMyList(selectedMovie);
+        handleAddToMyList(selectedBook);
         break;
-      case 'addtoLiked':
+      case 'addToLiked':
       case 'removeFromLikedList':
-        handleAddToLiked(selectedMovie);
+        handleAddToLiked(selectedBook);
         break;
       case 'addToWatched':
       case 'removeFromWatchedList':
-        handleAddToWatched(selectedMovie);
+        handleAddToWatched(selectedBook);
         break;
       default:
         // Handle unknown options if needed
@@ -76,7 +75,7 @@ const useMovieModal = (
 
   // Return the current state and handler functions
   return {
-    selectedMovie,
+    selectedBook,
     modalVisible,
     handleShowOptions,
     handleCloseModal,

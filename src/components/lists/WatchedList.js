@@ -32,6 +32,10 @@ function WatchedList({
   navigation,
   mediaType,
 }) {
+  const keyExtractor = item =>
+    mediaType === 'books'
+      ? item.cover_id?.toString() || item.key // fallback to a different key if cover_id is not available
+      : item.id?.toString() || item.key;
   // Determine the title based on the media type (Watched for movies, Played for video games)
   const title =
     mediaType === 'books'
@@ -59,7 +63,7 @@ function WatchedList({
         // Renders the watched/played items as a horizontal list of Poster components
         <FlatList
           data={watchedList}
-          keyExtractor={item => item.id.toString()}
+          keyExtractor={keyExtractor}
           renderItem={({item}) => (
             <Poster
               item={item}

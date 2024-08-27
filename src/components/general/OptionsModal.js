@@ -55,7 +55,9 @@ const OptionsModal = ({
       <View style={styles.modalContainer}>
         <View style={styles.modalContent}>
           <Text style={styles.movieTitle}>
-            {mediaType === 'movies' || mediaType === 'TV Shows'
+            {mediaType === 'movies' ||
+            mediaType === 'TV Shows' ||
+            mediaType === 'books'
               ? selectedItem.title
               : selectedItem.name}
           </Text>

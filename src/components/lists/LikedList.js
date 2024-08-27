@@ -34,6 +34,10 @@ function LikedList({
   navigation,
   mediaType,
 }) {
+  const keyExtractor = item =>
+    mediaType === 'books'
+      ? item.cover_id?.toString() || item.key // fallback to a different key if cover_id is not available
+      : item.id?.toString() || item.key;
   // Determine the appropriate page title based on the media type
   const page =
     mediaType === 'movies' ? 'Liked List' : `Liked List ${mediaType}`;
@@ -52,7 +56,7 @@ function LikedList({
         // Render the liked media items as a horizontal scrolling list
         <FlatList
           data={likedList}
-          keyExtractor={item => item.id.toString()}
+          keyExtractor={keyExtractor}
           renderItem={({item}) => (
             <Poster
               item={item}
