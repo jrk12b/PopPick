@@ -5,7 +5,6 @@ import {useState, useEffect, useCallback} from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import shuffleArray from '../../utils/shuffleArray';
 import useBooks from './useBooks';
-import {API_KEY} from '../../config';
 import _ from 'lodash';
 
 /**
@@ -72,9 +71,9 @@ const useBookLists = () => {
   // Load all movie lists when the component mounts
   useEffect(() => {
     const initializeLists = async () => {
-      const savedMyList = await loadList('myList');
-      const savedLikedList = await loadList('likedList');
-      const savedWatchedList = await loadList('watchedList');
+      const savedMyList = await loadList('myListBooks');
+      const savedLikedList = await loadList('likedListBooks');
+      const savedWatchedList = await loadList('watchedListBooks');
       setMyListBooks(savedMyList);
       setLikedListBooks(savedLikedList);
       setWatchedListBooks(savedWatchedList);

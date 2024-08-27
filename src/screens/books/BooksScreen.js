@@ -76,7 +76,7 @@ function BookScreen({navigation}) {
         </TouchableOpacity>
       </View>
 
-      {/* <MyList
+      <MyList
         myList={myListBooks}
         likedList={likedListBooks}
         watchedList={watchedListBooks}
@@ -92,16 +92,16 @@ function BookScreen({navigation}) {
         handleShowOptions={handleShowOptions}
         navigation={navigation}
         mediaType="books"
-      /> */}
+      />
 
-      {/* <LikedList
+      <LikedList
         myList={myListBooks}
         likedList={likedListBooks}
         watchedList={watchedListBooks}
         handleShowOptions={handleShowOptions}
         navigation={navigation}
         mediaType="books"
-      /> */}
+      />
 
       {/* Display popular movie recommendations */}
       <PopularRec

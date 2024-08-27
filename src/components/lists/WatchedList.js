@@ -34,7 +34,11 @@ function WatchedList({
 }) {
   // Determine the title based on the media type (Watched for movies, Played for video games)
   const title =
-    mediaType === 'movies' || mediaType === 'TV Shows' ? 'Watched' : 'Played';
+    mediaType === 'books'
+      ? 'Read'
+      : mediaType === 'movies' || mediaType === 'TV Shows'
+      ? 'Watched'
+      : 'Played';
 
   return (
     <View style={styles.sectionContainer}>

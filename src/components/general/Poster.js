@@ -127,8 +127,11 @@ const Poster = ({
           />
         )}
         <Text style={styles.title}>
-          {/* Display the title or name */}
-          {mediaType === 'movies' ? item.title : item.name}{' '}
+          {mediaType === 'books'
+            ? item.title
+            : mediaType === 'movies'
+            ? item.title
+            : item.name}
         </Text>
       </TouchableOpacity>
     </View>

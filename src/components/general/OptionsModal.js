@@ -74,7 +74,7 @@ const OptionsModal = ({
               </Text>
             </>
           )}
-          {mediaType === 'TV SHows' && (
+          {mediaType === 'TV Shows' && (
             <>
               <Text style={styles.movieDescription}>
                 {selectedItem.overview}
