@@ -47,6 +47,18 @@ const fetchCoverImageWithRetry = async (
   }
 };
 
+// Function to fetch the cover image with retry logic in case of rate limiting (429 error)
+const fetchBookCoverWithRetry = async (item, setBookCoverImage) => {
+  try {
+    await delay(500); // Adding a small delay between requests
+    setBookCoverImage(
+      `https://covers.openlibrary.org/b/id/${item.cover_id}-L.jpg`,
+    );
+  } catch (error) {
+    console.error('Error fetching cover image:', error); // Log any errors
+  }
+};
+
 const Poster = ({
   item,
   mediaType,
@@ -56,11 +68,15 @@ const Poster = ({
   handleShowOptions,
 }) => {
   const [coverImage, setCoverImage] = useState(null); // State to store the cover image URL
+  const [bookCoverImage, setBookCoverImage] = useState(null);
 
   // Fetch the cover image if the media type is 'videoGames' and the item has a cover ID
   useEffect(() => {
     if (mediaType === 'videoGames' && item.cover) {
       fetchCoverImageWithRetry(item, setCoverImage); // Fetch the cover image with retry logic
+    }
+    if (mediaType === 'books' && item.cover_id) {
+      fetchBookCoverWithRetry(item, setBookCoverImage); // Fetch the cover image with retry logic
     }
   }, [item, item.cover, mediaType]);
 
@@ -72,7 +88,9 @@ const Poster = ({
   // Determine the image URI based on the media type
   const imageUri =
     mediaType === 'movies' || mediaType === 'TV Shows'
-      ? `https://image.tmdb.org/t/p/w500${item.poster_path}` // Movie poster URL
+      ? `https://image.tmdb.org/t/p/w500${item.poster_path}` // Movie or TV show poster URL
+      : mediaType === 'books'
+      ? bookCoverImage // Book cover image URL
       : coverImage; // Video game cover image URL
 
   return (

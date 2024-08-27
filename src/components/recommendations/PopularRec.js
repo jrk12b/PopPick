@@ -27,23 +27,45 @@ function PopularRec({popularMovies, handleShowOptions, navigation, mediaType}) {
       : mediaType === 'TV Shows'
       ? 'Popular Recs TV Shows'
       : 'Popular Rec Video Games';
+
+  let flattenedData = [];
+
+  if (mediaType === 'books' && popularMovies?.works) {
+    // When mediaType is 'books', extract the works array
+    flattenedData = popularMovies.works;
+  } else if (Array.isArray(popularMovies)) {
+    // For other media types, use the data as is
+    flattenedData = popularMovies;
+  }
+
+  const keyExtractor = item =>
+    mediaType === 'books'
+      ? item.cover_id?.toString() || item.key // fallback to a different key if cover_id is not available
+      : item.id?.toString() || item.key;
+
+  const renderItem = ({item}) => (
+    <Poster
+      item={item}
+      handleShowOptions={handleShowOptions}
+      mediaType={mediaType}
+    />
+  );
+
   return (
     <View style={styles.sectionContainer}>
       <TouchableOpacity onPress={() => navigation.navigate(page)}>
         <Text style={styles.sectionTitle}>Popular Recommendations</Text>
       </TouchableOpacity>
-      <FlatList
-        data={popularMovies}
-        keyExtractor={item => item.id.toString()}
-        renderItem={({item}) => (
-          <Poster
-            item={item}
-            handleShowOptions={handleShowOptions}
-            mediaType={mediaType}
-          />
-        )}
-        horizontal
-      />
+      {flattenedData.length > 0 ? (
+        <FlatList
+          data={flattenedData}
+          keyExtractor={keyExtractor}
+          renderItem={renderItem}
+          horizontal
+        />
+      ) : (
+        <Text>No data available</Text>
+      )}
     </View>
   );
 }
