@@ -29,13 +29,21 @@ function WatchedListFull({
   handleShowOptions,
   mediaType,
 }) {
+  const keyExtractor = item =>
+    mediaType === 'books'
+      ? item.cover_id?.toString() || item.key // fallback to a different key if cover_id is not available
+      : item.id?.toString() || item.key;
   const title =
-    mediaType === 'movies' || mediaType === 'TV Shows' ? 'Watched' : 'Played';
+    mediaType === 'books'
+      ? 'Read'
+      : mediaType === 'movies' || mediaType === 'TV Shows'
+      ? 'Watched'
+      : 'Played';
   return (
     <FlatList
       style={styles.FlatList}
       data={watchedList}
-      keyExtractor={item => item.id.toString()}
+      keyExtractor={keyExtractor}
       renderItem={({item}) => (
         <Poster
           item={item}

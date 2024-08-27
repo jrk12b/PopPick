@@ -28,6 +28,9 @@ import PopularRecTvShowsScreen from '../../screens/tvShows/PopularRecTvShowsScre
 import TopRecTvShowsScreen from '../../screens/tvShows/TopRecTvShowsScreen';
 import CustomRecTvShowsScreen from '../../screens/tvShows/CustomRecTvShowsScreen';
 import SearchListTvShowsScreen from '../../screens/tvShows/SearchListTvShowsScreen';
+import MyListBooksScreen from '../../screens/books/MylistBooksScreen';
+import LikedListBooksScreen from '../../screens/books/LikedListBooksScreen';
+import ReadListBooksScreen from '../../screens/books/ReadListBooksScreen';
 
 const Stack = createStackNavigator();
 
@@ -151,6 +154,12 @@ function AppNavigator() {
           name="Search TV Shows"
           component={SearchListTvShowsScreen}
         />
+        <Stack.Screen name="My List books" component={MyListBooksScreen} />
+        <Stack.Screen
+          name="Liked List books"
+          component={LikedListBooksScreen}
+        />
+        <Stack.Screen name="Read List books" component={ReadListBooksScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   );
