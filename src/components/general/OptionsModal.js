@@ -35,7 +35,12 @@ const OptionsModal = ({
   }
 
   // Utility function to check if the selected item is in a given list
-  const isInList = list => list.some(item => item.id === selectedItem.id);
+  const isInList = list =>
+    list.some(item =>
+      mediaType === 'books'
+        ? item.cover_id === selectedItem.cover_id
+        : item.id === selectedItem.id,
+    );
 
   // Determine whether the selected item is in each of the user's lists
   const inMyList = isInList(myList);
