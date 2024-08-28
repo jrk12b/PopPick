@@ -4,11 +4,7 @@ import {ScrollView, View, TouchableOpacity} from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import styles from '../../styles/styles';
 import PopularRec from '../../components/recommendations/PopularRec';
-import UpcomingRec from '../../components/recommendations/UpcomingRec';
-import TopRec from '../../components/recommendations/TopRec';
-import PersonalRec from '../../components/recommendations/PersonalRec';
 import MyList from '../../components/lists/MyList';
-import CustomRec from '../../components/recommendations/CustomRec';
 import WatchedList from '../../components/lists/WatchedList';
 import LikedList from '../../components/lists/LikedList';
 import OptionsModal from '../../components/general/OptionsModal';
@@ -19,13 +15,12 @@ import Error from '../../components/general/Error';
 import {useFocusEffect} from '@react-navigation/native';
 
 /**
- * MovieScreen Component
+ * BooksScreen Component
  *
  * This screen displays various movie lists and recommendations, allowing users
  * to view and interact with their movie collections and recommendations.
  */
-function BookScreen({navigation}) {
-  // Custom hook to manage movie lists and fetch movie data
+function BooksScreen({navigation}) {
   const {
     myListBooks,
     likedListBooks,
@@ -40,7 +35,6 @@ function BookScreen({navigation}) {
     fetchWatchedList,
   } = useBookLists();
 
-  // Custom hook to manage the state and actions for the movie options modal
   const {
     selectedBook,
     modalVisible,
@@ -70,8 +64,7 @@ function BookScreen({navigation}) {
   return (
     <ScrollView style={styles.container}>
       <View style={styles.header}>
-        {/* Search button to navigate to the search screen */}
-        <TouchableOpacity onPress={() => navigation.navigate('Search')}>
+        <TouchableOpacity onPress={() => navigation.navigate('Search books')}>
           <Icon name="search" size={24} color="#FBF4F4" />
         </TouchableOpacity>
       </View>
@@ -103,7 +96,6 @@ function BookScreen({navigation}) {
         mediaType="books"
       />
 
-      {/* Display popular movie recommendations */}
       <PopularRec
         popularMovies={popularBooks}
         handleShowOptions={handleShowOptions}
@@ -111,7 +103,6 @@ function BookScreen({navigation}) {
         mediaType="books"
       />
 
-      {/* Modal for displaying options related to the selected movie */}
       <OptionsModal
         selectedItem={selectedBook}
         modalVisible={modalVisible}
@@ -126,4 +117,4 @@ function BookScreen({navigation}) {
   );
 }
 
-export default BookScreen;
+export default BooksScreen;

@@ -42,7 +42,7 @@ const useBookLists = () => {
 
   // Fetch popular movies from the API using the custom hook `useMovies`
   useBooks(
-    'https://openlibrary.org/subjects/love.json',
+    'https://www.googleapis.com/books/v1/volumes?limit=10&q=lord+of+the+rings',
     setPopularBooks,
     setLoading,
     setError,

@@ -98,6 +98,28 @@ const SearchList = ({
       } catch (error) {
         console.error('Error fetching tv shows:', error);
       }
+    } else if (mediaType === 'books') {
+      const convertedQuery = query.replace(/ /g, '+');
+      try {
+        const response = await fetch(
+          `https://openlibrary.org/search.json?q=${convertedQuery}`,
+          {
+            method: 'GET', // Explicitly specifying the method (optional for GET)
+            headers: {
+              'Content-Type': 'application/json',
+              Accept: '*/*',
+              Connection: 'keep-alive',
+              'Accept-Encoding': 'gzip, deflate, br',
+            },
+          },
+        );
+        const data = await response.json();
+        // Limiting the results to the top 10
+        setResults(data.docs.slice(0, 10));
+        console.log('derp4', results);
+      } catch (error) {
+        console.error('Error fetching books:', error);
+      }
     }
   };
 
@@ -111,13 +133,16 @@ const SearchList = ({
     setResults([]);
   };
 
+  // console.log('results: ', results);
   return (
     <View style={styles.container}>
       {/* Text input for entering the search query */}
       <TextInput
         style={styles.input}
         placeholder={`Search for ${
-          mediaType === 'movies'
+          mediaType === 'books'
+            ? 'books'
+            : mediaType === 'movies'
             ? 'movies'
             : mediaType === 'TV Shows'
             ? 'TV Shows'
@@ -150,7 +175,11 @@ const SearchList = ({
       {results.length > 0 ? (
         <FlatList
           data={results}
-          keyExtractor={item => item.id.toString()}
+          keyExtractor={item =>
+            mediaType === 'books'
+              ? item.cover_edition_key.toString()
+              : item.id.toString()
+          }
           renderItem={({item}) => (
             <Poster
               item={item}

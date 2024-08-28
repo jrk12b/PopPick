@@ -28,6 +28,7 @@ import PopularRecTvShowsScreen from '../../screens/tvShows/PopularRecTvShowsScre
 import TopRecTvShowsScreen from '../../screens/tvShows/TopRecTvShowsScreen';
 import CustomRecTvShowsScreen from '../../screens/tvShows/CustomRecTvShowsScreen';
 import SearchListTvShowsScreen from '../../screens/tvShows/SearchListTvShowsScreen';
+import SearchListBooksScreen from '../../screens/books/SearchListBooksScreen';
 import MyListBooksScreen from '../../screens/books/MylistBooksScreen';
 import LikedListBooksScreen from '../../screens/books/LikedListBooksScreen';
 import ReadListBooksScreen from '../../screens/books/ReadListBooksScreen';
@@ -165,6 +166,7 @@ function AppNavigator() {
           name="Popular Recs books"
           component={PopularRecBooksScreen}
         />
+        <Stack.Screen name="Search books" component={SearchListBooksScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   );

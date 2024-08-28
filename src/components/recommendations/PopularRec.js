@@ -32,9 +32,15 @@ function PopularRec({popularMovies, handleShowOptions, navigation, mediaType}) {
 
   let flattenedData = [];
 
-  if (mediaType === 'books' && popularMovies?.works) {
-    // When mediaType is 'books', extract the works array
-    flattenedData = popularMovies.works;
+  if (mediaType === 'books' && popularMovies?.items) {
+    // When mediaType is 'books', extract the items array
+    flattenedData = popularMovies.items.map(item => ({
+      id: item.id,
+      title: item.volumeInfo.title,
+      authors: item.volumeInfo.authors,
+      thumbnail: item.volumeInfo.imageLinks?.thumbnail, // Adjust this line as needed
+      // Include any other properties you may need
+    }));
   } else if (Array.isArray(popularMovies)) {
     // For other media types, use the data as is
     flattenedData = popularMovies;
@@ -42,7 +48,7 @@ function PopularRec({popularMovies, handleShowOptions, navigation, mediaType}) {
 
   const keyExtractor = item =>
     mediaType === 'books'
-      ? item.cover_id?.toString() || item.key // fallback to a different key if cover_id is not available
+      ? item.id.toString() // use the book id as the key
       : item.id?.toString() || item.key;
 
   const renderItem = ({item}) => (

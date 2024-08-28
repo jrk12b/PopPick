@@ -51,9 +51,8 @@ const fetchCoverImageWithRetry = async (
 const fetchBookCoverWithRetry = async (item, setBookCoverImage) => {
   try {
     await delay(500); // Adding a small delay between requests
-    setBookCoverImage(
-      `https://covers.openlibrary.org/b/id/${item.cover_id}-L.jpg`,
-    );
+    const secureUrl = item.replace('http://', 'https://');
+    setBookCoverImage(secureUrl);
   } catch (error) {
     console.error('Error fetching cover image:', error); // Log any errors
   }
@@ -75,8 +74,8 @@ const Poster = ({
     if (mediaType === 'videoGames' && item.cover) {
       fetchCoverImageWithRetry(item, setCoverImage); // Fetch the cover image with retry logic
     }
-    if (mediaType === 'books' && item.cover_id) {
-      fetchBookCoverWithRetry(item, setBookCoverImage); // Fetch the cover image with retry logic
+    if (mediaType === 'books') {
+      fetchBookCoverWithRetry(item.thumbnail, setBookCoverImage); // Fetch the cover image with retry logic
     }
   }, [item, item.cover, mediaType]);
 
