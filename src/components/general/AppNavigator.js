@@ -31,6 +31,7 @@ import SearchListTvShowsScreen from '../../screens/tvShows/SearchListTvShowsScre
 import MyListBooksScreen from '../../screens/books/MylistBooksScreen';
 import LikedListBooksScreen from '../../screens/books/LikedListBooksScreen';
 import ReadListBooksScreen from '../../screens/books/ReadListBooksScreen';
+import PopularRecBooksScreen from '../../screens/books/PopularRecBooksScreen';
 
 const Stack = createStackNavigator();
 
@@ -160,6 +161,10 @@ function AppNavigator() {
           component={LikedListBooksScreen}
         />
         <Stack.Screen name="Read List books" component={ReadListBooksScreen} />
+        <Stack.Screen
+          name="Popular Recs books"
+          component={PopularRecBooksScreen}
+        />
       </Stack.Navigator>
     </NavigationContainer>
   );

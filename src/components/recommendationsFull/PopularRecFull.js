@@ -24,24 +24,40 @@ function PopularRecFull({popularMovies, handleShowOptions, mediaType}) {
   if (!popularMovies) {
     return <Text>Loading...</Text>;
   }
+  let flattenedData = [];
+
+  if (mediaType === 'books' && popularMovies?.works) {
+    // When mediaType is 'books', extract the works array
+    flattenedData = popularMovies.works;
+  } else if (Array.isArray(popularMovies)) {
+    // For other media types, use the data as is
+    flattenedData = popularMovies;
+  }
+
+  const keyExtractor = item =>
+    mediaType === 'books'
+      ? item.cover_id?.toString() || item.key // fallback to a different key if cover_id is not available
+      : item.id?.toString() || item.key;
+
+  const renderItem = ({item}) => (
+    <Poster
+      item={item}
+      handleShowOptions={handleShowOptions}
+      mediaType={mediaType}
+    />
+  );
   return (
     <FlatList
       style={styles.FlatList}
-      data={popularMovies}
-      keyExtractor={item => item.id.toString()}
-      renderItem={({item}) => (
-        <Poster
-          item={item}
-          handleShowOptions={handleShowOptions}
-          mediaType={mediaType}
-        />
-      )}
+      data={flattenedData}
+      keyExtractor={keyExtractor}
+      renderItem={renderItem}
       numColumns={3}
       columnWrapperStyle={styles.columnWrapper}
       contentContainerStyle={styles.gridContainer}
       ListHeaderComponent={
         <Text style={styles.sectionTitle}>
-          Popular Recommendations ({popularMovies.length})
+          Popular Recommendations ({flattenedData.length})
         </Text>
       }
       ListEmptyComponent={<Text style={styles.text}>No movies added yet.</Text>}

@@ -22,7 +22,9 @@ import Poster from '../general/Poster';
  */
 function PopularRec({popularMovies, handleShowOptions, navigation, mediaType}) {
   const page =
-    mediaType === 'movies'
+    mediaType === 'books'
+      ? 'Popular Recs books'
+      : mediaType === 'movies'
       ? 'Popular Recs'
       : mediaType === 'TV Shows'
       ? 'Popular Recs TV Shows'
