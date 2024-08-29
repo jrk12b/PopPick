@@ -35,7 +35,7 @@ function MyList({
 }) {
   const keyExtractor = item =>
     mediaType === 'books'
-      ? item.cover_id?.toString() || item.key // fallback to a different key if cover_id is not available
+      ? item.id.toString()
       : item.id?.toString() || item.key;
   // Determine the appropriate page title based on the media type
   const page = mediaType === 'movies' ? 'My List' : `My List ${mediaType}`;
