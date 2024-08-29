@@ -30,6 +30,7 @@ function PopularRec({popularMovies, handleShowOptions, navigation, mediaType}) {
       ? 'Popular Recs TV Shows'
       : 'Popular Rec Video Games';
 
+  // possible refactor, this is repeated elsewhere
   let flattenedData = [];
 
   if (mediaType === 'books' && popularMovies?.items) {
@@ -46,18 +47,7 @@ function PopularRec({popularMovies, handleShowOptions, navigation, mediaType}) {
     flattenedData = popularMovies;
   }
 
-  const keyExtractor = item =>
-    mediaType === 'books'
-      ? item.id.toString() // use the book id as the key
-      : item.id?.toString() || item.key;
-
-  const renderItem = ({item}) => (
-    <Poster
-      item={item}
-      handleShowOptions={handleShowOptions}
-      mediaType={mediaType}
-    />
-  );
+  const keyExtractor = item => item.id?.toString() || item.key;
 
   return (
     <View style={styles.sectionContainer}>
@@ -68,7 +58,13 @@ function PopularRec({popularMovies, handleShowOptions, navigation, mediaType}) {
         <FlatList
           data={flattenedData}
           keyExtractor={keyExtractor}
-          renderItem={renderItem}
+          renderItem={({item}) => (
+            <Poster
+              item={item}
+              handleShowOptions={handleShowOptions}
+              mediaType={mediaType}
+            />
+          )}
           horizontal
         />
       ) : (

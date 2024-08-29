@@ -29,10 +29,8 @@ function WatchedListFull({
   handleShowOptions,
   mediaType,
 }) {
-  const keyExtractor = item =>
-    mediaType === 'books'
-      ? item.cover_id?.toString() || item.key // fallback to a different key if cover_id is not available
-      : item.id?.toString() || item.key;
+  const keyExtractor = item => item.id?.toString() || item.key;
+  // possible refactor. title or page variables should be consistent across lists
   const title =
     mediaType === 'books'
       ? 'Read'

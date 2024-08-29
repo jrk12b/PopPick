@@ -33,10 +33,7 @@ function MyList({
   navigation,
   mediaType,
 }) {
-  const keyExtractor = item =>
-    mediaType === 'books'
-      ? item.id.toString()
-      : item.id?.toString() || item.key;
+  const keyExtractor = item => item.id?.toString() || item.key;
   // Determine the appropriate page title based on the media type
   const page = mediaType === 'movies' ? 'My List' : `My List ${mediaType}`;
 

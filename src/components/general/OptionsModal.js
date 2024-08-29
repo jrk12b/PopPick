@@ -35,12 +35,7 @@ const OptionsModal = ({
   }
 
   // Utility function to check if the selected item is in a given list
-  const isInList = list =>
-    list.some(item =>
-      mediaType === 'books'
-        ? item.id === selectedItem.id
-        : item.id === selectedItem.id,
-    );
+  const isInList = list => list.some(item => item.id === selectedItem.id);
 
   // Determine whether the selected item is in each of the user's lists
   const inMyList = isInList(myList);
@@ -59,10 +54,9 @@ const OptionsModal = ({
       onRequestClose={handleCloseModal}>
       <View style={styles.modalContainer}>
         <View style={styles.modalContent}>
+          {/* If mediaType is either 'movies', 'TV Shows', or 'books', it uses selectedItem.title. For any other mediaType, it uses selectedItem.name */}
           <Text style={styles.movieTitle}>
-            {mediaType === 'movies' ||
-            mediaType === 'TV Shows' ||
-            mediaType === 'books'
+            {['movies', 'TV Shows', 'books'].includes(mediaType)
               ? selectedItem.title
               : selectedItem.name}
           </Text>

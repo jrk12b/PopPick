@@ -38,6 +38,8 @@ const SearchList = ({
   handleShowOptions,
   mediaType,
 }) => {
+  // possible refactor. this key extractor code is used a lot
+  const keyExtractor = item => item.id?.toString() || item.key;
   // State for storing the search query and the search results
   const [query, setQuery] = useState('');
   const [results, setResults] = useState([]);
@@ -104,7 +106,7 @@ const SearchList = ({
         const response = await fetch(
           `https://www.googleapis.com/books/v1/volumes?limit=10&q=${convertedQuery}`,
           {
-            method: 'GET', // Explicitly specifying the method (optional for GET)
+            method: 'GET',
             headers: {
               'Content-Type': 'application/json',
               Accept: '*/*',
@@ -114,13 +116,13 @@ const SearchList = ({
           },
         );
         const data = await response.json();
+        // possible refactor, do this elsewhere and share it. I think same code is repeated elsewhere.
         let flattenedData = [];
         flattenedData = data.items.map(item => ({
           id: item.id,
           title: item.volumeInfo.title,
           authors: item.volumeInfo.authors,
-          thumbnail: item.volumeInfo.imageLinks?.thumbnail, // Adjust this line as needed
-          // Include any other properties you may need
+          thumbnail: item.volumeInfo.imageLinks?.thumbnail,
         }));
         // Limiting the results to the top 10
         if (flattenedData) {
@@ -144,20 +146,23 @@ const SearchList = ({
     setResults([]);
   };
 
+  const placeholders = {
+    books: 'books',
+    movies: 'movies',
+    'TV Shows': 'TV Shows',
+    default: 'video games',
+  };
+
+  const placeholder = `Search for ${
+    placeholders[mediaType] || placeholders.default
+  }...`;
+
   return (
     <View style={styles.container}>
       {/* Text input for entering the search query */}
       <TextInput
         style={styles.input}
-        placeholder={`Search for ${
-          mediaType === 'books'
-            ? 'books'
-            : mediaType === 'movies'
-            ? 'movies'
-            : mediaType === 'TV Shows'
-            ? 'TV Shows'
-            : 'video games'
-        }...`}
+        placeholder={placeholder}
         placeholderTextColor="#FBF4F4"
         value={query}
         onChangeText={text => {
@@ -185,9 +190,7 @@ const SearchList = ({
       {results.length > 0 ? (
         <FlatList
           data={results}
-          keyExtractor={item =>
-            mediaType === 'books' ? item.id.toString() : item.id.toString()
-          }
+          keyExtractor={keyExtractor}
           renderItem={({item}) => (
             <Poster
               item={item}

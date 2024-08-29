@@ -29,10 +29,7 @@ function MyListFull({
   handleShowOptions,
   mediaType,
 }) {
-  const keyExtractor = item =>
-    mediaType === 'books'
-      ? item.cover_id?.toString() || item.key // fallback to a different key if cover_id is not available
-      : item.id?.toString() || item.key;
+  const keyExtractor = item => item.id?.toString() || item.key;
   return (
     <FlatList
       style={styles.FlatList}

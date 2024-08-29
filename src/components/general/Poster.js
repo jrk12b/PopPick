@@ -75,28 +75,31 @@ const Poster = ({
       fetchCoverImageWithRetry(item, setCoverImage); // Fetch the cover image with retry logic
     }
     if (mediaType === 'books') {
-      fetchBookCoverWithRetry(item.thumbnail, setBookCoverImage); // Fetch the cover image with retry logic
+      const imageUrl = item.thumbnail;
+      fetchBookCoverWithRetry(imageUrl, setBookCoverImage); // Fetch the cover image with retry logic
     }
   }, [item, item.cover, mediaType]);
 
+  // Function to check if the item is in a given list
+  const isInList = list => list.some(media => media.id === item.id);
+
   // Check if the item is in the liked, saved, or watched lists
-  const isLiked = likedList.some(media =>
-    mediaType === 'books' ? media.id === item.id : media.id === item.id,
-  );
-  const isSaved = myList.some(media =>
-    mediaType === 'books' ? media.id === item.id : media.id === item.id,
-  );
-  const isWatched = watchedList.some(media =>
-    mediaType === 'books' ? media.id === item.id : media.id === item.id,
-  );
+  const isLiked = isInList(likedList);
+  const isSaved = isInList(myList);
+  const isWatched = isInList(watchedList);
 
   // Determine the image URI based on the media type
-  const imageUri =
-    mediaType === 'movies' || mediaType === 'TV Shows'
-      ? `https://image.tmdb.org/t/p/w500${item.poster_path}` // Movie or TV show poster URL
-      : mediaType === 'books'
-      ? bookCoverImage // Book cover image URL
-      : coverImage; // Video game cover image URL
+  const imageUri = (() => {
+    switch (mediaType) {
+      case 'movies':
+      case 'TV Shows':
+        return `https://image.tmdb.org/t/p/w500${item.poster_path}`; // Movie or TV show poster URL
+      case 'books':
+        return bookCoverImage; // Book cover image URL
+      default:
+        return coverImage; // Video game cover image URL
+    }
+  })();
 
   return (
     <View style={styles.movieContainer}>

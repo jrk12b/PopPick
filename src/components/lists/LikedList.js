@@ -34,10 +34,7 @@ function LikedList({
   navigation,
   mediaType,
 }) {
-  const keyExtractor = item =>
-    mediaType === 'books'
-      ? item.id?.toString() || item.key // fallback to a different key if cover_id is not available
-      : item.id?.toString() || item.key;
+  const keyExtractor = item => item.id?.toString() || item.key;
   // Determine the appropriate page title based on the media type
   const page =
     mediaType === 'movies' ? 'Liked List' : `Liked List ${mediaType}`;

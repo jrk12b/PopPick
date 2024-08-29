@@ -32,25 +32,22 @@ function WatchedList({
   navigation,
   mediaType,
 }) {
-  const keyExtractor = item =>
-    mediaType === 'books'
-      ? item.id?.toString() || item.key // fallback to a different key if cover_id is not available
-      : item.id?.toString() || item.key;
+  const keyExtractor = item => item.id?.toString() || item.key;
   // Determine the title based on the media type (Watched for movies, Played for video games)
-  const title =
-    mediaType === 'books'
-      ? 'Read'
-      : mediaType === 'movies' || mediaType === 'TV Shows'
-      ? 'Watched'
-      : 'Played';
+  const page =
+    {
+      books: 'Read',
+      movies: 'Watched',
+      'TV Shows': 'Watched',
+    }[mediaType] || 'Played';
 
   return (
     <View style={styles.sectionContainer}>
       {/* Navigates to the full Watched/Played List screen when the title is pressed */}
       <TouchableOpacity
-        onPress={() => navigation.navigate(`${title} List ${mediaType}`)}>
+        onPress={() => navigation.navigate(`${page} List ${mediaType}`)}>
         <Text style={styles.sectionTitle}>
-          {title} ({watchedList.length})
+          {page} ({watchedList.length})
         </Text>
       </TouchableOpacity>
 
