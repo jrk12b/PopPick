@@ -20,29 +20,29 @@ import Poster from '../general/Poster';
  * - If a specific movie is clicked, handleShowOptions is called to provide options for that movie.
  * - If popularMovies is not yet loaded, a loading message "Loading..." is displayed.
  */
-function BookRecFull({popularMovies, handleShowOptions, mediaType}) {
-  if (!popularMovies) {
+function BookRecFull({books, handleShowOptions, mediaType, bookSubject}) {
+  if (!books) {
     return <Text>Loading...</Text>;
   }
   // possible refactor
   let flattenedData = [];
 
-  if (mediaType === 'books' && popularMovies?.items) {
+  if (mediaType === 'books' && books?.items) {
     // When mediaType is 'books', extract the items array
-    flattenedData = popularMovies.items.map(item => ({
+    flattenedData = books.items.map(item => ({
       id: item.id,
       title: item.volumeInfo.title,
       authors: item.volumeInfo.authors,
       thumbnail: item.volumeInfo.imageLinks?.thumbnail, // Adjust this line as needed
       // Include any other properties you may need
     }));
-  } else if (Array.isArray(popularMovies)) {
+  } else if (Array.isArray(books)) {
     // For other media types, use the data as is
-    flattenedData = popularMovies;
+    flattenedData = books;
   }
 
   const keyExtractor = item => item.id?.toString() || item.key;
-
+  const header = `${bookSubject} Recommendations`;
   return (
     <FlatList
       style={styles.FlatList}
@@ -60,7 +60,7 @@ function BookRecFull({popularMovies, handleShowOptions, mediaType}) {
       contentContainerStyle={styles.gridContainer}
       ListHeaderComponent={
         <Text style={styles.sectionTitle}>
-          Fiction Recommendations ({flattenedData.length})
+          {header} ({flattenedData.length})
         </Text>
       }
       ListEmptyComponent={<Text style={styles.text}>No movies added yet.</Text>}

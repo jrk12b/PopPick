@@ -50,6 +50,12 @@ const fetchCoverImageWithRetry = async (
 // Function to fetch the cover image with retry logic in case of rate limiting (429 error)
 const fetchBookCoverWithRetry = async (item, setBookCoverImage) => {
   try {
+    // Check if item is undefined or null
+    if (!item) {
+      // console.warn('Item is undefined or null, skipping fetch');
+      return; // Exit the function early if item is undefined
+    }
+
     await delay(500); // Adding a small delay between requests
     const secureUrl = item.replace('http://', 'https://');
     setBookCoverImage(secureUrl);

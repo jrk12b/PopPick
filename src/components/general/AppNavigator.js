@@ -33,6 +33,7 @@ import MyListBooksScreen from '../../screens/books/MylistBooksScreen';
 import LikedListBooksScreen from '../../screens/books/LikedListBooksScreen';
 import ReadListBooksScreen from '../../screens/books/ReadListBooksScreen';
 import FictionRecScreen from '../../screens/books/FictionRecScreen';
+import NonFictionRecScreen from '../../screens/books/NonFictionRecScreen';
 
 const Stack = createStackNavigator();
 
@@ -164,6 +165,7 @@ function AppNavigator() {
         <Stack.Screen name="Read List books" component={ReadListBooksScreen} />
         <Stack.Screen name="Search books" component={SearchListBooksScreen} />
         <Stack.Screen name="Fiction Recs" component={FictionRecScreen} />
+        <Stack.Screen name="Non-Fiction Recs" component={NonFictionRecScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   );
