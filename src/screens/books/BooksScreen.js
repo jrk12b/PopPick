@@ -3,7 +3,6 @@ import React, {useCallback} from 'react';
 import {ScrollView, View, TouchableOpacity} from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import styles from '../../styles/styles';
-import PopularRec from '../../components/recommendations/PopularRec';
 import MyList from '../../components/lists/MyList';
 import WatchedList from '../../components/lists/WatchedList';
 import LikedList from '../../components/lists/LikedList';
@@ -13,6 +12,7 @@ import useBookModal from '../../hooks/books/useBookModal';
 import Loading from '../../components/general/Loading';
 import Error from '../../components/general/Error';
 import {useFocusEffect} from '@react-navigation/native';
+import BookRec from '../../components/recommendations/BookRec';
 
 /**
  * BooksScreen Component
@@ -25,7 +25,7 @@ function BooksScreen({navigation}) {
     myListBooks,
     likedListBooks,
     watchedListBooks,
-    popularBooks,
+    fictionBooks,
     error,
     loading,
     handleAddToMyList,
@@ -96,11 +96,12 @@ function BooksScreen({navigation}) {
         mediaType="books"
       />
 
-      <PopularRec
-        popularMovies={popularBooks}
+      <BookRec
+        books={fictionBooks}
         handleShowOptions={handleShowOptions}
         navigation={navigation}
         mediaType="books"
+        bookSubject="Fiction"
       />
 
       <OptionsModal

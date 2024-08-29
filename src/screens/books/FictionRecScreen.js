@@ -2,7 +2,7 @@ import React from 'react';
 import useBookLists from '../../hooks/books/useBookLists';
 import useBookModal from '../../hooks/books/useBookModal';
 import OptionsModal from '../../components/general/OptionsModal';
-import PopularRecFull from '../../components/recommendationsFull/PopularRecFull';
+import FictionRecFull from '../../components/recommendationsFull/BookRecFull';
 
 /**
  * MyListScreen Component
@@ -12,12 +12,12 @@ import PopularRecFull from '../../components/recommendationsFull/PopularRecFull'
  * movie options. It uses custom hooks to manage movie lists and modal state,
  * and renders the personal movie list and a modal for additional options.
  */
-function PopularRecsBooksScreen() {
+function FictionRecScreen() {
   const {
     myListBooks,
     likedListBooks,
     watchedListBooks,
-    popularBooks,
+    fictionBooks,
     handleAddToMyList,
     handleAddToLiked,
     handleAddToWatched,
@@ -33,8 +33,8 @@ function PopularRecsBooksScreen() {
 
   return (
     <>
-      <PopularRecFull
-        popularMovies={popularBooks}
+      <FictionRecFull
+        popularMovies={fictionBooks}
         handleShowOptions={handleShowOptions}
         mediaType="books"
       />
@@ -52,4 +52,4 @@ function PopularRecsBooksScreen() {
   );
 }
 
-export default PopularRecsBooksScreen;
+export default FictionRecScreen;
