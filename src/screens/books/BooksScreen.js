@@ -27,6 +27,8 @@ function BooksScreen({navigation}) {
     watchedListBooks,
     fictionBooks,
     nonFictionBooks,
+    dramaBooks,
+    adventurebooks,
     error,
     loading,
     handleAddToMyList,
@@ -111,6 +113,22 @@ function BooksScreen({navigation}) {
         navigation={navigation}
         mediaType="books"
         bookSubject="Non-Fiction"
+      />
+
+      <BookRec
+        books={dramaBooks}
+        handleShowOptions={handleShowOptions}
+        navigation={navigation}
+        mediaType="books"
+        bookSubject="Drama"
+      />
+
+      <BookRec
+        books={adventurebooks}
+        handleShowOptions={handleShowOptions}
+        navigation={navigation}
+        mediaType="books"
+        bookSubject="Adventure"
       />
 
       <OptionsModal

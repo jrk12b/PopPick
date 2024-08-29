@@ -36,6 +36,8 @@ const useBookLists = () => {
   const [watchedListBooks, setWatchedListBooks] = useState([]);
   const [fictionBooks, setFictionBooks] = useState([]);
   const [nonFictionBooks, setNonFictionBooks] = useState([]);
+  const [dramaBooks, setDramaBooks] = useState([]);
+  const [adventurebooks, setAdventureBooks] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
@@ -51,6 +53,22 @@ const useBookLists = () => {
   useBooks(
     'https://www.googleapis.com/books/v1/volumes?maxResults=40&q=subject:Nonfiction&startIndex=0&printType=books&orderBy=relevance',
     setNonFictionBooks,
+    setLoading,
+    setError,
+  );
+
+  // Fetch popular movies from the API using the custom hook `useMovies`
+  useBooks(
+    'https://www.googleapis.com/books/v1/volumes?maxResults=40&q=subject:Drama&startIndex=0&printType=books&orderBy=relevance',
+    setDramaBooks,
+    setLoading,
+    setError,
+  );
+
+  // Fetch popular movies from the API using the custom hook `useMovies`
+  useBooks(
+    'https://www.googleapis.com/books/v1/volumes?maxResults=40&q=subject:Adventure&startIndex=0&printType=books&orderBy=relevance',
+    setAdventureBooks,
     setLoading,
     setError,
   );
@@ -162,6 +180,8 @@ const useBookLists = () => {
     watchedListBooks,
     fictionBooks,
     nonFictionBooks,
+    dramaBooks,
+    adventurebooks,
     loading,
     error,
     handleAddToMyList,

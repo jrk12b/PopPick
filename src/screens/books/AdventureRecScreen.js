@@ -12,12 +12,12 @@ import BookRecFull from '../../components/recommendationsFull/BookRecFull';
  * movie options. It uses custom hooks to manage movie lists and modal state,
  * and renders the personal movie list and a modal for additional options.
  */
-function FictionRecScreen() {
+function DramaRecScreen() {
   const {
     myListBooks,
     likedListBooks,
     watchedListBooks,
-    fictionBooks,
+    adventurebooks,
     handleAddToMyList,
     handleAddToLiked,
     handleAddToWatched,
@@ -34,9 +34,10 @@ function FictionRecScreen() {
   return (
     <>
       <BookRecFull
-        popularMovies={fictionBooks}
+        books={adventurebooks}
         handleShowOptions={handleShowOptions}
         mediaType="books"
+        bookSubject="Adventure"
       />
       <OptionsModal
         selectedItem={selectedBook}
@@ -52,4 +53,4 @@ function FictionRecScreen() {
   );
 }
 
-export default FictionRecScreen;
+export default DramaRecScreen;
