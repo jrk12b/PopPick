@@ -81,19 +81,13 @@ const Poster = ({
 
   // Check if the item is in the liked, saved, or watched lists
   const isLiked = likedList.some(media =>
-    mediaType === 'books'
-      ? media.cover_id === item.cover_id
-      : media.id === item.id,
+    mediaType === 'books' ? media.id === item.id : media.id === item.id,
   );
   const isSaved = myList.some(media =>
-    mediaType === 'books'
-      ? media.cover_id === item.cover_id
-      : media.id === item.id,
+    mediaType === 'books' ? media.id === item.id : media.id === item.id,
   );
   const isWatched = watchedList.some(media =>
-    mediaType === 'books'
-      ? media.cover_id === item.cover_id
-      : media.id === item.id,
+    mediaType === 'books' ? media.id === item.id : media.id === item.id,
   );
 
   // Determine the image URI based on the media type

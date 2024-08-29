@@ -38,7 +38,7 @@ const OptionsModal = ({
   const isInList = list =>
     list.some(item =>
       mediaType === 'books'
-        ? item.cover_id === selectedItem.cover_id
+        ? item.id === selectedItem.id
         : item.id === selectedItem.id,
     );
 
