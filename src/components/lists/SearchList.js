@@ -102,7 +102,7 @@ const SearchList = ({
       const convertedQuery = query.replace(/ /g, '+');
       try {
         const response = await fetch(
-          `https://openlibrary.org/search.json?q=${convertedQuery}`,
+          `https://www.googleapis.com/books/v1/volumes?limit=10&q=${convertedQuery}`,
           {
             method: 'GET', // Explicitly specifying the method (optional for GET)
             headers: {
@@ -114,9 +114,20 @@ const SearchList = ({
           },
         );
         const data = await response.json();
+        let flattenedData = [];
+        flattenedData = data.items.map(item => ({
+          id: item.id,
+          title: item.volumeInfo.title,
+          authors: item.volumeInfo.authors,
+          thumbnail: item.volumeInfo.imageLinks?.thumbnail, // Adjust this line as needed
+          // Include any other properties you may need
+        }));
         // Limiting the results to the top 10
-        setResults(data.docs.slice(0, 10));
-        console.log('derp4', results);
+        if (flattenedData) {
+          setResults(flattenedData.slice(0, 10));
+        } else {
+          console.error('No items found in the response');
+        }
       } catch (error) {
         console.error('Error fetching books:', error);
       }
@@ -133,7 +144,6 @@ const SearchList = ({
     setResults([]);
   };
 
-  // console.log('results: ', results);
   return (
     <View style={styles.container}>
       {/* Text input for entering the search query */}
@@ -176,9 +186,7 @@ const SearchList = ({
         <FlatList
           data={results}
           keyExtractor={item =>
-            mediaType === 'books'
-              ? item.cover_edition_key.toString()
-              : item.id.toString()
+            mediaType === 'books' ? item.id.toString() : item.id.toString()
           }
           renderItem={({item}) => (
             <Poster

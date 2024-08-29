@@ -34,7 +34,7 @@ function WatchedList({
 }) {
   const keyExtractor = item =>
     mediaType === 'books'
-      ? item.cover_id?.toString() || item.key // fallback to a different key if cover_id is not available
+      ? item.id?.toString() || item.key // fallback to a different key if cover_id is not available
       : item.id?.toString() || item.key;
   // Determine the title based on the media type (Watched for movies, Played for video games)
   const title =

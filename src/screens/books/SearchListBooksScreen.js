@@ -1,7 +1,7 @@
 import React from 'react';
 import {View} from 'react-native';
-import useMovieLists from '../../hooks/movies/useMovieLists';
-import useMovieModal from '../../hooks/movies/useMovieModal';
+import useBookLists from '../../hooks/books/useBookLists';
+import useBookModal from '../../hooks/books/useBookModal';
 import OptionsModal from '../../components/general/OptionsModal';
 import SearchList from '../../components/lists/SearchList';
 import styles from '../../styles/styles';
@@ -16,22 +16,22 @@ import styles from '../../styles/styles';
 function SearchListBooksScreen() {
   // Custom hook to manage movie lists and their state
   const {
-    myList,
-    likedList,
-    watchedList,
+    myListBooks,
+    likedListBooks,
+    watchedListBooks,
     handleAddToMyList,
     handleAddToLiked,
     handleAddToWatched,
-  } = useMovieLists();
+  } = useBookLists();
 
   // Custom hook to manage the state and actions for the movie options modal
   const {
-    selectedMovie,
+    selectedBook,
     modalVisible,
     handleShowOptions,
     handleCloseModal,
     handleOptionSelect,
-  } = useMovieModal(handleAddToMyList, handleAddToLiked, handleAddToWatched);
+  } = useBookModal(handleAddToMyList, handleAddToLiked, handleAddToWatched);
 
   // Wrapper function to pass movie and list type to the handleShowOptions function
   const handleShowOptionsWrapper = book => {
@@ -42,21 +42,21 @@ function SearchListBooksScreen() {
     <View style={styles.sectionContainer}>
       {/* Component to display the search results */}
       <SearchList
-        myList={myList}
-        likedList={likedList}
-        watchedList={watchedList}
+        myList={myListBooks}
+        likedList={likedListBooks}
+        watchedList={watchedListBooks}
         handleShowOptions={handleShowOptionsWrapper}
         mediaType="books"
       />
       {/* Modal for displaying options related to the selected movie */}
       <OptionsModal
-        selectedItem={selectedMovie}
+        selectedItem={selectedBook}
         modalVisible={modalVisible}
         handleCloseModal={handleCloseModal}
         handleOptionSelect={handleOptionSelect}
-        myList={myList}
-        likedList={likedList}
-        watchedList={watchedList}
+        myList={myListBooks}
+        likedList={likedListBooks}
+        watchedList={watchedListBooks}
         mediaType="books"
       />
     </View>
