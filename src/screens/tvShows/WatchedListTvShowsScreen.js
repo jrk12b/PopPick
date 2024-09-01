@@ -5,10 +5,11 @@ import useTvShowModal from '../../hooks/tvShows/useTvShowModal';
 import OptionsModal from '../../components/general/OptionsModal';
 
 /**
- * WatchedListScreen Component
+ * WatchedListTvShowsScreen Component
  *
- * This screen displays the list of movies that the user has watched. It also
- * provides functionality for interacting with individual movies via a modal.
+ * This screen displays the list of TV shows that the user has watched.
+ * It also provides functionality for interacting with individual TV shows
+ * via a modal, allowing users to manage their watched shows effectively.
  */
 function WatchedListTvShowsScreen() {
   const {
@@ -20,7 +21,7 @@ function WatchedListTvShowsScreen() {
     handleAddToWatched,
   } = useTvShowLists();
 
-  // Custom hook to manage the state and actions for the movie options modal
+  // Custom hook to manage the state and actions for the tv show options modal
   const {
     selectedTvShow,
     modalVisible,

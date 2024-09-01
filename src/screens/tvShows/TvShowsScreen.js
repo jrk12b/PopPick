@@ -18,13 +18,13 @@ import Error from '../../components/general/Error';
 import {useFocusEffect} from '@react-navigation/native';
 
 /**
- * MovieScreen Component
+ * TvShowsScreen Component
  *
- * This screen displays various movie lists and recommendations, allowing users
- * to view and interact with their movie collections and recommendations.
+ * This screen displays various TV show lists and recommendations, allowing users
+ * to view and interact with their TV show collections and recommendations.
  */
 function TvShowsScreen({navigation}) {
-  // Custom hook to manage movie lists and fetch movie data
+  // Custom hook to manage tv show lists and fetch movie data
   const {
     myListTvShows,
     likedListTvShows,
@@ -44,7 +44,7 @@ function TvShowsScreen({navigation}) {
     fetchCustomRecs,
   } = useTvShowLists();
 
-  // Custom hook to manage the state and actions for the movie options modal
+  // Custom hook to manage the state and actions for the tv show options modal
   const {
     selectedTvShow,
     modalVisible,
@@ -53,7 +53,7 @@ function TvShowsScreen({navigation}) {
     handleOptionSelect,
   } = useTvShowModal(handleAddToMyList, handleAddToLiked, handleAddToWatched);
 
-  // Fetch movie data and user lists when the screen is focused
+  // Fetch tv show data and user lists when the screen is focused
   useFocusEffect(
     useCallback(() => {
       fetchRecommendations();
@@ -73,14 +73,14 @@ function TvShowsScreen({navigation}) {
     return <Error message={error.message} />;
   }
 
-  // Combine all movies from the lists for filtering
+  // Combine all tv shows from the lists for filtering
   const allListMovies = [
     ...myListTvShows,
     ...likedListTvShows,
     ...watchedListTvShows,
   ].map(tvShow => tvShow.id);
 
-  // Filter out movies that are already on any list
+  // Filter out tv shows that are already on any list
   const filterList = tvShows =>
     tvShows.filter(tvShow => !allListMovies.includes(tvShow.id));
 
@@ -94,7 +94,7 @@ function TvShowsScreen({navigation}) {
         </TouchableOpacity>
       </View>
 
-      {/* Display user’s personal movie list */}
+      {/* Display user’s personal tv show list */}
       <MyList
         myList={myListTvShows}
         likedList={likedListTvShows}
@@ -104,7 +104,7 @@ function TvShowsScreen({navigation}) {
         mediaType="TV Shows"
       />
 
-      {/* Display list of watched movies */}
+      {/* Display list of watched tv shows */}
       <WatchedList
         myList={myListTvShows}
         likedList={likedListTvShows}
@@ -114,7 +114,7 @@ function TvShowsScreen({navigation}) {
         mediaType="TV Shows"
       />
 
-      {/* Display list of liked movies */}
+      {/* Display list of liked tv shows */}
       <LikedList
         myList={myListTvShows}
         likedList={likedListTvShows}
@@ -124,7 +124,7 @@ function TvShowsScreen({navigation}) {
         mediaType="TV Shows"
       />
 
-      {/* Display personal movie recommendations */}
+      {/* Display personal tv show recommendations */}
       <PersonalRec
         personalMovies={filterList(personalTvShows)}
         handleShowOptions={handleShowOptions}
@@ -132,7 +132,7 @@ function TvShowsScreen({navigation}) {
         mediaType="TV Shows"
       />
 
-      {/* Display popular movie recommendations */}
+      {/* Display popular tv show recommendations */}
       <PopularRec
         popularMovies={filterList(popularTvShows)}
         handleShowOptions={handleShowOptions}
@@ -140,7 +140,7 @@ function TvShowsScreen({navigation}) {
         mediaType="TV Shows"
       />
 
-      {/* Display top-rated movie recommendations */}
+      {/* Display top-rated tv show recommendations */}
       <TopRec
         topMovies={filterList(topTvShows)}
         handleShowOptions={handleShowOptions}
@@ -155,7 +155,7 @@ function TvShowsScreen({navigation}) {
         mediaType="TV Shows"
       />
 
-      {/* Modal for displaying options related to the selected movie */}
+      {/* Modal for displaying options related to the selected tv show */}
       <OptionsModal
         selectedItem={selectedTvShow}
         modalVisible={modalVisible}

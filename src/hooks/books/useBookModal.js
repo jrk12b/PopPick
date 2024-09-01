@@ -1,43 +1,43 @@
 import {useState} from 'react';
 
 /**
- * Custom hook for managing the state and actions of a movie modal.
+ * Custom hook for managing the state and actions of a book modal.
  *
- * This hook handles the display of a modal for movie options (e.g., add to list, like, watch).
- * It manages the selected movie, the type of list it pertains to, and the visibility of the modal.
+ * This hook handles the display of a modal for book options (e.g., add to list, like, watch).
+ * It manages the selected book, the type of list it pertains to, and the visibility of the modal.
  *
- * @param {Function} handleAddToMyList - Function to handle adding/removing movies to/from the personal list.
- * @param {Function} handleAddToLiked - Function to handle adding/removing movies to/from the liked list.
- * @param {Function} handleAddToWatched - Function to handle adding/removing movies to/from the watched list.
+ * @param {Function} handleAddToMyList - Function to handle adding/removing books to/from the personal list.
+ * @param {Function} handleAddToLiked - Function to handle adding/removing books to/from the liked list.
+ * @param {Function} handleAddToWatched - Function to handle adding/removing books to/from the watched list.
  *
  * @returns {Object} - Contains the state and handler functions for the modal.
  */
-const useMovieModal = (
+const useBookModal = (
   handleAddToMyList,
   handleAddToLiked,
   handleAddToWatched,
 ) => {
-  // State to manage the currently selected movie
+  // State to manage the currently selected book
   const [selectedBook, setselectedBook] = useState(null);
   // State to control the visibility of the modal
   const [modalVisible, setModalVisible] = useState(false);
 
   /**
-   * Opens the modal with options for the selected movie.
+   * Opens the modal with options for the selected book.
    *
-   * @param {Object} movie - The movie to be displayed in the modal.
+   * @param {Object} book - The book to be displayed in the modal.
    */
   const handleShowOptions = book => {
-    setselectedBook(book);
-    setModalVisible(true);
+    setselectedBook(book); // Set the selected book
+    setModalVisible(true); // Show the modal
   };
 
   /**
-   * Closes the modal and resets the selected movie and list type.
+   * Closes the modal and resets the selected book.
    */
   const handleCloseModal = () => {
-    setModalVisible(false);
-    setselectedBook(null);
+    setModalVisible(false); // Hide the modal
+    setselectedBook(null); // Reset the selected book
   };
 
   /**
@@ -49,21 +49,21 @@ const useMovieModal = (
    */
   const handleOptionSelect = option => {
     if (!selectedBook) {
-      return; // Exit if no movie is selected
+      return; // Exit if no book is selected
     }
 
     switch (option) {
       case 'addToMyList':
       case 'removeFromMyList':
-        handleAddToMyList(selectedBook);
+        handleAddToMyList(selectedBook); // Handle adding/removing the book to/from My List
         break;
       case 'addToLiked':
       case 'removeFromLikedList':
-        handleAddToLiked(selectedBook);
+        handleAddToLiked(selectedBook); // Handle adding/removing the book to/from Liked List
         break;
       case 'addToWatched':
       case 'removeFromWatchedList':
-        handleAddToWatched(selectedBook);
+        handleAddToWatched(selectedBook); // Handle adding/removing the book to/from Watched List
         break;
       default:
         // Handle unknown options if needed
@@ -73,7 +73,7 @@ const useMovieModal = (
     handleCloseModal(); // Close the modal after handling the option
   };
 
-  // Return the current state and handler functions
+  // Return the current state and handler functions for the modal
   return {
     selectedBook,
     modalVisible,
@@ -83,4 +83,4 @@ const useMovieModal = (
   };
 };
 
-export default useMovieModal;
+export default useBookModal;

@@ -10,31 +10,32 @@ import {API_KEY} from '../../config';
 import _ from 'lodash';
 
 /**
- * Custom hook for managing movie lists and fetching data from the API.
+ * Custom hook for managing TV show lists and fetching data from the API.
  *
- * This hook manages various lists related to movies (myList, likedList, watchedList)
- * and fetches movie recommendations based on the user's liked movies. It also handles
- * the storage and retrieval of these lists using AsyncStorage.
+ * This hook manages various lists related to TV shows (myList, likedList, watchedList)
+ * and fetches personalized TV show recommendations based on the user's liked TV shows.
+ * It also handles the storage and retrieval of these lists using AsyncStorage.
  *
  * Returns:
- * - myList: Array - List of movies saved to the user's personal list.
- * - likedList: Array - List of movies liked by the user.
- * - watchedList: Array - List of movies watched by the user.
- * - personalMovies: Array - Personalized movie recommendations based on liked movies.
- * - popularMovies: Array - List of popular movies fetched from the API.
- * - upcomingMovies: Array - List of upcoming movies fetched from the API.
- * - topMovies: Array - List of top-rated movies fetched from the API.
+ * - myListTvShows: Array - List of TV shows saved to the user's personal list.
+ * - likedListTvShows: Array - List of TV shows liked by the user.
+ * - watchedListTvShows: Array - List of TV shows watched by the user.
+ * - personalTvShows: Array - Personalized TV show recommendations based on liked TV shows.
+ * - popularTvShows: Array - List of popular TV shows fetched from the API.
+ * - customTvShows: Array - List of custom TV show recommendations based on user preferences.
+ * - topTvShows: Array - List of top-rated TV shows fetched from the API.
  * - loading: Boolean - Indicates whether data is currently being loaded.
  * - error: Error | null - Holds any error encountered during data fetching.
- * - handleAddToMyList: Function - Adds or removes a movie from the personal list.
- * - handleAddToLiked: Function - Adds or removes a movie from the liked list.
- * - handleAddToWatched: Function - Adds or removes a movie from the watched list.
+ * - handleAddToMyList: Function - Adds or removes a TV show from the personal list.
+ * - handleAddToLiked: Function - Adds or removes a TV show from the liked list.
+ * - handleAddToWatched: Function - Adds or removes a TV show from the watched list.
  * - fetchMyList: Function - Refreshes the personal list from AsyncStorage.
  * - fetchWatchedList: Function - Refreshes the watched list from AsyncStorage.
- * - fetchRecommendations: Function - Fetches personalized movie recommendations based on liked movies.
+ * - fetchRecommendations: Function - Fetches personalized TV show recommendations based on liked TV shows.
+ * - fetchCustomRecs: Function - Fetches custom TV show recommendations based on user preferences.
  */
 const useTvShowLists = () => {
-  // State variables to manage different movie lists and their loading/error states
+  // State variables to manage different TV show lists and their loading/error states
   const [myListTvShows, setMyListTvShows] = useState([]);
   const [likedListTvShows, setLikedListTvShows] = useState([]);
   const [watchedListTvShows, setWatchedListTvShows] = useState([]);
@@ -45,7 +46,7 @@ const useTvShowLists = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
-  // Fetch popular movies from the API using the custom hook `useMovies`
+  // Fetch popular TV shows from the API using the custom hook `useTvShows`
   useTvShows(
     `https://api.themoviedb.org/3/tv/popular?api_key=${API_KEY}`,
     setPopularTvShows,
@@ -53,7 +54,7 @@ const useTvShowLists = () => {
     setError,
   );
 
-  // Fetch top-rated movies from the API using the custom hook `useMovies`
+  // Fetch top-rated TV shows from the API using the custom hook `useTvShows`
   useTvShows(
     `https://api.themoviedb.org/3/tv/top_rated?api_key=${API_KEY}`,
     setTopTvShows,
@@ -61,7 +62,11 @@ const useTvShowLists = () => {
     setError,
   );
 
-  // Function to load a list from AsyncStorage
+  /**
+   * Function to load a list from AsyncStorage.
+   * @param {string} key - The key under which the list is stored in AsyncStorage.
+   * @returns {Array} - The loaded list or an empty array if not found or on error.
+   */
   const loadList = async key => {
     try {
       const listString = await AsyncStorage.getItem(key);
@@ -72,7 +77,11 @@ const useTvShowLists = () => {
     }
   };
 
-  // Function to save a list to AsyncStorage
+  /**
+   * Function to save a list to AsyncStorage.
+   * @param {string} key - The key under which to store the list in AsyncStorage.
+   * @param {Array} list - The list to be stored.
+   */
   const saveList = async (key, list) => {
     try {
       await AsyncStorage.setItem(key, JSON.stringify(list));
@@ -81,7 +90,10 @@ const useTvShowLists = () => {
     }
   };
 
-  // Load all movie lists when the component mounts
+  /**
+   * useEffect hook to load all TV show lists when the component mounts.
+   * It initializes the lists by loading them from AsyncStorage.
+   */
   useEffect(() => {
     const initializeLists = async () => {
       const savedMyListTvShows = await loadList('myListTvShows');
@@ -97,15 +109,19 @@ const useTvShowLists = () => {
     initializeLists();
   }, []);
 
-  // Fetch and set recommendations based on liked movies
+  /**
+   * Fetches personalized TV show recommendations based on the user's liked TV shows.
+   * It retrieves recommendations for each liked TV show from the API, removes duplicates,
+   * shuffles the results, and updates the `personalTvShows` state.
+   */
   const fetchRecommendations = useCallback(async () => {
     setLoading(true);
     setError(null);
 
     try {
-      const likedMovieIds = likedListTvShows.map(tvShow => tvShow.id);
+      const likedTvShowIds = likedListTvShows.map(tvShow => tvShow.id);
       const recommendations = await Promise.all(
-        likedMovieIds.map(id =>
+        likedTvShowIds.map(id =>
           fetch(
             `https://api.themoviedb.org/3/tv/${id}/recommendations?api_key=${API_KEY}`,
           )
@@ -130,13 +146,16 @@ const useTvShowLists = () => {
     }
   }, [likedListTvShows]);
 
+  /**
+   * Fetches custom TV show recommendations based on user preferences.
+   * It filters TV shows based on rating, genres, and removes duplicates.
+   * Updates the `customTvShows` state with the filtered results.
+   */
   const fetchCustomRecs = useCallback(async () => {
-    // Set loading state to true and reset any previous errors
     setLoading(true);
     setError(null);
 
     try {
-      // Combine all movies from popular, upcoming, and top lists into a single array
       const allListTvShows = [...popularTvShows, ...topTvShows];
       const allMyLists = [
         ...myListTvShows,
@@ -144,51 +163,40 @@ const useTvShowLists = () => {
         ...watchedListTvShows,
       ].map(tvShow => tvShow.id);
 
-      // Filter out movies with a vote_average (rating) below 7.0
       const filteredTvShows = allListTvShows.filter(
         tvShow => tvShow.vote_average >= 7.0,
       );
 
-      // Extract all genre_ids from the movies in the likedList and flatten them into a single array
       const allGenres = likedListTvShows.flatMap(tvShow => tvShow.genre_ids);
 
-      // Count the occurrences of each genre_id
       const genreCount = _.countBy(allGenres);
 
-      // Sort the genres by frequency in descending order and select the top 3
       const topGenres = Object.entries(genreCount)
-        .sort(([, countA], [, countB]) => countB - countA) // Sort by count descending
-        .slice(0, 3) // Take the top 3 most frequent genres
-        .map(([genre]) => parseInt(genre)); // Extract the genre_id and convert to an integer
+        .sort(([, countA], [, countB]) => countB - countA) // Sort genres by count descending
+        .slice(0, 3) // Select the top 3 genres
+        .map(([genre]) => parseInt(genre)); // Convert genre_id to integer
 
-      // Filter movies that have any of the top 3 genres
       const similarTvShows = filteredTvShows.filter(tvShow =>
         tvShow.genre_ids.some(genre => topGenres.includes(genre)),
       );
 
-      // Create a Set to track unique movie IDs
       const uniqueTvShowIds = new Set();
 
-      // Filter out duplicates by checking if the ID already exists in the Set
       const filteredSimilarTvShows = similarTvShows.filter(tvShow => {
         if (uniqueTvShowIds.has(tvShow.id)) {
-          return false; // Skip this movie if it's a duplicate
+          return false; // Skip if duplicate
         }
-        uniqueTvShowIds.add(tvShow.id); // Add the movie ID to the Set
-        return true; // Keep this movie
+        uniqueTvShowIds.add(tvShow.id); // Add to set if unique
+        return true;
       });
 
-      // Set the filtered list of similar movies to the customMovies state
-      // Filter out movies that are already on any list
       const filterList = tvShows =>
         tvShows.filter(tvShow => !allMyLists.includes(tvShow.id));
 
       setCustomTvShows(filterList(filteredSimilarTvShows));
     } catch (err) {
-      // If an error occurs, set the error state
       setError(err);
     } finally {
-      // Set loading state to false after the operation is complete
       setLoading(false);
     }
   }, [
@@ -198,19 +206,24 @@ const useTvShowLists = () => {
     likedListTvShows,
     watchedListTvShows,
   ]);
-  // Fetch and set the personal list from AsyncStorage
+
+  /**
+   * Fetch and refresh the personal TV show list from AsyncStorage.
+   */
   const fetchMyList = async () => {
     const savedMyListTvShows = await loadList('myListTvShows');
     setMyListTvShows(savedMyListTvShows);
   };
 
-  // Fetch and set the watched list from AsyncStorage
+  /**
+   * Fetch and refresh the watched TV show list from AsyncStorage.
+   */
   const fetchWatchedList = async () => {
     const savedWatchedListTvShows = await loadList('watchedListTvShows');
     setWatchedListTvShows(savedWatchedListTvShows);
   };
 
-  // Handle adding/removing movies to/from the personal list
+  // Handle adding/removing tv shows to/from the personal list
   const handleAddToMyList = async tvShow => {
     setMyListTvShows(prevList => {
       const updatedList = prevList.find(item => item.id === tvShow.id)
@@ -221,8 +234,8 @@ const useTvShowLists = () => {
     });
   };
 
-  // Handle adding/removing movies to/from the liked list
-  // Also updates watched list and removes the movie from myList if it exists
+  // Handle adding/removing tv shows to/from the liked list
+  // Also updates watched list and removes the tv show from myList if it exists
   const handleAddToLiked = async tvShow => {
     setLikedListTvShows(prevList => {
       const updatedList = prevList.find(item => item.id === tvShow.id)
@@ -231,7 +244,7 @@ const useTvShowLists = () => {
       saveList('likedListTvShows', updatedList); // Save updated likedList to AsyncStorage
       return updatedList;
     });
-    // Automatically add movie to watchedList
+    // Automatically add tv show to watchedList
     setWatchedListTvShows(prevList => {
       const updatedList = prevList.find(item => item.id === tvShow.id)
         ? prevList
@@ -239,7 +252,7 @@ const useTvShowLists = () => {
       saveList('watchedListTvShows', updatedList); // Save updated watchedList to AsyncStorage
       return updatedList;
     });
-    // Remove the movie from myList if it exists
+    // Remove the tv show from myList if it exists
     setMyListTvShows(prevList => {
       const updatedList = prevList.filter(item => item.id !== tvShow.id);
       saveList('myListTvShows', updatedList); // Also update myList
@@ -247,8 +260,8 @@ const useTvShowLists = () => {
     });
   };
 
-  // Handle adding/removing movies to/from the watched list
-  // Also removes the movie from myList if it exists
+  // Handle adding/removing tv shows to/from the watched list
+  // Also removes the tv show from myList if it exists
   const handleAddToWatched = async tvShow => {
     setWatchedListTvShows(prevList => {
       const updatedList = prevList.find(item => item.id === tvShow.id)
@@ -257,7 +270,7 @@ const useTvShowLists = () => {
       saveList('watchedListTvShows', updatedList); // Save updated watchedList to AsyncStorage
       return updatedList;
     });
-    // Remove the movie from myList if it exists
+    // Remove the tv show from myList if it exists
     setMyListTvShows(prevList => {
       const updatedList = prevList.filter(item => item.id !== tvShow.id);
       saveList('myListTvShows', updatedList); // Also update myList

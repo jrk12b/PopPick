@@ -43,7 +43,7 @@ const Stack = createStackNavigator();
  * AppNavigator Component
  *
  * This component sets up the main navigation structure of the app using React Navigation.
- * It defines a stack navigator that allows users to navigate between different screens
+ * It defines a stack navigator that allows users to navigate between different screens,
  * representing various sections of the app, such as Movies, Books, TV Shows, Video Games,
  * and personalized recommendations.
  *
@@ -52,28 +52,50 @@ const Stack = createStackNavigator();
  * and can be navigated to by their names.
  *
  * Screens:
- * - Home: Displays the home screen of the app.
- * - Movies: Displays the main movie screen.
- * - My List: Shows the user's personal list of saved movies.
- * - Watched List: Displays the list of movies the user has marked as watched.
- * - Liked List: Shows the list of movies the user has liked.
- * - Search Movies: Provides a search functionality for finding movies.
- * - Personal Recs: Displays personalized movie recommendations.
- * - Popular Recs: Shows popular movie recommendations.
- * - Upcoming Recs: Displays upcoming movie recommendations.
- * - Top Recs: Shows top-rated movie recommendations.
- * - Books: Displays the books section of the app.
- * - TvShows: Displays the TV shows section of the app.
- * - VideoGames: Displays the video games section of the app.
+ * - Home: The landing page of the app, providing access to the main categories (Movies, Books, TV Shows, Video Games).
+ * - Movies: The main screen for browsing and interacting with movie-related content.
+ * - My List Movies: Displays a list of movies that the user has added to their personal watchlist.
+ * - Watched List Movies: Displays the list of movies the user has marked as watched.
+ * - Liked List Movies: Shows the list of movies the user has liked.
+ * - Search Movies: A search functionality for finding specific movies.
+ * - Personal Recs: Displays personalized movie recommendations based on user preferences.
+ * - Popular Recs: Shows a list of currently popular movie recommendations.
+ * - Upcoming Recs: Displays a list of upcoming movie releases.
+ * - Top Recs: Shows a list of top-rated movies.
+ * - Custom Recs: Displays custom movie recommendations tailored to the user's interests.
+ * - Books: The main screen for browsing and interacting with book-related content.
+ * - My List Books: Displays a list of books that the user has added to their personal reading list.
+ * - Liked List Books: Shows the list of books the user has liked.
+ * - Read List Books: Displays the list of books the user has marked as read.
+ * - Search Books: A search functionality for finding specific books.
+ * - Fiction Recs: Shows a list of recommended fiction books.
+ * - Non-Fiction Recs: Displays a list of recommended non-fiction books.
+ * - Drama Recs: Shows a list of recommended drama books.
+ * - Adventure Recs: Displays a list of recommended adventure books.
+ * - TV Shows: The main screen for browsing and interacting with TV show-related content.
+ * - My List TV Shows: Displays a list of TV shows that the user has added to their personal watchlist.
+ * - Watched List TV Shows: Displays the list of TV shows the user has marked as watched.
+ * - Liked List TV Shows: Shows the list of TV shows the user has liked.
+ * - Search TV Shows: A search functionality for finding specific TV shows.
+ * - Personal Recs TV Shows: Displays personalized TV show recommendations based on user preferences.
+ * - Popular Recs TV Shows: Shows a list of currently popular TV show recommendations.
+ * - Top Recs TV Shows: Displays a list of top-rated TV shows.
+ * - Custom Recs TV Shows: Displays custom TV show recommendations tailored to the user's interests.
+ * - Video Games: The main screen for browsing and interacting with video game-related content.
+ * - My List Video Games: Displays a list of video games that the user has added to their personal playlist.
+ * - Played List Video Games: Displays the list of video games the user has marked as played.
+ * - Liked List Video Games: Shows the list of video games the user has liked.
+ * - Search Video Games: A search functionality for finding specific video games.
+ * - Personal Recs Video Games: Displays personalized video game recommendations based on user preferences.
  *
  * Navigation:
- * - The navigation container wraps the stack navigator, ensuring the entire app is navigable.
+ * - The NavigationContainer component wraps the Stack.Navigator, ensuring that navigation is possible across the entire app.
  * - Each screen can be navigated to by using its name in the `Stack.Screen` component.
- * - Some screens have their headers shown (`headerShown: true`), while others use default options.
+ * - Some screens have headers shown (`headerShown: true`), while others use the default header settings.
  *
  * Usage:
  * - The `AppNavigator` component should be used as the main navigation setup in the root of the app.
- * - This allows users to seamlessly transition between different sections and features within the app.
+ * - This setup allows users to seamlessly transition between different sections and features within the app.
  */
 function AppNavigator() {
   return (

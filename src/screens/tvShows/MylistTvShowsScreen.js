@@ -5,12 +5,13 @@ import useTvShowModal from '../../hooks/tvShows/useTvShowModal';
 import OptionsModal from '../../components/general/OptionsModal';
 
 /**
- * MyListScreen Component
+ * MyListTvShowsScreen Component
  *
- * This screen displays the user's list of movies that they have added to their
- * personal list and provides functionality for managing the list and viewing
- * movie options. It uses custom hooks to manage movie lists and modal state,
- * and renders the personal movie list and a modal for additional options.
+ * This screen displays the user's list of TV shows that they have added to their
+ * personal list. It provides functionality for managing the list and viewing options
+ * for each TV show. The component utilizes custom hooks to manage TV show lists
+ * and the modal state, rendering both the personal TV show list and a modal for
+ * additional options.
  */
 function MyListTvShowsScreen() {
   const {
@@ -22,7 +23,7 @@ function MyListTvShowsScreen() {
     handleAddToWatched,
   } = useTvShowLists();
 
-  // Custom hook to manage the state and actions for the movie options modal
+  // Custom hook to manage the state and actions for the tv show options modal
   const {
     selectedTvShow,
     modalVisible,

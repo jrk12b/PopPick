@@ -5,13 +5,14 @@ import useTvShowModal from '../../hooks/tvShows/useTvShowModal';
 import OptionsModal from '../../components/general/OptionsModal';
 
 /**
- * PersonalRecScreen Component
+ * PersonalRecTvShowsScreen Component
  *
- * This screen displays personalized movie recommendations based on the user's
- * liked movies. It fetches recommendations when the component mounts and
- * provides functionality for managing movie lists and viewing movie options.
+ * This screen displays personalized TV show recommendations based on the user's
+ * liked TV shows. It fetches recommendations when the component mounts and
+ * provides functionality for managing TV show lists and viewing options for
+ * each recommendation.
  */
-function PersonalRecScreen() {
+function PersonalRecTvShowsScreen() {
   const {
     myListTvShows,
     likedListTvShows,
@@ -56,4 +57,4 @@ function PersonalRecScreen() {
   );
 }
 
-export default PersonalRecScreen;
+export default PersonalRecTvShowsScreen;

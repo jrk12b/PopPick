@@ -52,8 +52,7 @@ const fetchBookCoverWithRetry = async (item, setBookCoverImage) => {
   try {
     // Check if item is undefined or null
     if (!item) {
-      // console.warn('Item is undefined or null, skipping fetch');
-      return; // Exit the function early if item is undefined
+      return;
     }
 
     await delay(500); // Adding a small delay between requests

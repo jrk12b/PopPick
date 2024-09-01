@@ -5,14 +5,15 @@ import OptionsModal from '../../components/general/OptionsModal';
 import BookRecFull from '../../components/recommendationsFull/BookRecFull';
 
 /**
- * MyListScreen Component
+ * DramaRecScreen Component
  *
- * This screen displays the user's list of movies that they have added to their
- * personal list and provides functionality for managing the list and viewing
- * movie options. It uses custom hooks to manage movie lists and modal state,
- * and renders the personal movie list and a modal for additional options.
+ * This screen displays a list of adventure books that the user has added to their
+ * personal collection. It provides functionality for managing the list and viewing
+ * options for each book. The component utilizes custom hooks to manage book lists
+ * and modal state, and renders the list of books along with a modal for additional options.
  */
 function DramaRecScreen() {
+  // Fetching book lists and handler functions using the custom hook
   const {
     myListBooks,
     likedListBooks,
@@ -23,6 +24,7 @@ function DramaRecScreen() {
     handleAddToWatched,
   } = useBookLists();
 
+  // Managing modal state and selected book using the custom hook
   const {
     selectedBook,
     modalVisible,
@@ -33,12 +35,14 @@ function DramaRecScreen() {
 
   return (
     <>
+      {/* Display the full list of adventure books with options to manage them */}
       <BookRecFull
         books={adventurebooks}
         handleShowOptions={handleShowOptions}
         mediaType="Books"
         bookSubject="Adventure"
       />
+      {/* Modal for displaying options related to the selected book */}
       <OptionsModal
         selectedItem={selectedBook}
         modalVisible={modalVisible}

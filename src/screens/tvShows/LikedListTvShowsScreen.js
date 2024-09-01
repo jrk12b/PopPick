@@ -5,12 +5,12 @@ import useTvShowModal from '../../hooks/tvShows/useTvShowModal';
 import OptionsModal from '../../components/general/OptionsModal';
 
 /**
- * LikedListScreen Component
+ * LikedListTvShowsScreen Component
  *
- * This screen displays the user's list of liked movies and provides functionality
- * for managing the list and viewing movie options. It uses custom hooks to manage
- * movie lists and modal state, and renders the liked movies list and a modal for
- * additional options.
+ * This screen displays the user's list of liked TV shows and provides functionality
+ * for managing the list and viewing options for each show. It leverages custom hooks
+ * to manage the state of TV show lists and the modal, rendering both the liked shows
+ * and a modal for additional actions.
  */
 function LikedListTvShowsScreen() {
   const {
@@ -33,6 +33,7 @@ function LikedListTvShowsScreen() {
 
   return (
     <>
+      {/* Component to display the list of liked TV shows */}
       <LikedListFull
         likedList={likedListTvShows}
         myList={myListTvShows}
@@ -40,6 +41,7 @@ function LikedListTvShowsScreen() {
         handleShowOptions={handleShowOptions}
         mediaType="TV Shows"
       />
+      {/* Modal for displaying options related to the selected TV show */}
       <OptionsModal
         selectedItem={selectedTvShow}
         modalVisible={modalVisible}

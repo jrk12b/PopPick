@@ -5,12 +5,13 @@ import OptionsModal from '../../components/general/OptionsModal';
 import BookRecFull from '../../components/recommendationsFull/BookRecFull';
 
 /**
- * MyListScreen Component
+ * NonFictionRecScreen Component
  *
- * This screen displays the user's list of movies that they have added to their
- * personal list and provides functionality for managing the list and viewing
- * movie options. It uses custom hooks to manage movie lists and modal state,
- * and renders the personal movie list and a modal for additional options.
+ * This component displays a list of non-fiction books that the user can view
+ * and manage. It utilizes custom hooks to handle the state of the user's
+ * book lists and the modal for additional options. Users can see their
+ * non-fiction book recommendations and perform actions such as liking or
+ * adding books to their personal lists through the options modal.
  */
 function NonFictionRecScreen() {
   const {
@@ -33,12 +34,14 @@ function NonFictionRecScreen() {
 
   return (
     <>
+      {/* Render the full list of non-fiction books with options for each book */}
       <BookRecFull
         books={nonFictionBooks}
         handleShowOptions={handleShowOptions}
         mediaType="Books"
         bookSubject="Non-Fiction"
       />
+      {/* Render the options modal for the selected book */}
       <OptionsModal
         selectedItem={selectedBook}
         modalVisible={modalVisible}

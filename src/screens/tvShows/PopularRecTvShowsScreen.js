@@ -5,13 +5,15 @@ import useTvShowModal from '../../hooks/tvShows/useTvShowModal';
 import OptionsModal from '../../components/general/OptionsModal';
 
 /**
- * PopularRecScreen Component
+ * PopularRecTvShowsScreen Component
  *
- * This screen displays popular movie recommendations. It fetches popular
- * movies when the component mounts and manages user interactions with movie
- * options through a modal.
+ * This screen displays popular TV show recommendations. It fetches popular
+ * TV shows when the component mounts and manages user interactions with
+ * TV show options through a modal. The component integrates with custom
+ * hooks to handle the state and logic for the TV show lists and the
+ * options modal.
  */
-function PopularRecScreen() {
+function PopularRecTvShowsScreen() {
   const {
     popularTvShows,
     likedListTvShows,
@@ -56,4 +58,4 @@ function PopularRecScreen() {
   );
 }
 
-export default PopularRecScreen;
+export default PopularRecTvShowsScreen;

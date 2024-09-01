@@ -15,7 +15,7 @@ import styles from '../styles/styles';
 function HomeScreen({navigation}) {
   return (
     <ScrollView style={styles.container}>
-      <Text style={styles.textHeader}>Home Screen</Text>
+      <Text style={styles.textHeader}>PopPick</Text>
       <CustomButton
         title="Go to Movies"
         onPress={() => navigation.navigate('Movies')}

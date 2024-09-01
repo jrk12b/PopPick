@@ -5,13 +5,13 @@ import useTvShowModal from '../../hooks/tvShows/useTvShowModal';
 import OptionsModal from '../../components/general/OptionsModal';
 
 /**
- * TopRecScreen Component
+ * TopRecTvShowsScreen Component
  *
- * This screen displays popular movie recommendations. It fetches top
- * movies when the component mounts and manages user interactions with movie
- * options through a modal.
+ * This screen displays top TV show recommendations. It fetches the top
+ * TV shows when the component mounts and manages user interactions
+ * with TV show options through a modal.
  */
-function TopRecScreen() {
+function TopRecTvShowsScreen() {
   const {
     topTvShows,
     myListTvShows,
@@ -56,4 +56,4 @@ function TopRecScreen() {
   );
 }
 
-export default TopRecScreen;
+export default TopRecTvShowsScreen;

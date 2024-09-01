@@ -7,14 +7,14 @@ import SearchList from '../../components/lists/SearchList';
 import styles from '../../styles/styles';
 
 /**
- * SearchListScreen Component
+ * SearchListTvShowsScreen Component
  *
- * This screen displays a list of search results for movies. Users can interact
- * with each movie item through a modal that provides options for adding or
- * removing movies from different lists.
+ * This screen displays a list of search results for TV shows. Users can interact
+ * with each TV show item through a modal that provides options for adding or
+ * removing TV shows from different lists.
  */
-function SearchListSearchListScreen() {
-  // Custom hook to manage movie lists and their state
+function SearchListTvShowsScreen() {
+  // Custom hook to manage tv shows lists and their state
   const {
     myListTvShows,
     likedListTvShows,
@@ -24,7 +24,7 @@ function SearchListSearchListScreen() {
     handleAddToWatched,
   } = useTvShowLists();
 
-  // Custom hook to manage the state and actions for the movie options modal
+  // Custom hook to manage the state and actions for the tv show options modal
   const {
     selectedTvShow,
     modalVisible,
@@ -33,7 +33,7 @@ function SearchListSearchListScreen() {
     handleOptionSelect,
   } = useTvShowModal(handleAddToMyList, handleAddToLiked, handleAddToWatched);
 
-  // Wrapper function to pass movie and list type to the handleShowOptions function
+  // Wrapper function to pass tv show and list type to the handleShowOptions function
   const handleShowOptionsWrapper = tvShows => {
     handleShowOptions(tvShows);
   };
@@ -48,7 +48,7 @@ function SearchListSearchListScreen() {
         handleShowOptions={handleShowOptionsWrapper}
         mediaType="TV Shows"
       />
-      {/* Modal for displaying options related to the selected movie */}
+      {/* Modal for displaying options related to the selected tv show */}
       <OptionsModal
         selectedItem={selectedTvShow}
         modalVisible={modalVisible}
@@ -63,4 +63,4 @@ function SearchListSearchListScreen() {
   );
 }
 
-export default SearchListSearchListScreen;
+export default SearchListTvShowsScreen;

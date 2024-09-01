@@ -7,11 +7,11 @@ import SearchList from '../../components/lists/SearchList';
 import styles from '../../styles/styles';
 
 /**
- * SearchListScreen Component
+ * SearchListBooksScreen Component
  *
- * This screen displays a list of search results for movies. Users can interact
- * with each movie item through a modal that provides options for adding or
- * removing movies from different lists.
+ * This component displays a list of search results for books. Users can interact
+ * with each book item through a modal that provides options for adding or
+ * removing books from their various lists (my list, liked, watched).
  */
 function SearchListBooksScreen() {
   // Custom hook to manage movie lists and their state
@@ -48,7 +48,7 @@ function SearchListBooksScreen() {
         handleShowOptions={handleShowOptionsWrapper}
         mediaType="Books"
       />
-      {/* Modal for displaying options related to the selected movie */}
+      {/* Modal for displaying options related to the selected book */}
       <OptionsModal
         selectedItem={selectedBook}
         modalVisible={modalVisible}

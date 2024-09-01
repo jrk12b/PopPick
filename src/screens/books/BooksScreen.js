@@ -17,8 +17,8 @@ import BookRec from '../../components/recommendations/BookRec';
 /**
  * BooksScreen Component
  *
- * This screen displays various movie lists and recommendations, allowing users
- * to view and interact with their movie collections and recommendations.
+ * Displays various book lists and recommendations, allowing users
+ * to view and interact with their book collections.
  */
 function BooksScreen({navigation}) {
   const {
@@ -46,11 +46,11 @@ function BooksScreen({navigation}) {
     handleOptionSelect,
   } = useBookModal(handleAddToMyList, handleAddToLiked, handleAddToWatched);
 
-  // Fetch movie data and user lists when the screen is focused
+  // Fetch book data and user lists when the screen is focused
   useFocusEffect(
     useCallback(() => {
-      fetchMyList();
-      fetchWatchedList();
+      fetchMyList(); // Fetch user's personal book list
+      fetchWatchedList(); // Fetch user's watched book list
     }, [likedListBooks]), // Dependency on likedList to refetch when it changes
   );
 
@@ -72,6 +72,7 @@ function BooksScreen({navigation}) {
         </TouchableOpacity>
       </View>
 
+      {/* Render the user's lists and recommendations */}
       <MyList
         myList={myListBooks}
         likedList={likedListBooks}

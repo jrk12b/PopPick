@@ -5,12 +5,12 @@ import useBookModal from '../../hooks/books/useBookModal';
 import OptionsModal from '../../components/general/OptionsModal';
 
 /**
- * MyListScreen Component
+ * MyListBooksScreen Component
  *
- * This screen displays the user's list of movies that they have added to their
- * personal list and provides functionality for managing the list and viewing
- * movie options. It uses custom hooks to manage movie lists and modal state,
- * and renders the personal movie list and a modal for additional options.
+ * This component displays the user's personal list of books that they have added.
+ * It allows users to manage their personal book collection and view additional
+ * options for each book through a modal. The component utilizes custom hooks to
+ * manage the state of the book lists and modal visibility.
  */
 function MyListBooksScreen() {
   const {
@@ -32,6 +32,7 @@ function MyListBooksScreen() {
 
   return (
     <>
+      {/* Render the full list of the user's personal books with options for each book */}
       <MyListFull
         myList={myListBooks}
         likedList={likedListBooks}
@@ -39,6 +40,7 @@ function MyListBooksScreen() {
         handleShowOptions={handleShowOptions}
         mediaType="Books"
       />
+      {/* Render the options modal for the selected book */}
       <OptionsModal
         selectedItem={selectedBook}
         modalVisible={modalVisible}
