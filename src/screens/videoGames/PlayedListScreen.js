@@ -40,7 +40,7 @@ function PlayedListScreen() {
         likedList={likedListVideoGames}
         watchedList={playedListVideoGames}
         handleShowOptions={handleShowOptions}
-        mediaType="videoGames"
+        mediaType="Video Games"
       />
       <OptionsModal
         selectedItem={selectedMovie}
@@ -50,7 +50,7 @@ function PlayedListScreen() {
         myList={myListVideoGames}
         likedList={likedListVideoGames}
         watchedList={playedListVideoGames}
-        mediaType="videoGames"
+        mediaType="Video Games"
       />
     </>
   );

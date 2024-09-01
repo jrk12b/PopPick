@@ -22,7 +22,7 @@ import Poster from '../general/Poster';
  */
 function TopRec({topMovies, handleShowOptions, navigation, mediaType}) {
   const page =
-    mediaType === 'movies'
+    mediaType === 'Movies'
       ? 'Top Recs'
       : mediaType === 'TV Shows'
       ? 'Top Recs TV Shows'

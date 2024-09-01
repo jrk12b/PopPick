@@ -36,7 +36,7 @@ function DramaRecScreen() {
       <BookRecFull
         books={adventurebooks}
         handleShowOptions={handleShowOptions}
-        mediaType="books"
+        mediaType="Books"
         bookSubject="Adventure"
       />
       <OptionsModal
@@ -47,7 +47,7 @@ function DramaRecScreen() {
         myList={myListBooks}
         likedList={likedListBooks}
         watchedList={watchedListBooks}
-        mediaType="books"
+        mediaType="Books"
       />
     </>
   );

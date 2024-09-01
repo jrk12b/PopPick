@@ -77,10 +77,10 @@ const Poster = ({
 
   // Fetch the cover image if the media type is 'videoGames' and the item has a cover ID
   useEffect(() => {
-    if (mediaType === 'videoGames' && item.cover) {
+    if (mediaType === 'Video Games' && item.cover) {
       fetchCoverImageWithRetry(item, setCoverImage); // Fetch the cover image with retry logic
     }
-    if (mediaType === 'books') {
+    if (mediaType === 'Books') {
       const imageUrl = item.thumbnail;
       fetchBookCoverWithRetry(imageUrl, setBookCoverImage); // Fetch the cover image with retry logic
     }
@@ -97,10 +97,10 @@ const Poster = ({
   // Determine the image URI based on the media type
   const imageUri = (() => {
     switch (mediaType) {
-      case 'movies':
+      case 'Movies':
       case 'TV Shows':
         return `https://image.tmdb.org/t/p/w500${item.poster_path}`; // Movie or TV show poster URL
-      case 'books':
+      case 'Books':
         return bookCoverImage; // Book cover image URL
       default:
         return coverImage; // Video game cover image URL
@@ -141,9 +141,9 @@ const Poster = ({
           />
         )}
         <Text style={styles.title}>
-          {mediaType === 'books'
+          {mediaType === 'Books'
             ? item.title
-            : mediaType === 'movies'
+            : mediaType === 'Movies'
             ? item.title
             : item.name}
         </Text>

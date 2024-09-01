@@ -24,7 +24,7 @@ import styles from '../../styles/styles';
  */
 function CustomRec({customMovies, handleShowOptions, navigation, mediaType}) {
   const page =
-    mediaType === 'movies'
+    mediaType === 'Movies'
       ? 'Custom Recs'
       : mediaType === 'TV Shows'
       ? 'Custom Recs TV Shows'

@@ -27,14 +27,15 @@ function BookRecFull({books, handleShowOptions, mediaType, bookSubject}) {
   // possible refactor
   let flattenedData = [];
 
-  if (mediaType === 'books' && books?.items) {
+  if (mediaType === 'Books' && books?.items) {
     // When mediaType is 'books', extract the items array
     flattenedData = books.items.map(item => ({
       id: item.id,
       title: item.volumeInfo.title,
       authors: item.volumeInfo.authors,
-      thumbnail: item.volumeInfo.imageLinks?.thumbnail, // Adjust this line as needed
-      // Include any other properties you may need
+      thumbnail: item.volumeInfo.imageLinks?.thumbnail,
+      average_rating: item.volumeInfo.average_rating,
+      description: item.volumeInfo.description,
     }));
   } else if (Array.isArray(books)) {
     // For other media types, use the data as is
@@ -63,7 +64,7 @@ function BookRecFull({books, handleShowOptions, mediaType, bookSubject}) {
           {header} ({flattenedData.length})
         </Text>
       }
-      ListEmptyComponent={<Text style={styles.text}>No movies added yet.</Text>}
+      ListEmptyComponent={<Text style={styles.text}>No books added yet.</Text>}
     />
   );
 }

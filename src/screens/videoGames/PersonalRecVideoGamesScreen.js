@@ -35,7 +35,7 @@ function PersonalRecVideoGamesScreen() {
       <PersonalRecFull
         personalMovies={personalVideoGames}
         handleShowOptions={handleShowOptions}
-        mediaType="videoGames"
+        mediaType="Video Games"
       />
       <OptionsModal
         selectedItem={selectedVideoGame}
@@ -45,7 +45,7 @@ function PersonalRecVideoGamesScreen() {
         myList={myListVideoGames}
         likedList={likedListVideoGames}
         watchedList={playedListVideoGames}
-        mediaType="videoGames"
+        mediaType="Video Games"
       />
     </>
   );

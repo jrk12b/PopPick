@@ -33,8 +33,9 @@ function PopularRecFull({popularMovies, handleShowOptions, mediaType}) {
       id: item.id,
       title: item.volumeInfo.title,
       authors: item.volumeInfo.authors,
-      thumbnail: item.volumeInfo.imageLinks?.thumbnail, // Adjust this line as needed
-      // Include any other properties you may need
+      thumbnail: item.volumeInfo.imageLinks?.thumbnail,
+      average_rating: item.volumeInfo.average_rating,
+      description: item.volumeInfo.description,
     }));
   } else if (Array.isArray(popularMovies)) {
     // For other media types, use the data as is

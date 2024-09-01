@@ -36,7 +36,7 @@ function NonFictionRecScreen() {
       <BookRecFull
         books={nonFictionBooks}
         handleShowOptions={handleShowOptions}
-        mediaType="books"
+        mediaType="Books"
         bookSubject="Non-Fiction"
       />
       <OptionsModal
@@ -47,7 +47,7 @@ function NonFictionRecScreen() {
         myList={myListBooks}
         likedList={likedListBooks}
         watchedList={watchedListBooks}
-        mediaType="books"
+        mediaType="Books"
       />
     </>
   );

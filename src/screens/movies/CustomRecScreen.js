@@ -40,7 +40,7 @@ function CustomRecScreen() {
       <CustomRecFull
         customMovies={customMovies}
         handleShowOptions={handleShowOptions}
-        mediaType="movies"
+        mediaType="Movies"
       />
       <OptionsModal
         selectedItem={selectedMovie}
@@ -50,7 +50,7 @@ function CustomRecScreen() {
         myList={myList}
         likedList={likedList}
         watchedList={watchedList}
-        mediaType="movies"
+        mediaType="Movies"
       />
     </>
   );

@@ -36,8 +36,7 @@ function LikedList({
 }) {
   const keyExtractor = item => item.id?.toString() || item.key;
   // Determine the appropriate page title based on the media type
-  const page =
-    mediaType === 'movies' ? 'Liked List' : `Liked List ${mediaType}`;
+  const page = `Liked List ${mediaType}`;
 
   return (
     <View style={styles.sectionContainer}>

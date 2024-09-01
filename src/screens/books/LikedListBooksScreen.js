@@ -37,7 +37,7 @@ function LikedListBooksScreen() {
         likedList={likedListBooks}
         watchedList={watchedListBooks}
         handleShowOptions={handleShowOptions}
-        mediaType="books"
+        mediaType="Books"
       />
       <OptionsModal
         selectedItem={selectedBook}
@@ -47,7 +47,7 @@ function LikedListBooksScreen() {
         myList={myListBooks}
         likedList={likedListBooks}
         watchedList={watchedListBooks}
-        mediaType="books"
+        mediaType="Books"
       />
     </>
   );

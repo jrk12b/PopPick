@@ -47,7 +47,7 @@ function SearchListVideoGamesScreen() {
         likedList={likedListVideoGames}
         watchedList={playedListVideoGames}
         handleShowOptions={handleShowOptions}
-        mediaType="videoGames"
+        mediaType="Video Games"
       />
       {/* Modal for displaying options related to the selected movie */}
       <OptionsModal
@@ -58,7 +58,7 @@ function SearchListVideoGamesScreen() {
         myList={myListVideoGames}
         likedList={likedListVideoGames}
         watchedList={playedListVideoGames}
-        mediaType="videoGames"
+        mediaType="Video Games"
       />
     </View>
   );

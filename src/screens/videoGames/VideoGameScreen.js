@@ -77,7 +77,7 @@ function VideoGameScreen({navigation}) {
         watchedList={playedListVideoGames}
         handleShowOptions={handleShowOptions}
         navigation={navigation}
-        mediaType="videoGames"
+        mediaType="Video Games"
       />
 
       {/* Display list of played games */}
@@ -87,7 +87,7 @@ function VideoGameScreen({navigation}) {
         watchedList={playedListVideoGames}
         handleShowOptions={handleShowOptions}
         navigation={navigation}
-        mediaType="videoGames"
+        mediaType="Video Games"
       />
 
       {/* Display list of liked games */}
@@ -97,7 +97,7 @@ function VideoGameScreen({navigation}) {
         watchedList={playedListVideoGames}
         handleShowOptions={handleShowOptions}
         navigation={navigation}
-        mediaType="videoGames"
+        mediaType="Video Games"
       />
 
       {/* Display personal recommendations excluding already listed games */}
@@ -105,7 +105,7 @@ function VideoGameScreen({navigation}) {
         personalMovies={filterList(personalVideoGames)}
         handleShowOptions={handleShowOptions}
         navigation={navigation}
-        mediaType="videoGames"
+        mediaType="Video Games"
       />
 
       {/* Modal for managing options related to the selected game */}
@@ -117,7 +117,7 @@ function VideoGameScreen({navigation}) {
         myList={myListVideoGames}
         likedList={likedListVideoGames}
         watchedList={playedListVideoGames}
-        mediaType="videoGames"
+        mediaType="Video Games"
       />
     </ScrollView>
   );

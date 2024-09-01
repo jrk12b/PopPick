@@ -46,7 +46,7 @@ function SearchListBooksScreen() {
         likedList={likedListBooks}
         watchedList={watchedListBooks}
         handleShowOptions={handleShowOptionsWrapper}
-        mediaType="books"
+        mediaType="Books"
       />
       {/* Modal for displaying options related to the selected movie */}
       <OptionsModal
@@ -57,7 +57,7 @@ function SearchListBooksScreen() {
         myList={myListBooks}
         likedList={likedListBooks}
         watchedList={watchedListBooks}
-        mediaType="books"
+        mediaType="Books"
       />
     </View>
   );

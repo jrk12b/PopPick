@@ -32,9 +32,9 @@ function WatchedListFull({
   const keyExtractor = item => item.id?.toString() || item.key;
   // possible refactor. title or page variables should be consistent across lists
   const title =
-    mediaType === 'books'
+    mediaType === 'Books'
       ? 'Read'
-      : mediaType === 'movies' || mediaType === 'TV Shows'
+      : mediaType === 'Movies' || mediaType === 'TV Shows'
       ? 'Watched'
       : 'Played';
   return (
@@ -62,7 +62,7 @@ function WatchedListFull({
       }
       ListEmptyComponent={
         <Text style={styles.text}>
-          No {mediaType === 'movies' ? 'movies' : 'games'} added yet.
+          No {mediaType === 'Movies' ? 'Movies' : 'Games'} added yet.
         </Text>
       }
     />

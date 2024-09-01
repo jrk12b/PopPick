@@ -27,7 +27,7 @@ function PersonalRec({
   mediaType,
 }) {
   const page =
-    mediaType === 'movies'
+    mediaType === 'Movies'
       ? 'Personal Recs'
       : mediaType === 'TV Shows'
       ? 'Personal Recs TV Shows'

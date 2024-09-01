@@ -52,7 +52,7 @@ const SearchList = ({
    * in the state and displayed.
    */
   const searchMedia = async () => {
-    if (mediaType === 'movies') {
+    if (mediaType === 'Movies') {
       try {
         // Fetching movie data from The Movie Database (TMDb) API
         const response = await fetch(
@@ -66,7 +66,7 @@ const SearchList = ({
       } catch (error) {
         console.error('Error fetching movies:', error);
       }
-    } else if (mediaType === 'videoGames') {
+    } else if (mediaType === 'Video Games') {
       try {
         // Fetching video game data from IGDB API
         const accessToken = await getAccessToken();
@@ -100,7 +100,7 @@ const SearchList = ({
       } catch (error) {
         console.error('Error fetching tv shows:', error);
       }
-    } else if (mediaType === 'books') {
+    } else if (mediaType === 'Books') {
       const convertedQuery = query.replace(/ /g, '+');
       try {
         const response = await fetch(
@@ -123,6 +123,8 @@ const SearchList = ({
           title: item.volumeInfo.title,
           authors: item.volumeInfo.authors,
           thumbnail: item.volumeInfo.imageLinks?.thumbnail,
+          average_rating: item.volumeInfo.average_rating,
+          description: item.volumeInfo.description,
         }));
         // Limiting the results to the top 10
         if (flattenedData) {
@@ -147,10 +149,10 @@ const SearchList = ({
   };
 
   const placeholders = {
-    books: 'books',
-    movies: 'movies',
+    Books: 'Books',
+    Movies: 'Movies',
     'TV Shows': 'TV Shows',
-    default: 'video games',
+    default: 'Video Games',
   };
 
   const placeholder = `Search for ${

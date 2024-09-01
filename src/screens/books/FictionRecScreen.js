@@ -34,9 +34,10 @@ function FictionRecScreen() {
   return (
     <>
       <BookRecFull
-        popularMovies={fictionBooks}
+        books={fictionBooks}
         handleShowOptions={handleShowOptions}
-        mediaType="books"
+        mediaType="Books"
+        bookSubject="Fiction"
       />
       <OptionsModal
         selectedItem={selectedBook}
@@ -46,7 +47,7 @@ function FictionRecScreen() {
         myList={myListBooks}
         likedList={likedListBooks}
         watchedList={watchedListBooks}
-        mediaType="books"
+        mediaType="Books"
       />
     </>
   );

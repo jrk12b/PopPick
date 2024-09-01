@@ -15,13 +15,15 @@ function BookRec({
   // possible refactor, this is repeated elsewhere
   let flattenedData = [];
 
-  if (mediaType === 'books' && books?.items) {
+  if (mediaType === 'Books' && books?.items) {
     // When mediaType is 'books', extract the items array
     flattenedData = books.items.map(item => ({
       id: item.id,
       title: item.volumeInfo.title,
       authors: item.volumeInfo.authors,
-      thumbnail: item.volumeInfo.imageLinks?.thumbnail, // Adjust this line as needed
+      thumbnail: item.volumeInfo.imageLinks?.thumbnail,
+      average_rating: item.volumeInfo.average_rating,
+      description: item.volumeInfo.description,
       // Include any other properties you may need
     }));
   } else if (Array.isArray(books)) {
@@ -33,7 +35,7 @@ function BookRec({
 
   // Dynamic section title based on bookSubject
   const sectionTitle =
-    mediaType === 'books' && bookSubject
+    mediaType === 'Books' && bookSubject
       ? `${bookSubject} Recommendations`
       : 'Fiction Recommendations';
 

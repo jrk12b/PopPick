@@ -35,7 +35,7 @@ function MyList({
 }) {
   const keyExtractor = item => item.id?.toString() || item.key;
   // Determine the appropriate page title based on the media type
-  const page = mediaType === 'movies' ? 'My List' : `My List ${mediaType}`;
+  const page = `My List ${mediaType}`;
 
   return (
     <View style={styles.sectionContainer}>

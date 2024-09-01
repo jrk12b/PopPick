@@ -45,6 +45,7 @@ const OptionsModal = ({
   // Convert the first release date (timestamp) to a readable date format
   const date = new Date(selectedItem.first_release_date * 1000);
   const readableDate = date.toLocaleDateString();
+  console.log('justin2: ', selectedItem);
 
   return (
     <Modal
@@ -56,13 +57,13 @@ const OptionsModal = ({
         <View style={styles.modalContent}>
           {/* If mediaType is either 'movies', 'TV Shows', or 'books', it uses selectedItem.title. For any other mediaType, it uses selectedItem.name */}
           <Text style={styles.movieTitle}>
-            {['movies', 'TV Shows', 'books'].includes(mediaType)
+            {['Movies', 'TV Shows', 'Books'].includes(mediaType)
               ? selectedItem.title
               : selectedItem.name}
           </Text>
 
           {/* Display specific information based on the media type */}
-          {mediaType === 'movies' && (
+          {mediaType === 'Movies' && (
             <>
               <Text style={styles.movieDescription}>
                 {selectedItem.overview}
@@ -88,7 +89,7 @@ const OptionsModal = ({
               </Text>
             </>
           )}
-          {mediaType === 'videoGames' && (
+          {mediaType === 'Video Games' && (
             <>
               <Text style={styles.movieRelease}>
                 Release date: {readableDate}
@@ -113,7 +114,7 @@ const OptionsModal = ({
               />
               <CustomButton
                 title={
-                  mediaType === 'movies' ? 'Mark as Watched' : 'Mark as Played'
+                  mediaType === 'Movies' ? 'Mark as Watched' : 'Mark as Played'
                 }
                 onPress={() => handleOptionSelect('addToWatched')}
                 style={styles.button}
@@ -140,7 +141,7 @@ const OptionsModal = ({
               {!inWatchedList && (
                 <CustomButton
                   title={
-                    mediaType === 'movies'
+                    mediaType === 'Movies'
                       ? 'Mark as Watched'
                       : 'Mark as Played'
                   }
@@ -172,7 +173,7 @@ const OptionsModal = ({
               {!inWatchedList && (
                 <CustomButton
                   title={
-                    mediaType === 'movies'
+                    mediaType === 'Movies'
                       ? 'Mark as Watched'
                       : 'Mark as Played'
                   }
@@ -189,7 +190,7 @@ const OptionsModal = ({
             <>
               <CustomButton
                 title={
-                  mediaType === 'movies'
+                  mediaType === 'Movies'
                     ? 'Remove from Watched List'
                     : 'Remove from Played List'
                 }

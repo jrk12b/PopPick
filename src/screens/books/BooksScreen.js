@@ -67,7 +67,7 @@ function BooksScreen({navigation}) {
   return (
     <ScrollView style={styles.container}>
       <View style={styles.header}>
-        <TouchableOpacity onPress={() => navigation.navigate('Search books')}>
+        <TouchableOpacity onPress={() => navigation.navigate('Search Books')}>
           <Icon name="search" size={24} color="#FBF4F4" />
         </TouchableOpacity>
       </View>
@@ -78,7 +78,7 @@ function BooksScreen({navigation}) {
         watchedList={watchedListBooks}
         handleShowOptions={handleShowOptions}
         navigation={navigation}
-        mediaType="books"
+        mediaType="Books"
       />
 
       <WatchedList
@@ -87,7 +87,7 @@ function BooksScreen({navigation}) {
         watchedList={watchedListBooks}
         handleShowOptions={handleShowOptions}
         navigation={navigation}
-        mediaType="books"
+        mediaType="Books"
       />
 
       <LikedList
@@ -96,14 +96,14 @@ function BooksScreen({navigation}) {
         watchedList={watchedListBooks}
         handleShowOptions={handleShowOptions}
         navigation={navigation}
-        mediaType="books"
+        mediaType="Books"
       />
 
       <BookRec
         books={fictionBooks}
         handleShowOptions={handleShowOptions}
         navigation={navigation}
-        mediaType="books"
+        mediaType="Books"
         bookSubject="Fiction"
       />
 
@@ -111,7 +111,7 @@ function BooksScreen({navigation}) {
         books={nonFictionBooks}
         handleShowOptions={handleShowOptions}
         navigation={navigation}
-        mediaType="books"
+        mediaType="Books"
         bookSubject="Non-Fiction"
       />
 
@@ -119,7 +119,7 @@ function BooksScreen({navigation}) {
         books={dramaBooks}
         handleShowOptions={handleShowOptions}
         navigation={navigation}
-        mediaType="books"
+        mediaType="Books"
         bookSubject="Drama"
       />
 
@@ -127,7 +127,7 @@ function BooksScreen({navigation}) {
         books={adventurebooks}
         handleShowOptions={handleShowOptions}
         navigation={navigation}
-        mediaType="books"
+        mediaType="Books"
         bookSubject="Adventure"
       />
 
@@ -139,7 +139,7 @@ function BooksScreen({navigation}) {
         myList={myListBooks}
         likedList={likedListBooks}
         watchedList={watchedListBooks}
-        mediaType="books"
+        mediaType="Books"
       />
     </ScrollView>
   );

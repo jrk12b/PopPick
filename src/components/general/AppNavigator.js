@@ -89,9 +89,12 @@ function AppNavigator() {
           component={MovieScreen}
           options={{headerShown: true}}
         />
-        <Stack.Screen name="My List" component={MyListScreen} />
-        <Stack.Screen name="Watched List" component={WatchedListScreen} />
-        <Stack.Screen name="Liked List" component={LikedListScreen} />
+        <Stack.Screen name="My List Movies" component={MyListScreen} />
+        <Stack.Screen
+          name="Watched List Movies"
+          component={WatchedListScreen}
+        />
+        <Stack.Screen name="Liked List Movies" component={LikedListScreen} />
         <Stack.Screen name="Search" component={SearchListScreen} />
         <Stack.Screen name="Personal Recs" component={PersonalRecScreen} />
         <Stack.Screen name="Popular Recs" component={PopularRecScreen} />
@@ -117,7 +120,10 @@ function AppNavigator() {
           name="My List Video Games"
           component={MyListVideoGamesScreen}
         />
-        <Stack.Screen name="Played List" component={PlayedListScreen} />
+        <Stack.Screen
+          name="Played List Video Games"
+          component={PlayedListScreen}
+        />
         <Stack.Screen
           name="Liked List Video Games"
           component={LikedListVideoGamesScreen}
@@ -159,13 +165,13 @@ function AppNavigator() {
           name="Search TV Shows"
           component={SearchListTvShowsScreen}
         />
-        <Stack.Screen name="My List books" component={MyListBooksScreen} />
+        <Stack.Screen name="My List Books" component={MyListBooksScreen} />
         <Stack.Screen
-          name="Liked List books"
+          name="Liked List Books"
           component={LikedListBooksScreen}
         />
-        <Stack.Screen name="Read List books" component={ReadListBooksScreen} />
-        <Stack.Screen name="Search books" component={SearchListBooksScreen} />
+        <Stack.Screen name="Read List Books" component={ReadListBooksScreen} />
+        <Stack.Screen name="Search Books" component={SearchListBooksScreen} />
         <Stack.Screen name="Fiction Recs" component={FictionRecScreen} />
         <Stack.Screen name="Non-Fiction Recs" component={NonFictionRecScreen} />
         <Stack.Screen name="Drama Recs" component={DramaRecScreen} />

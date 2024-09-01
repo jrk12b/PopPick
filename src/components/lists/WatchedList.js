@@ -36,8 +36,8 @@ function WatchedList({
   // Determine the title based on the media type (Watched for movies, Played for video games)
   const page =
     {
-      books: 'Read',
-      movies: 'Watched',
+      Books: 'Read',
+      Movies: 'Watched',
       'TV Shows': 'Watched',
     }[mediaType] || 'Played';
 
@@ -54,7 +54,7 @@ function WatchedList({
       {/* Displays a message if there are no items in the watched/played list */}
       {watchedList.length === 0 ? (
         <Text style={styles.text}>
-          No {mediaType === 'movies' ? 'movies' : 'games'} added yet.
+          No {mediaType === 'Movies' ? 'Movies' : 'Games'} added yet.
         </Text>
       ) : (
         // Renders the watched/played items as a horizontal list of Poster components

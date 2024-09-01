@@ -40,7 +40,7 @@ function PersonalRecScreen() {
       <PersonalRecFull
         personalMovies={personalMovies}
         handleShowOptions={handleShowOptions}
-        mediaType="movies"
+        mediaType="Movies"
       />
       <OptionsModal
         selectedItem={selectedMovie}
@@ -50,7 +50,7 @@ function PersonalRecScreen() {
         myList={myList}
         likedList={likedList}
         watchedList={watchedList}
-        mediaType="movies"
+        mediaType="Movies"
       />
     </>
   );

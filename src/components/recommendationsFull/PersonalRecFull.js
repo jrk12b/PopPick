@@ -44,7 +44,7 @@ function PersonalRecFull({personalMovies, handleShowOptions, mediaType}) {
           Personal Recommendations ({personalMovies.length})
         </Text>
       }
-      ListEmptyComponent={<Text style={styles.text}>No movies added yet.</Text>}
+      ListEmptyComponent={<Text style={styles.text}>No items added yet.</Text>}
     />
   );
 }

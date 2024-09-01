@@ -40,7 +40,7 @@ function TopRecScreen() {
       <TopRecFull
         topMovies={topMovies}
         handleShowOptions={handleShowOptions}
-        mediaType="movies"
+        mediaType="Movies"
       />
       <OptionsModal
         selectedItem={selectedMovie}
@@ -50,7 +50,7 @@ function TopRecScreen() {
         myList={myList}
         likedList={likedList}
         watchedList={watchedList}
-        mediaType="movies"
+        mediaType="Movies"
       />
     </>
   );

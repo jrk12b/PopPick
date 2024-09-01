@@ -53,7 +53,7 @@ function LikedListFull({
       }
       ListEmptyComponent={
         <Text style={styles.text}>
-          No {mediaType === 'movies' ? 'movies' : 'games'} added yet.
+          No {mediaType === 'Movies' ? 'Movies' : 'Games'} added yet.
         </Text>
       }
     />
