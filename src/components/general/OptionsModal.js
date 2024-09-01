@@ -45,7 +45,6 @@ const OptionsModal = ({
   // Convert the first release date (timestamp) to a readable date format
   const date = new Date(selectedItem.first_release_date * 1000);
   const readableDate = date.toLocaleDateString();
-  console.log('justin2: ', selectedItem);
 
   return (
     <Modal

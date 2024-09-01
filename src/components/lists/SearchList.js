@@ -5,6 +5,7 @@ import Poster from '../general/Poster';
 import CustomButton from '../general/CustomButton';
 import {API_KEY, VIDEO_GAME_CLIENT_ID} from '../../config';
 import {getAccessToken} from '../../hooks/videoGames/auth';
+import flattenData from '../../hooks/books/flattenData';
 
 /**
  * SearchList Component
@@ -38,7 +39,6 @@ const SearchList = ({
   handleShowOptions,
   mediaType,
 }) => {
-  // possible refactor. this key extractor code is used a lot
   const keyExtractor = item => item.id?.toString() || item.key;
   // State for storing the search query and the search results
   const [query, setQuery] = useState('');
@@ -116,16 +116,7 @@ const SearchList = ({
           },
         );
         const data = await response.json();
-        // possible refactor, do this elsewhere and share it. I think same code is repeated elsewhere.
-        let flattenedData = [];
-        flattenedData = data.items.map(item => ({
-          id: item.id,
-          title: item.volumeInfo.title,
-          authors: item.volumeInfo.authors,
-          thumbnail: item.volumeInfo.imageLinks?.thumbnail,
-          average_rating: item.volumeInfo.average_rating,
-          description: item.volumeInfo.description,
-        }));
+        const flattenedData = flattenData(data);
         // Limiting the results to the top 10
         if (flattenedData) {
           setResults(flattenedData.slice(0, 10));

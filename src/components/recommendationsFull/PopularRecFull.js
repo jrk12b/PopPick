@@ -2,6 +2,7 @@ import React from 'react';
 import {Text, FlatList} from 'react-native';
 import styles from '../../styles/styles';
 import Poster from '../general/Poster';
+import flattenData from '../../hooks/books/flattenData';
 
 /**
  * PopularRecFull Component
@@ -29,14 +30,7 @@ function PopularRecFull({popularMovies, handleShowOptions, mediaType}) {
 
   if (mediaType === 'books' && popularMovies?.items) {
     // When mediaType is 'books', extract the items array
-    flattenedData = popularMovies.items.map(item => ({
-      id: item.id,
-      title: item.volumeInfo.title,
-      authors: item.volumeInfo.authors,
-      thumbnail: item.volumeInfo.imageLinks?.thumbnail,
-      average_rating: item.volumeInfo.average_rating,
-      description: item.volumeInfo.description,
-    }));
+    flattenedData = flattenData(popularMovies);
   } else if (Array.isArray(popularMovies)) {
     // For other media types, use the data as is
     flattenedData = popularMovies;

@@ -2,6 +2,7 @@ import React from 'react';
 import {View, Text, FlatList, TouchableOpacity} from 'react-native';
 import styles from '../../styles/styles';
 import Poster from '../general/Poster';
+import flattenData from '../../hooks/books/flattenData';
 
 /**
  * PopularRec Component
@@ -30,19 +31,11 @@ function PopularRec({popularMovies, handleShowOptions, navigation, mediaType}) {
       ? 'Popular Recs TV Shows'
       : 'Popular Rec Video Games';
 
-  // possible refactor, this is repeated elsewhere
   let flattenedData = [];
 
   if (mediaType === 'books' && popularMovies?.items) {
     // When mediaType is 'books', extract the items array
-    flattenedData = popularMovies.items.map(item => ({
-      id: item.id,
-      title: item.volumeInfo.title,
-      authors: item.volumeInfo.authors,
-      thumbnail: item.volumeInfo.imageLinks?.thumbnail,
-      average_rating: item.volumeInfo.average_rating,
-      description: item.volumeInfo.description,
-    }));
+    flattenedData = flattenData(popularMovies);
   } else if (Array.isArray(popularMovies)) {
     // For other media types, use the data as is
     flattenedData = popularMovies;

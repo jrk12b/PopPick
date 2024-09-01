@@ -2,6 +2,7 @@ import React from 'react';
 import {View, Text, FlatList, TouchableOpacity} from 'react-native';
 import styles from '../../styles/styles';
 import Poster from '../general/Poster';
+import flattenData from '../../hooks/books/flattenData';
 
 function BookRec({
   books,
@@ -12,20 +13,11 @@ function BookRec({
 }) {
   const page = `${bookSubject} Recs`;
 
-  // possible refactor, this is repeated elsewhere
   let flattenedData = [];
 
   if (mediaType === 'Books' && books?.items) {
     // When mediaType is 'books', extract the items array
-    flattenedData = books.items.map(item => ({
-      id: item.id,
-      title: item.volumeInfo.title,
-      authors: item.volumeInfo.authors,
-      thumbnail: item.volumeInfo.imageLinks?.thumbnail,
-      average_rating: item.volumeInfo.average_rating,
-      description: item.volumeInfo.description,
-      // Include any other properties you may need
-    }));
+    flattenedData = flattenData(books);
   } else if (Array.isArray(books)) {
     // For other media types, use the data as is
     flattenedData = books;
