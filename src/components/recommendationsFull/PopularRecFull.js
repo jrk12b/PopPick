@@ -3,6 +3,7 @@ import {Text, FlatList} from 'react-native';
 import styles from '../../styles/styles';
 import Poster from '../general/Poster';
 import flattenData from '../../hooks/books/flattenData';
+import {keyExtractor} from '../../components/general/ListConstants';
 
 /**
  * PopularRecFull Component
@@ -25,7 +26,6 @@ function PopularRecFull({popularMovies, handleShowOptions, mediaType}) {
   if (!popularMovies) {
     return <Text>Loading...</Text>;
   }
-  // possible refactor
   let flattenedData = [];
 
   if (mediaType === 'books' && popularMovies?.items) {
@@ -35,8 +35,6 @@ function PopularRecFull({popularMovies, handleShowOptions, mediaType}) {
     // For other media types, use the data as is
     flattenedData = popularMovies;
   }
-
-  const keyExtractor = item => item.id?.toString() || item.key;
 
   return (
     <FlatList

@@ -2,6 +2,7 @@ import React from 'react';
 import {View, Text, FlatList, TouchableOpacity} from 'react-native';
 import Poster from '../general/Poster';
 import styles from '../../styles/styles';
+import {keyExtractor} from '../../components/general/ListConstants';
 
 /**
  * MyList Component
@@ -33,7 +34,6 @@ function MyList({
   navigation,
   mediaType,
 }) {
-  const keyExtractor = item => item.id?.toString() || item.key;
   // Determine the appropriate page title based on the media type
   const page = `My List ${mediaType}`;
 

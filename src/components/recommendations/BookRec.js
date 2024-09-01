@@ -3,6 +3,7 @@ import {View, Text, FlatList, TouchableOpacity} from 'react-native';
 import styles from '../../styles/styles';
 import Poster from '../general/Poster';
 import flattenData from '../../hooks/books/flattenData';
+import {keyExtractor} from '../../components/general/ListConstants';
 
 function BookRec({
   books,
@@ -22,8 +23,6 @@ function BookRec({
     // For other media types, use the data as is
     flattenedData = books;
   }
-
-  const keyExtractor = item => item.id?.toString() || item.key;
 
   // Dynamic section title based on bookSubject
   const sectionTitle =

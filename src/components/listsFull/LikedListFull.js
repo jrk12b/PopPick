@@ -2,6 +2,7 @@ import React from 'react';
 import {FlatList, Text} from 'react-native';
 import styles from '../../styles/styles';
 import Poster from '../general/Poster';
+import {keyExtractor} from '../../components/general/ListConstants';
 
 /**
  * LikedListFull Component
@@ -29,7 +30,6 @@ function LikedListFull({
   handleShowOptions,
   mediaType,
 }) {
-  const keyExtractor = item => item.id?.toString() || item.key;
   return (
     <FlatList
       style={styles.FlatList}
@@ -51,11 +51,7 @@ function LikedListFull({
       ListHeaderComponent={
         <Text style={styles.sectionTitle}>Liked ({likedList.length})</Text>
       }
-      ListEmptyComponent={
-        <Text style={styles.text}>
-          No {mediaType === 'Movies' ? 'Movies' : 'Games'} added yet.
-        </Text>
-      }
+      ListEmptyComponent={<Text style={styles.text}>No items added yet.</Text>}
     />
   );
 }

@@ -6,6 +6,7 @@ import CustomButton from '../general/CustomButton';
 import {API_KEY, VIDEO_GAME_CLIENT_ID} from '../../config';
 import {getAccessToken} from '../../hooks/videoGames/auth';
 import flattenData from '../../hooks/books/flattenData';
+import {keyExtractor} from '../../components/general/ListConstants';
 
 /**
  * SearchList Component
@@ -39,7 +40,6 @@ const SearchList = ({
   handleShowOptions,
   mediaType,
 }) => {
-  const keyExtractor = item => item.id?.toString() || item.key;
   // State for storing the search query and the search results
   const [query, setQuery] = useState('');
   const [results, setResults] = useState([]);
@@ -61,6 +61,7 @@ const SearchList = ({
           )}`,
         );
         const data = await response.json();
+        console.log(data);
         // Limiting the results to the top 10
         setResults(data.results.slice(0, 10));
       } catch (error) {

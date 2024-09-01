@@ -2,6 +2,7 @@ import React from 'react';
 import {Text, FlatList} from 'react-native';
 import styles from '../../styles/styles';
 import Poster from '../general/Poster';
+import {listTitle, keyExtractor} from '../../components/general/ListConstants';
 
 /**
  * WatchedListFull Component
@@ -29,14 +30,7 @@ function WatchedListFull({
   handleShowOptions,
   mediaType,
 }) {
-  const keyExtractor = item => item.id?.toString() || item.key;
-  // possible refactor. title or page variables should be consistent across lists
-  const title =
-    mediaType === 'Books'
-      ? 'Read'
-      : mediaType === 'Movies' || mediaType === 'TV Shows'
-      ? 'Watched'
-      : 'Played';
+  const title = listTitle(mediaType);
   return (
     <FlatList
       style={styles.FlatList}
@@ -60,11 +54,7 @@ function WatchedListFull({
           {title} List ({watchedList.length})
         </Text>
       }
-      ListEmptyComponent={
-        <Text style={styles.text}>
-          No {mediaType === 'Movies' ? 'Movies' : 'Games'} added yet.
-        </Text>
-      }
+      ListEmptyComponent={<Text style={styles.text}>No items added yet.</Text>}
     />
   );
 }

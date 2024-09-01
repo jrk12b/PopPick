@@ -3,6 +3,7 @@ import {Text, FlatList} from 'react-native';
 import styles from '../../styles/styles';
 import Poster from '../general/Poster';
 import flattenData from '../../hooks/books/flattenData';
+import {keyExtractor} from '../../components/general/ListConstants';
 
 /**
  * PopularRecFull Component
@@ -25,7 +26,6 @@ function BookRecFull({books, handleShowOptions, mediaType, bookSubject}) {
   if (!books) {
     return <Text>Loading...</Text>;
   }
-  // possible refactor
   let flattenedData = [];
 
   if (mediaType === 'Books' && books?.items) {
@@ -36,7 +36,6 @@ function BookRecFull({books, handleShowOptions, mediaType, bookSubject}) {
     flattenedData = books;
   }
 
-  const keyExtractor = item => item.id?.toString() || item.key;
   const header = `${bookSubject} Recommendations`;
   return (
     <FlatList

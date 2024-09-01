@@ -2,6 +2,7 @@ import React from 'react';
 import {View, Text, FlatList, TouchableOpacity} from 'react-native';
 import styles from '../../styles/styles';
 import Poster from '../general/Poster';
+import {keyExtractor, listTitle} from '../../components/general/ListConstants';
 
 /**
  * WatchedList Component
@@ -32,30 +33,21 @@ function WatchedList({
   navigation,
   mediaType,
 }) {
-  const keyExtractor = item => item.id?.toString() || item.key;
-  // Determine the title based on the media type (Watched for movies, Played for video games)
-  const page =
-    {
-      Books: 'Read',
-      Movies: 'Watched',
-      'TV Shows': 'Watched',
-    }[mediaType] || 'Played';
+  const title = listTitle(mediaType);
 
   return (
     <View style={styles.sectionContainer}>
       {/* Navigates to the full Watched/Played List screen when the title is pressed */}
       <TouchableOpacity
-        onPress={() => navigation.navigate(`${page} List ${mediaType}`)}>
+        onPress={() => navigation.navigate(`${title} List ${mediaType}`)}>
         <Text style={styles.sectionTitle}>
-          {page} ({watchedList.length})
+          {title} ({watchedList.length})
         </Text>
       </TouchableOpacity>
 
       {/* Displays a message if there are no items in the watched/played list */}
       {watchedList.length === 0 ? (
-        <Text style={styles.text}>
-          No {mediaType === 'Movies' ? 'Movies' : 'Games'} added yet.
-        </Text>
+        <Text style={styles.text}>No items added yet.</Text>
       ) : (
         // Renders the watched/played items as a horizontal list of Poster components
         <FlatList

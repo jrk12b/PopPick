@@ -2,6 +2,7 @@ import React from 'react';
 import {Text, FlatList} from 'react-native';
 import styles from '../../styles/styles';
 import Poster from '../general/Poster';
+import {keyExtractor} from '../../components/general/ListConstants';
 
 /**
  * PersonalRecFull Component
@@ -28,7 +29,7 @@ function PersonalRecFull({personalMovies, handleShowOptions, mediaType}) {
     <FlatList
       style={styles.FlatList}
       data={personalMovies}
-      keyExtractor={item => item.id.toString()}
+      keyExtractor={keyExtractor}
       renderItem={({item}) => (
         <Poster
           item={item}

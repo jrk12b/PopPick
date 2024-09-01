@@ -2,6 +2,7 @@ import React from 'react';
 import {View, Text, FlatList, TouchableOpacity} from 'react-native';
 import styles from '../../styles/styles';
 import Poster from '../general/Poster';
+import {keyExtractor} from '../../components/general/ListConstants';
 
 /**
  * UpcomingRec Component
@@ -33,7 +34,7 @@ function UpcomingRec({
       </TouchableOpacity>
       <FlatList
         data={upcomingMovies}
-        keyExtractor={item => item.id.toString()}
+        keyExtractor={keyExtractor}
         renderItem={({item}) => (
           <Poster
             item={item}
