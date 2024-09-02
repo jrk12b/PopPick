@@ -9,7 +9,7 @@ describe('Test flattenData', () => {
    * flattens the structure of the input data (mockResponseData) and
    * transforms it into the expected format (mockFlattenedData).
    */
-  it('Expect data to be flattended correctly ', () => {
+  it('Expect data to be flattended correctly', () => {
     const flattenedData = flattenData(mockResponseData);
     expect(flattenedData).toEqual(mockFlattenedData);
   });
