@@ -1,4 +1,4 @@
-const mockResponseData = {
+const mockBookResponseData = {
   items: [
     {
       accessInfo: [],
@@ -143,7 +143,7 @@ const mockResponseData = {
   totalItems: 2120,
 };
 
-const mockFlattenedData = [
+const mockFlattenedBookData = [
   {
     id: 'U_zINMa9cAA1',
     title: 'Holes 1',
@@ -182,6 +182,40 @@ const mockSelectedBook = {
   thumbnail:
     'http://books.google.com/books/content?id=zmQKcdh4i-oC&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api',
   title: 'Reading Greek Tragedy',
+};
+
+const mockSelectedBookNoList = {
+  authors: ['In No List'],
+  average_rating: 4.2,
+  description: 'Not in any list',
+  id: 'zmQfdsgsfhC',
+  thumbnail:
+    'http://books.google.com/books/content?id=zmQKcdh4i-oC&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api',
+  title: 'No List',
+};
+
+const mockSelectedBookInMyList = {
+  authors: ['J.R.R. Tolkien'],
+  id: 'yl4dILkcqm4C',
+  thumbnail:
+    'http://books.google.com/books/content?id=yl4dILkcqm4C&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api',
+  title: 'The Lord Of The Rings',
+};
+
+const mockSelectedBookInWatchedList = {
+  authors: ['John Ronald Reuel Tolkien'],
+  id: 'Jelk7EMpA7sC',
+  thumbnail:
+    'http://books.google.com/books/content?id=Jelk7EMpA7sC&printsec=frontcover&img=1&zoom=1&source=gbs_api',
+  title: 'The Lord of the Rings',
+};
+
+const mockSelectedBookInLikedList = {
+  authors: ['J. R. R. Tolkien'],
+  id: '0CFAjgEACAAJ',
+  thumbnail:
+    'http://books.google.com/books/content?id=0CFAjgEACAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api',
+  title: 'The Lord of the Rings',
 };
 
 const mockMyListBooks = [
@@ -251,19 +285,16 @@ const mockWatchedListBooks = [
       'http://books.google.com/books/content?id=Jelk7EMpA7sC&printsec=frontcover&img=1&zoom=1&source=gbs_api',
     title: 'The Lord of the Rings',
   },
-  {
-    authors: ['J. R. R. Tolkien'],
-    id: '0CFAjgEACAAJ',
-    thumbnail:
-      'http://books.google.com/books/content?id=0CFAjgEACAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api',
-    title: 'The Lord of the Rings',
-  },
 ];
 
 module.exports = {
-  mockResponseData,
-  mockFlattenedData,
+  mockBookResponseData,
+  mockFlattenedBookData,
   mockSelectedBook,
+  mockSelectedBookNoList,
+  mockSelectedBookInMyList,
+  mockSelectedBookInWatchedList,
+  mockSelectedBookInLikedList,
   mockMyListBooks,
   mockLikedListBooks,
   mockWatchedListBooks,

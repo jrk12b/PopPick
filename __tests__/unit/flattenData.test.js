@@ -1,5 +1,8 @@
 import flattenData from '../../src/hooks/books/flattenData';
-import {mockResponseData, mockFlattenedData} from '../../testData/mockData';
+import {
+  mockBookResponseData,
+  mockFlattenedBookData,
+} from '../../testData/mockDataBooks';
 
 describe('Test flattenData', () => {
   /**
@@ -10,7 +13,7 @@ describe('Test flattenData', () => {
    * transforms it into the expected format (mockFlattenedData).
    */
   it('Expect data to be flattended correctly', () => {
-    const flattenedData = flattenData(mockResponseData);
-    expect(flattenedData).toEqual(mockFlattenedData);
+    const flattenedData = flattenData(mockBookResponseData);
+    expect(flattenedData).toEqual(mockFlattenedBookData);
   });
 });
