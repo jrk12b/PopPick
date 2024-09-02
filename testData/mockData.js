@@ -173,7 +173,98 @@ const mockFlattenedData = [
   },
 ];
 
+const mockSelectedBook = {
+  authors: ['Simon Goldhill'],
+  average_rating: 4.5,
+  description:
+    'An advanced critical introduction to Greek tragedy for those who do not read Greek. Combines the best contemporary scholarly analysis of the classics with a wide knowledge of contemporary literary studies in discussing the masterpieces of Athenian drama.',
+  id: 'zmQKcdh4i-oC',
+  thumbnail:
+    'http://books.google.com/books/content?id=zmQKcdh4i-oC&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api',
+  title: 'Reading Greek Tragedy',
+};
+
+const mockMyListBooks = [
+  {
+    authors: ['J.R.R. Tolkien'],
+    id: 'yl4dILkcqm4C',
+    thumbnail:
+      'http://books.google.com/books/content?id=yl4dILkcqm4C&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api',
+    title: 'The Lord Of The Rings',
+  },
+  {
+    authors: ['J. R. R. Tolkien'],
+    id: 'FKziXsnqLTEC',
+    thumbnail:
+      'http://books.google.com/books/content?id=FKziXsnqLTEC&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api',
+    title:
+      'The Lord of the Rings: The Fellowship of the Ring, The Two Towers, The Return of the King',
+  },
+  {
+    authors: ['Simon Goldhill'],
+    id: 'zmQKcdh4i-oC',
+    thumbnail:
+      'http://books.google.com/books/content?id=zmQKcdh4i-oC&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api',
+    title: 'Reading Greek Tragedy',
+  },
+  {
+    authors: ['Tommy Orange'],
+    id: 'oNY0DwAAQBAJ',
+    thumbnail:
+      'http://books.google.com/books/content?id=oNY0DwAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api',
+    title: 'There There',
+  },
+  {
+    authors: ['Homer'],
+    description:
+      "Homer's epic chronicle of the Greek hero Odysseus' journey home from the Trojan War has inspired writers from Virgil to James Joyce. Odysseus survives storm and shipwreck, the cave of the Cyclops and the isle of Circe, the lure of the Sirens' song and a trip to the Underworld, only to find his most difficult challenge at home, where treacherous suitors seek to steal his kingdom and his loyal wife, Penelope. Favorite of the gods, Odysseus embodies the energy, intellect, and resourcefulness that were of highest value to the ancients and that remain ideals in out time. In this new verse translation, Allen Mandelbaum--celebrated poet and translator of Virgil's Aeneid and Dante's Divine Comedy --realizes the power and beauty of the original Greek verse and demonstrates why the epic tale of The Odyssey has captured the human imagination for nearly three thousand years.",
+    id: 'ORyo8qAA-CQC',
+    thumbnail:
+      'http://books.google.com/books/content?id=ORyo8qAA-CQC&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api',
+    title: 'The Odyssey of Homer',
+  },
+  {
+    authors: ['Richard Dawkins'],
+    description: 'With a new epilogue to the 40th anniversary edition.',
+    id: 'ekonDAAAQBAJ',
+    thumbnail:
+      'http://books.google.com/books/content?id=ekonDAAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api',
+    title: 'The Selfish Gene',
+  },
+];
+
+const mockLikedListBooks = [
+  {
+    authors: ['J. R. R. Tolkien'],
+    id: '0CFAjgEACAAJ',
+    thumbnail:
+      'http://books.google.com/books/content?id=0CFAjgEACAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api',
+    title: 'The Lord of the Rings',
+  },
+];
+
+const mockWatchedListBooks = [
+  {
+    authors: ['John Ronald Reuel Tolkien'],
+    id: 'Jelk7EMpA7sC',
+    thumbnail:
+      'http://books.google.com/books/content?id=Jelk7EMpA7sC&printsec=frontcover&img=1&zoom=1&source=gbs_api',
+    title: 'The Lord of the Rings',
+  },
+  {
+    authors: ['J. R. R. Tolkien'],
+    id: '0CFAjgEACAAJ',
+    thumbnail:
+      'http://books.google.com/books/content?id=0CFAjgEACAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api',
+    title: 'The Lord of the Rings',
+  },
+];
+
 module.exports = {
   mockResponseData,
   mockFlattenedData,
+  mockSelectedBook,
+  mockMyListBooks,
+  mockLikedListBooks,
+  mockWatchedListBooks,
 };
