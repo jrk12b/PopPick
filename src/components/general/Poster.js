@@ -107,8 +107,6 @@ const Poster = ({
           return coverImage;
       }
     })();
-  console.log('item', item);
-  console.log('imageUri', imageUri);
   return (
     <View style={styles.movieContainer}>
       <TouchableOpacity onPress={() => handleShowOptions(item)}>
