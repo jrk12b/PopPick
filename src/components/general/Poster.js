@@ -70,51 +70,57 @@ const Poster = ({
   myList = [],
   watchedList = [],
   handleShowOptions,
+  imageUriProp, // for testing purposes
 }) => {
-  const [coverImage, setCoverImage] = useState(null); // State to store the cover image URL
+  const [coverImage, setCoverImage] = useState(null);
   const [bookCoverImage, setBookCoverImage] = useState(null);
 
-  // Fetch the cover image if the media type is 'videoGames' and the item has a cover ID
   useEffect(() => {
-    if (mediaType === 'Video Games' && item.cover) {
-      fetchCoverImageWithRetry(item, setCoverImage); // Fetch the cover image with retry logic
+    if (!imageUriProp) {
+      // Only fetch if no imageUriProp is provided
+      if (mediaType === 'Video Games' && item.cover) {
+        fetchCoverImageWithRetry(item, setCoverImage);
+      }
+      if (mediaType === 'Books') {
+        const imageUrl = item.thumbnail;
+        fetchBookCoverWithRetry(imageUrl, setBookCoverImage);
+      }
     }
-    if (mediaType === 'Books') {
-      const imageUrl = item.thumbnail;
-      fetchBookCoverWithRetry(imageUrl, setBookCoverImage); // Fetch the cover image with retry logic
-    }
-  }, [item, item.cover, mediaType]);
+  }, [item, item.cover, mediaType, imageUriProp]);
 
-  // Function to check if the item is in a given list
   const isInList = list => list.some(media => media.id === item.id);
 
-  // Check if the item is in the liked, saved, or watched lists
   const isLiked = isInList(likedList);
   const isSaved = isInList(myList);
   const isWatched = isInList(watchedList);
 
-  // Determine the image URI based on the media type
-  const imageUri = (() => {
-    switch (mediaType) {
-      case 'Movies':
-      case 'TV Shows':
-        return `https://image.tmdb.org/t/p/w500${item.poster_path}`; // Movie or TV show poster URL
-      case 'Books':
-        return bookCoverImage; // Book cover image URL
-      default:
-        return coverImage; // Video game cover image URL
-    }
-  })();
-
+  const imageUri =
+    imageUriProp ||
+    (() => {
+      switch (mediaType) {
+        case 'Movies':
+        case 'TV Shows':
+          return `https://image.tmdb.org/t/p/w500${item.poster_path}`;
+        case 'Books':
+          return bookCoverImage;
+        default:
+          return coverImage;
+      }
+    })();
+  console.log('item', item);
+  console.log('imageUri', imageUri);
   return (
     <View style={styles.movieContainer}>
       <TouchableOpacity onPress={() => handleShowOptions(item)}>
         {imageUri ? (
-          <Image style={styles.poster} source={{uri: imageUri}} /> // Display the image
+          <Image
+            style={styles.poster}
+            source={{uri: imageUri}}
+            testID="poster-image"
+          />
         ) : (
-          <Text>Loading...</Text> // Show loading text while the image is being fetched
+          <Text>Loading...</Text>
         )}
-        {/* Conditionally render icons based on whether the item is liked, saved, or watched */}
         {isLiked && (
           <Icon
             name="favorite"

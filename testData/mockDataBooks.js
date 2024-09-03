@@ -287,6 +287,19 @@ const mockWatchedListBooks = [
   },
 ];
 
+const mockPosterBookItem = {
+  authors: ['Mikael Niemi'],
+  average_rating: 3.5,
+  description:
+    "Popular Music from Vittula tells the fantastical story of a young boy's unordinary existence, peopled by a visiting African priest, a witch in the heart of the forest, cousins from Missouri, an old Nazi, a beautiful girl with a black Volvo, silent men and tough women, a champion-bicyclist music teacher with a thumb in the middle of his hand—and, not least, on a shiny vinyl disk, the Beatles. The story unfolds in sweltering wood saunas, amidst chain thrashings and gang warfare, learning to play the guitar in the garage, over a traditional wedding meal, on the way to China, during drinking competitions, while learning secret languages, playing ice hockey surrounded by snow drifts, outsmarting mice, discovering girls, staging a first rock concert, peeing in the snow, skiing under a sparkling midnight sky. In the manner of David Mitchell’s Black Swan Green, Mikael Niemi tells a story of a rural Sweden at once foreign and familiar, as a magical childhood slowly fades with the seasons into adult reality.",
+  id: 'DRFn6Q8XssoC',
+  thumbnail:
+    'http://books.google.com/books/content?id=DRFn6Q8XssoC&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api',
+  title: 'Popular Music from Vittula',
+  coverImageUrl:
+    'https://books.google.com/books/content?id=nAYBEAAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api',
+};
+
 module.exports = {
   mockBookResponseData,
   mockFlattenedBookData,
@@ -298,4 +311,5 @@ module.exports = {
   mockMyListBooks,
   mockLikedListBooks,
   mockWatchedListBooks,
+  mockPosterBookItem,
 };

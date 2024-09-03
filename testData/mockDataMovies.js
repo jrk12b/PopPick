@@ -235,6 +235,27 @@ const mockWatchedListMovies = [
   },
 ];
 
+const mockPosterMovieItem = {
+  adult: false,
+  backdrop_path: '/d4P97PFMG5UKyZyvRn5kIiNMBxn.jpg',
+  genre_ids: [80, 35, 10749],
+  id: 974635,
+  media_type: 'movie',
+  original_language: 'en',
+  original_title: 'Hit Man',
+  overview:
+    'A mild-mannered professor moonlighting as a fake hit man in police stings ignites a chain reaction of trouble when he falls for a potential client.',
+  popularity: 134.688,
+  poster_path: '/5BfcYFhRVlgWLFo4SCkQNsIWzyy.jpg',
+  release_date: '2024-05-16',
+  title: 'Hit Man',
+  video: false,
+  vote_average: 6.971,
+  vote_count: 728,
+  coverImageUrl:
+    'https://image.tmdb.org/t/p/w500/6oom5QYQ2yQTMJIbnvbkBL9cHo6.jpg',
+};
+
 module.exports = {
   mockSelectedMovieNoList,
   mockSelectedMovieInMyList,
@@ -243,4 +264,5 @@ module.exports = {
   mockMyListMovies,
   mockLikedListMovies,
   mockWatchedListMovies,
+  mockPosterMovieItem,
 };
