@@ -7,3 +7,7 @@ PopPick lets you discover books, movies, and video games, and organize them into
 # Running Locally
 - `npm i`
 - `npm start`
+
+# install pods
+- `cd ios`
+- `pod install`
